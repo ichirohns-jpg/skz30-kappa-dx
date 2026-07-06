@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SKZ30 カッパ像めぐりDX</title>
+
+<meta name="description" content="志木市内30体のカッパ像をめぐり、Googleマップで案内し、推し3体を選んで投票できる、まち歩き型DXです。">
+<meta name="theme-color" content="#0b5f3a">
+
+<meta property="og:site_name" content="SKZ30 カッパ像めぐりDX">
+<meta property="og:title" content="SKZ30 カッパ像めぐりDX">
+<meta property="og:description" content="めぐって、めぐって、あなたの推し3体を！紙のMAPとQRコードで楽しむ志木のカッパ像めぐりDX。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SKZ30 カッパ像めぐりDX">
+<meta name="twitter:description" content="志木市内30体のカッパ像をめぐって、推し3体を選ぼう！">
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:
+    "Hiragino Sans",
+    "Yu Gothic",
+    "Meiryo",
+    sans-serif;
+  background:
+    radial-gradient(circle at top,#dcfce7 0,#f0fdf4 28%,#e6f7ec 55%,#d8f3dc 100%);
+  color:#123524;
+  line-height:1.7;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input,
+textarea,
+select{
+  font-family:inherit;
+}
+
+.wrap{
+  width:min(1120px,94%);
+  margin:auto;
+  padding:16px 0 60px;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:12px 0 18px;
+}
+
+.logo{
+  font-weight:900;
+  color:#064e3b;
+  letter-spacing:.03em;
+  font-size:18px;
+}
+
+.nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.nav a{
+  display:inline-block;
+  padding:9px 13px;
+  border-radius:999px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(21,128,61,.22);
+  color:#065f46;
+  font-size:13px;
+  font-weight:900;
+}
+
+.hero{
+  border-radius:32px;
+  overflow:hidden;
+  background:
+    linear-gradient(135deg,rgba(6,95,70,.96),rgba(22,163,74,.92)),
+    radial-gradient(circle at right,#bbf7d0 0,transparent 34%);
+  color:#fff;
+  padding:28px;
+  box-shadow:0 22px 56px rgba(6,95,70,.28);
+  position:relative;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  right:-80px;
+  bottom:-90px;
+  width:280px;
+  height:280px;
+  border-radius:999px;
+  background:rgba(255,255,255,.13);
+}
+
+.heroGrid{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:22px;
+  align-items:center;
+}
+
+.badge{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.34);
+  color:#dcfce7;
+  font-weight:900;
+  font-size:14px;
+}
+
+.hero h1{
+  margin:14px 0 0;
+  font-size:clamp(34px,8vw,64px);
+  line-height:1.1;
+  font-weight:900;
+  letter-spacing:.03em;
+}
+
+.hero h1 span{
+  display:block;
+  color:#fef08a;
+}
+
+.hero p{
+  margin:18px 0 0;
+  max-width:760px;
+  font-size:clamp(16px,4vw,22px);
+  font-weight:800;
+}
+
+.heroPanel{
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:28px;
+  padding:18px;
+  backdrop-filter:blur(8px);
+}
+
+.bigKappa{
+  font-size:72px;
+  text-align:center;
+  line-height:1;
+  margin-bottom:8px;
+}
+
+.heroPanel h2{
+  margin:0 0 8px;
+  font-size:21px;
+}
+
+.heroPanel p{
+  margin:0;
+  font-size:15px;
+  color:#ecfdf5;
+}
+
+.heroButtons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:20px;
+}
+
+.btn{
+  border:0;
+  border-radius:999px;
+  padding:13px 18px;
+  font-size:16px;
+  font-weight:900;
+  cursor:pointer;
+  display:inline-block;
+  text-align:center;
+}
+
+.btnMain{
+  background:#fef08a;
+  color:#14532d;
+}
+
+.btnGreen{
+  background:#16a34a;
+  color:#fff;
+}
+
+.btnWhite{
+  background:#fff;
+  color:#166534;
+}
+
+.btnDark{
+  background:#064e3b;
+  color:#fff;
+}
+
+.btnLine{
+  background:#06c755;
+  color:#fff;
+}
+
+.btnX{
+  background:#111827;
+  color:#fff;
+}
+
+.btnFb{
+  background:#1877f2;
+  color:#fff;
+}
+
+.section{
+  margin-top:28px;
+}
+
+.sectionTitle{
+  margin:0 0 10px;
+  font-size:clamp(25px,5vw,38px);
+  color:#064e3b;
+  line-height:1.25;
+}
+
+.sectionLead{
+  margin:0 0 18px;
+  color:#365946;
+  font-weight:800;
+}
+
+.card{
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(21,128,61,.16);
+  border-radius:26px;
+  padding:22px;
+  box-shadow:0 16px 42px rgba(20,83,45,.13);
+}
+
+.greenCard{
+  background:linear-gradient(135deg,#ecfdf5,#dcfce7);
+}
+
+.darkCard{
+  background:linear-gradient(135deg,#064e3b,#15803d);
+  color:#fff;
+}
+
+.darkCard .sectionTitle,
+.darkCard .sectionLead{
+  color:#fff;
+}
+
+.grid3{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+
+.feature{
+  border-radius:22px;
+  padding:18px;
+  background:#fff;
+  border:1px solid #bbf7d0;
+}
+
+.featureIcon{
+  width:54px;
+  height:54px;
+  display:grid;
+  place-items:center;
+  border-radius:18px;
+  background:#dcfce7;
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+.feature h3{
+  margin:0 0 8px;
+  color:#065f46;
+  font-size:20px;
+}
+
+.feature p{
+  margin:0;
+  color:#365946;
+  font-weight:700;
+}
+
+.flow{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+}
+
+.flowStep{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  background:#fff;
+  border:1px solid #bbf7d0;
+  border-radius:18px;
+  padding:14px;
+}
+
+.num{
+  flex:0 0 auto;
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  background:#16a34a;
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-weight:900;
+}
+
+.flowStep h3{
+  margin:0 0 4px;
+  color:#065f46;
+  font-size:18px;
+}
+
+.flowStep p{
+  margin:0;
+  color:#365946;
+  font-weight:700;
+}
+
+.noticeBox{
+  background:#fef9c3;
+  border:1px solid #fde68a;
+  color:#713f12;
+  border-radius:22px;
+  padding:18px;
+  font-weight:800;
+}
+
+.kappaTools{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:14px 0 0;
+}
+
+.smallTag{
+  display:inline-block;
+  padding:7px 10px;
+  border-radius:999px;
+  background:#dcfce7;
+  color:#166534;
+  border:1px solid #bbf7d0;
+  font-size:13px;
+  font-weight:900;
+}
+
+.kappaGrid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+
+.kappaCard{
+  background:#fff;
+  border:1px solid #bbf7d0;
+  border-radius:24px;
+  padding:16px;
+  box-shadow:0 10px 26px rgba(20,83,45,.1);
+}
+
+.kappaTop{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.kappaAvatar{
+  width:56px;
+  height:56px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#bbf7d0,#4ade80);
+  display:grid;
+  place-items:center;
+  font-size:30px;
+}
+
+.kappaName{
+  margin:0;
+  color:#064e3b;
+  font-size:19px;
+  font-weight:900;
+}
+
+.kappaPlace{
+  margin:2px 0 0;
+  color:#4b6b57;
+  font-size:13px;
+  font-weight:800;
+}
+
+.kappaCard p{
+  color:#365946;
+  font-weight:700;
+}
+
+.kappaActions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+
+.miniBtn{
+  border:0;
+  border-radius:999px;
+  padding:10px 12px;
+  font-size:14px;
+  font-weight:900;
+  cursor:pointer;
+  display:inline-block;
+}
+
+.formGrid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+
+.field{
+  margin:0;
+}
+
+label{
+  display:block;
+  color:#064e3b;
+  font-weight:900;
+  margin:0 0 6px;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  border:1px solid #a7f3d0;
+  border-radius:16px;
+  padding:13px 14px;
+  font-size:16px;
+  background:#fff;
+  color:#123524;
+  outline:none;
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:#16a34a;
+  box-shadow:0 0 0 4px rgba(34,197,94,.18);
+}
+
+.voteResult{
+  display:none;
+  margin-top:18px;
+}
+
+.voteResult.show{
+  display:block;
+}
+
+pre{
+  white-space:pre-wrap;
+  word-break:break-word;
+  margin:0;
+  padding:16px;
+  background:#052e1c;
+  color:#ecfdf5;
+  border-radius:18px;
+  font-size:14px;
+  line-height:1.75;
+}
+
+.shareArea{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+  margin-top:16px;
+}
+
+.shopGrid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+
+.shop{
+  background:#fff;
+  border:1px solid #bbf7d0;
+  border-radius:22px;
+  padding:18px;
+}
+
+.shop h3{
+  margin:0 0 8px;
+  color:#065f46;
+}
+
+.shop p{
+  margin:0;
+  color:#365946;
+  font-weight:700;
+}
+
+.footer{
+  margin-top:36px;
+  text-align:center;
+  color:#365946;
+  font-size:14px;
+  font-weight:800;
+}
+
+.fixedVote{
+  position:sticky;
+  bottom:12px;
+  z-index:10;
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+}
+
+.fixedVote a{
+  background:#fef08a;
+  color:#14532d;
+  border:2px solid #166534;
+  border-radius:999px;
+  padding:13px 20px;
+  font-weight:900;
+  box-shadow:0 12px 30px rgba(20,83,45,.22);
+}
+
+@media (min-width:760px){
+  .heroGrid{
+    grid-template-columns:1.2fr .8fr;
+  }
+
+  .grid3{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .kappaGrid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .formGrid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .wide{
+    grid-column:1 / -1;
+  }
+
+  .shareArea{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .shopGrid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media (max-width:560px){
+  .header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .nav a{
+    font-size:12px;
+    padding:8px 10px;
+  }
+
+  .hero{
+    padding:22px;
+    border-radius:26px;
+  }
+
+  .card{
+    padding:18px;
+  }
+
+  .btn,
+  .miniBtn{
+    width:100%;
+  }
+
+  .kappaActions{
+    flex-direction:column;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <a class="logo" href="./">SKZ30 カッパ像めぐりDX</a>
+    <nav class="nav">
+      <a href="#about">企画概要</a>
+      <a href="#kappaList">カッパ一覧</a>
+      <a href="#vote">推し投票</a>
+      <a href="#shops">商店会コラボ</a>
+      <a href="#share">SNS共有</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="heroGrid">
+        <div>
+          <div class="badge">まちづくり観光事業 / プレ実施</div>
+          <h1>
+            SKZ30
+            <span>カッパ像めぐりDX</span>
+          </h1>
+          <p>
+            めぐって、めぐって、あなたの推し3体を！
+            紙のMAPとQRコードから、スマホでカッパ像をめぐり、Googleマップで案内し、推しカッパに投票できるまち歩き型DXです。
+          </p>
+
+          <div class="heroButtons">
+            <a class="btn btnMain" href="#kappaList">カッパ像を見る</a>
+            <a class="btn btnWhite" href="#vote">推し3体に投票</a>
+            <button class="btn btnGreen" type="button" onclick="shareProject()">SNSで共有</button>
+          </div>
+        </div>
+
+        <div class="heroPanel">
+          <div class="bigKappa">🐸</div>
+          <h2>紙のMAP × QRコード × スマホ案内</h2>
+          <p>
+            30体のカッパ像を、現在地や行きたい場所に合わせて自由にめぐれます。
+            推し3体投票、グループ名応募、商店会コラボにもつなげます。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section card greenCard">
+      <h2 class="sectionTitle">企画の一言</h2>
+      <p class="sectionLead">
+        紙のカッパ像MAPを、QRコードとスマートフォンで「歩く・見つける・投票する・商店会に立ち寄る」体験へ広げる、まち歩き型DXです。
+      </p>
+
+      <div class="grid3">
+        <div class="feature">
+          <div class="featureIcon">🗺️</div>
+          <h3>紙MAPを入口に</h3>
+          <p>最新版カッパ像MAPやポスターにQRコードを入れ、スマホ専用ページへつなぎます。</p>
+        </div>
+
+        <div class="feature">
+          <div class="featureIcon">📱</div>
+          <h3>スマホで案内</h3>
+          <p>カッパ像一覧、詳細、お知らせ、Googleマップ案内をスマホで確認できます。</p>
+        </div>
+
+        <div class="feature">
+          <div class="featureIcon">⭐</div>
+          <h3>推し3体投票</h3>
+          <p>めぐったあとに、お気に入りのカッパ像を3体選んで投票できます。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section card">
+      <h2 class="sectionTitle">参加の流れ</h2>
+      <p class="sectionLead">
+        まずは大きな専用アプリではなく、スマホで見やすい専用ページから始めます。
+      </p>
+
+      <div class="flow">
+        <div class="flowStep">
+          <div class="num">1</div>
+          <div>
+            <h3>カッパ像めぐりMAPを受け取る</h3>
+            <p>紙のMAPやポスターにあるQRコードを入口にします。</p>
+          </div>
+        </div>
+
+        <div class="flowStep">
+          <div class="num">2</div>
+          <div>
+            <h3>QRコードを読み取る</h3>
+            <p>スマホで30体のカッパ像一覧ページを開きます。</p>
+          </div>
+        </div>
+
+        <div class="flowStep">
+          <div class="num">3</div>
+          <div>
+            <h3>行きたいカッパ像を選ぶ</h3>
+            <p>Googleマップで現在地からの行き方を確認します。</p>
+          </div>
+        </div>
+
+        <div class="flowStep">
+          <div class="num">4</div>
+          <div>
+            <h3>推し3体を投票する</h3>
+            <p>お気に入りのカッパ像を選び、コメントやグループ名応募にもつなげます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section noticeBox">
+      <strong>お知らせ</strong><br>
+      このページは「SKZ30 カッパ像めぐりDX」のたたき台です。正式な30体の名称、設置場所、GoogleマップURL、写真、商店会コラボ情報は、実装時に確認して差し替えます。
+    </section>
+
+    <section id="kappaList" class="section">
+      <h2 class="sectionTitle">カッパ像一覧</h2>
+      <p class="sectionLead">
+        既存MAP28体に、マルイ8F パルシティ窓口のカパル像、市役所1階のカパル像を加え、合計30体として整理します。
+      </p>
+
+      <div class="kappaTools">
+        <span class="smallTag">自由巡り</span>
+        <span class="smallTag">商工会起点モデルルート</span>
+        <span class="smallTag">Googleマップ案内</span>
+        <span class="smallTag">推し投票対応</span>
+      </div>
+
+      <div id="kappaGrid" class="kappaGrid section"></div>
+    </section>
+
+    <section id="vote" class="section card">
+      <h2 class="sectionTitle">あなたの推し3体を選ぶ</h2>
+      <p class="sectionLead">
+        カッパ像をめぐったら、あなたの推しカッパを3体選んで投票できます。
+        このたたき台では、送信前の投票文を作成し、SNS共有やコピーができます。
+      </p>
+
+      <form id="voteForm">
+        <div class="formGrid">
+          <div class="field">
+            <label for="nickname">ニックネーム</label>
+            <input id="nickname" type="text" placeholder="例：志木カッパ好き">
+          </div>
+
+          <div class="field">
+            <label for="oshi1">推し1位</label>
+            <select id="oshi1"></select>
+          </div>
+
+          <div class="field">
+            <label for="oshi2">推し2位</label>
+            <select id="oshi2"></select>
+          </div>
+
+          <div class="field">
+            <label for="oshi3">推し3位</label>
+            <select id="oshi3"></select>
+          </div>
+
+          <div class="field wide">
+            <label for="comment">コメント</label>
+            <textarea id="comment" placeholder="例：親子で楽しくめぐれました。まち歩きのきっかけになってよかったです。"></textarea>
+          </div>
+
+          <div class="field wide">
+            <label for="groupName">グループ名応募案</label>
+            <input id="groupName" type="text" placeholder="例：志木SKZ30、志木かっぱフレンズ など">
+          </div>
+        </div>
+
+        <div class="heroButtons">
+          <button class="btn btnGreen" type="button" onclick="makeVoteText()">投票文を作る</button>
+          <button class="btn btnDark" type="button" onclick="clearVote()">クリア</button>
+        </div>
+      </form>
+
+      <div id="voteResult" class="voteResult">
+        <h3>作成された投票文</h3>
+        <pre id="voteText"></pre>
+
+        <div class="shareArea">
+          <button class="btn btnDark" type="button" onclick="copyVote()">コピー</button>
+          <button class="btn btnLine" type="button" onclick="shareLine()">LINE</button>
+          <button class="btn btnX" type="button" onclick="shareX()">Xで投稿</button>
+          <button class="btn btnFb" type="button" onclick="shareFacebook()">Facebook</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="shops" class="section card darkCard">
+      <h2 class="sectionTitle">商店会コラボ案</h2>
+      <p class="sectionLead">
+        カッパ像めぐりと商店会企画をつなげることで、街歩きと店舗利用の両方を促進します。
+      </p>
+
+      <div class="shopGrid">
+        <div class="shop">
+          <h3>隠れカッピーを探せ！</h3>
+          <p>協力店舗に隠れカッピーシールを設置し、文字を集めるウォークラリーにします。</p>
+        </div>
+
+        <div class="shop">
+          <h3>志木名物紹介</h3>
+          <p>カッパ像周辺の志木名物、推奨品、飯綱町りんご商品などを紹介できます。</p>
+        </div>
+
+        <div class="shop">
+          <h3>商品券・景品連動</h3>
+          <p>商店会利用につながる商品券や景品、SNS投稿企画と組み合わせられます。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="share" class="section card">
+      <h2 class="sectionTitle">SNSで楽しさを広げる</h2>
+      <p class="sectionLead">
+        推しカッパ投票や参加体験を、LINE・X・Facebookで共有できます。
+        次年度以降のSKZ30総選挙、カッパソング、SNS発信にもつなげます。
+      </p>
+
+      <div class="shareArea">
+        <button class="btn btnLine" type="button" onclick="shareLineProject()">LINEで送る</button>
+        <button class="btn btnX" type="button" onclick="shareXProject()">Xで投稿</button>
+        <button class="btn btnFb" type="button" onclick="shareFacebookProject()">Facebook</button>
+        <button class="btn btnDark" type="button" onclick="copyProjectUrl()">URLコピー</button>
+      </div>
+    </section>
+
+    <div class="fixedVote">
+      <a href="#vote">推し3体を選ぶ</a>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    SKZ30 カッパ像めぐりDX<br>
+    めぐって、めぐって、あなたの推し3体を！
+  </footer>
+
+</div>
+
+<script>
+const SITE_URL =
+"https://ichirohns-jpg.github.io/skz30-kappa-dx/";
+
+const kappaList = [
+  {id:1,name:"引又おやじ",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:2,name:"お迎え母さん",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:3,name:"おすましくん",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:4,name:"流ちゃん",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:5,name:"大門",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:6,name:"育ちゃん",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:7,name:"ユーユー",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:8,name:"スイスイくん",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:9,name:"宙太郎",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:10,name:"愛ちゃん",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:11,name:"番太郎",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:12,name:"カッピー",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:13,name:"足跡",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:14,name:"遊花子",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:15,name:"待太郎",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:16,name:"さくら子",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:17,name:"三十五郎",area:"本町・駅周辺",place:"設置場所確認中"},
+  {id:18,name:"イロハカッパ",area:"いろは周辺",place:"設置場所確認中"},
+  {id:19,name:"イロハカッパ",area:"いろは周辺",place:"設置場所確認中"},
+  {id:20,name:"きずーな",area:"いろは周辺",place:"設置場所確認中"},
+  {id:21,name:"波坊ちゃん",area:"宗岡方面",place:"設置場所確認中"},
+  {id:22,name:"やなっぱ",area:"宗岡方面",place:"設置場所確認中"},
+  {id:23,name:"まねきかっぱ",area:"宗岡方面",place:"設置場所確認中"},
+  {id:24,name:"たごちゃん",area:"田子山周辺",place:"設置場所確認中"},
+  {id:25,name:"まちあわせ河童",area:"志木駅周辺",place:"設置場所確認中"},
+  {id:26,name:"宝幢寺カッパ",area:"宝幢寺周辺",place:"設置場所確認中"},
+  {id:27,name:"宝幢寺カッパ",area:"宝幢寺周辺",place:"設置場所確認中"},
+  {id:28,name:"宝幢寺カッパ",area:"宝幢寺周辺",place:"設置場所確認中"},
+  {id:29,name:"カパル像",area:"マルイ8F",place:"パルシティ窓口"},
+  {id:30,name:"カパル像",area:"市役所1階",place:"志木市役所1階"}
+];
+
+function mapUrl(kappa){
+  const query =
+    "志木市 " +
+    kappa.name +
+    " " +
+    kappa.area +
+    " " +
+    kappa.place;
+
+  return "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent(query);
+}
+
+function renderKappaList(){
+  const grid =
+    document.getElementById("kappaGrid");
+
+  if(!grid){
+    return;
+  }
+
+  grid.innerHTML =
+    kappaList.map(function(kappa){
+      return `
+        <article class="kappaCard">
+          <div class="kappaTop">
+            <div class="kappaAvatar">🐸</div>
+            <div>
+              <h3 class="kappaName">${kappa.id}. ${kappa.name}</h3>
+              <p class="kappaPlace">${kappa.area} / ${kappa.place}</p>
+            </div>
+          </div>
+          <p>
+            このカッパ像の正式な紹介文・写真・特典画像は、実装時に商工会資料をもとに登録します。
+          </p>
+          <div class="kappaActions">
+            <a class="miniBtn btnGreen" href="${mapUrl(kappa)}" target="_blank" rel="noopener">Googleマップ</a>
+            <button class="miniBtn btnDark" type="button" onclick="selectOshi('${kappa.name}')">推しに入れる</button>
+            <button class="miniBtn btnWhite" type="button" onclick="shareKappa('${kappa.name}')">共有</button>
+          </div>
+        </article>
+      `;
+    }).join("");
+}
+
+function fillSelects(){
+  ["oshi1","oshi2","oshi3"].forEach(function(id){
+    const select =
+      document.getElementById(id);
+
+    if(!select){
+      return;
+    }
+
+    select.innerHTML =
+      `<option value="">選んでください</option>` +
+      kappaList.map(function(kappa){
+        return `<option value="${kappa.name}">${kappa.id}. ${kappa.name}</option>`;
+      }).join("");
+  });
+}
+
+function selectOshi(name){
+  const ids =
+    ["oshi1","oshi2","oshi3"];
+
+  for(let i = 0; i < ids.length; i++){
+    const el =
+      document.getElementById(ids[i]);
+
+    if(el && !el.value){
+      el.value = name;
+      location.hash = "#vote";
+      return;
+    }
+  }
+
+  location.hash = "#vote";
+}
+
+function val(id){
+  const el =
+    document.getElementById(id);
+
+  return el ? String(el.value || "").trim() : "";
+}
+
+function makeVoteText(){
+  const nickname =
+    val("nickname") || "匿名参加";
+
+  const oshi1 =
+    val("oshi1");
+
+  const oshi2 =
+    val("oshi2");
+
+  const oshi3 =
+    val("oshi3");
+
+  const comment =
+    val("comment") || "カッパ像めぐりを楽しみました。";
+
+  const groupName =
+    val("groupName") || "未応募";
+
+  if(!oshi1 || !oshi2 || !oshi3){
+    alert("推しカッパを3体選んでください。");
+    return;
+  }
+
+  const text =
+`【SKZ30 カッパ像めぐりDX 投票たたき台】
+
+ニックネーム：
+${nickname}
+
+推し1位：
+${oshi1}
+
+推し2位：
+${oshi2}
+
+推し3位：
+${oshi3}
+
+コメント：
+${comment}
+
+グループ名応募案：
+${groupName}
+
+めぐって、めぐって、あなたの推し3体を！
+#SKZ30 #志木カッパ像めぐり #志木市 #カッパ像`;
+
+  document.getElementById("voteText").textContent = text;
+  document.getElementById("voteResult").classList.add("show");
+  document.getElementById("voteResult").scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
+
+function clearVote(){
+  const form =
+    document.getElementById("voteForm");
+
+  if(form){
+    form.reset();
+  }
+
+  document.getElementById("voteText").textContent = "";
+  document.getElementById("voteResult").classList.remove("show");
+}
+
+function getVoteText(){
+  const text =
+    document.getElementById("voteText").textContent || "";
+
+  if(!text.trim()){
+    alert("先に投票文を作ってください。");
+    return "";
+  }
+
+  return text;
+}
+
+function copyText(text){
+  if(!text){
+    return;
+  }
+
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(text).then(function(){
+      alert("コピーしました。");
+    }).catch(function(){
+      fallbackCopy(text);
+    });
+  }else{
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text){
+  const area =
+    document.createElement("textarea");
+
+  area.value = text;
+  area.setAttribute("readonly","");
+  area.style.position = "fixed";
+  area.style.left = "-9999px";
+  document.body.appendChild(area);
+  area.select();
+
+  try{
+    document.execCommand("copy");
+    alert("コピーしました。");
+  }catch(e){
+    alert("コピーできませんでした。文章を選択してコピーしてください。");
+  }
+
+  document.body.removeChild(area);
+}
+
+function copyVote(){
+  copyText(getVoteText());
+}
+
+function encodedVoteText(){
+  const text =
+    getVoteText();
+
+  if(!text){
+    return "";
+  }
+
+  return encodeURIComponent(text + "\n" + SITE_URL);
+}
+
+function shareLine(){
+  const encoded =
+    encodedVoteText();
+
+  if(encoded){
+    window.open("https://social-plugins.line.me/lineit/share?url=" + encodeURIComponent(SITE_URL) + "&text=" + encoded,"_blank");
+  }
+}
+
+function shareX(){
+  const encoded =
+    encodedVoteText();
+
+  if(encoded){
+    window.open("https://twitter.com/intent/tweet?text=" + encoded,"_blank");
+  }
+}
+
+function shareFacebook(){
+  window.open(
+    "https://www.facebook.com/sharer/sharer.php?u=" +
+    encodeURIComponent(SITE_URL),
+    "_blank"
+  );
+}
+
+function shareKappa(name){
+  const text =
+    `SKZ30 カッパ像めぐりDXで「${name}」を見つけよう！\n#SKZ30 #志木カッパ像めぐり`;
+
+  if(navigator.share){
+    navigator.share({
+      title:"SKZ30 カッパ像めぐりDX",
+      text:text,
+      url:SITE_URL
+    }).catch(function(){});
+  }else{
+    copyText(text + "\n" + SITE_URL);
+  }
+}
+
+function shareProject(){
+  if(navigator.share){
+    navigator.share({
+      title:"SKZ30 カッパ像めぐりDX",
+      text:"めぐって、めぐって、あなたの推し3体を！志木のカッパ像めぐりDX。",
+      url:SITE_URL
+    }).catch(function(){});
+  }else{
+    copyProjectUrl();
+  }
+}
+
+function shareLineProject(){
+  const text =
+    "SKZ30 カッパ像めぐりDX｜めぐって、めぐって、あなたの推し3体を！";
+
+  window.open(
+    "https://social-plugins.line.me/lineit/share?url=" +
+    encodeURIComponent(SITE_URL) +
+    "&text=" +
+    encodeURIComponent(text),
+    "_blank"
+  );
+}
+
+function shareXProject(){
+  const text =
+    "SKZ30 カッパ像めぐりDX｜志木市内30体のカッパ像をめぐって、推し3体を選ぼう！ #SKZ30 #志木カッパ像めぐり #志木市";
+
+  window.open(
+    "https://twitter.com/intent/tweet?text=" +
+    encodeURIComponent(text + "\n" + SITE_URL),
+    "_blank"
+  );
+}
+
+function shareFacebookProject(){
+  window.open(
+    "https://www.facebook.com/sharer/sharer.php?u=" +
+    encodeURIComponent(SITE_URL),
+    "_blank"
+  );
+}
+
+function copyProjectUrl(){
+  copyText(SITE_URL);
+}
+
+renderKappaList();
+fillSelects();
+</script>
+</body>
+</html>
