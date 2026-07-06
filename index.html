@@ -13,10 +13,12 @@
 <meta property="og:description" content="めぐって、めぐって、あなたの推し3体を！紙のMAPとQRコードで楽しむ志木のカッパ像めぐりDX。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/">
+<meta property="og:image" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/images/skz30-top.jpg">
 
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="SKZ30 カッパ像めぐりDX">
 <meta name="twitter:description" content="志木市内30体のカッパ像をめぐって、推し3体を選ぼう！">
+<meta name="twitter:image" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/images/skz30-top.jpg">
 
 <style>
 *{
@@ -50,6 +52,10 @@ input,
 textarea,
 select{
   font-family:inherit;
+}
+
+img{
+  max-width:100%;
 }
 
 .wrap{
@@ -153,30 +159,20 @@ select{
   font-weight:800;
 }
 
-.heroPanel{
+.heroImage{
   background:rgba(255,255,255,.14);
   border:1px solid rgba(255,255,255,.28);
   border-radius:28px;
-  padding:18px;
+  padding:10px;
   backdrop-filter:blur(8px);
+  box-shadow:0 16px 38px rgba(0,0,0,.18);
 }
 
-.bigKappa{
-  font-size:72px;
-  text-align:center;
-  line-height:1;
-  margin-bottom:8px;
-}
-
-.heroPanel h2{
-  margin:0 0 8px;
-  font-size:21px;
-}
-
-.heroPanel p{
-  margin:0;
-  font-size:15px;
-  color:#ecfdf5;
+.heroImage img{
+  display:block;
+  width:100%;
+  border-radius:22px;
+  background:#fff;
 }
 
 .heroButtons{
@@ -269,6 +265,21 @@ select{
 .darkCard .sectionTitle,
 .darkCard .sectionLead{
   color:#fff;
+}
+
+.visualImage{
+  border-radius:26px;
+  overflow:hidden;
+  border:1px solid rgba(21,128,61,.18);
+  background:#fff;
+  box-shadow:0 16px 38px rgba(20,83,45,.14);
+  margin:18px 0 22px;
+}
+
+.visualImage img{
+  display:block;
+  width:100%;
+  height:auto;
 }
 
 .grid3{
@@ -563,7 +574,7 @@ pre{
 
 @media (min-width:760px){
   .heroGrid{
-    grid-template-columns:1.2fr .8fr;
+    grid-template-columns:1.05fr .95fr;
   }
 
   .grid3{
@@ -659,13 +670,8 @@ pre{
           </div>
         </div>
 
-        <div class="heroPanel">
-          <div class="bigKappa">🐸</div>
-          <h2>紙のMAP × QRコード × スマホ案内</h2>
-          <p>
-            30体のカッパ像を、現在地や行きたい場所に合わせて自由にめぐれます。
-            推し3体投票、グループ名応募、商店会コラボにもつなげます。
-          </p>
+        <div class="heroImage">
+          <img src="images/skz30-top.jpg" alt="SKZ30 カッパ像めぐりDX トップ画像">
         </div>
       </div>
     </section>
@@ -744,10 +750,14 @@ pre{
     </section>
 
     <section id="kappaList" class="section">
-      <h2 class="sectionTitle">カッパ像一覧</h2>
+      <h2 class="sectionTitle">カッパ像一覧・MAP案内</h2>
       <p class="sectionLead">
         既存MAP28体に、マルイ8F パルシティ窓口のカパル像、市役所1階のカパル像を加え、合計30体として整理します。
       </p>
+
+      <div class="visualImage">
+        <img src="images/skz30-map-guide.jpg" alt="カッパ像一覧とMAP案内のイメージ">
+      </div>
 
       <div class="kappaTools">
         <span class="smallTag">自由巡り</span>
@@ -765,6 +775,10 @@ pre{
         カッパ像をめぐったら、あなたの推しカッパを3体選んで投票できます。
         このたたき台では、送信前の投票文を作成し、SNS共有やコピーができます。
       </p>
+
+      <div class="visualImage">
+        <img src="images/skz30-vote-sns.jpg" alt="推し3体投票とSNS共有のイメージ">
+      </div>
 
       <form id="voteForm">
         <div class="formGrid">
@@ -944,8 +958,8 @@ function renderKappaList(){
           </p>
           <div class="kappaActions">
             <a class="miniBtn btnGreen" href="${mapUrl(kappa)}" target="_blank" rel="noopener">Googleマップ</a>
-            <button class="miniBtn btnDark" type="button" onclick="selectOshi('${kappa.name}')">推しに入れる</button>
-            <button class="miniBtn btnWhite" type="button" onclick="shareKappa('${kappa.name}')">共有</button>
+            <button class="miniBtn btnDark" type="button" onclick="selectOshi('${kappa.id}. ${kappa.name}')">推しに入れる</button>
+            <button class="miniBtn btnWhite" type="button" onclick="shareKappa('${kappa.id}. ${kappa.name}')">共有</button>
           </div>
         </article>
       `;
@@ -964,7 +978,10 @@ function fillSelects(){
     select.innerHTML =
       `<option value="">選んでください</option>` +
       kappaList.map(function(kappa){
-        return `<option value="${kappa.name}">${kappa.id}. ${kappa.name}</option>`;
+        const label =
+          kappa.id + ". " + kappa.name;
+
+        return `<option value="${label}">${label}</option>`;
       }).join("");
   });
 }
