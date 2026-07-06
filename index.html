@@ -406,6 +406,22 @@ img{
   height:auto;
 }
 
+.loadStatus{
+  margin-top:14px;
+  padding:12px 14px;
+  border-radius:18px;
+  background:#ecfdf5;
+  border:1px solid #bbf7d0;
+  color:#166534;
+  font-weight:900;
+}
+
+.loadStatus.error{
+  background:#fee2e2;
+  color:#991b1b;
+  border-color:#fecaca;
+}
+
 .newsWrap{
   display:grid;
   grid-template-columns:1fr;
@@ -977,6 +993,7 @@ pre{
           動画、写真、イベント情報、商店会からのお知らせを掲載できます。
           気になる記事はLINE・X・Facebookで共有できます。
         </p>
+        <div id="newsLoadStatus" class="loadStatus">最新情報を読み込み中です。</div>
         <div class="buttonRow">
           <a class="btn btnDark" href="#home">トップへ戻る</a>
           <a class="btn btnGreen" href="#kappa">カッパ像を巡る</a>
@@ -999,6 +1016,8 @@ pre{
         <div class="visualImage">
           <img src="images/skz30-map-guide.jpg" alt="カッパ像一覧とMAP案内">
         </div>
+
+        <div id="kappaLoadStatus" class="loadStatus">カッパ像データを読み込み中です。</div>
 
         <div class="buttonRow">
           <button class="btn btnGreen" type="button" onclick="openAllMap()">近くのカッパ像を探す</button>
@@ -1212,19 +1231,55 @@ const USER_ID_KEY =
 let currentFilter =
 "all";
 
-const pinnedNews = {
-  id:"welcome",
-  pinned:true,
-  date:"ようこそ",
-  title:"志木のカッパ像めぐりへようこそ",
-  text:"カッパ像をめぐりながら、志木の街、商店街、川辺の風景を楽しみましょう。歓迎メッセージ動画や写真を、この一番上の枠に固定して表示できます。",
-  imageUrl:"images/skz30-top.jpg",
-  videoUrl:"",
-  linkUrl:"#kappa",
-  snsText:"志木のカッパ像めぐりへようこそ。SKZ30 カッパ像めぐりDXで、見たいカッパ像を選んで街歩きを楽しめます。"
-};
+let kappaList = [];
+let newsList = [];
 
-const newsList = [
+const fallbackKappaList = [
+  {id:1,name:"引又おやじ",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「引又おやじ」を巡ろう。",order:1},
+  {id:2,name:"お迎え母さん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「お迎え母さん」を巡ろう。",order:2},
+  {id:3,name:"おすましくん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「おすましくん」を巡ろう。",order:3},
+  {id:4,name:"流ちゃん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「流ちゃん」を巡ろう。",order:4},
+  {id:5,name:"大門",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「大門」を巡ろう。",order:5},
+  {id:6,name:"育ちゃん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「育ちゃん」を巡ろう。",order:6},
+  {id:7,name:"ユーユー",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「ユーユー」を巡ろう。",order:7},
+  {id:8,name:"スイスイくん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「スイスイくん」を巡ろう。",order:8},
+  {id:9,name:"宙太郎",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「宙太郎」を巡ろう。",order:9},
+  {id:10,name:"愛ちゃん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「愛ちゃん」を巡ろう。",order:10},
+  {id:11,name:"番太郎",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「番太郎」を巡ろう。",order:11},
+  {id:12,name:"カッピー",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「カッピー」を巡ろう。",order:12},
+  {id:13,name:"足跡",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「足跡」を巡ろう。",order:13},
+  {id:14,name:"遊花子",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「遊花子」を巡ろう。",order:14},
+  {id:15,name:"待太郎",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「待太郎」を巡ろう。",order:15},
+  {id:16,name:"さくら子",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「さくら子」を巡ろう。",order:16},
+  {id:17,name:"三十五郎",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「三十五郎」を巡ろう。",order:17},
+  {id:18,name:"イロハカッパ",area:"いろは",group:"iroha",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「イロハカッパ」を巡ろう。",order:18},
+  {id:19,name:"喋々喃々",area:"いろは",group:"iroha",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「喋々喃々」を巡ろう。",order:19},
+  {id:20,name:"きずーな",area:"いろは",group:"iroha",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「きずーな」を巡ろう。",order:20},
+  {id:21,name:"遠い記憶ー波動（波動ちゃん）",area:"宗岡",group:"muneoka",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「遠い記憶ー波動（波動ちゃん）」を巡ろう。",order:21},
+  {id:22,name:"やなっぱ",area:"宗岡",group:"muneoka",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「やなっぱ」を巡ろう。",order:22},
+  {id:23,name:"まねきがっぱ",area:"宗岡",group:"muneoka",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「まねきがっぱ」を巡ろう。",order:23},
+  {id:24,name:"たごちゃん",area:"田子山",group:"tagoyama",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「たごちゃん」を巡ろう。",order:24},
+  {id:25,name:"まちあわせ河童",area:"志木駅",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「まちあわせ河童」を巡ろう。",order:25},
+  {id:26,name:"宝幢寺カッパ",area:"宝幢寺",group:"houdouji",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「宝幢寺カッパ」を巡ろう。",order:26},
+  {id:27,name:"宝幢寺カッパ",area:"宝幢寺",group:"houdouji",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「宝幢寺カッパ」を巡ろう。",order:27},
+  {id:28,name:"宝幢寺カッパ",area:"宝幢寺",group:"houdouji",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「宝幢寺カッパ」を巡ろう。",order:28},
+  {id:29,name:"カパル像",area:"マルイ8F",group:"kapal",place:"マルイ8F パルシティ窓口",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"SKZ30で追加するカパル像です。",snsText:"SKZ30 カッパ像めぐりDXで「マルイ8Fのカパル像」を巡ろう。",order:29},
+  {id:30,name:"カパル像",area:"志木市役所1階",group:"kapal",place:"志木市役所1階",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"SKZ30で追加するカパル像です。",snsText:"SKZ30 カッパ像めぐりDXで「志木市役所1階のカパル像」を巡ろう。",order:30}
+];
+
+const fallbackNewsList = [
+  {
+    id:"welcome",
+    pinned:true,
+    date:"ようこそ",
+    title:"志木のカッパ像めぐりへようこそ",
+    text:"カッパ像をめぐりながら、志木の街、商店街、川辺の風景を楽しみましょう。歓迎メッセージ動画や写真を、この一番上の枠に固定して表示できます。",
+    imageUrl:"images/skz30-top.jpg",
+    videoUrl:"",
+    linkUrl:"#kappa",
+    snsText:"志木のカッパ像めぐりへようこそ。SKZ30 カッパ像めぐりDXで、見たいカッパ像を選んで街歩きを楽しめます。",
+    order:1
+  },
   {
     id:"start",
     pinned:false,
@@ -1234,7 +1289,8 @@ const newsList = [
     imageUrl:"images/skz30-map-guide.jpg",
     videoUrl:"",
     linkUrl:"#kappa",
-    snsText:"SKZ30 カッパ像めぐりDXで、志木のカッパ像をスマホで巡ろう。"
+    snsText:"SKZ30 カッパ像めぐりDXで、志木のカッパ像をスマホで巡ろう。",
+    order:2
   },
   {
     id:"vote",
@@ -1245,61 +1301,81 @@ const newsList = [
     imageUrl:"images/skz30-vote-sns.jpg",
     videoUrl:"",
     linkUrl:"#vote",
-    snsText:"志木のカッパ像めぐりで、あなたの推しカッパ3体を選ぼう。"
-  },
-  {
-    id:"shop",
-    pinned:false,
-    date:"まち歩き",
-    title:"カッパ像めぐりと一緒にお店も楽しもう",
-    text:"カッパ像の近くにあるお店、商店街、志木名物にも立ち寄りながら、街歩きを楽しめます。",
-    imageUrl:"images/skz30-top.jpg",
-    videoUrl:"",
-    linkUrl:"#shops",
-    snsText:"カッパ像めぐりと一緒に、志木の街とお店も楽しもう。"
+    snsText:"志木のカッパ像めぐりで、あなたの推しカッパ3体を選ぼう。",
+    order:3
   }
 ];
 
-const kappaList = [
-  {id:1,name:"引又おやじ",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:2,name:"お迎え母さん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:3,name:"おすましくん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:4,name:"流ちゃん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:5,name:"大門",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:6,name:"育ちゃん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:7,name:"ユーユー",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:8,name:"スイスイくん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:9,name:"宙太郎",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:10,name:"愛ちゃん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:11,name:"番太郎",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:12,name:"カッピー",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:13,name:"足跡",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:14,name:"遊花子",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:15,name:"待太郎",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:16,name:"さくら子",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:17,name:"三十五郎",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:18,name:"イロハカッパ",area:"いろは",group:"iroha",place:"",lat:"",lng:"",imageUrl:""},
-  {id:19,name:"喋々喃々",area:"いろは",group:"iroha",place:"",lat:"",lng:"",imageUrl:""},
-  {id:20,name:"きずーな",area:"いろは",group:"iroha",place:"",lat:"",lng:"",imageUrl:""},
-  {id:21,name:"遠い記憶ー波動（波動ちゃん）",area:"宗岡",group:"muneoka",place:"",lat:"",lng:"",imageUrl:""},
-  {id:22,name:"やなっぱ",area:"宗岡",group:"muneoka",place:"",lat:"",lng:"",imageUrl:""},
-  {id:23,name:"まねきがっぱ",area:"宗岡",group:"muneoka",place:"",lat:"",lng:"",imageUrl:""},
-  {id:24,name:"たごちゃん",area:"田子山",group:"tagoyama",place:"",lat:"",lng:"",imageUrl:""},
-  {id:25,name:"まちあわせ河童",area:"志木駅",group:"station",place:"",lat:"",lng:"",imageUrl:""},
-  {id:26,name:"宝幢寺カッパ",area:"宝幢寺",group:"houdouji",place:"",lat:"",lng:"",imageUrl:""},
-  {id:27,name:"宝幢寺カッパ",area:"宝幢寺",group:"houdouji",place:"",lat:"",lng:"",imageUrl:""},
-  {id:28,name:"宝幢寺カッパ",area:"宝幢寺",group:"houdouji",place:"",lat:"",lng:"",imageUrl:""},
-  {id:29,name:"カパル像",area:"マルイ8F パルシティ窓口",group:"kapal",place:"マルイ8F パルシティ窓口",lat:"",lng:"",imageUrl:""},
-  {id:30,name:"カパル像",area:"志木市役所1階",group:"kapal",place:"志木市役所1階",lat:"",lng:"",imageUrl:""}
-];
+function clean(value){
+  if(value === null || value === undefined){
+    return "";
+  }
+  return String(value).trim();
+}
 
 function escapeHTML(text){
-  return String(text || "")
+  return clean(text)
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#39;");
+}
+
+function toNumber(value,defaultValue){
+  const n =
+    Number(value);
+
+  if(isNaN(n)){
+    return defaultValue;
+  }
+
+  return n;
+}
+
+function isTrueValue(value){
+  const v =
+    clean(value);
+
+  return (
+    v === "固定" ||
+    v === "TRUE" ||
+    v === "true" ||
+    v === "1" ||
+    v === "はい" ||
+    v === "○"
+  );
+}
+
+function groupFromArea(area,name){
+  const text =
+    clean(area) + " " + clean(name);
+
+  if(text.indexOf("カパル") !== -1 || text.indexOf("マルイ") !== -1 || text.indexOf("市役所") !== -1){
+    return "kapal";
+  }
+
+  if(text.indexOf("宝幢寺") !== -1){
+    return "houdouji";
+  }
+
+  if(text.indexOf("田子山") !== -1 || text.indexOf("敷島") !== -1){
+    return "tagoyama";
+  }
+
+  if(text.indexOf("宗岡") !== -1){
+    return "muneoka";
+  }
+
+  if(text.indexOf("いろは") !== -1){
+    return "iroha";
+  }
+
+  if(text.indexOf("志木駅") !== -1 || text.indexOf("本町") !== -1){
+    return "station";
+  }
+
+  return "station";
 }
 
 function getPageFromHash(){
@@ -1460,19 +1536,24 @@ function kappaLabel(kappa){
 }
 
 function directionsUrl(kappa){
-  let destination = "";
+
+  if(kappa.mapUrl){
+    return kappa.mapUrl;
+  }
 
   if(kappa.lat && kappa.lng){
-    destination =
-      kappa.lat + "," + kappa.lng;
-  }else{
-    destination =
-      "志木市 " +
-      kappa.name +
-      " " +
-      kappa.area +
-      " カッパ像";
+    return "https://www.google.com/maps/dir/?api=1&destination=" +
+      encodeURIComponent(kappa.lat + "," + kappa.lng);
   }
+
+  const destination =
+    "志木市 " +
+    kappa.name +
+    " " +
+    kappa.area +
+    " " +
+    kappa.place +
+    " カッパ像";
 
   return "https://www.google.com/maps/dir/?api=1&destination=" +
     encodeURIComponent(destination);
@@ -1554,6 +1635,14 @@ function renderKappaList(){
           ? `<img src="${escapeHTML(kappa.imageUrl)}" alt="${escapeHTML(label)}">`
           : `<span>🐸</span>`;
 
+      const description =
+        kappa.description || "見つけたいカッパ像を選んだら、MAPで行き方を開けます。見つけたら「巡った」を押して記録できます。";
+
+      const placeText =
+        kappa.place
+          ? kappa.area + " / " + kappa.place
+          : kappa.area;
+
       return `
         <article class="kappaCard${visitedClass}" id="kappa-${kappa.id}">
           <div class="kappaTop">
@@ -1562,13 +1651,10 @@ function renderKappaList(){
             </button>
             <div>
               <h3 class="kappaName">${escapeHTML(label)}</h3>
-              <p class="kappaPlace">${escapeHTML(kappa.area)}</p>
+              <p class="kappaPlace">${escapeHTML(placeText)}</p>
             </div>
           </div>
-          <p>
-            見つけたいカッパ像を選んだら、MAPで行き方を開けます。
-            見つけたら「巡った」を押して記録できます。
-          </p>
+          <p>${escapeHTML(description)}</p>
           <div class="kappaActions">
             <button class="miniBtn btnGreen" type="button" onclick="openDirections(${kappa.id})">MAPで行く</button>
             <button class="miniBtn btnMain" type="button" onclick="toggleVisited(${kappa.id})">${visitedText}</button>
@@ -1666,8 +1752,11 @@ function val(id){
 }
 
 function makeVoteData(){
+  const nicknameInput =
+    val("nickname");
+
   const nickname =
-    val("nickname") || "匿名参加";
+    nicknameInput || "匿名参加";
 
   const oshi1 =
     val("oshi1");
@@ -1682,7 +1771,7 @@ function makeVoteData(){
     val("comment") || "志木のカッパ像めぐりを楽しみました。";
 
   const groupName =
-    val("groupName") || "考え中";
+    val("groupName");
 
   const visitedCount =
     getVisitedIds().length;
@@ -1695,6 +1784,7 @@ function makeVoteData(){
   return {
     userId:getUserId(),
     nickname:nickname,
+    nicknameInput:nicknameInput,
     oshi1:oshi1,
     oshi2:oshi2,
     oshi3:oshi3,
@@ -1705,33 +1795,46 @@ function makeVoteData(){
 }
 
 function buildVoteText(data){
-  return `【SKZ30 カッパ像めぐりDX】
 
-志木のカッパ像を巡っています。
+  const lines = [];
 
-巡った数：
-${data.visitedCount}/30
+  lines.push("【SKZ30 カッパ像めぐりDX】");
+  lines.push("");
+  lines.push("志木のカッパ像めぐりに参加しました！");
+  lines.push("");
+  lines.push("私の推しカッパ3体はこれです。");
+  lines.push("");
+  lines.push("1位：" + data.oshi1);
+  lines.push("2位：" + data.oshi2);
+  lines.push("3位：" + data.oshi3);
+  lines.push("");
 
-ニックネーム：
-${data.nickname}
+  if(data.visitedCount > 0){
+    lines.push("巡った数：" + data.visitedCount + "/30");
+    lines.push("");
+  }
 
-推し1位：
-${data.oshi1}
+  lines.push("ひとこと：");
+  lines.push(data.comment);
+  lines.push("");
 
-推し2位：
-${data.oshi2}
+  if(data.groupName){
+    lines.push("カッパたちのグループ名アイデア：");
+    lines.push(data.groupName);
+    lines.push("");
+  }
 
-推し3位：
-${data.oshi3}
+  lines.push("めぐって、めぐって、あなたの推し3体を！");
+  lines.push("");
+  lines.push("#SKZ30");
+  lines.push("#志木カッパ像めぐり");
+  lines.push("#志木市");
+  lines.push("#カッパ像");
+  lines.push("#まち歩き");
+  lines.push("");
+  lines.push(SITE_URL);
 
-ひとこと：
-${data.comment}
-
-カッパたちのグループ名アイデア：
-${data.groupName}
-
-めぐって、めぐって、あなたの推し3体を！
-#SKZ30 #志木カッパ像めぐり #志木市 #カッパ像`;
+  return lines.join("\n");
 }
 
 function displayVoteText(text){
@@ -1892,11 +1995,8 @@ function renderNews(){
     return;
   }
 
-  const allNews =
-    [pinnedNews].concat(newsList);
-
   wrap.innerHTML =
-    allNews.map(function(news){
+    newsList.map(function(news){
       return newsCardHTML(news);
     }).join("");
 }
@@ -1945,21 +2045,17 @@ function newsCardHTML(news){
 }
 
 function getNewsById(id){
-  if(pinnedNews.id === id){
-    return pinnedNews;
-  }
-
   return newsList.find(function(news){
     return news.id === id;
   });
 }
 
 function newsUrl(news){
-  return SITE_URL + "#news";
+  return SITE_URL;
 }
 
 function newsShareText(news){
-  return (news.snsText || news.title) + "\n" + newsUrl(news);
+  return (news.snsText || news.title) + "\n" + SITE_URL;
 }
 
 function openNewsVideo(id){
@@ -1980,6 +2076,7 @@ function openNewsLink(id){
   }
 
   if(news.linkUrl.indexOf("#") === 0){
+    location.hash = news.linkUrl.replace("#","");
     location.hash = news.linkUrl;
   }else{
     window.open(news.linkUrl,"_blank");
@@ -2000,7 +2097,7 @@ function shareNews(id,type){
   if(type === "line"){
     window.open(
       "https://social-plugins.line.me/lineit/share?url=" +
-      encodeURIComponent(newsUrl(news)) +
+      encodeURIComponent(SITE_URL) +
       "&text=" +
       encodeURIComponent(text),
       "_blank"
@@ -2020,7 +2117,7 @@ function shareNews(id,type){
   if(type === "facebook"){
     window.open(
       "https://www.facebook.com/sharer/sharer.php?u=" +
-      encodeURIComponent(newsUrl(news)),
+      encodeURIComponent(SITE_URL),
       "_blank"
     );
     return;
@@ -2097,7 +2194,7 @@ function shareX(){
 
   window.open(
     "https://twitter.com/intent/tweet?text=" +
-    encodeURIComponent(text + "\n" + SITE_URL),
+    encodeURIComponent(text),
     "_blank"
   );
 }
@@ -2122,16 +2219,20 @@ function shareKappa(id){
     kappaLabel(kappa);
 
   const text =
-    `SKZ30 カッパ像めぐりDXで「${label}」を巡っています！\n#SKZ30 #志木カッパ像めぐり #志木市`;
+    (kappa.snsText || `SKZ30 カッパ像めぐりDXで「${label}」を巡っています！`) +
+    "\n" +
+    "#SKZ30 #志木カッパ像めぐり #志木市" +
+    "\n" +
+    SITE_URL;
 
   if(navigator.share){
     navigator.share({
       title:"SKZ30 カッパ像めぐりDX",
       text:text,
-      url:SITE_URL + "#kappa"
+      url:SITE_URL
     }).catch(function(){});
   }else{
-    copyText(text + "\n" + SITE_URL + "#kappa");
+    copyText(text);
   }
 }
 
@@ -2180,15 +2281,311 @@ function shareFacebookProject(){
 }
 
 function copyProjectUrl(){
-  copyText(SITE_URL + "#" + getPageFromHash());
+  copyText(SITE_URL);
 }
 
-renderNews();
-renderKappaList();
-fillSelects();
-updateProgress();
+function showLoadStatus(id,message,isError){
+  const el =
+    document.getElementById(id);
+
+  if(!el){
+    return;
+  }
+
+  el.textContent =
+    message;
+
+  if(isError){
+    el.classList.add("error");
+  }else{
+    el.classList.remove("error");
+  }
+}
+
+function loadGasJsonp(mode,callbackName){
+  return new Promise(function(resolve,reject){
+
+    const name =
+      callbackName +
+      "_" +
+      Date.now() +
+      "_" +
+      Math.random().toString(36).slice(2,8);
+
+    const script =
+      document.createElement("script");
+
+    const params =
+      new URLSearchParams();
+
+    params.set("mode",mode);
+    params.set("callback",name);
+    params.set("v",String(Date.now()));
+
+    window[name] = function(data){
+      resolve(data);
+      cleanup();
+    };
+
+    function cleanup(){
+      try{
+        delete window[name];
+      }catch(e){
+        window[name] = undefined;
+      }
+
+      if(script.parentNode){
+        script.parentNode.removeChild(script);
+      }
+    }
+
+    script.onerror = function(){
+      cleanup();
+      reject(new Error("GAS読み込みに失敗しました"));
+    };
+
+    script.src =
+      GAS_URL + "?" + params.toString();
+
+    document.body.appendChild(script);
+
+  });
+}
+
+function mapKappaRecord(record){
+
+  const id =
+    toNumber(record["ID"],0);
+
+  const name =
+    clean(record["カッパ像名"]);
+
+  const area =
+    clean(record["エリア"]);
+
+  const place =
+    clean(record["設置場所"]);
+
+  const address =
+    clean(record["住所・目印"]);
+
+  return {
+    id:id,
+    name:name,
+    area:area,
+    group:groupFromArea(area + " " + place + " " + address,name),
+    place:place || address,
+    address:address,
+    lat:clean(record["緯度"]),
+    lng:clean(record["経度"]),
+    mapUrl:clean(record["GoogleマップURL"]),
+    imageUrl:clean(record["画像URL"]),
+    videoUrl:clean(record["動画URL"]),
+    description:clean(record["紹介文"]),
+    snsText:clean(record["SNS投稿文"]),
+    order:toNumber(record["表示順"],id),
+    note:clean(record["備考"])
+  };
+}
+
+function mapNewsRecord(record,index){
+
+  return {
+    id:clean(record["ID"]) || ("news-" + index),
+    pinned:isTrueValue(record["固定表示"]),
+    date:clean(record["日付"]),
+    title:clean(record["タイトル"]),
+    text:clean(record["本文"]),
+    imageUrl:clean(record["画像URL"]),
+    videoUrl:clean(record["動画URL"]),
+    linkUrl:clean(record["リンクURL"]),
+    snsText:clean(record["SNS投稿文"]),
+    order:toNumber(record["表示順"],index + 1)
+  };
+}
+
+function sortByOrder(a,b){
+  return toNumber(a.order,9999) - toNumber(b.order,9999);
+}
+
+async function loadSheetData(){
+
+  kappaList =
+    fallbackKappaList.slice();
+
+  newsList =
+    fallbackNewsList.slice();
+
+  renderNews();
+  renderKappaList();
+  fillSelects();
+  updateProgress();
+
+  try{
+
+    const kappaData =
+      await loadGasJsonp("getKappas","skz30Kappas");
+
+    if(kappaData && kappaData.ok && Array.isArray(kappaData.records) && kappaData.records.length > 0){
+
+      kappaList =
+        kappaData.records
+        .map(mapKappaRecord)
+        .filter(function(kappa){
+          return kappa.id && kappa.name;
+        })
+        .sort(sortByOrder);
+
+      showLoadStatus(
+        "kappaLoadStatus",
+        "スプレッドシートのカッパ像データを読み込みました。",
+        false
+      );
+
+    }else{
+
+      showLoadStatus(
+        "kappaLoadStatus",
+        "カッパ像データは仮データで表示中です。",
+        false
+      );
+
+    }
+
+  }catch(err){
+
+    showLoadStatus(
+      "kappaLoadStatus",
+      "カッパ像データを読み込めませんでした。仮データで表示しています。",
+      true
+    );
+
+  }
+
+  try{
+
+    const newsData =
+      await loadGasJsonp("getNews","skz30News");
+
+    if(newsData && newsData.ok && Array.isArray(newsData.records) && newsData.records.length > 0){
+
+      newsList =
+        newsData.records
+        .map(mapNewsRecord)
+        .filter(function(news){
+          return news.title || news.text;
+        })
+        .sort(function(a,b){
+
+          if(a.pinned && !b.pinned){
+            return -1;
+          }
+
+          if(!a.pinned && b.pinned){
+            return 1;
+          }
+
+          return sortByOrder(a,b);
+
+        });
+
+      showLoadStatus(
+        "newsLoadStatus",
+        "スプレッドシートの最新情報を読み込みました。",
+        false
+      );
+
+    }else{
+
+      showLoadStatus(
+        "newsLoadStatus",
+        "最新情報は仮データで表示中です。",
+        false
+      );
+
+    }
+
+  }catch(err){
+
+    showLoadStatus(
+      "newsLoadStatus",
+      "最新情報を読み込めませんでした。仮データで表示しています。",
+      true
+    );
+
+  }
+
+  renderNews();
+  renderKappaList();
+  fillSelects();
+  updateProgress();
+  handleInitialQuery();
+
+}
+
+function handleInitialQuery(){
+
+  const params =
+    new URLSearchParams(location.search);
+
+  const kappaId =
+    params.get("kappa");
+
+  const newsId =
+    params.get("news");
+
+  const shopId =
+    params.get("shop");
+
+  if(kappaId){
+
+    location.hash = "#kappa";
+
+    setTimeout(function(){
+      const target =
+        document.getElementById("kappa-" + kappaId);
+
+      if(target){
+        target.scrollIntoView({
+          behavior:"smooth",
+          block:"center"
+        });
+      }
+    },500);
+
+    return;
+  }
+
+  if(newsId){
+
+    location.hash = "#news";
+
+    setTimeout(function(){
+      const target =
+        document.getElementById("news-" + newsId);
+
+      if(target){
+        target.scrollIntoView({
+          behavior:"smooth",
+          block:"center"
+        });
+      }
+    },500);
+
+    return;
+  }
+
+  if(shopId){
+
+    location.hash = "#shops";
+
+  }
+
+}
+
 showPage(getPageFromHash());
 getUserId();
+loadSheetData();
 </script>
 </body>
 </html>
