@@ -6,7 +6,7 @@
 <title>SKZ30 カッパ像めぐりDX</title>
 
 <meta name="description" content="志木市内30体のカッパ像をスマホでめぐる参加ページです。見たいカッパ像を選び、Googleマップで向かい、巡った記録をつけ、推し3体を選んでSNS共有できます。">
-<meta name="theme-color" content="#0b5f3a">
+<meta name="theme-color" content="#064e3b">
 
 <link rel="icon" type="image/png" href="https://ichirohns-jpg.github.io/skz30-kappa-dx/apple-touch-icon.png">
 <link rel="shortcut icon" type="image/png" href="https://ichirohns-jpg.github.io/skz30-kappa-dx/apple-touch-icon.png">
@@ -47,10 +47,13 @@ body{
     "Yu Gothic",
     "Meiryo",
     sans-serif;
+  color:#083b2b;
   background:
-    radial-gradient(circle at top,#e7ffe9 0,#f0fdf4 30%,#def7e7 62%,#c7f0d3 100%);
-  color:#123524;
-  line-height:1.7;
+    radial-gradient(circle at 15% 0%,rgba(250,255,188,.9),transparent 28%),
+    radial-gradient(circle at 90% 10%,rgba(134,239,172,.75),transparent 28%),
+    linear-gradient(180deg,#e8fff0 0%,#f7fff9 42%,#dcfce7 100%);
+  line-height:1.65;
+  -webkit-text-size-adjust:100%;
 }
 
 a{
@@ -70,9 +73,9 @@ img{
 }
 
 .wrap{
-  width:min(1120px,94%);
+  width:min(1080px,94%);
   margin:auto;
-  padding:12px 0 82px;
+  padding:12px 0 88px;
 }
 
 .header{
@@ -84,15 +87,29 @@ img{
   position:sticky;
   top:0;
   z-index:30;
-  background:rgba(231,255,233,.92);
-  backdrop-filter:blur(10px);
+  background:rgba(232,255,240,.86);
+  backdrop-filter:blur(14px);
 }
 
 .logo{
+  display:flex;
+  align-items:center;
+  gap:8px;
   font-weight:900;
   color:#064e3b;
-  letter-spacing:.03em;
-  font-size:17px;
+  letter-spacing:.02em;
+  font-size:18px;
+}
+
+.logoMark{
+  width:34px;
+  height:34px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#064e3b,#16a34a);
+  color:#fff;
+  box-shadow:0 10px 24px rgba(6,78,59,.24);
 }
 
 .nav{
@@ -105,15 +122,15 @@ img{
   display:inline-block;
   padding:8px 11px;
   border-radius:999px;
-  background:rgba(255,255,255,.86);
-  border:1px solid rgba(21,128,61,.22);
+  background:rgba(255,255,255,.82);
+  border:1px solid rgba(21,128,61,.18);
   color:#065f46;
   font-size:12px;
   font-weight:900;
 }
 
 .nav a.active{
-  background:#16a34a;
+  background:#064e3b;
   color:#fff;
 }
 
@@ -126,26 +143,27 @@ img{
 }
 
 .hero{
-  border-radius:32px;
+  position:relative;
   overflow:hidden;
+  border-radius:34px;
   background:
-    linear-gradient(135deg,rgba(6,95,70,.96),rgba(22,163,74,.94)),
-    radial-gradient(circle at right,#bbf7d0 0,transparent 34%);
+    linear-gradient(135deg,rgba(4,78,55,.98),rgba(14,116,68,.95) 55%,rgba(34,197,94,.9)),
+    radial-gradient(circle at 90% 0%,#fef08a,transparent 36%);
   color:#fff;
   padding:24px;
-  box-shadow:0 22px 56px rgba(6,95,70,.28);
-  position:relative;
+  box-shadow:
+    0 30px 80px rgba(6,78,59,.28),
+    inset 0 1px 0 rgba(255,255,255,.18);
 }
 
-.hero::after{
+.hero::before{
   content:"";
   position:absolute;
-  right:-80px;
-  bottom:-90px;
-  width:280px;
-  height:280px;
+  inset:auto -80px -120px auto;
+  width:340px;
+  height:340px;
   border-radius:999px;
-  background:rgba(255,255,255,.13);
+  background:rgba(255,255,255,.12);
 }
 
 .heroGrid{
@@ -158,43 +176,47 @@ img{
 }
 
 .badge{
-  display:inline-block;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
   padding:8px 14px;
   border-radius:999px;
-  background:rgba(255,255,255,.16);
-  border:1px solid rgba(255,255,255,.34);
-  color:#dcfce7;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.28);
+  color:#f0fdf4;
   font-weight:900;
   font-size:14px;
 }
 
 .hero h1{
   margin:14px 0 0;
-  font-size:clamp(32px,8vw,60px);
-  line-height:1.1;
+  font-size:clamp(34px,9vw,64px);
+  line-height:1.05;
   font-weight:900;
-  letter-spacing:.03em;
+  letter-spacing:.02em;
 }
 
 .hero h1 span{
   display:block;
   color:#fef08a;
+  text-shadow:0 6px 18px rgba(0,0,0,.18);
 }
 
 .hero p{
   margin:16px 0 0;
-  max-width:760px;
+  max-width:720px;
   font-size:clamp(16px,4vw,21px);
   font-weight:800;
+  color:#f0fdf4;
 }
 
 .heroImage{
   background:rgba(255,255,255,.14);
-  border:1px solid rgba(255,255,255,.28);
+  border:1px solid rgba(255,255,255,.26);
   border-radius:28px;
   padding:10px;
   backdrop-filter:blur(8px);
-  box-shadow:0 16px 38px rgba(0,0,0,.18);
+  box-shadow:0 18px 40px rgba(0,0,0,.18);
 }
 
 .heroImage img{
@@ -204,20 +226,51 @@ img{
   background:#fff;
 }
 
+.heroStats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:18px;
+}
+
+.stat{
+  border-radius:18px;
+  padding:12px 10px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:22px;
+  line-height:1.1;
+  color:#fef08a;
+}
+
+.stat span{
+  display:block;
+  font-size:11px;
+  font-weight:900;
+  color:#dcfce7;
+  margin-top:4px;
+}
+
 .section{
   margin-top:24px;
 }
 
 .card{
   background:rgba(255,255,255,.95);
-  border:1px solid rgba(21,128,61,.16);
-  border-radius:26px;
+  border:1px solid rgba(21,128,61,.14);
+  border-radius:28px;
   padding:20px;
-  box-shadow:0 16px 42px rgba(20,83,45,.13);
+  box-shadow:0 18px 48px rgba(20,83,45,.12);
 }
 
 .greenCard{
-  background:linear-gradient(135deg,#ecfdf5,#dcfce7);
+  background:
+    linear-gradient(135deg,rgba(236,253,245,.98),rgba(220,252,231,.96));
 }
 
 .darkCard{
@@ -227,9 +280,10 @@ img{
 
 .sectionTitle{
   margin:0 0 8px;
-  font-size:clamp(25px,5vw,38px);
+  font-size:clamp(25px,6vw,38px);
   color:#064e3b;
-  line-height:1.25;
+  line-height:1.22;
+  font-weight:900;
 }
 
 .darkCard .sectionTitle{
@@ -238,7 +292,7 @@ img{
 
 .sectionLead{
   margin:0 0 16px;
-  color:#365946;
+  color:#315d44;
   font-weight:800;
 }
 
@@ -263,6 +317,7 @@ img{
   cursor:pointer;
   display:inline-block;
   text-align:center;
+  box-shadow:0 12px 26px rgba(20,83,45,.12);
 }
 
 .btnMain{
@@ -307,25 +362,33 @@ img{
 }
 
 .menuCard{
+  position:relative;
+  overflow:hidden;
   background:#fff;
   border:1px solid #bbf7d0;
-  border-radius:24px;
+  border-radius:26px;
   padding:18px;
-  box-shadow:0 12px 30px rgba(20,83,45,.11);
+  box-shadow:0 14px 34px rgba(20,83,45,.11);
   display:flex;
   gap:14px;
   align-items:center;
+  transition:.18s transform,.18s box-shadow;
+}
+
+.menuCard:active{
+  transform:scale(.98);
 }
 
 .menuIcon{
-  width:58px;
-  height:58px;
-  border-radius:20px;
-  background:#dcfce7;
+  width:60px;
+  height:60px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#dcfce7,#86efac);
   display:grid;
   place-items:center;
-  font-size:30px;
+  font-size:31px;
   flex:0 0 auto;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
 }
 
 .menuCard h3{
@@ -336,16 +399,43 @@ img{
 
 .menuCard p{
   margin:0;
-  color:#365946;
-  font-weight:700;
+  color:#315d44;
+  font-weight:750;
+}
+
+.wowGrid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+}
+
+.wowItem{
+  background:rgba(255,255,255,.92);
+  border:1px solid #bbf7d0;
+  border-radius:22px;
+  padding:16px;
+}
+
+.wowItem strong{
+  display:block;
+  color:#064e3b;
+  font-size:18px;
+  margin-bottom:4px;
+}
+
+.wowItem span{
+  color:#315d44;
+  font-weight:750;
 }
 
 .progressMini{
-  background:#052e1c;
+  background:
+    radial-gradient(circle at 10% 0%,rgba(254,240,138,.22),transparent 32%),
+    linear-gradient(135deg,#052e1c,#064e3b);
   color:#ecfdf5;
-  border-radius:24px;
+  border-radius:26px;
   padding:18px;
-  box-shadow:0 16px 40px rgba(6,78,59,.22);
+  box-shadow:0 18px 46px rgba(6,78,59,.24);
 }
 
 .progressTop{
@@ -363,7 +453,7 @@ img{
 }
 
 .progressCount{
-  font-size:30px;
+  font-size:31px;
   font-weight:900;
   color:#fef08a;
   line-height:1;
@@ -408,11 +498,12 @@ img{
 
 .loadStatus{
   margin-top:14px;
-  padding:12px 14px;
-  border-radius:18px;
+  padding:10px 13px;
+  border-radius:16px;
   background:#ecfdf5;
   border:1px solid #bbf7d0;
   color:#166534;
+  font-size:13px;
   font-weight:900;
 }
 
@@ -485,8 +576,8 @@ img{
 
 .newsText{
   margin:0;
-  color:#365946;
-  font-weight:700;
+  color:#315d44;
+  font-weight:750;
 }
 
 .newsMainActions{
@@ -535,9 +626,9 @@ img{
 }
 
 .routeBtn.active{
-  background:#16a34a;
+  background:#064e3b;
   color:#fff;
-  border-color:#16a34a;
+  border-color:#064e3b;
 }
 
 .kappaTools{
@@ -567,9 +658,9 @@ img{
 .kappaCard{
   background:#fff;
   border:1px solid #bbf7d0;
-  border-radius:24px;
+  border-radius:26px;
   padding:16px;
-  box-shadow:0 10px 26px rgba(20,83,45,.1);
+  box-shadow:0 12px 30px rgba(20,83,45,.1);
   position:relative;
   overflow:hidden;
 }
@@ -597,13 +688,13 @@ img{
   display:flex;
   gap:12px;
   align-items:center;
-  padding-right:66px;
+  padding-right:68px;
 }
 
 .kappaVisual{
-  width:64px;
-  height:64px;
-  border-radius:20px;
+  width:66px;
+  height:66px;
+  border-radius:22px;
   background:linear-gradient(135deg,#bbf7d0,#4ade80);
   display:grid;
   place-items:center;
@@ -612,6 +703,7 @@ img{
   flex:0 0 auto;
   cursor:pointer;
   border:2px solid #dcfce7;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.68);
 }
 
 .kappaVisual img{
@@ -626,23 +718,25 @@ img{
   color:#064e3b;
   font-size:19px;
   font-weight:900;
+  line-height:1.35;
 }
 
 .kappaPlace{
-  margin:2px 0 0;
+  margin:3px 0 0;
   color:#4b6b57;
   font-size:13px;
-  font-weight:800;
+  font-weight:850;
 }
 
 .kappaCard p{
-  color:#365946;
-  font-weight:700;
+  color:#315d44;
+  font-weight:750;
+  margin:12px 0 0;
 }
 
 .kappaActions{
-  display:flex;
-  flex-wrap:wrap;
+  display:grid;
+  grid-template-columns:1fr 1fr;
   gap:8px;
   margin-top:12px;
 }
@@ -655,6 +749,7 @@ img{
   font-weight:900;
   cursor:pointer;
   display:inline-block;
+  text-align:center;
 }
 
 .formGrid{
@@ -757,8 +852,9 @@ pre{
 .shop{
   background:#fff;
   border:1px solid #bbf7d0;
-  border-radius:22px;
+  border-radius:24px;
   padding:18px;
+  box-shadow:0 12px 30px rgba(20,83,45,.08);
 }
 
 .shop h3{
@@ -768,8 +864,8 @@ pre{
 
 .shop p{
   margin:0;
-  color:#365946;
-  font-weight:700;
+  color:#315d44;
+  font-weight:750;
 }
 
 .footer{
@@ -786,15 +882,16 @@ pre{
   right:0;
   bottom:0;
   z-index:40;
-  background:rgba(255,255,255,.94);
+  background:rgba(255,255,255,.95);
   border-top:1px solid rgba(21,128,61,.22);
   display:grid;
   grid-template-columns:repeat(5,1fr);
   box-shadow:0 -12px 30px rgba(20,83,45,.14);
+  backdrop-filter:blur(14px);
 }
 
 .bottomNav a{
-  padding:9px 4px 8px;
+  padding:8px 4px 7px;
   text-align:center;
   color:#166534;
   font-size:11px;
@@ -818,6 +915,10 @@ pre{
 
   .menuGrid{
     grid-template-columns:repeat(2,1fr);
+  }
+
+  .wowGrid{
+    grid-template-columns:repeat(3,1fr);
   }
 
   .newsWrap{
@@ -861,7 +962,7 @@ pre{
 
   .hero{
     padding:22px;
-    border-radius:26px;
+    border-radius:28px;
   }
 
   .card{
@@ -871,6 +972,22 @@ pre{
   .btn,
   .miniBtn{
     width:100%;
+  }
+
+  .heroStats{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+
+  .stat{
+    padding:10px 6px;
+  }
+
+  .stat strong{
+    font-size:19px;
+  }
+
+  .stat span{
+    font-size:10px;
   }
 
   .newsMainActions .miniBtn{
@@ -888,7 +1005,7 @@ pre{
   }
 
   .kappaActions{
-    flex-direction:column;
+    grid-template-columns:1fr 1fr;
   }
 
   .progressTop{
@@ -907,7 +1024,10 @@ pre{
 <div class="wrap">
 
   <header class="header">
-    <a class="logo" href="#home" data-nav="home">SKZ30 カッパ像めぐりDX</a>
+    <a class="logo" href="#home" data-nav="home">
+      <span class="logoMark">🐸</span>
+      <span>SKZ30 カッパ像めぐりDX</span>
+    </a>
     <nav class="nav">
       <a href="#home" data-nav="home">トップ</a>
       <a href="#kappa" data-nav="kappa">巡る</a>
@@ -921,18 +1041,34 @@ pre{
   <main>
 
     <section id="page-home" class="page active">
+
       <section class="hero">
         <div class="heroGrid">
           <div>
-            <div class="badge">QRから参加できます</div>
+            <div class="badge">まち歩き観光をスマホで楽しく</div>
             <h1>
               志木のカッパ像を
-              <span>スマホで巡ろう</span>
+              <span>めぐるDX</span>
             </h1>
             <p>
-              見たいカッパ像を選んで、Googleマップで向かう。
-              巡った記録をつけて、推し3体を選んで共有できます。
+              見たいカッパ像を選ぶ。現在地からMAPで行く。
+              巡った記録を残す。推し3体を選んでSNSで広げる。
             </p>
+
+            <div class="heroStats">
+              <div class="stat">
+                <strong>30</strong>
+                <span>カッパ像</span>
+              </div>
+              <div class="stat">
+                <strong>MAP</strong>
+                <span>現在地案内</span>
+              </div>
+              <div class="stat">
+                <strong>SNS</strong>
+                <span>共有対応</span>
+              </div>
+            </div>
 
             <div class="heroButtons">
               <a class="btn btnMain" href="#kappa">カッパ像を巡る</a>
@@ -951,7 +1087,7 @@ pre{
         <div class="progressTop">
           <div>
             <h2>今日の巡った記録</h2>
-            <p class="progressHint">このスマホに保存されます。</p>
+            <p class="progressHint">このスマホに保存されます。途中から再開できます。</p>
           </div>
           <div class="progressCount">
             <span data-visited-count>0</span>/30
@@ -963,9 +1099,9 @@ pre{
       </section>
 
       <section class="section card greenCard">
-        <h2 class="sectionTitle">何をしますか？</h2>
+        <h2 class="sectionTitle">まず、何をしますか？</h2>
         <p class="sectionLead">
-          最初に見たいものを選んでください。長い説明を読まなくても、そのまま使えます。
+          参加者は迷わず使えます。紙MAP・QR・スマホ・Googleマップ・SNSがつながる、まち歩きDXです。
         </p>
 
         <div class="menuGrid">
@@ -973,7 +1109,7 @@ pre{
             <div class="menuIcon">🐸</div>
             <div>
               <h3>カッパ像を巡る</h3>
-              <p>30体の中から見たいカッパを選び、MAPで行けます。</p>
+              <p>30体から選んで、MAPでその場所へ向かえます。</p>
             </div>
           </a>
 
@@ -981,7 +1117,7 @@ pre{
             <div class="menuIcon">🗺️</div>
             <div>
               <h3>近くのカッパを探す</h3>
-              <p>Googleマップで近くのカッパ像を探します。</p>
+              <p>今いる場所から近くのカッパ像を探せます。</p>
             </div>
           </a>
 
@@ -989,7 +1125,7 @@ pre{
             <div class="menuIcon">⭐</div>
             <div>
               <h3>推し3体を選ぶ</h3>
-              <p>巡ったあとに、推しカッパ3体を選べます。</p>
+              <p>推し投票を送信し、SNS投稿文も作れます。</p>
             </div>
           </a>
 
@@ -997,7 +1133,7 @@ pre{
             <div class="menuIcon">📢</div>
             <div>
               <h3>最新情報を見る</h3>
-              <p>動画、写真、イベント情報、お知らせを見られます。</p>
+              <p>画像・動画・イベント情報を発信できます。</p>
             </div>
           </a>
 
@@ -1005,7 +1141,7 @@ pre{
             <div class="menuIcon">🏮</div>
             <div>
               <h3>お店も楽しむ</h3>
-              <p>商店街や志木名物と一緒に楽しめます。</p>
+              <p>商店会コラボや志木名物紹介につなげられます。</p>
             </div>
           </a>
 
@@ -1018,14 +1154,38 @@ pre{
           </a>
         </div>
       </section>
+
+      <section class="section card">
+        <h2 class="sectionTitle">このDXでできること</h2>
+        <p class="sectionLead">
+          ただのホームページではなく、商工会側が育てていける仕組みです。
+        </p>
+
+        <div class="wowGrid">
+          <div class="wowItem">
+            <strong>場所案内</strong>
+            <span>カッパ像ごとにGoogleマップ案内。緯度経度をシートで管理できます。</span>
+          </div>
+
+          <div class="wowItem">
+            <strong>投票保存</strong>
+            <span>推し3体投票はスプレッドシートに保存。集計の土台になります。</span>
+          </div>
+
+          <div class="wowItem">
+            <strong>情報発信</strong>
+            <span>お知らせ、画像、動画、SNS文をシートで追加できます。</span>
+          </div>
+        </div>
+      </section>
+
     </section>
 
     <section id="page-news" class="page">
       <section class="section card greenCard">
         <h2 class="sectionTitle">最新情報</h2>
         <p class="sectionLead">
-          動画、写真、イベント情報、商店会からのお知らせを掲載できます。
-          気になる記事はLINE・X・Facebookで共有できます。
+          動画、写真、イベント情報、商店会からのお知らせをここに掲載できます。
         </p>
         <div id="newsLoadStatus" class="loadStatus">最新情報を読み込み中です。</div>
         <div class="buttonRow">
@@ -1043,8 +1203,7 @@ pre{
       <section class="section card greenCard">
         <h2 class="sectionTitle">カッパ像を巡る</h2>
         <p class="sectionLead">
-          気になるカッパ像を選んでください。
-          画像または「MAPで行く」を押すと、Googleマップで行き方を開きます。
+          気になるカッパ像を選んでください。MAPで行くを押すと、現在地から案内できます。
         </p>
 
         <div class="visualImage">
@@ -1090,8 +1249,7 @@ pre{
         </div>
 
         <div class="kappaTools">
-          <span class="smallTag">自由に巡れる</span>
-          <span class="smallTag">MAPで案内</span>
+          <span class="smallTag">現在地から案内</span>
           <span class="smallTag">巡った記録</span>
           <span class="smallTag">推し投票</span>
           <span class="smallTag">SNS共有</span>
@@ -1105,8 +1263,7 @@ pre{
       <section class="section card">
         <h2 class="sectionTitle">あなたの推し3体を選ぶ</h2>
         <p class="sectionLead">
-          巡って楽しかったカッパ像、名前が好きなカッパ像、写真を撮りたくなったカッパ像。
-          あなたの推し3体を選んで、投票できます。
+          巡って楽しかったカッパ像、名前が好きなカッパ像、写真を撮りたくなったカッパ像を選んで投票できます。
         </p>
 
         <div class="visualImage">
@@ -1215,7 +1372,6 @@ pre{
         <h2 class="sectionTitle">SNSで楽しさを広げる</h2>
         <p class="sectionLead">
           友だちや家族に「このカッパ見つけたよ」と共有できます。
-          LINE・X・Facebook・URLコピーに対応しています。
         </p>
 
         <div class="shareArea">
@@ -1268,38 +1424,59 @@ let currentFilter =
 let kappaList = [];
 let newsList = [];
 
-const fallbackKappaList = [
-  {id:1,name:"引又おやじ",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「引又おやじ」を巡ろう。",order:1},
-  {id:2,name:"お迎え母さん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「お迎え母さん」を巡ろう。",order:2},
-  {id:3,name:"おすましくん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「おすましくん」を巡ろう。",order:3},
-  {id:4,name:"流ちゃん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「流ちゃん」を巡ろう。",order:4},
-  {id:5,name:"大門",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「大門」を巡ろう。",order:5},
-  {id:6,name:"育ちゃん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「育ちゃん」を巡ろう。",order:6},
-  {id:7,name:"ユーユー",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「ユーユー」を巡ろう。",order:7},
-  {id:8,name:"スイスイくん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「スイスイくん」を巡ろう。",order:8},
-  {id:9,name:"宙太郎",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「宙太郎」を巡ろう。",order:9},
-  {id:10,name:"愛ちゃん",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「愛ちゃん」を巡ろう。",order:10},
-  {id:11,name:"番太郎",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「番太郎」を巡ろう。",order:11},
-  {id:12,name:"カッピー",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「カッピー」を巡ろう。",order:12},
-  {id:13,name:"足跡",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「足跡」を巡ろう。",order:13},
-  {id:14,name:"遊花子",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「遊花子」を巡ろう。",order:14},
-  {id:15,name:"待太郎",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「待太郎」を巡ろう。",order:15},
-  {id:16,name:"さくら子",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「さくら子」を巡ろう。",order:16},
-  {id:17,name:"三十五郎",area:"志木駅・本町",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「三十五郎」を巡ろう。",order:17},
-  {id:18,name:"イロハカッパ",area:"いろは",group:"iroha",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「イロハカッパ」を巡ろう。",order:18},
-  {id:19,name:"喋々喃々",area:"いろは",group:"iroha",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「喋々喃々」を巡ろう。",order:19},
-  {id:20,name:"きずーな",area:"いろは",group:"iroha",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「きずーな」を巡ろう。",order:20},
-  {id:21,name:"遠い記憶ー波動（波動ちゃん）",area:"宗岡",group:"muneoka",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「遠い記憶ー波動（波動ちゃん）」を巡ろう。",order:21},
-  {id:22,name:"やなっぱ",area:"宗岡",group:"muneoka",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「やなっぱ」を巡ろう。",order:22},
-  {id:23,name:"まねきがっぱ",area:"宗岡",group:"muneoka",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「まねきがっぱ」を巡ろう。",order:23},
-  {id:24,name:"たごちゃん",area:"田子山",group:"tagoyama",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「たごちゃん」を巡ろう。",order:24},
-  {id:25,name:"まちあわせ河童",area:"志木駅",group:"station",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「まちあわせ河童」を巡ろう。",order:25},
-  {id:26,name:"宝幢寺カッパ",area:"宝幢寺",group:"houdouji",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「宝幢寺カッパ」を巡ろう。",order:26},
-  {id:27,name:"宝幢寺カッパ",area:"宝幢寺",group:"houdouji",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「宝幢寺カッパ」を巡ろう。",order:27},
-  {id:28,name:"宝幢寺カッパ",area:"宝幢寺",group:"houdouji",place:"",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"志木市のカッパ像めぐりで巡れるカッパ像です。",snsText:"SKZ30 カッパ像めぐりDXで「宝幢寺カッパ」を巡ろう。",order:28},
-  {id:29,name:"カパル像",area:"マルイ8F",group:"kapal",place:"マルイ8F パルシティ窓口",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"SKZ30で追加するカパル像です。",snsText:"SKZ30 カッパ像めぐりDXで「マルイ8Fのカパル像」を巡ろう。",order:29},
-  {id:30,name:"カパル像",area:"志木市役所1階",group:"kapal",place:"志木市役所1階",lat:"",lng:"",mapUrl:"",imageUrl:"",videoUrl:"",description:"SKZ30で追加するカパル像です。",snsText:"SKZ30 カッパ像めぐりDXで「志木市役所1階のカパル像」を巡ろう。",order:30}
+const fallbackNames = [
+  ["1","引又おやじ","志木駅・本町"],
+  ["2","お迎え母さん","志木駅・本町"],
+  ["3","おすましくん","志木駅・本町"],
+  ["4","流ちゃん","志木駅・本町"],
+  ["5","大門","志木駅・本町"],
+  ["6","育ちゃん","志木駅・本町"],
+  ["7","ユーユー","志木駅・本町"],
+  ["8","スイスイくん","志木駅・本町"],
+  ["9","宙太郎","志木駅・本町"],
+  ["10","愛ちゃん","志木駅・本町"],
+  ["11","番太郎","志木駅・本町"],
+  ["12","カッピー","志木駅・本町"],
+  ["13","足跡","志木駅・本町"],
+  ["14","遊花子","志木駅・本町"],
+  ["15","待太郎","志木駅・本町"],
+  ["16","さくら子","志木駅・本町"],
+  ["17","三十五郎","志木駅・本町"],
+  ["18","イロハカッパ","いろは"],
+  ["19","喋々喃々","いろは"],
+  ["20","きずーな","いろは"],
+  ["21","遠い記憶ー波動（波動ちゃん）","宗岡"],
+  ["22","やなっぱ","宗岡"],
+  ["23","まねきがっぱ","宗岡"],
+  ["24","たごちゃん","田子山"],
+  ["25","まちあわせ河童","志木駅"],
+  ["26","宝幢寺カッパ","宝幢寺"],
+  ["27","宝幢寺カッパ","宝幢寺"],
+  ["28","宝幢寺カッパ","宝幢寺"],
+  ["29","カパル像","マルイ8F"],
+  ["30","カパル像","志木市役所1階"]
 ];
+
+const fallbackKappaList =
+fallbackNames.map(function(row){
+  return {
+    id:Number(row[0]),
+    name:row[1],
+    area:row[2],
+    group:groupFromArea(row[2],row[1]),
+    place:"",
+    address:"",
+    lat:"",
+    lng:"",
+    mapUrl:"",
+    imageUrl:"",
+    videoUrl:"",
+    description:"志木市のカッパ像めぐりで巡れるカッパ像です。",
+    snsText:"SKZ30 カッパ像めぐりDXで「" + row[1] + "」を巡ろう。",
+    order:Number(row[0]),
+    note:""
+  };
+});
 
 const fallbackNewsList = [
   {
@@ -1307,7 +1484,7 @@ const fallbackNewsList = [
     pinned:true,
     date:"ようこそ",
     title:"志木のカッパ像めぐりへようこそ",
-    text:"カッパ像をめぐりながら、志木の街、商店街、川辺の風景を楽しみましょう。歓迎メッセージ動画や写真を、この一番上の枠に固定して表示できます。",
+    text:"カッパ像をめぐりながら、志木の街、商店街、川辺の風景を楽しみましょう。",
     imageUrl:"images/skz30-top.jpg",
     videoUrl:"",
     linkUrl:"#kappa",
@@ -1319,7 +1496,7 @@ const fallbackNewsList = [
     pinned:false,
     date:"最新情報",
     title:"カッパ像めぐりを始めよう",
-    text:"スマホで見たいカッパ像を選び、Googleマップで行き方を確認できます。1体だけでも、近くのカッパからでも楽しめます。",
+    text:"スマホで見たいカッパ像を選び、Googleマップで行き方を確認できます。",
     imageUrl:"images/skz30-map-guide.jpg",
     videoUrl:"",
     linkUrl:"#kappa",
@@ -1670,7 +1847,7 @@ function renderKappaList(){
           : `<span>🐸</span>`;
 
       const description =
-        kappa.description || "見つけたいカッパ像を選んだら、MAPで行き方を開けます。見つけたら「巡った」を押して記録できます。";
+        kappa.description || "MAPで行き方を開けます。見つけたら「巡った」を押して記録できます。";
 
       const placeText =
         kappa.place
@@ -2088,10 +2265,6 @@ function getNewsById(id){
   });
 }
 
-function newsUrl(news){
-  return SITE_URL;
-}
-
 function newsShareText(news){
   return (news.snsText || news.title) + "\n" + SITE_URL;
 }
@@ -2114,7 +2287,6 @@ function openNewsLink(id){
   }
 
   if(news.linkUrl.indexOf("#") === 0){
-    location.hash = news.linkUrl.replace("#","");
     location.hash = news.linkUrl;
   }else{
     window.open(news.linkUrl,"_blank");
