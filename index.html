@@ -256,6 +256,33 @@ img{
   margin-top:4px;
 }
 
+.eventRibbon{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+}
+
+.eventItem{
+  border-radius:20px;
+  padding:13px 14px;
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.22);
+}
+
+.eventItem b{
+  display:block;
+  color:#fef08a;
+  font-size:13px;
+  margin-bottom:2px;
+}
+
+.eventItem span{
+  display:block;
+  color:#f0fdf4;
+  font-weight:900;
+}
+
 .section{
   margin-top:24px;
 }
@@ -843,6 +870,83 @@ pre{
   margin-top:16px;
 }
 
+.shopHero{
+  background:
+    radial-gradient(circle at top right,rgba(254,240,138,.5),transparent 32%),
+    linear-gradient(135deg,#064e3b,#16a34a);
+  color:#fff;
+  border-radius:32px;
+  padding:24px;
+  box-shadow:0 22px 58px rgba(6,78,59,.24);
+}
+
+.shopHero h2{
+  margin:0;
+  font-size:clamp(28px,7vw,44px);
+  line-height:1.15;
+}
+
+.shopHero h2 span{
+  color:#fef08a;
+}
+
+.shopHero p{
+  margin:14px 0 0;
+  color:#ecfdf5;
+  font-weight:850;
+  font-size:17px;
+}
+
+.keywordBox{
+  margin-top:16px;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:22px;
+  padding:14px;
+  color:#fff;
+}
+
+.keywordBox b{
+  color:#fef08a;
+}
+
+.missionGrid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+}
+
+.missionCard{
+  background:#fff;
+  border:1px solid #bbf7d0;
+  border-radius:24px;
+  padding:16px;
+  box-shadow:0 12px 30px rgba(20,83,45,.09);
+}
+
+.missionNo{
+  width:38px;
+  height:38px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:#dcfce7;
+  color:#065f46;
+  font-weight:900;
+  margin-bottom:10px;
+}
+
+.missionCard h3{
+  margin:0 0 6px;
+  color:#065f46;
+}
+
+.missionCard p{
+  margin:0;
+  color:#315d44;
+  font-weight:750;
+}
+
 .shopGrid{
   display:grid;
   grid-template-columns:1fr;
@@ -913,6 +1017,10 @@ pre{
     grid-template-columns:1.05fr .95fr;
   }
 
+  .eventRibbon{
+    grid-template-columns:1fr 1fr;
+  }
+
   .menuGrid{
     grid-template-columns:repeat(2,1fr);
   }
@@ -945,7 +1053,8 @@ pre{
     grid-template-columns:repeat(4,1fr);
   }
 
-  .shopGrid{
+  .shopGrid,
+  .missionGrid{
     grid-template-columns:repeat(3,1fr);
   }
 }
@@ -1067,6 +1176,17 @@ pre{
               <div class="stat">
                 <strong>SNS</strong>
                 <span>共有対応</span>
+              </div>
+            </div>
+
+            <div class="eventRibbon">
+              <div class="eventItem">
+                <b>開催予定</b>
+                <span>令和8年10月1日〜11月15日</span>
+              </div>
+              <div class="eventItem">
+                <b>主催</b>
+                <span>志木市商工会 まちづくり観光事業</span>
               </div>
             </div>
 
@@ -1334,11 +1454,22 @@ pre{
     </section>
 
     <section id="page-shops" class="page">
-      <section class="section card darkCard">
-        <h2 class="sectionTitle">お店も一緒に楽しむ</h2>
-        <p class="sectionLead">
-          カッパ像を巡りながら、商店街のお店、志木名物、季節のイベントにも立ち寄れます。
+
+      <section class="section shopHero">
+        <h2>
+          いろは商店会コラボ
+          <span>隠れカッピーを探せ！</span>
+        </h2>
+        <p>
+          カッパ像めぐりの途中でお店にも立ち寄ってもらう、商店会回遊型のDXです。
+          お店・ヒント・文字集め・景品・SNS共有まで、このページにまとめられます。
         </p>
+
+        <div class="keywordBox">
+          <b>遊び方：</b>
+          お店に隠れたカッピーを見つけ、文字を集めてキーワードを完成させます。
+          完成したら景品・商品券・SNS投稿へつなげられます。
+        </div>
 
         <div class="buttonRow">
           <a class="btn btnMain" href="#kappa">カッパ像を巡る</a>
@@ -1347,24 +1478,70 @@ pre{
         </div>
       </section>
 
-      <section class="section">
-        <div class="shopGrid">
-          <div class="shop">
-            <h3>隠れカッピーを探せ！</h3>
-            <p>お店に隠れたカッピーを見つける、まち歩きの楽しみを追加できます。</p>
+      <section class="section card greenCard">
+        <h2 class="sectionTitle">商店会コラボの流れ</h2>
+        <p class="sectionLead">
+          「歩く理由」と「お店に入るきっかけ」を、スマホで作ります。
+        </p>
+
+        <div class="missionGrid">
+          <div class="missionCard">
+            <div class="missionNo">1</div>
+            <h3>お店をめぐる</h3>
+            <p>参加店舗を紹介し、MAPやお知らせから立ち寄れるようにします。</p>
           </div>
 
-          <div class="shop">
-            <h3>志木名物を楽しむ</h3>
-            <p>カッパ像の近くにあるお店や志木名物を、巡る途中で楽しめます。</p>
+          <div class="missionCard">
+            <div class="missionNo">2</div>
+            <h3>隠れカッピー発見</h3>
+            <p>店内や店頭にある隠れカッピーを探す楽しみを作ります。</p>
           </div>
 
-          <div class="shop">
-            <h3>SNSで広げる</h3>
-            <p>写真や推しカッパを投稿して、志木のカッパ像めぐりを広げられます。</p>
+          <div class="missionCard">
+            <div class="missionNo">3</div>
+            <h3>文字を集める</h3>
+            <p>見つけた文字を集めて、キーワード完成を目指します。</p>
+          </div>
+
+          <div class="missionCard">
+            <div class="missionNo">4</div>
+            <h3>キーワード完成</h3>
+            <p>完成したキーワードを景品応募や抽選につなげられます。</p>
+          </div>
+
+          <div class="missionCard">
+            <div class="missionNo">5</div>
+            <h3>景品・商品券へ</h3>
+            <p>商店会の商品券や景品企画と連動し、買い物につなげます。</p>
+          </div>
+
+          <div class="missionCard">
+            <div class="missionNo">6</div>
+            <h3>SNSで拡散</h3>
+            <p>「見つけた」「巡った」「買った」をSNSで共有できます。</p>
           </div>
         </div>
       </section>
+
+      <section class="section">
+        <div class="shopGrid">
+          <div class="shop">
+            <h3>参加店舗を増やせる</h3>
+            <p>店舗名、住所、画像、動画、商品紹介、SNS文を追加できる設計に広げられます。</p>
+          </div>
+
+          <div class="shop">
+            <h3>志木名物を紹介できる</h3>
+            <p>カッパ像の近くにあるお店や、志木の名物・物産紹介に接続できます。</p>
+          </div>
+
+          <div class="shop">
+            <h3>親水公園企画にも広げられる</h3>
+            <p>今後、親水公園、川辺イベント、まち歩き導線のDXにも転用できます。</p>
+          </div>
+        </div>
+      </section>
+
     </section>
 
     <section id="page-share" class="page">
