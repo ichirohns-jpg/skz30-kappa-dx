@@ -72,7 +72,7 @@ img{
 .wrap{
   width:min(1120px,94%);
   margin:auto;
-  padding:14px 0 78px;
+  padding:12px 0 82px;
 }
 
 .header{
@@ -80,31 +80,49 @@ img{
   justify-content:space-between;
   align-items:center;
   gap:12px;
-  padding:10px 0 16px;
+  padding:10px 0 14px;
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:rgba(231,255,233,.92);
+  backdrop-filter:blur(10px);
 }
 
 .logo{
   font-weight:900;
   color:#064e3b;
   letter-spacing:.03em;
-  font-size:18px;
+  font-size:17px;
 }
 
 .nav{
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
+  gap:7px;
 }
 
 .nav a{
   display:inline-block;
-  padding:9px 13px;
+  padding:8px 11px;
   border-radius:999px;
-  background:rgba(255,255,255,.82);
+  background:rgba(255,255,255,.86);
   border:1px solid rgba(21,128,61,.22);
   color:#065f46;
-  font-size:13px;
+  font-size:12px;
   font-weight:900;
+}
+
+.nav a.active{
+  background:#16a34a;
+  color:#fff;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
 }
 
 .hero{
@@ -114,7 +132,7 @@ img{
     linear-gradient(135deg,rgba(6,95,70,.96),rgba(22,163,74,.94)),
     radial-gradient(circle at right,#bbf7d0 0,transparent 34%);
   color:#fff;
-  padding:26px;
+  padding:24px;
   box-shadow:0 22px 56px rgba(6,95,70,.28);
   position:relative;
 }
@@ -135,7 +153,7 @@ img{
   z-index:1;
   display:grid;
   grid-template-columns:1fr;
-  gap:22px;
+  gap:20px;
   align-items:center;
 }
 
@@ -152,7 +170,7 @@ img{
 
 .hero h1{
   margin:14px 0 0;
-  font-size:clamp(34px,8vw,64px);
+  font-size:clamp(32px,8vw,60px);
   line-height:1.1;
   font-weight:900;
   letter-spacing:.03em;
@@ -164,9 +182,9 @@ img{
 }
 
 .hero p{
-  margin:18px 0 0;
+  margin:16px 0 0;
   max-width:760px;
-  font-size:clamp(16px,4vw,22px);
+  font-size:clamp(16px,4vw,21px);
   font-weight:800;
 }
 
@@ -186,11 +204,54 @@ img{
   background:#fff;
 }
 
-.heroButtons{
+.section{
+  margin-top:24px;
+}
+
+.card{
+  background:rgba(255,255,255,.95);
+  border:1px solid rgba(21,128,61,.16);
+  border-radius:26px;
+  padding:20px;
+  box-shadow:0 16px 42px rgba(20,83,45,.13);
+}
+
+.greenCard{
+  background:linear-gradient(135deg,#ecfdf5,#dcfce7);
+}
+
+.darkCard{
+  background:linear-gradient(135deg,#064e3b,#15803d);
+  color:#fff;
+}
+
+.sectionTitle{
+  margin:0 0 8px;
+  font-size:clamp(25px,5vw,38px);
+  color:#064e3b;
+  line-height:1.25;
+}
+
+.darkCard .sectionTitle{
+  color:#fff;
+}
+
+.sectionLead{
+  margin:0 0 16px;
+  color:#365946;
+  font-weight:800;
+}
+
+.darkCard .sectionLead{
+  color:#ecfdf5;
+}
+
+.heroButtons,
+.buttonRow{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
-  margin-top:20px;
+  margin-top:18px;
 }
 
 .btn{
@@ -239,86 +300,51 @@ img{
   color:#fff;
 }
 
-.section{
-  margin-top:28px;
-}
-
-.sectionTitle{
-  margin:0 0 10px;
-  font-size:clamp(25px,5vw,38px);
-  color:#064e3b;
-  line-height:1.25;
-}
-
-.sectionLead{
-  margin:0 0 18px;
-  color:#365946;
-  font-weight:800;
-}
-
-.card{
-  background:rgba(255,255,255,.94);
-  border:1px solid rgba(21,128,61,.16);
-  border-radius:26px;
-  padding:22px;
-  box-shadow:0 16px 42px rgba(20,83,45,.13);
-}
-
-.greenCard{
-  background:linear-gradient(135deg,#ecfdf5,#dcfce7);
-}
-
-.darkCard{
-  background:linear-gradient(135deg,#064e3b,#15803d);
-  color:#fff;
-}
-
-.darkCard .sectionTitle,
-.darkCard .sectionLead{
-  color:#fff;
-}
-
-.quickPanel{
+.menuGrid{
   display:grid;
   grid-template-columns:1fr;
   gap:14px;
 }
 
-.quickCard{
+.menuCard{
   background:#fff;
   border:1px solid #bbf7d0;
-  border-radius:22px;
+  border-radius:24px;
   padding:18px;
+  box-shadow:0 12px 30px rgba(20,83,45,.11);
+  display:flex;
+  gap:14px;
+  align-items:center;
 }
 
-.quickIcon{
-  width:54px;
-  height:54px;
+.menuIcon{
+  width:58px;
+  height:58px;
+  border-radius:20px;
+  background:#dcfce7;
   display:grid;
   place-items:center;
-  border-radius:18px;
-  background:#dcfce7;
-  font-size:28px;
-  margin-bottom:10px;
+  font-size:30px;
+  flex:0 0 auto;
 }
 
-.quickCard h3{
-  margin:0 0 8px;
+.menuCard h3{
+  margin:0 0 4px;
   color:#065f46;
   font-size:20px;
 }
 
-.quickCard p{
+.menuCard p{
   margin:0;
   color:#365946;
   font-weight:700;
 }
 
-.progressBox{
+.progressMini{
   background:#052e1c;
   color:#ecfdf5;
-  border-radius:26px;
-  padding:20px;
+  border-radius:24px;
+  padding:18px;
   box-shadow:0 16px 40px rgba(6,78,59,.22);
 }
 
@@ -327,24 +353,24 @@ img{
   justify-content:space-between;
   gap:12px;
   align-items:flex-end;
-  margin-bottom:12px;
+  margin-bottom:10px;
 }
 
 .progressTop h2{
   margin:0;
-  font-size:24px;
+  font-size:22px;
   line-height:1.25;
 }
 
 .progressCount{
-  font-size:32px;
+  font-size:30px;
   font-weight:900;
   color:#fef08a;
   line-height:1;
 }
 
 .progressBarOuter{
-  height:18px;
+  height:16px;
   border-radius:999px;
   background:rgba(255,255,255,.16);
   overflow:hidden;
@@ -360,7 +386,7 @@ img{
 }
 
 .progressHint{
-  margin:12px 0 0;
+  margin:10px 0 0;
   color:#dcfce7;
   font-weight:800;
 }
@@ -371,7 +397,7 @@ img{
   border:1px solid rgba(21,128,61,.18);
   background:#fff;
   box-shadow:0 16px 38px rgba(20,83,45,.14);
-  margin:18px 0 22px;
+  margin:16px 0 20px;
 }
 
 .visualImage img{
@@ -696,23 +722,35 @@ pre{
   font-weight:800;
 }
 
-.fixedVote{
-  position:sticky;
-  bottom:12px;
-  z-index:10;
-  margin-top:20px;
-  display:flex;
-  justify-content:center;
+.bottomNav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:40;
+  background:rgba(255,255,255,.94);
+  border-top:1px solid rgba(21,128,61,.22);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  box-shadow:0 -12px 30px rgba(20,83,45,.14);
 }
 
-.fixedVote a{
-  background:#fef08a;
-  color:#14532d;
-  border:2px solid #166534;
-  border-radius:999px;
-  padding:13px 20px;
+.bottomNav a{
+  padding:9px 4px 8px;
+  text-align:center;
+  color:#166534;
+  font-size:11px;
   font-weight:900;
-  box-shadow:0 12px 30px rgba(20,83,45,.22);
+}
+
+.bottomNav a span{
+  display:block;
+  font-size:20px;
+  line-height:1.1;
+}
+
+.bottomNav a.active{
+  background:#dcfce7;
 }
 
 @media (min-width:760px){
@@ -720,8 +758,8 @@ pre{
     grid-template-columns:1.05fr .95fr;
   }
 
-  .quickPanel{
-    grid-template-columns:repeat(3,1fr);
+  .menuGrid{
+    grid-template-columns:repeat(2,1fr);
   }
 
   .newsWrap{
@@ -759,9 +797,8 @@ pre{
     align-items:flex-start;
   }
 
-  .nav a{
-    font-size:12px;
-    padding:8px 10px;
+  .nav{
+    display:none;
   }
 
   .hero{
@@ -787,6 +824,10 @@ pre{
     flex-direction:column;
     align-items:flex-start;
   }
+
+  .menuCard{
+    align-items:flex-start;
+  }
 }
 </style>
 </head>
@@ -795,241 +836,324 @@ pre{
 <div class="wrap">
 
   <header class="header">
-    <a class="logo" href="./">SKZ30 カッパ像めぐりDX</a>
+    <a class="logo" href="#home" data-nav="home">SKZ30 カッパ像めぐりDX</a>
     <nav class="nav">
-      <a href="#start">遊び方</a>
-      <a href="#news">最新情報</a>
-      <a href="#kappaList">カッパを巡る</a>
-      <a href="#vote">推し投票</a>
-      <a href="#shops">お店も楽しむ</a>
-      <a href="#share">SNS共有</a>
+      <a href="#home" data-nav="home">トップ</a>
+      <a href="#kappa" data-nav="kappa">巡る</a>
+      <a href="#news" data-nav="news">最新情報</a>
+      <a href="#vote" data-nav="vote">推し投票</a>
+      <a href="#shops" data-nav="shops">お店</a>
+      <a href="#share" data-nav="share">共有</a>
     </nav>
   </header>
 
   <main>
 
-    <section class="hero">
-      <div class="heroGrid">
-        <div>
-          <div class="badge">QRから参加できます</div>
-          <h1>
-            志木のカッパ像を
-            <span>スマホで巡ろう</span>
-          </h1>
-          <p>
-            見たいカッパ像を選ぶ、地図で向かう、巡った記録をつける、推し3体を選ぶ。
-            紙のMAPとスマホを使って、志木のまち歩きを楽しめます。
-          </p>
+    <section id="page-home" class="page active">
+      <section class="hero">
+        <div class="heroGrid">
+          <div>
+            <div class="badge">QRから参加できます</div>
+            <h1>
+              志木のカッパ像を
+              <span>スマホで巡ろう</span>
+            </h1>
+            <p>
+              見たいカッパ像を選んで、Googleマップで向かう。
+              巡った記録をつけて、推し3体を選んで共有できます。
+            </p>
 
-          <div class="heroButtons">
-            <a class="btn btnMain" href="#kappaList">カッパ像を選ぶ</a>
-            <a class="btn btnWhite" href="#news">最新情報を見る</a>
-            <a class="btn btnGreen" href="#vote">推し3体を選ぶ</a>
+            <div class="heroButtons">
+              <a class="btn btnMain" href="#kappa">カッパ像を巡る</a>
+              <a class="btn btnWhite" href="#news">最新情報</a>
+              <a class="btn btnGreen" href="#vote">推し3体を選ぶ</a>
+            </div>
+          </div>
+
+          <div class="heroImage">
+            <img src="images/skz30-top.jpg" alt="SKZ30 カッパ像めぐりDX">
           </div>
         </div>
+      </section>
 
-        <div class="heroImage">
-          <img src="images/skz30-top.jpg" alt="SKZ30 カッパ像めぐりDX">
+      <section class="section progressMini">
+        <div class="progressTop">
+          <div>
+            <h2>今日の巡った記録</h2>
+            <p class="progressHint">このスマホに保存されます。</p>
+          </div>
+          <div class="progressCount">
+            <span data-visited-count>0</span>/30
+          </div>
         </div>
-      </div>
+        <div class="progressBarOuter">
+          <div class="progressBarInner" data-progress-bar></div>
+        </div>
+      </section>
+
+      <section class="section card greenCard">
+        <h2 class="sectionTitle">何をしますか？</h2>
+        <p class="sectionLead">
+          最初に見たいものを選んでください。長い説明を読まなくても、そのまま使えます。
+        </p>
+
+        <div class="menuGrid">
+          <a class="menuCard" href="#kappa">
+            <div class="menuIcon">🐸</div>
+            <div>
+              <h3>カッパ像を巡る</h3>
+              <p>30体の中から見たいカッパを選び、MAPで行けます。</p>
+            </div>
+          </a>
+
+          <a class="menuCard" href="#kappa" onclick="openAllMap();">
+            <div class="menuIcon">🗺️</div>
+            <div>
+              <h3>近くのカッパを探す</h3>
+              <p>Googleマップで近くのカッパ像を探します。</p>
+            </div>
+          </a>
+
+          <a class="menuCard" href="#vote">
+            <div class="menuIcon">⭐</div>
+            <div>
+              <h3>推し3体を選ぶ</h3>
+              <p>巡ったあとに、推しカッパ3体を選べます。</p>
+            </div>
+          </a>
+
+          <a class="menuCard" href="#news">
+            <div class="menuIcon">📢</div>
+            <div>
+              <h3>最新情報を見る</h3>
+              <p>動画、写真、イベント情報、お知らせを見られます。</p>
+            </div>
+          </a>
+
+          <a class="menuCard" href="#shops">
+            <div class="menuIcon">🏮</div>
+            <div>
+              <h3>お店も楽しむ</h3>
+              <p>商店街や志木名物と一緒に楽しめます。</p>
+            </div>
+          </a>
+
+          <a class="menuCard" href="#share">
+            <div class="menuIcon">📱</div>
+            <div>
+              <h3>SNSで共有</h3>
+              <p>LINE・X・Facebook・URLコピーに対応しています。</p>
+            </div>
+          </a>
+        </div>
+      </section>
     </section>
 
-    <section id="start" class="section card greenCard">
-      <h2 class="sectionTitle">今日の楽しみ方</h2>
-      <p class="sectionLead">
-        1体だけ見に行くのも、近くのカッパから巡るのも、気になる名前で選ぶのもOKです。
-      </p>
-
-      <div class="quickPanel">
-        <div class="quickCard">
-          <div class="quickIcon">🐸</div>
-          <h3>1. カッパを選ぶ</h3>
-          <p>30体の中から、今見たいカッパ像を選びます。</p>
+    <section id="page-news" class="page">
+      <section class="section card greenCard">
+        <h2 class="sectionTitle">最新情報</h2>
+        <p class="sectionLead">
+          動画、写真、イベント情報、商店会からのお知らせを掲載できます。
+          気になる記事はLINE・X・Facebookで共有できます。
+        </p>
+        <div class="buttonRow">
+          <a class="btn btnDark" href="#home">トップへ戻る</a>
+          <a class="btn btnGreen" href="#kappa">カッパ像を巡る</a>
         </div>
+      </section>
 
-        <div class="quickCard">
-          <div class="quickIcon">🗺️</div>
-          <h3>2. MAPで向かう</h3>
-          <p>カードの画像や「MAPで行く」を押すと、Googleマップで行き方を開けます。</p>
-        </div>
-
-        <div class="quickCard">
-          <div class="quickIcon">⭐</div>
-          <h3>3. 推しを共有</h3>
-          <p>巡ったカッパを記録し、推し3体を選んでSNS共有できます。</p>
-        </div>
-      </div>
+      <section class="section">
+        <div id="newsWrap" class="newsWrap"></div>
+      </section>
     </section>
 
-    <section class="section progressBox">
-      <div class="progressTop">
-        <div>
-          <h2>今日の巡った記録</h2>
-          <p class="progressHint">このスマホに保存されます。ページを閉じても、同じ端末なら続きから見られます。</p>
-        </div>
-        <div class="progressCount">
-          <span id="visitedCount">0</span>/30
-        </div>
-      </div>
+    <section id="page-kappa" class="page">
+      <section class="section card greenCard">
+        <h2 class="sectionTitle">カッパ像を巡る</h2>
+        <p class="sectionLead">
+          気になるカッパ像を選んでください。
+          画像または「MAPで行く」を押すと、Googleマップで行き方を開きます。
+        </p>
 
-      <div class="progressBarOuter">
-        <div id="progressBar" class="progressBarInner"></div>
-      </div>
+        <div class="visualImage">
+          <img src="images/skz30-map-guide.jpg" alt="カッパ像一覧とMAP案内">
+        </div>
 
-      <div class="heroButtons">
-        <button class="btn btnWhite" type="button" onclick="openAllMap()">近くのカッパ像を探す</button>
-        <button class="btn btnGreen" type="button" onclick="scrollToUnvisited()">まだ巡っていないカッパへ</button>
-        <button class="btn btnDark" type="button" onclick="resetVisited()">巡った記録をリセット</button>
-      </div>
+        <div class="buttonRow">
+          <button class="btn btnGreen" type="button" onclick="openAllMap()">近くのカッパ像を探す</button>
+          <button class="btn btnDark" type="button" onclick="scrollToUnvisited()">まだ巡っていないカッパへ</button>
+          <a class="btn btnWhite" href="#home">トップへ戻る</a>
+        </div>
+      </section>
+
+      <section class="section progressMini">
+        <div class="progressTop">
+          <div>
+            <h2>今日の巡った記録</h2>
+            <p class="progressHint">このスマホに保存されます。</p>
+          </div>
+          <div class="progressCount">
+            <span data-visited-count>0</span>/30
+          </div>
+        </div>
+        <div class="progressBarOuter">
+          <div class="progressBarInner" data-progress-bar></div>
+        </div>
+        <div class="buttonRow">
+          <button class="btn btnWhite" type="button" onclick="resetVisited()">巡った記録をリセット</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="routeButtons">
+          <button class="routeBtn active" type="button" data-filter="all" onclick="setFilter('all')">全部</button>
+          <button class="routeBtn" type="button" data-filter="station" onclick="setFilter('station')">志木駅・本町</button>
+          <button class="routeBtn" type="button" data-filter="iroha" onclick="setFilter('iroha')">いろは</button>
+          <button class="routeBtn" type="button" data-filter="muneoka" onclick="setFilter('muneoka')">宗岡</button>
+          <button class="routeBtn" type="button" data-filter="tagoyama" onclick="setFilter('tagoyama')">田子山</button>
+          <button class="routeBtn" type="button" data-filter="houdouji" onclick="setFilter('houdouji')">宝幢寺</button>
+          <button class="routeBtn" type="button" data-filter="kapal" onclick="setFilter('kapal')">カパル像</button>
+        </div>
+
+        <div class="kappaTools">
+          <span class="smallTag">自由に巡れる</span>
+          <span class="smallTag">MAPで案内</span>
+          <span class="smallTag">巡った記録</span>
+          <span class="smallTag">推し投票</span>
+          <span class="smallTag">SNS共有</span>
+        </div>
+
+        <div id="kappaGrid" class="kappaGrid section"></div>
+      </section>
     </section>
 
-    <section id="news" class="section">
-      <h2 class="sectionTitle">最新情報</h2>
-      <p class="sectionLead">
-        動画、写真、イベント情報、商店会からのお知らせをここに掲載できます。
-        気になる記事はLINE・X・Facebookで共有できます。
-      </p>
+    <section id="page-vote" class="page">
+      <section class="section card">
+        <h2 class="sectionTitle">あなたの推し3体を選ぶ</h2>
+        <p class="sectionLead">
+          巡って楽しかったカッパ像、名前が好きなカッパ像、写真を撮りたくなったカッパ像。
+          あなたの推し3体を選んで、投稿文を作れます。
+        </p>
 
-      <div id="newsWrap" class="newsWrap"></div>
-    </section>
-
-    <section id="kappaList" class="section">
-      <h2 class="sectionTitle">カッパ像を巡る</h2>
-      <p class="sectionLead">
-        エリアを選んで、気になるカッパ像をタップしてください。
-        画像または「MAPで行く」を押すと、Googleマップで行き方を開きます。
-      </p>
-
-      <div class="visualImage">
-        <img src="images/skz30-map-guide.jpg" alt="カッパ像一覧とMAP案内">
-      </div>
-
-      <div class="routeButtons">
-        <button class="routeBtn active" type="button" data-filter="all" onclick="setFilter('all')">全部</button>
-        <button class="routeBtn" type="button" data-filter="station" onclick="setFilter('station')">志木駅・本町</button>
-        <button class="routeBtn" type="button" data-filter="iroha" onclick="setFilter('iroha')">いろは</button>
-        <button class="routeBtn" type="button" data-filter="muneoka" onclick="setFilter('muneoka')">宗岡</button>
-        <button class="routeBtn" type="button" data-filter="tagoyama" onclick="setFilter('tagoyama')">田子山</button>
-        <button class="routeBtn" type="button" data-filter="houdouji" onclick="setFilter('houdouji')">宝幢寺</button>
-        <button class="routeBtn" type="button" data-filter="kapal" onclick="setFilter('kapal')">カパル像</button>
-      </div>
-
-      <div class="kappaTools">
-        <span class="smallTag">自由に巡れる</span>
-        <span class="smallTag">MAPで案内</span>
-        <span class="smallTag">巡った記録</span>
-        <span class="smallTag">推し投票</span>
-        <span class="smallTag">SNS共有</span>
-      </div>
-
-      <div id="kappaGrid" class="kappaGrid section"></div>
-    </section>
-
-    <section id="vote" class="section card">
-      <h2 class="sectionTitle">あなたの推し3体を選ぶ</h2>
-      <p class="sectionLead">
-        巡って楽しかったカッパ像、名前が好きなカッパ像、写真を撮りたくなったカッパ像。
-        あなたの推し3体を選んで、投稿文を作れます。
-      </p>
-
-      <div class="visualImage">
-        <img src="images/skz30-vote-sns.jpg" alt="推し3体投票とSNS共有">
-      </div>
-
-      <form id="voteForm">
-        <div class="formGrid">
-          <div class="field">
-            <label for="nickname">ニックネーム</label>
-            <input id="nickname" type="text" placeholder="例：志木カッパ好き">
-          </div>
-
-          <div class="field">
-            <label for="oshi1">推し1位</label>
-            <select id="oshi1"></select>
-          </div>
-
-          <div class="field">
-            <label for="oshi2">推し2位</label>
-            <select id="oshi2"></select>
-          </div>
-
-          <div class="field">
-            <label for="oshi3">推し3位</label>
-            <select id="oshi3"></select>
-          </div>
-
-          <div class="field wide">
-            <label for="comment">ひとこと感想</label>
-            <textarea id="comment" placeholder="例：親子で楽しく巡れました。名前も表情もそれぞれ違って、志木のまち歩きが楽しくなりました。"></textarea>
-          </div>
-
-          <div class="field wide">
-            <label for="groupName">カッパたちのグループ名アイデア</label>
-            <input id="groupName" type="text" placeholder="例：志木SKZ30、志木かっぱフレンズ など">
-          </div>
+        <div class="visualImage">
+          <img src="images/skz30-vote-sns.jpg" alt="推し3体投票とSNS共有">
         </div>
 
-        <div class="heroButtons">
-          <button class="btn btnGreen" type="button" onclick="makeVoteText()">投稿文を作る</button>
-          <button class="btn btnDark" type="button" onclick="clearVote()">クリア</button>
+        <div class="buttonRow">
+          <a class="btn btnGreen" href="#kappa">カッパ像を選びに行く</a>
+          <a class="btn btnWhite" href="#home">トップへ戻る</a>
         </div>
-      </form>
+      </section>
 
-      <div id="voteResult" class="voteResult">
-        <h3>できあがった投稿文</h3>
-        <pre id="voteText"></pre>
+      <section class="section card greenCard">
+        <form id="voteForm">
+          <div class="formGrid">
+            <div class="field">
+              <label for="nickname">ニックネーム</label>
+              <input id="nickname" type="text" placeholder="例：志木カッパ好き">
+            </div>
+
+            <div class="field">
+              <label for="oshi1">推し1位</label>
+              <select id="oshi1"></select>
+            </div>
+
+            <div class="field">
+              <label for="oshi2">推し2位</label>
+              <select id="oshi2"></select>
+            </div>
+
+            <div class="field">
+              <label for="oshi3">推し3位</label>
+              <select id="oshi3"></select>
+            </div>
+
+            <div class="field wide">
+              <label for="comment">ひとこと感想</label>
+              <textarea id="comment" placeholder="例：親子で楽しく巡れました。名前も表情もそれぞれ違って、志木のまち歩きが楽しくなりました。"></textarea>
+            </div>
+
+            <div class="field wide">
+              <label for="groupName">カッパたちのグループ名アイデア</label>
+              <input id="groupName" type="text" placeholder="例：志木SKZ30、志木かっぱフレンズ など">
+            </div>
+          </div>
+
+          <div class="buttonRow">
+            <button class="btn btnGreen" type="button" onclick="makeVoteText()">投稿文を作る</button>
+            <button class="btn btnDark" type="button" onclick="clearVote()">クリア</button>
+          </div>
+        </form>
+
+        <div id="voteResult" class="voteResult">
+          <h3>できあがった投稿文</h3>
+          <pre id="voteText"></pre>
+
+          <div class="shareArea">
+            <button class="btn btnDark" type="button" onclick="copyVote()">コピー</button>
+            <button class="btn btnLine" type="button" onclick="shareLine()">LINE</button>
+            <button class="btn btnX" type="button" onclick="shareX()">Xで投稿</button>
+            <button class="btn btnFb" type="button" onclick="shareFacebook()">Facebook</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="page-shops" class="page">
+      <section class="section card darkCard">
+        <h2 class="sectionTitle">お店も一緒に楽しむ</h2>
+        <p class="sectionLead">
+          カッパ像を巡りながら、商店街のお店、志木名物、季節のイベントにも立ち寄れます。
+        </p>
+
+        <div class="buttonRow">
+          <a class="btn btnMain" href="#kappa">カッパ像を巡る</a>
+          <a class="btn btnWhite" href="#news">最新情報を見る</a>
+          <a class="btn btnDark" href="#home">トップへ戻る</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="shopGrid">
+          <div class="shop">
+            <h3>隠れカッピーを探せ！</h3>
+            <p>お店に隠れたカッピーを見つける、まち歩きの楽しみを追加できます。</p>
+          </div>
+
+          <div class="shop">
+            <h3>志木名物を楽しむ</h3>
+            <p>カッパ像の近くにあるお店や志木名物を、巡る途中で楽しめます。</p>
+          </div>
+
+          <div class="shop">
+            <h3>SNSで広げる</h3>
+            <p>写真や推しカッパを投稿して、志木のカッパ像めぐりを広げられます。</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="page-share" class="page">
+      <section class="section card greenCard">
+        <h2 class="sectionTitle">SNSで楽しさを広げる</h2>
+        <p class="sectionLead">
+          友だちや家族に「このカッパ見つけたよ」と共有できます。
+          LINE・X・Facebook・URLコピーに対応しています。
+        </p>
 
         <div class="shareArea">
-          <button class="btn btnDark" type="button" onclick="copyVote()">コピー</button>
-          <button class="btn btnLine" type="button" onclick="shareLine()">LINE</button>
-          <button class="btn btnX" type="button" onclick="shareX()">Xで投稿</button>
-          <button class="btn btnFb" type="button" onclick="shareFacebook()">Facebook</button>
+          <button class="btn btnLine" type="button" onclick="shareLineProject()">LINEで送る</button>
+          <button class="btn btnX" type="button" onclick="shareXProject()">Xで投稿</button>
+          <button class="btn btnFb" type="button" onclick="shareFacebookProject()">Facebook</button>
+          <button class="btn btnDark" type="button" onclick="copyProjectUrl()">URLコピー</button>
         </div>
-      </div>
+
+        <div class="buttonRow">
+          <a class="btn btnGreen" href="#kappa">カッパ像を巡る</a>
+          <a class="btn btnWhite" href="#home">トップへ戻る</a>
+        </div>
+      </section>
     </section>
-
-    <section id="shops" class="section card darkCard">
-      <h2 class="sectionTitle">お店も一緒に楽しむ</h2>
-      <p class="sectionLead">
-        カッパ像を巡りながら、商店街のお店、志木名物、季節のイベントにも立ち寄れます。
-      </p>
-
-      <div class="shopGrid">
-        <div class="shop">
-          <h3>隠れカッピーを探せ！</h3>
-          <p>お店に隠れたカッピーを見つける、まち歩きの楽しみを追加できます。</p>
-        </div>
-
-        <div class="shop">
-          <h3>志木名物を楽しむ</h3>
-          <p>カッパ像の近くにあるお店や志木名物を、巡る途中で楽しめます。</p>
-        </div>
-
-        <div class="shop">
-          <h3>SNSで広げる</h3>
-          <p>写真や推しカッパを投稿して、志木のカッパ像めぐりを広げられます。</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="share" class="section card">
-      <h2 class="sectionTitle">SNSで楽しさを広げる</h2>
-      <p class="sectionLead">
-        友だちや家族に「このカッパ見つけたよ」と共有できます。
-        LINE・X・Facebook・URLコピーに対応しています。
-      </p>
-
-      <div class="shareArea">
-        <button class="btn btnLine" type="button" onclick="shareLineProject()">LINEで送る</button>
-        <button class="btn btnX" type="button" onclick="shareXProject()">Xで投稿</button>
-        <button class="btn btnFb" type="button" onclick="shareFacebookProject()">Facebook</button>
-        <button class="btn btnDark" type="button" onclick="copyProjectUrl()">URLコピー</button>
-      </div>
-    </section>
-
-    <div class="fixedVote">
-      <a href="#vote">推し3体を選ぶ</a>
-    </div>
 
   </main>
 
@@ -1039,6 +1163,14 @@ pre{
   </footer>
 
 </div>
+
+<nav class="bottomNav">
+  <a href="#home" data-nav="home"><span>🏠</span>トップ</a>
+  <a href="#kappa" data-nav="kappa"><span>🐸</span>巡る</a>
+  <a href="#news" data-nav="news"><span>📢</span>情報</a>
+  <a href="#vote" data-nav="vote"><span>⭐</span>推し</a>
+  <a href="#share" data-nav="share"><span>📱</span>共有</a>
+</nav>
 
 <script>
 const SITE_URL =
@@ -1055,10 +1187,10 @@ const pinnedNews = {
   pinned:true,
   date:"ようこそ",
   title:"志木のカッパ像めぐりへようこそ",
-  text:"カッパ像をめぐりながら、志木の街、商店街、川辺の風景を楽しみましょう。歓迎メッセージ動画や写真がある場合は、この一番上の枠に固定して表示できます。",
+  text:"カッパ像をめぐりながら、志木の街、商店街、川辺の風景を楽しみましょう。歓迎メッセージ動画や写真を、この一番上の枠に固定して表示できます。",
   imageUrl:"images/skz30-top.jpg",
   videoUrl:"",
-  linkUrl:"#kappaList",
+  linkUrl:"#kappa",
   snsText:"志木のカッパ像めぐりへようこそ。SKZ30 カッパ像めぐりDXで、見たいカッパ像を選んで街歩きを楽しめます。"
 };
 
@@ -1071,7 +1203,7 @@ const newsList = [
     text:"スマホで見たいカッパ像を選び、Googleマップで行き方を確認できます。1体だけでも、近くのカッパからでも楽しめます。",
     imageUrl:"images/skz30-map-guide.jpg",
     videoUrl:"",
-    linkUrl:"#kappaList",
+    linkUrl:"#kappa",
     snsText:"SKZ30 カッパ像めぐりDXで、志木のカッパ像をスマホで巡ろう。"
   },
   {
@@ -1139,6 +1271,51 @@ function escapeHTML(text){
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#39;");
 }
+
+function getPageFromHash(){
+  const hash =
+    String(location.hash || "#home")
+    .replace("#","")
+    .trim();
+
+  const pages =
+    ["home","kappa","news","vote","shops","share"];
+
+  if(pages.indexOf(hash) !== -1){
+    return hash;
+  }
+
+  return "home";
+}
+
+function showPage(page){
+  document.querySelectorAll(".page").forEach(function(el){
+    el.classList.remove("active");
+  });
+
+  const target =
+    document.getElementById("page-" + page);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  document.querySelectorAll("[data-nav]").forEach(function(el){
+    el.classList.toggle(
+      "active",
+      el.getAttribute("data-nav") === page
+    );
+  });
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+window.addEventListener("hashchange",function(){
+  showPage(getPageFromHash());
+});
 
 function getVisitedIds(){
   try{
@@ -1215,20 +1392,14 @@ function updateProgress(){
   const count =
     getVisitedIds().length;
 
-  const countEl =
-    document.getElementById("visitedCount");
+  document.querySelectorAll("[data-visited-count]").forEach(function(el){
+    el.textContent = count;
+  });
 
-  const bar =
-    document.getElementById("progressBar");
-
-  if(countEl){
-    countEl.textContent = count;
-  }
-
-  if(bar){
-    bar.style.width =
+  document.querySelectorAll("[data-progress-bar]").forEach(function(el){
+    el.style.width =
       Math.min(100,(count / 30) * 100) + "%";
-  }
+  });
 }
 
 function getKappaById(id){
@@ -1377,6 +1548,8 @@ function scrollToUnvisited(){
     setFilter("all");
   }
 
+  location.hash = "#kappa";
+
   setTimeout(function(){
     const target =
       document.getElementById("kappa-" + next.id);
@@ -1387,7 +1560,7 @@ function scrollToUnvisited(){
         block:"center"
       });
     }
-  },100);
+  },250);
 }
 
 function fillSelects(){
@@ -1604,7 +1777,7 @@ function getNewsById(id){
 }
 
 function newsUrl(news){
-  return SITE_URL + "#news-" + news.id;
+  return SITE_URL + "#news";
 }
 
 function newsShareText(news){
@@ -1777,10 +1950,10 @@ function shareKappa(id){
     navigator.share({
       title:"SKZ30 カッパ像めぐりDX",
       text:text,
-      url:SITE_URL
+      url:SITE_URL + "#kappa"
     }).catch(function(){});
   }else{
-    copyText(text + "\n" + SITE_URL);
+    copyText(text + "\n" + SITE_URL + "#kappa");
   }
 }
 
@@ -1829,13 +2002,14 @@ function shareFacebookProject(){
 }
 
 function copyProjectUrl(){
-  copyText(SITE_URL);
+  copyText(SITE_URL + "#" + getPageFromHash());
 }
 
 renderNews();
 renderKappaList();
 fillSelects();
 updateProgress();
+showPage(getPageFromHash());
 </script>
 </body>
 </html>
