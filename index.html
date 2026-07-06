@@ -671,6 +671,27 @@ select:focus{
   display:block;
 }
 
+.saveStatus{
+  display:none;
+  margin-top:16px;
+  padding:14px;
+  border-radius:18px;
+  font-weight:900;
+  background:#dcfce7;
+  color:#14532d;
+  border:1px solid #86efac;
+}
+
+.saveStatus.show{
+  display:block;
+}
+
+.saveStatus.error{
+  background:#fee2e2;
+  color:#991b1b;
+  border-color:#fecaca;
+}
+
 pre{
   white-space:pre-wrap;
   word-break:break-word;
@@ -1032,7 +1053,7 @@ pre{
         <h2 class="sectionTitle">あなたの推し3体を選ぶ</h2>
         <p class="sectionLead">
           巡って楽しかったカッパ像、名前が好きなカッパ像、写真を撮りたくなったカッパ像。
-          あなたの推し3体を選んで、投稿文を作れます。
+          あなたの推し3体を選んで、投票できます。
         </p>
 
         <div class="visualImage">
@@ -1080,13 +1101,16 @@ pre{
           </div>
 
           <div class="buttonRow">
-            <button class="btn btnGreen" type="button" onclick="makeVoteText()">投稿文を作る</button>
+            <button class="btn btnGreen" type="button" onclick="makeVoteText()">SNS投稿文を作る</button>
+            <button id="saveVoteBtn" class="btn btnMain" type="button" onclick="sendVote()">投票を送信する</button>
             <button class="btn btnDark" type="button" onclick="clearVote()">クリア</button>
           </div>
         </form>
 
+        <div id="saveStatus" class="saveStatus"></div>
+
         <div id="voteResult" class="voteResult">
-          <h3>できあがった投稿文</h3>
+          <h3>できあがったSNS投稿文</h3>
           <pre id="voteText"></pre>
 
           <div class="shareArea">
@@ -1176,8 +1200,14 @@ pre{
 const SITE_URL =
 "https://ichirohns-jpg.github.io/skz30-kappa-dx/";
 
+const GAS_URL =
+"https://script.google.com/macros/s/AKfycbx0W_SbciDR5FhnofmAwV1Zglp3FI4FJ1gfSsQjcxfAEcmywGZVGOB-Jx5DmidrEkZkPg/exec";
+
 const STORAGE_KEY =
 "skz30VisitedIds";
+
+const USER_ID_KEY =
+"skz30UserId";
 
 let currentFilter =
 "all";
@@ -1316,6 +1346,23 @@ function showPage(page){
 window.addEventListener("hashchange",function(){
   showPage(getPageFromHash());
 });
+
+function getUserId(){
+  let userId =
+    localStorage.getItem(USER_ID_KEY);
+
+  if(!userId){
+    userId =
+      "skz30-" +
+      Date.now() +
+      "-" +
+      Math.random().toString(36).slice(2,10);
+
+    localStorage.setItem(USER_ID_KEY,userId);
+  }
+
+  return userId;
+}
 
 function getVisitedIds(){
   try{
@@ -1618,7 +1665,7 @@ function val(id){
   return el ? String(el.value || "").trim() : "";
 }
 
-function makeVoteText(){
+function makeVoteData(){
   const nickname =
     val("nickname") || "匿名参加";
 
@@ -1642,44 +1689,166 @@ function makeVoteText(){
 
   if(!oshi1 || !oshi2 || !oshi3){
     alert("推しカッパを3体選んでください。");
-    return;
+    return null;
   }
 
-  const text =
-`【SKZ30 カッパ像めぐりDX】
+  return {
+    userId:getUserId(),
+    nickname:nickname,
+    oshi1:oshi1,
+    oshi2:oshi2,
+    oshi3:oshi3,
+    comment:comment,
+    groupName:groupName,
+    visitedCount:visitedCount
+  };
+}
+
+function buildVoteText(data){
+  return `【SKZ30 カッパ像めぐりDX】
 
 志木のカッパ像を巡っています。
 
 巡った数：
-${visitedCount}/30
+${data.visitedCount}/30
 
 ニックネーム：
-${nickname}
+${data.nickname}
 
 推し1位：
-${oshi1}
+${data.oshi1}
 
 推し2位：
-${oshi2}
+${data.oshi2}
 
 推し3位：
-${oshi3}
+${data.oshi3}
 
 ひとこと：
-${comment}
+${data.comment}
 
 カッパたちのグループ名アイデア：
-${groupName}
+${data.groupName}
 
 めぐって、めぐって、あなたの推し3体を！
 #SKZ30 #志木カッパ像めぐり #志木市 #カッパ像`;
+}
 
+function displayVoteText(text){
   document.getElementById("voteText").textContent = text;
   document.getElementById("voteResult").classList.add("show");
   document.getElementById("voteResult").scrollIntoView({
     behavior:"smooth",
     block:"start"
   });
+}
+
+function makeVoteText(){
+  const data =
+    makeVoteData();
+
+  if(!data){
+    return;
+  }
+
+  const text =
+    buildVoteText(data);
+
+  displayVoteText(text);
+}
+
+function buildSaveVoteUrl(data,postText){
+  const params =
+    new URLSearchParams();
+
+  params.set("mode","saveVote");
+  params.set("userId",data.userId);
+  params.set("nickname",data.nickname);
+  params.set("oshi1",data.oshi1);
+  params.set("oshi2",data.oshi2);
+  params.set("oshi3",data.oshi3);
+  params.set("comment",data.comment);
+  params.set("groupName",data.groupName);
+  params.set("visitedCount",String(data.visitedCount));
+  params.set("postText",postText);
+
+  return GAS_URL + "?" + params.toString();
+}
+
+function showSaveStatus(message,isError){
+  const el =
+    document.getElementById("saveStatus");
+
+  if(!el){
+    return;
+  }
+
+  el.textContent =
+    message;
+
+  el.classList.add("show");
+
+  if(isError){
+    el.classList.add("error");
+  }else{
+    el.classList.remove("error");
+  }
+}
+
+async function sendVote(){
+  const data =
+    makeVoteData();
+
+  if(!data){
+    return;
+  }
+
+  const postText =
+    buildVoteText(data);
+
+  displayVoteText(postText);
+
+  const btn =
+    document.getElementById("saveVoteBtn");
+
+  if(btn){
+    btn.disabled = true;
+    btn.textContent = "送信中...";
+  }
+
+  showSaveStatus("投票を送信しています。",false);
+
+  try{
+
+    const url =
+      buildSaveVoteUrl(data,postText);
+
+    await fetch(url,{
+      method:"GET",
+      mode:"no-cors",
+      cache:"no-store"
+    });
+
+    showSaveStatus(
+      "投票を送信しました。スプレッドシートの votes に反映されます。",
+      false
+    );
+
+  }catch(err){
+
+    showSaveStatus(
+      "送信できませんでした。通信状況かGASの公開設定を確認してください。",
+      true
+    );
+
+  }finally{
+
+    if(btn){
+      btn.disabled = false;
+      btn.textContent = "投票を送信する";
+    }
+
+  }
 }
 
 function clearVote(){
@@ -1692,6 +1861,15 @@ function clearVote(){
 
   document.getElementById("voteText").textContent = "";
   document.getElementById("voteResult").classList.remove("show");
+
+  const status =
+    document.getElementById("saveStatus");
+
+  if(status){
+    status.classList.remove("show");
+    status.classList.remove("error");
+    status.textContent = "";
+  }
 }
 
 function getVoteText(){
@@ -1699,7 +1877,7 @@ function getVoteText(){
     document.getElementById("voteText").textContent || "";
 
   if(!text.trim()){
-    alert("先に投稿文を作ってください。");
+    alert("先にSNS投稿文を作ってください。");
     return "";
   }
 
@@ -2010,6 +2188,7 @@ renderKappaList();
 fillSelects();
 updateProgress();
 showPage(getPageFromHash());
+getUserId();
 </script>
 </body>
 </html>
