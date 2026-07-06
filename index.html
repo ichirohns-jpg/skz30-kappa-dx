@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SKZ30 カッパ像めぐりDX</title>
 
-<meta name="description" content="志木市内30体のカッパ像をスマホでめぐる参加ページです。見たいカッパ像を選び、Googleマップで向かい、巡った記録をつけ、推し3体を選んでSNS共有できます。">
+<meta name="description" content="志木市内30体のカッパ像をスマホでめぐり、推し3体を選んで楽しめるまち歩き参加ページです。">
 <meta name="theme-color" content="#064e3b">
 
 <link rel="icon" type="image/png" href="https://ichirohns-jpg.github.io/skz30-kappa-dx/apple-touch-icon.png">
@@ -21,7 +21,7 @@
 
 <meta property="og:site_name" content="SKZ30 カッパ像めぐりDX">
 <meta property="og:title" content="SKZ30 カッパ像めぐりDX">
-<meta property="og:description" content="めぐって、めぐって、あなたの推し3体を！志木のカッパ像をスマホで楽しくめぐろう。">
+<meta property="og:description" content="めぐって、めぐって、あなたの推し3体を！志木のカッパ像をめぐろう。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/">
 <meta property="og:image" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/images/skz30-top.jpg">
@@ -42,12 +42,16 @@ html{
 
 body{
   margin:0;
-  font-family:"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
-  color:#083b2b;
+  font-family:
+    "Hiragino Sans",
+    "Yu Gothic",
+    "Meiryo",
+    sans-serif;
+  color:#073b2b;
   background:
-    radial-gradient(circle at 15% 0%,rgba(250,255,188,.9),transparent 28%),
-    radial-gradient(circle at 90% 10%,rgba(134,239,172,.75),transparent 28%),
-    linear-gradient(180deg,#e8fff0 0%,#f7fff9 42%,#dcfce7 100%);
+    radial-gradient(circle at 12% 0%,rgba(254,240,138,.55),transparent 26%),
+    radial-gradient(circle at 90% 6%,rgba(134,239,172,.68),transparent 30%),
+    linear-gradient(180deg,#e7fff0 0%,#f7fff9 45%,#d9fbe6 100%);
   line-height:1.65;
   -webkit-text-size-adjust:100%;
 }
@@ -71,19 +75,19 @@ img{
 .wrap{
   width:min(1080px,94%);
   margin:auto;
-  padding:12px 0 88px;
+  padding:10px 0 88px;
 }
 
 .header{
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
   gap:12px;
-  padding:10px 0 14px;
+  padding:10px 0 12px;
   position:sticky;
   top:0;
   z-index:30;
-  background:rgba(232,255,240,.86);
+  background:rgba(231,255,240,.82);
   backdrop-filter:blur(14px);
 }
 
@@ -93,19 +97,19 @@ img{
   gap:8px;
   font-weight:900;
   color:#064e3b;
-  letter-spacing:.02em;
-  font-size:18px;
+  font-size:17px;
+  letter-spacing:.01em;
 }
 
 .logoMark{
   width:34px;
   height:34px;
-  border-radius:12px;
+  border-radius:13px;
   display:grid;
   place-items:center;
   background:linear-gradient(135deg,#064e3b,#16a34a);
   color:#fff;
-  box-shadow:0 10px 24px rgba(6,78,59,.24);
+  box-shadow:0 10px 24px rgba(6,78,59,.22);
 }
 
 .nav{
@@ -118,7 +122,7 @@ img{
   display:inline-block;
   padding:8px 11px;
   border-radius:999px;
-  background:rgba(255,255,255,.82);
+  background:rgba(255,255,255,.86);
   border:1px solid rgba(21,128,61,.18);
   color:#065f46;
   font-size:12px;
@@ -138,159 +142,146 @@ img{
   display:block;
 }
 
-.hero{
-  position:relative;
+.appHero{
   overflow:hidden;
   border-radius:34px;
-  background:
-    linear-gradient(135deg,rgba(4,78,55,.98),rgba(14,116,68,.95) 55%,rgba(34,197,94,.9)),
-    radial-gradient(circle at 90% 0%,#fef08a,transparent 36%);
-  color:#fff;
-  padding:24px;
-  box-shadow:0 30px 80px rgba(6,78,59,.28),inset 0 1px 0 rgba(255,255,255,.18);
+  background:#fff;
+  box-shadow:0 24px 70px rgba(20,83,45,.18);
+  border:1px solid rgba(21,128,61,.12);
 }
 
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:auto -80px -120px auto;
-  width:340px;
-  height:340px;
-  border-radius:999px;
-  background:rgba(255,255,255,.12);
-}
-
-.heroGrid{
+.appHeroImage{
   position:relative;
-  z-index:1;
-  display:grid;
-  grid-template-columns:1fr;
-  gap:20px;
-  align-items:center;
+  background:#dcfce7;
 }
 
-.badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:8px 14px;
-  border-radius:999px;
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.28);
-  color:#f0fdf4;
-  font-weight:900;
-  font-size:14px;
-}
-
-.hero h1{
-  margin:14px 0 0;
-  font-size:clamp(34px,9vw,64px);
-  line-height:1.05;
-  font-weight:900;
-  letter-spacing:.02em;
-}
-
-.hero h1 span{
-  display:block;
-  color:#fef08a;
-  text-shadow:0 6px 18px rgba(0,0,0,.18);
-}
-
-.hero p{
-  margin:16px 0 0;
-  max-width:720px;
-  font-size:clamp(16px,4vw,21px);
-  font-weight:800;
-  color:#f0fdf4;
-}
-
-.heroImage{
-  background:rgba(255,255,255,.14);
-  border:1px solid rgba(255,255,255,.26);
-  border-radius:28px;
-  padding:10px;
-  backdrop-filter:blur(8px);
-  box-shadow:0 18px 40px rgba(0,0,0,.18);
-}
-
-.heroImage img{
+.appHeroImage img{
   display:block;
   width:100%;
-  border-radius:22px;
-  background:#fff;
 }
 
-.heroStats{
+.appHeroOverlay{
+  position:absolute;
+  inset:auto 14px 14px 14px;
+  color:#fff;
+  text-shadow:0 3px 14px rgba(0,0,0,.42);
+}
+
+.appHeroOverlay small{
+  display:inline-block;
+  background:rgba(6,78,59,.88);
+  color:#fef08a;
+  border-radius:999px;
+  padding:6px 11px;
+  font-weight:900;
+  font-size:12px;
+}
+
+.appHeroOverlay h1{
+  margin:10px 0 0;
+  font-size:clamp(28px,8vw,56px);
+  line-height:1.08;
+  font-weight:900;
+}
+
+.appHeroBody{
+  padding:20px;
+  background:
+    radial-gradient(circle at top right,rgba(254,240,138,.38),transparent 36%),
+    linear-gradient(135deg,#064e3b,#15803d);
+  color:#fff;
+}
+
+.catch{
+  margin:0;
+  color:#fef08a;
+  font-size:clamp(22px,6vw,34px);
+  font-weight:900;
+  line-height:1.25;
+}
+
+.lead{
+  margin:10px 0 0;
+  color:#ecfdf5;
+  font-size:16px;
+  font-weight:800;
+}
+
+.mainActions{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
   margin-top:18px;
 }
 
-.stat{
-  border-radius:18px;
-  padding:12px 10px;
+.actionBtn{
+  border-radius:24px;
+  padding:16px 12px;
   background:rgba(255,255,255,.12);
   border:1px solid rgba(255,255,255,.22);
+  color:#fff;
   text-align:center;
-}
-
-.stat strong{
-  display:block;
-  font-size:22px;
-  line-height:1.1;
-  color:#fef08a;
-}
-
-.stat span{
-  display:block;
-  font-size:11px;
   font-weight:900;
-  color:#dcfce7;
-  margin-top:4px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
 }
 
-.eventRibbon{
-  margin-top:18px;
+.actionBtn strong{
+  display:block;
+  font-size:18px;
+  line-height:1.3;
+}
+
+.actionBtn span{
+  display:block;
+  margin-top:5px;
+  font-size:12px;
+  color:#dcfce7;
+}
+
+.actionBtn.primary{
+  background:#fef08a;
+  color:#14532d;
+  border-color:#facc15;
+}
+
+.actionBtn.primary span{
+  color:#166534;
+}
+
+.infoStrip{
   display:grid;
   grid-template-columns:1fr;
   gap:10px;
+  margin-top:14px;
 }
 
-.eventItem{
-  border-radius:20px;
-  padding:13px 14px;
-  background:rgba(255,255,255,.13);
+.infoPill{
+  border-radius:18px;
+  padding:12px 14px;
+  background:rgba(255,255,255,.12);
   border:1px solid rgba(255,255,255,.22);
-}
-
-.eventItem b{
-  display:block;
-  color:#fef08a;
-  font-size:13px;
-  margin-bottom:2px;
-}
-
-.eventItem span{
-  display:block;
-  color:#f0fdf4;
+  color:#fff;
   font-weight:900;
 }
 
+.infoPill b{
+  color:#fef08a;
+}
+
 .section{
-  margin-top:24px;
+  margin-top:22px;
 }
 
 .card{
-  background:rgba(255,255,255,.95);
-  border:1px solid rgba(21,128,61,.14);
+  background:rgba(255,255,255,.96);
+  border:1px solid rgba(21,128,61,.13);
   border-radius:28px;
   padding:20px;
-  box-shadow:0 18px 48px rgba(20,83,45,.12);
+  box-shadow:0 16px 44px rgba(20,83,45,.12);
 }
 
 .greenCard{
-  background:linear-gradient(135deg,rgba(236,253,245,.98),rgba(220,252,231,.96));
+  background:linear-gradient(135deg,rgba(236,253,245,.98),rgba(220,252,231,.97));
 }
 
 .darkCard{
@@ -320,12 +311,11 @@ img{
   color:#ecfdf5;
 }
 
-.heroButtons,
 .buttonRow{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
-  margin-top:18px;
+  margin-top:16px;
 }
 
 .btn{
@@ -375,76 +365,49 @@ img{
   color:#fff;
 }
 
-.menuGrid{
+.quickFlow{
   display:grid;
   grid-template-columns:1fr;
-  gap:14px;
+  gap:10px;
 }
 
-.menuCard{
-  position:relative;
-  overflow:hidden;
+.flowItem{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px;
+  border-radius:22px;
   background:#fff;
   border:1px solid #bbf7d0;
-  border-radius:26px;
-  padding:18px;
-  box-shadow:0 14px 34px rgba(20,83,45,.11);
-  display:flex;
-  gap:14px;
-  align-items:center;
 }
 
-.menuIcon{
-  width:60px;
-  height:60px;
-  border-radius:22px;
-  background:linear-gradient(135deg,#dcfce7,#86efac);
+.flowIcon{
+  width:50px;
+  height:50px;
+  border-radius:18px;
   display:grid;
   place-items:center;
-  font-size:31px;
+  background:#dcfce7;
+  font-size:27px;
   flex:0 0 auto;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
 }
 
-.menuCard h3{
-  margin:0 0 4px;
-  color:#065f46;
-  font-size:20px;
-}
-
-.menuCard p{
-  margin:0;
-  color:#315d44;
-  font-weight:750;
-}
-
-.wowGrid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:12px;
-}
-
-.wowItem{
-  background:rgba(255,255,255,.92);
-  border:1px solid #bbf7d0;
-  border-radius:22px;
-  padding:16px;
-}
-
-.wowItem strong{
+.flowItem strong{
   display:block;
   color:#064e3b;
   font-size:18px;
-  margin-bottom:4px;
 }
 
-.wowItem span{
+.flowItem span{
+  display:block;
   color:#315d44;
   font-weight:750;
 }
 
 .progressMini{
-  background:radial-gradient(circle at 10% 0%,rgba(254,240,138,.22),transparent 32%),linear-gradient(135deg,#052e1c,#064e3b);
+  background:
+    radial-gradient(circle at 10% 0%,rgba(254,240,138,.22),transparent 32%),
+    linear-gradient(135deg,#052e1c,#064e3b);
   color:#ecfdf5;
   border-radius:26px;
   padding:18px;
@@ -510,6 +473,7 @@ img{
 }
 
 .loadStatus{
+  display:none;
   margin-top:14px;
   padding:10px 13px;
   border-radius:16px;
@@ -518,6 +482,10 @@ img{
   color:#166534;
   font-size:13px;
   font-weight:900;
+}
+
+.loadStatus.show{
+  display:block;
 }
 
 .loadStatus.error{
@@ -976,10 +944,10 @@ pre{
 }
 
 .footer{
-  margin-top:36px;
+  margin-top:34px;
   text-align:center;
   color:#365946;
-  font-size:14px;
+  font-size:13px;
   font-weight:800;
 }
 
@@ -989,7 +957,7 @@ pre{
   right:0;
   bottom:0;
   z-index:40;
-  background:rgba(255,255,255,.95);
+  background:rgba(255,255,255,.96);
   border-top:1px solid rgba(21,128,61,.22);
   display:grid;
   grid-template-columns:repeat(5,1fr);
@@ -1016,20 +984,21 @@ pre{
 }
 
 @media (min-width:760px){
-  .heroGrid{
-    grid-template-columns:1.05fr .95fr;
+  .appHeroImage img{
+    max-height:520px;
+    object-fit:cover;
   }
 
-  .eventRibbon{
+  .mainActions{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .infoStrip{
     grid-template-columns:1fr 1fr;
   }
 
-  .menuGrid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .wowGrid{
-    grid-template-columns:repeat(3,1fr);
+  .quickFlow{
+    grid-template-columns:repeat(4,1fr);
   }
 
   .newsWrap,
@@ -1064,17 +1033,39 @@ pre{
 
 @media (max-width:560px){
   .header{
-    flex-direction:column;
-    align-items:flex-start;
+    padding-top:8px;
   }
 
   .nav{
     display:none;
   }
 
-  .hero{
-    padding:22px;
+  .logo{
+    font-size:16px;
+  }
+
+  .appHero{
     border-radius:28px;
+  }
+
+  .appHeroBody{
+    padding:18px;
+  }
+
+  .mainActions{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .actionBtn{
+    padding:14px 8px;
+  }
+
+  .actionBtn strong{
+    font-size:16px;
+  }
+
+  .actionBtn span{
+    font-size:11px;
   }
 
   .card{
@@ -1084,22 +1075,6 @@ pre{
   .btn,
   .miniBtn{
     width:100%;
-  }
-
-  .heroStats{
-    grid-template-columns:1fr 1fr 1fr;
-  }
-
-  .stat{
-    padding:10px 6px;
-  }
-
-  .stat strong{
-    font-size:19px;
-  }
-
-  .stat span{
-    font-size:10px;
   }
 
   .newsMainActions .miniBtn,
@@ -1127,10 +1102,6 @@ pre{
     flex-direction:column;
     align-items:flex-start;
   }
-
-  .menuCard{
-    align-items:flex-start;
-  }
 }
 </style>
 </head>
@@ -1146,10 +1117,9 @@ pre{
     <nav class="nav">
       <a href="#home" data-nav="home">トップ</a>
       <a href="#kappa" data-nav="kappa">巡る</a>
-      <a href="#news" data-nav="news">最新情報</a>
-      <a href="#vote" data-nav="vote">推し投票</a>
+      <a href="#news" data-nav="news">情報</a>
+      <a href="#vote" data-nav="vote">推し</a>
       <a href="#shops" data-nav="shops">お店</a>
-      <a href="#share" data-nav="share">共有</a>
     </nav>
   </header>
 
@@ -1157,54 +1127,52 @@ pre{
 
     <section id="page-home" class="page active">
 
-      <section class="hero">
-        <div class="heroGrid">
-          <div>
-            <div class="badge">まち歩き観光をスマホで楽しく</div>
-            <h1>
-              志木のカッパ像を
-              <span>めぐるDX</span>
-            </h1>
-            <p>
-              見たいカッパ像を選ぶ。現在地からMAPで行く。
-              巡った記録を残す。推し3体を選んでSNSで広げる。
-            </p>
+      <section class="appHero">
+        <div class="appHeroImage">
+          <img src="images/skz30-top.jpg" alt="SKZ30 カッパ像めぐりDX">
+          <div class="appHeroOverlay">
+            <small>志木まち歩き参加ページ</small>
+            <h1>SKZ30<br>カッパ像めぐりDX</h1>
+          </div>
+        </div>
 
-            <div class="heroStats">
-              <div class="stat">
-                <strong>30</strong>
-                <span>カッパ像</span>
-              </div>
-              <div class="stat">
-                <strong>MAP</strong>
-                <span>現在地案内</span>
-              </div>
-              <div class="stat">
-                <strong>SNS</strong>
-                <span>共有対応</span>
-              </div>
-            </div>
+        <div class="appHeroBody">
+          <p class="catch">めぐって、めぐって、あなたの推し3体を！</p>
+          <p class="lead">
+            カッパ像を見つけに行こう。気に入ったカッパを推しに選んで、まち歩きとお店めぐりも楽しめます。
+          </p>
 
-            <div class="eventRibbon">
-              <div class="eventItem">
-                <b>開催予定</b>
-                <span>令和8年10月1日〜11月15日</span>
-              </div>
-              <div class="eventItem">
-                <b>主催</b>
-                <span>志木市商工会 まちづくり観光事業</span>
-              </div>
-            </div>
+          <div class="mainActions">
+            <a class="actionBtn primary" href="#kappa">
+              <strong>🐸 巡る</strong>
+              <span>カッパ像を選ぶ</span>
+            </a>
 
-            <div class="heroButtons">
-              <a class="btn btnMain" href="#kappa">カッパ像を巡る</a>
-              <a class="btn btnWhite" href="#news">最新情報</a>
-              <a class="btn btnGreen" href="#vote">推し3体を選ぶ</a>
-            </div>
+            <a class="actionBtn" href="#vote">
+              <strong>⭐ 推し</strong>
+              <span>3体を選ぶ</span>
+            </a>
+
+            <a class="actionBtn" href="#news">
+              <strong>📢 情報</strong>
+              <span>お知らせを見る</span>
+            </a>
+
+            <a class="actionBtn" href="#shops">
+              <strong>🏮 お店</strong>
+              <span>名物も楽しむ</span>
+            </a>
           </div>
 
-          <div class="heroImage">
-            <img src="images/skz30-top.jpg" alt="SKZ30 カッパ像めぐりDX">
+          <div class="infoStrip">
+            <div class="infoPill">
+              <b>開催予定</b><br>
+              令和8年10月1日〜11月15日
+            </div>
+            <div class="infoPill">
+              <b>参加対象</b><br>
+              どなたでも参加できます
+            </div>
           </div>
         </div>
       </section>
@@ -1225,83 +1193,43 @@ pre{
       </section>
 
       <section class="section card greenCard">
-        <h2 class="sectionTitle">まず、何をしますか？</h2>
+        <h2 class="sectionTitle">楽しみ方</h2>
         <p class="sectionLead">
-          参加者は迷わず使えます。紙MAP・QR・スマホ・Googleマップ・SNSがつながる、まち歩きDXです。
+          説明を読まなくても、そのまま押して進めます。
         </p>
 
-        <div class="menuGrid">
-          <a class="menuCard" href="#kappa">
-            <div class="menuIcon">🐸</div>
+        <div class="quickFlow">
+          <a class="flowItem" href="#kappa">
+            <div class="flowIcon">🐸</div>
             <div>
-              <h3>カッパ像を巡る</h3>
-              <p>30体から選んで、MAPでその場所へ向かえます。</p>
+              <strong>カッパ像をめぐる</strong>
+              <span>30体から選べます</span>
             </div>
           </a>
 
-          <a class="menuCard" href="#kappa" onclick="openAllMap();">
-            <div class="menuIcon">🗺️</div>
+          <a class="flowItem" href="#kappa" onclick="openAllMap();">
+            <div class="flowIcon">🗺️</div>
             <div>
-              <h3>近くのカッパを探す</h3>
-              <p>今いる場所から近くのカッパ像を探せます。</p>
+              <strong>MAPで行く</strong>
+              <span>現在地から案内</span>
             </div>
           </a>
 
-          <a class="menuCard" href="#vote">
-            <div class="menuIcon">⭐</div>
+          <a class="flowItem" href="#vote">
+            <div class="flowIcon">⭐</div>
             <div>
-              <h3>推し3体を選ぶ</h3>
-              <p>推し投票を送信し、SNS投稿文も作れます。</p>
+              <strong>推し3体を選ぶ</strong>
+              <span>投票できます</span>
             </div>
           </a>
 
-          <a class="menuCard" href="#news">
-            <div class="menuIcon">📢</div>
+          <a class="flowItem" href="#shops">
+            <div class="flowIcon">🏮</div>
             <div>
-              <h3>最新情報を見る</h3>
-              <p>画像・動画・イベント情報を発信できます。</p>
+              <strong>お店も楽しむ</strong>
+              <span>名物紹介へ</span>
             </div>
           </a>
-
-          <a class="menuCard" href="#shops">
-            <div class="menuIcon">🏮</div>
-            <div>
-              <h3>お店も楽しむ</h3>
-              <p>商店会コラボや志木名物紹介につなげられます。</p>
-            </div>
-          </a>
-
-          <a class="menuCard" href="#share">
-            <div class="menuIcon">📱</div>
-            <div>
-              <h3>SNSで共有</h3>
-              <p>LINE・X・Facebook・URLコピーに対応しています。</p>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <section class="section card">
-        <h2 class="sectionTitle">このDXでできること</h2>
-        <p class="sectionLead">
-          ただのホームページではなく、商工会側が育てていける仕組みです。
-        </p>
-
-        <div class="wowGrid">
-          <div class="wowItem">
-            <strong>場所案内</strong>
-            <span>カッパ像ごとにGoogleマップ案内。緯度経度をシートで管理できます。</span>
-          </div>
-
-          <div class="wowItem">
-            <strong>投票保存</strong>
-            <span>推し3体投票はスプレッドシートに保存。集計の土台になります。</span>
-          </div>
-
-          <div class="wowItem">
-            <strong>情報発信</strong>
-            <span>お知らせ、画像、動画、SNS文をシートで追加できます。</span>
-          </div>
         </div>
       </section>
 
@@ -1311,7 +1239,7 @@ pre{
       <section class="section card greenCard">
         <h2 class="sectionTitle">最新情報</h2>
         <p class="sectionLead">
-          動画、写真、イベント情報、商店会からのお知らせをここに掲載できます。
+          イベント情報、動画、写真、ヒントを確認できます。
         </p>
         <div id="newsLoadStatus" class="loadStatus">最新情報を読み込み中です。</div>
         <div class="buttonRow">
@@ -1378,7 +1306,7 @@ pre{
           <span class="smallTag">現在地から案内</span>
           <span class="smallTag">巡った記録</span>
           <span class="smallTag">推し投票</span>
-          <span class="smallTag">SNS共有</span>
+          <span class="smallTag">共有対応</span>
         </div>
 
         <div id="kappaGrid" class="kappaGrid section"></div>
@@ -1386,14 +1314,14 @@ pre{
     </section>
 
     <section id="page-vote" class="page">
-      <section class="section card">
-        <h2 class="sectionTitle">あなたの推し3体を選ぶ</h2>
+      <section class="section card greenCard">
+        <h2 class="sectionTitle">推し3体を選ぶ</h2>
         <p class="sectionLead">
           巡って楽しかったカッパ像、名前が好きなカッパ像、写真を撮りたくなったカッパ像を選んで投票できます。
         </p>
 
         <div class="visualImage">
-          <img src="images/skz30-vote-sns.jpg" alt="推し3体投票とSNS共有">
+          <img src="images/skz30-vote-sns.jpg" alt="推し3体投票">
         </div>
 
         <div class="buttonRow">
@@ -1402,7 +1330,7 @@ pre{
         </div>
       </section>
 
-      <section class="section card greenCard">
+      <section class="section card">
         <form id="voteForm">
           <div class="formGrid">
             <div class="field">
@@ -1437,7 +1365,7 @@ pre{
           </div>
 
           <div class="buttonRow">
-            <button class="btn btnGreen" type="button" onclick="makeVoteText()">SNS投稿文を作る</button>
+            <button class="btn btnGreen" type="button" onclick="makeVoteText()">投稿文を作る</button>
             <button id="saveVoteBtn" class="btn btnMain" type="button" onclick="sendVote()">投票を送信する</button>
             <button class="btn btnDark" type="button" onclick="clearVote()">クリア</button>
           </div>
@@ -1446,7 +1374,7 @@ pre{
         <div id="saveStatus" class="saveStatus"></div>
 
         <div id="voteResult" class="voteResult">
-          <h3>できあがったSNS投稿文</h3>
+          <h3>できあがった投稿文</h3>
           <pre id="voteText"></pre>
 
           <div class="shareArea">
@@ -1467,13 +1395,13 @@ pre{
           <span>一緒に楽しもう</span>
         </h2>
         <p>
-          カッパ像めぐりの途中で、近くのお店・志木名物・商店会コラボにも立ち寄れます。
-          お店の画像、動画、商品紹介、MAP案内、SNS共有を表示できます。
+          カッパ像めぐりの途中で、近くのお店や志木名物にも立ち寄れます。
+          お店の画像、動画、商品紹介、MAP案内を表示できます。
         </p>
 
         <div class="keywordBox">
           <b>商店会コラボ：</b>
-          「隠れカッピーを探せ！」のような文字集め・ヒント・景品企画にも広げられます。
+          隠れカッピー、文字集め、景品企画にも広げられます。
         </div>
 
         <div class="buttonRow">
@@ -1486,7 +1414,7 @@ pre{
       <section class="section card greenCard">
         <h2 class="sectionTitle">参加店舗・志木名物</h2>
         <p class="sectionLead">
-          `shop_list` に店舗情報を入れると、ここにカードとして表示されます。
+          お店や志木名物の情報をここに表示できます。
         </p>
         <div id="shopLoadStatus" class="loadStatus">お店情報を読み込み中です。</div>
       </section>
@@ -1495,79 +1423,50 @@ pre{
         <div id="shopWrap" class="shopWrap"></div>
       </section>
 
-      <section class="section card greenCard">
-        <h2 class="sectionTitle">商店会コラボの流れ</h2>
-        <p class="sectionLead">
-          「歩く理由」と「お店に入るきっかけ」をスマホで作れます。
-        </p>
-
-        <div class="missionGrid">
-          <div class="missionCard">
-            <div class="missionNo">1</div>
-            <h3>お店をめぐる</h3>
-            <p>参加店舗を紹介し、MAPやお知らせから立ち寄れるようにします。</p>
+      <section class="section card">
+        <h2 class="sectionTitle">お店めぐりの楽しみ方</h2>
+        <div class="quickFlow">
+          <div class="flowItem">
+            <div class="flowIcon">🏮</div>
+            <div>
+              <strong>お店を見つける</strong>
+              <span>参加店舗や名物をチェック</span>
+            </div>
           </div>
 
-          <div class="missionCard">
-            <div class="missionNo">2</div>
-            <h3>隠れカッピー発見</h3>
-            <p>店内や店頭にある隠れカッピーを探す楽しみを作ります。</p>
+          <div class="flowItem">
+            <div class="flowIcon">🗺️</div>
+            <div>
+              <strong>MAPで向かう</strong>
+              <span>お店まで案内</span>
+            </div>
           </div>
 
-          <div class="missionCard">
-            <div class="missionNo">3</div>
-            <h3>文字を集める</h3>
-            <p>見つけた文字を集めて、キーワード完成を目指します。</p>
+          <div class="flowItem">
+            <div class="flowIcon">🔎</div>
+            <div>
+              <strong>隠れカッピー</strong>
+              <span>文字集めにも対応</span>
+            </div>
           </div>
 
-          <div class="missionCard">
-            <div class="missionNo">4</div>
-            <h3>キーワード完成</h3>
-            <p>完成したキーワードを景品応募や抽選につなげられます。</p>
-          </div>
-
-          <div class="missionCard">
-            <div class="missionNo">5</div>
-            <h3>景品・商品券へ</h3>
-            <p>商店会の商品券や景品企画と連動し、買い物につなげます。</p>
-          </div>
-
-          <div class="missionCard">
-            <div class="missionNo">6</div>
-            <h3>SNSで拡散</h3>
-            <p>「見つけた」「巡った」「買った」をSNSで共有できます。</p>
+          <div class="flowItem">
+            <div class="flowIcon">🎁</div>
+            <div>
+              <strong>景品企画へ</strong>
+              <span>商品券などに発展</span>
+            </div>
           </div>
         </div>
       </section>
 
-    </section>
-
-    <section id="page-share" class="page">
-      <section class="section card greenCard">
-        <h2 class="sectionTitle">SNSで楽しさを広げる</h2>
-        <p class="sectionLead">
-          友だちや家族に「このカッパ見つけたよ」と共有できます。
-        </p>
-
-        <div class="shareArea">
-          <button class="btn btnLine" type="button" onclick="shareLineProject()">LINEで送る</button>
-          <button class="btn btnX" type="button" onclick="shareXProject()">Xで投稿</button>
-          <button class="btn btnFb" type="button" onclick="shareFacebookProject()">Facebook</button>
-          <button class="btn btnDark" type="button" onclick="copyProjectUrl()">URLコピー</button>
-        </div>
-
-        <div class="buttonRow">
-          <a class="btn btnGreen" href="#kappa">カッパ像を巡る</a>
-          <a class="btn btnWhite" href="#home">トップへ戻る</a>
-        </div>
-      </section>
     </section>
 
   </main>
 
   <footer class="footer">
     SKZ30 カッパ像めぐりDX<br>
-    めぐって、めぐって、あなたの推し3体を！
+    志木市商工会 まちづくり観光事業
   </footer>
 
 </div>
@@ -1577,7 +1476,7 @@ pre{
   <a href="#kappa" data-nav="kappa"><span>🐸</span>巡る</a>
   <a href="#news" data-nav="news"><span>📢</span>情報</a>
   <a href="#vote" data-nav="vote"><span>⭐</span>推し</a>
-  <a href="#share" data-nav="share"><span>📱</span>共有</a>
+  <a href="#shops" data-nav="shops"><span>🏮</span>お店</a>
 </nav>
 
 <script>
@@ -1647,7 +1546,7 @@ fallbackNames.map(function(row){
     mapUrl:"",
     imageUrl:"",
     videoUrl:"",
-    description:"志木市のカッパ像めぐりで巡れるカッパ像です。",
+    description:"MAPで行き方を開けます。見つけたら「巡った」を押して記録できます。",
     snsText:"SKZ30 カッパ像めぐりDXで「" + row[1] + "」を巡ろう。",
     order:Number(row[0]),
     note:""
@@ -1666,30 +1565,6 @@ const fallbackNewsList = [
     linkUrl:"#kappa",
     snsText:"志木のカッパ像めぐりへようこそ。SKZ30 カッパ像めぐりDXで、見たいカッパ像を選んで街歩きを楽しめます。",
     order:1
-  },
-  {
-    id:"start",
-    pinned:false,
-    date:"最新情報",
-    title:"カッパ像めぐりを始めよう",
-    text:"スマホで見たいカッパ像を選び、Googleマップで行き方を確認できます。",
-    imageUrl:"images/skz30-map-guide.jpg",
-    videoUrl:"",
-    linkUrl:"#kappa",
-    snsText:"SKZ30 カッパ像めぐりDXで、志木のカッパ像をスマホで巡ろう。",
-    order:2
-  },
-  {
-    id:"vote",
-    pinned:false,
-    date:"推し投票",
-    title:"あなたの推しカッパ3体を選ぼう",
-    text:"巡って楽しかったカッパ、名前が気になるカッパ、写真を撮りたくなったカッパを3体選んで投稿文を作れます。",
-    imageUrl:"images/skz30-vote-sns.jpg",
-    videoUrl:"",
-    linkUrl:"#vote",
-    snsText:"志木のカッパ像めぐりで、あなたの推しカッパ3体を選ぼう。",
-    order:3
   }
 ];
 
@@ -1780,7 +1655,7 @@ function getPageFromHash(){
     .trim();
 
   const pages =
-    ["home","kappa","news","vote","shops","share"];
+    ["home","kappa","news","vote","shops"];
 
   if(pages.indexOf(hash) !== -1){
     return hash;
@@ -2375,7 +2250,7 @@ function getVoteText(){
     document.getElementById("voteText").textContent || "";
 
   if(!text.trim()){
-    alert("先にSNS投稿文を作ってください。");
+    alert("先に投稿文を作ってください。");
     return "";
   }
 
@@ -2535,8 +2410,8 @@ function renderShopList(){
 
     wrap.innerHTML = `
       <div class="emptyBox">
-        参加店舗・志木名物の情報は、まだ登録されていません。<br>
-        スプレッドシートの <strong>shop_list</strong> に店舗名・画像URL・動画URL・GoogleマップURL・商品紹介を入れると、ここにお店カードとして表示されます。
+        参加店舗・志木名物の情報は準備中です。<br>
+        登録されると、ここにお店カードとして表示されます。
       </div>
     `;
 
@@ -2855,52 +2730,240 @@ function shareKappa(id){
   }
 }
 
-function shareProject(){
-  if(navigator.share){
-    navigator.share({
-      title:"SKZ30 カッパ像めぐりDX",
-      text:"めぐって、めぐって、あなたの推し3体を！志木のカッパ像をスマホで巡ろう。",
-      url:SITE_URL
-    }).catch(function(){});
+function buildVoteText(data){
+
+  const lines = [];
+
+  lines.push("【SKZ30 カッパ像めぐりDX】");
+  lines.push("");
+  lines.push("志木のカッパ像めぐりに参加しました！");
+  lines.push("");
+  lines.push("私の推しカッパ3体はこれです。");
+  lines.push("");
+  lines.push("1位：" + data.oshi1);
+  lines.push("2位：" + data.oshi2);
+  lines.push("3位：" + data.oshi3);
+  lines.push("");
+
+  if(data.visitedCount > 0){
+    lines.push("巡った数：" + data.visitedCount + "/30");
+    lines.push("");
+  }
+
+  lines.push("ひとこと：");
+  lines.push(data.comment);
+  lines.push("");
+
+  if(data.groupName){
+    lines.push("カッパたちのグループ名アイデア：");
+    lines.push(data.groupName);
+    lines.push("");
+  }
+
+  lines.push("めぐって、めぐって、あなたの推し3体を！");
+  lines.push("");
+  lines.push("#SKZ30");
+  lines.push("#志木カッパ像めぐり");
+  lines.push("#志木市");
+  lines.push("#カッパ像");
+  lines.push("#まち歩き");
+  lines.push("");
+  lines.push(SITE_URL);
+
+  return lines.join("\n");
+}
+
+function makeVoteData(){
+  const nicknameInput =
+    val("nickname");
+
+  const nickname =
+    nicknameInput || "匿名参加";
+
+  const oshi1 =
+    val("oshi1");
+
+  const oshi2 =
+    val("oshi2");
+
+  const oshi3 =
+    val("oshi3");
+
+  const comment =
+    val("comment") || "志木のカッパ像めぐりを楽しみました。";
+
+  const groupName =
+    val("groupName");
+
+  const visitedCount =
+    getVisitedIds().length;
+
+  if(!oshi1 || !oshi2 || !oshi3){
+    alert("推しカッパを3体選んでください。");
+    return null;
+  }
+
+  return {
+    userId:getUserId(),
+    nickname:nickname,
+    nicknameInput:nicknameInput,
+    oshi1:oshi1,
+    oshi2:oshi2,
+    oshi3:oshi3,
+    comment:comment,
+    groupName:groupName,
+    visitedCount:visitedCount
+  };
+}
+
+function displayVoteText(text){
+  document.getElementById("voteText").textContent = text;
+  document.getElementById("voteResult").classList.add("show");
+  document.getElementById("voteResult").scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
+
+function makeVoteText(){
+  const data =
+    makeVoteData();
+
+  if(!data){
+    return;
+  }
+
+  const text =
+    buildVoteText(data);
+
+  displayVoteText(text);
+}
+
+function buildSaveVoteUrl(data,postText){
+  const params =
+    new URLSearchParams();
+
+  params.set("mode","saveVote");
+  params.set("userId",data.userId);
+  params.set("nickname",data.nickname);
+  params.set("oshi1",data.oshi1);
+  params.set("oshi2",data.oshi2);
+  params.set("oshi3",data.oshi3);
+  params.set("comment",data.comment);
+  params.set("groupName",data.groupName);
+  params.set("visitedCount",String(data.visitedCount));
+  params.set("postText",postText);
+
+  return GAS_URL + "?" + params.toString();
+}
+
+function showSaveStatus(message,isError){
+  const el =
+    document.getElementById("saveStatus");
+
+  if(!el){
+    return;
+  }
+
+  el.textContent =
+    message;
+
+  el.classList.add("show");
+
+  if(isError){
+    el.classList.add("error");
   }else{
-    copyProjectUrl();
+    el.classList.remove("error");
   }
 }
 
-function shareLineProject(){
+async function sendVote(){
+  const data =
+    makeVoteData();
+
+  if(!data){
+    return;
+  }
+
+  const postText =
+    buildVoteText(data);
+
+  displayVoteText(postText);
+
+  const btn =
+    document.getElementById("saveVoteBtn");
+
+  if(btn){
+    btn.disabled = true;
+    btn.textContent = "送信中...";
+  }
+
+  showSaveStatus("投票を送信しています。",false);
+
+  try{
+
+    const url =
+      buildSaveVoteUrl(data,postText);
+
+    await fetch(url,{
+      method:"GET",
+      mode:"no-cors",
+      cache:"no-store"
+    });
+
+    showSaveStatus(
+      "投票を送信しました。スプレッドシートの votes に反映されます。",
+      false
+    );
+
+  }catch(err){
+
+    showSaveStatus(
+      "送信できませんでした。通信状況かGASの公開設定を確認してください。",
+      true
+    );
+
+  }finally{
+
+    if(btn){
+      btn.disabled = false;
+      btn.textContent = "投票を送信する";
+    }
+
+  }
+}
+
+function clearVote(){
+  const form =
+    document.getElementById("voteForm");
+
+  if(form){
+    form.reset();
+  }
+
+  document.getElementById("voteText").textContent = "";
+  document.getElementById("voteResult").classList.remove("show");
+
+  const status =
+    document.getElementById("saveStatus");
+
+  if(status){
+    status.classList.remove("show");
+    status.classList.remove("error");
+    status.textContent = "";
+  }
+}
+
+function getVoteText(){
   const text =
-    "SKZ30 カッパ像めぐりDX｜志木のカッパ像をスマホで巡ろう！";
+    document.getElementById("voteText").textContent || "";
 
-  window.open(
-    "https://social-plugins.line.me/lineit/share?url=" +
-    encodeURIComponent(SITE_URL) +
-    "&text=" +
-    encodeURIComponent(text),
-    "_blank"
-  );
-}
+  if(!text.trim()){
+    alert("先に投稿文を作ってください。");
+    return "";
+  }
 
-function shareXProject(){
-  const text =
-    "SKZ30 カッパ像めぐりDX｜志木市内30体のカッパ像をめぐって、推し3体を選ぼう！ #SKZ30 #志木カッパ像めぐり #志木市";
-
-  window.open(
-    "https://twitter.com/intent/tweet?text=" +
-    encodeURIComponent(text + "\n" + SITE_URL),
-    "_blank"
-  );
-}
-
-function shareFacebookProject(){
-  window.open(
-    "https://www.facebook.com/sharer/sharer.php?u=" +
-    encodeURIComponent(SITE_URL),
-    "_blank"
-  );
-}
-
-function copyProjectUrl(){
-  copyText(SITE_URL);
+  return text;
 }
 
 function showLoadStatus(id,message,isError){
@@ -2915,8 +2978,10 @@ function showLoadStatus(id,message,isError){
     message;
 
   if(isError){
+    el.classList.add("show");
     el.classList.add("error");
   }else{
+    el.classList.remove("show");
     el.classList.remove("error");
   }
 }
@@ -3085,20 +3150,6 @@ async function loadSheetData(){
         })
         .sort(sortByOrder);
 
-      showLoadStatus(
-        "kappaLoadStatus",
-        "スプレッドシートのカッパ像データを読み込みました。",
-        false
-      );
-
-    }else{
-
-      showLoadStatus(
-        "kappaLoadStatus",
-        "カッパ像データは仮データで表示中です。",
-        false
-      );
-
     }
 
   }catch(err){
@@ -3138,27 +3189,13 @@ async function loadSheetData(){
 
         });
 
-      showLoadStatus(
-        "newsLoadStatus",
-        "スプレッドシートの最新情報を読み込みました。",
-        false
-      );
-
-    }else{
-
-      showLoadStatus(
-        "newsLoadStatus",
-        "最新情報は仮データで表示中です。",
-        false
-      );
-
     }
 
   }catch(err){
 
     showLoadStatus(
       "newsLoadStatus",
-      "最新情報を読み込めませんでした。仮データで表示しています。",
+      "最新情報を読み込めませんでした。",
       true
     );
 
@@ -3179,21 +3216,9 @@ async function loadSheetData(){
         })
         .sort(sortByOrder);
 
-      showLoadStatus(
-        "shopLoadStatus",
-        "スプレッドシートのお店情報を読み込みました。",
-        false
-      );
-
     }else{
 
       shopList = [];
-
-      showLoadStatus(
-        "shopLoadStatus",
-        "お店情報はまだ登録されていません。shop_list に入れると表示されます。",
-        false
-      );
 
     }
 
