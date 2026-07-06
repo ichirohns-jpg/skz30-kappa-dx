@@ -42,11 +42,7 @@ html{
 
 body{
   margin:0;
-  font-family:
-    "Hiragino Sans",
-    "Yu Gothic",
-    "Meiryo",
-    sans-serif;
+  font-family:"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
   color:#083b2b;
   background:
     radial-gradient(circle at 15% 0%,rgba(250,255,188,.9),transparent 28%),
@@ -151,9 +147,7 @@ img{
     radial-gradient(circle at 90% 0%,#fef08a,transparent 36%);
   color:#fff;
   padding:24px;
-  box-shadow:
-    0 30px 80px rgba(6,78,59,.28),
-    inset 0 1px 0 rgba(255,255,255,.18);
+  box-shadow:0 30px 80px rgba(6,78,59,.28),inset 0 1px 0 rgba(255,255,255,.18);
 }
 
 .hero::before{
@@ -296,8 +290,7 @@ img{
 }
 
 .greenCard{
-  background:
-    linear-gradient(135deg,rgba(236,253,245,.98),rgba(220,252,231,.96));
+  background:linear-gradient(135deg,rgba(236,253,245,.98),rgba(220,252,231,.96));
 }
 
 .darkCard{
@@ -399,11 +392,6 @@ img{
   display:flex;
   gap:14px;
   align-items:center;
-  transition:.18s transform,.18s box-shadow;
-}
-
-.menuCard:active{
-  transform:scale(.98);
 }
 
 .menuIcon{
@@ -456,9 +444,7 @@ img{
 }
 
 .progressMini{
-  background:
-    radial-gradient(circle at 10% 0%,rgba(254,240,138,.22),transparent 32%),
-    linear-gradient(135deg,#052e1c,#064e3b);
+  background:radial-gradient(circle at 10% 0%,rgba(254,240,138,.22),transparent 32%),linear-gradient(135deg,#052e1c,#064e3b);
   color:#ecfdf5;
   border-radius:26px;
   padding:18px;
@@ -540,13 +526,15 @@ img{
   border-color:#fecaca;
 }
 
-.newsWrap{
+.newsWrap,
+.shopWrap{
   display:grid;
   grid-template-columns:1fr;
   gap:16px;
 }
 
-.newsCard{
+.newsCard,
+.shopCard{
   background:#fff;
   border:1px solid #bbf7d0;
   border-radius:26px;
@@ -559,22 +547,26 @@ img{
   background:linear-gradient(135deg,#ffffff,#fefce8);
 }
 
-.newsImage{
+.newsImage,
+.shopImage{
   background:#dcfce7;
   overflow:hidden;
 }
 
-.newsImage img{
+.newsImage img,
+.shopImage img{
   display:block;
   width:100%;
   height:auto;
 }
 
-.newsBody{
+.newsBody,
+.shopBody{
   padding:18px;
 }
 
-.newsLabel{
+.newsLabel,
+.shopLabel{
   display:inline-block;
   background:#fef08a;
   color:#14532d;
@@ -586,14 +578,16 @@ img{
   margin-bottom:8px;
 }
 
-.newsDate{
+.newsDate,
+.shopMeta{
   color:#4b6b57;
   font-size:13px;
   font-weight:900;
   margin-bottom:4px;
 }
 
-.newsTitle{
+.newsTitle,
+.shopTitle{
   margin:0 0 8px;
   color:#064e3b;
   font-size:22px;
@@ -601,38 +595,72 @@ img{
   font-weight:900;
 }
 
-.newsText{
+.newsText,
+.shopText{
   margin:0;
   color:#315d44;
   font-weight:750;
 }
 
-.newsMainActions{
+.shopProduct{
+  margin:10px 0 0;
+  padding:10px 12px;
+  border-radius:16px;
+  background:#ecfdf5;
+  border:1px solid #bbf7d0;
+  color:#14532d;
+  font-weight:900;
+}
+
+.shopHint{
+  margin:10px 0 0;
+  padding:10px 12px;
+  border-radius:16px;
+  background:#fef9c3;
+  border:1px solid #fde68a;
+  color:#713f12;
+  font-weight:900;
+}
+
+.newsMainActions,
+.shopMainActions{
   display:flex;
   flex-wrap:wrap;
   gap:8px;
   margin-top:14px;
 }
 
-.newsMainActions .miniBtn{
+.newsMainActions .miniBtn,
+.shopMainActions .miniBtn{
   width:auto;
   flex:1 1 150px;
 }
 
-.newsShareActions{
+.newsShareActions,
+.shopShareActions{
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
   gap:6px;
   margin-top:10px;
 }
 
-.newsShareActions .miniBtn{
+.newsShareActions .miniBtn,
+.shopShareActions .miniBtn{
   width:auto;
   min-width:0;
   padding:8px 4px;
   border-radius:14px;
   font-size:12px;
   line-height:1.2;
+}
+
+.emptyBox{
+  background:#fff;
+  border:1px dashed #86efac;
+  border-radius:24px;
+  padding:18px;
+  color:#315d44;
+  font-weight:800;
 }
 
 .routeButtons{
@@ -947,31 +975,6 @@ pre{
   font-weight:750;
 }
 
-.shopGrid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:14px;
-}
-
-.shop{
-  background:#fff;
-  border:1px solid #bbf7d0;
-  border-radius:24px;
-  padding:18px;
-  box-shadow:0 12px 30px rgba(20,83,45,.08);
-}
-
-.shop h3{
-  margin:0 0 8px;
-  color:#065f46;
-}
-
-.shop p{
-  margin:0;
-  color:#315d44;
-  font-weight:750;
-}
-
 .footer{
   margin-top:36px;
   text-align:center;
@@ -1029,7 +1032,8 @@ pre{
     grid-template-columns:repeat(3,1fr);
   }
 
-  .newsWrap{
+  .newsWrap,
+  .shopWrap{
     grid-template-columns:1fr 1fr;
   }
 
@@ -1053,7 +1057,6 @@ pre{
     grid-template-columns:repeat(4,1fr);
   }
 
-  .shopGrid,
   .missionGrid{
     grid-template-columns:repeat(3,1fr);
   }
@@ -1099,15 +1102,18 @@ pre{
     font-size:10px;
   }
 
-  .newsMainActions .miniBtn{
+  .newsMainActions .miniBtn,
+  .shopMainActions .miniBtn{
     width:100%;
   }
 
-  .newsShareActions{
+  .newsShareActions,
+  .shopShareActions{
     grid-template-columns:repeat(4,minmax(0,1fr));
   }
 
-  .newsShareActions .miniBtn{
+  .newsShareActions .miniBtn,
+  .shopShareActions .miniBtn{
     width:auto;
     font-size:11px;
     padding:8px 2px;
@@ -1457,18 +1463,17 @@ pre{
 
       <section class="section shopHero">
         <h2>
-          いろは商店会コラボ
-          <span>隠れカッピーを探せ！</span>
+          お店や志木名物も
+          <span>一緒に楽しもう</span>
         </h2>
         <p>
-          カッパ像めぐりの途中でお店にも立ち寄ってもらう、商店会回遊型のDXです。
-          お店・ヒント・文字集め・景品・SNS共有まで、このページにまとめられます。
+          カッパ像めぐりの途中で、近くのお店・志木名物・商店会コラボにも立ち寄れます。
+          お店の画像、動画、商品紹介、MAP案内、SNS共有を表示できます。
         </p>
 
         <div class="keywordBox">
-          <b>遊び方：</b>
-          お店に隠れたカッピーを見つけ、文字を集めてキーワードを完成させます。
-          完成したら景品・商品券・SNS投稿へつなげられます。
+          <b>商店会コラボ：</b>
+          「隠れカッピーを探せ！」のような文字集め・ヒント・景品企画にも広げられます。
         </div>
 
         <div class="buttonRow">
@@ -1479,9 +1484,21 @@ pre{
       </section>
 
       <section class="section card greenCard">
+        <h2 class="sectionTitle">参加店舗・志木名物</h2>
+        <p class="sectionLead">
+          `shop_list` に店舗情報を入れると、ここにカードとして表示されます。
+        </p>
+        <div id="shopLoadStatus" class="loadStatus">お店情報を読み込み中です。</div>
+      </section>
+
+      <section class="section">
+        <div id="shopWrap" class="shopWrap"></div>
+      </section>
+
+      <section class="section card greenCard">
         <h2 class="sectionTitle">商店会コラボの流れ</h2>
         <p class="sectionLead">
-          「歩く理由」と「お店に入るきっかけ」を、スマホで作ります。
+          「歩く理由」と「お店に入るきっかけ」をスマホで作れます。
         </p>
 
         <div class="missionGrid">
@@ -1519,25 +1536,6 @@ pre{
             <div class="missionNo">6</div>
             <h3>SNSで拡散</h3>
             <p>「見つけた」「巡った」「買った」をSNSで共有できます。</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="shopGrid">
-          <div class="shop">
-            <h3>参加店舗を増やせる</h3>
-            <p>店舗名、住所、画像、動画、商品紹介、SNS文を追加できる設計に広げられます。</p>
-          </div>
-
-          <div class="shop">
-            <h3>志木名物を紹介できる</h3>
-            <p>カッパ像の近くにあるお店や、志木の名物・物産紹介に接続できます。</p>
-          </div>
-
-          <div class="shop">
-            <h3>親水公園企画にも広げられる</h3>
-            <p>今後、親水公園、川辺イベント、まち歩き導線のDXにも転用できます。</p>
           </div>
         </div>
       </section>
@@ -1587,7 +1585,7 @@ const SITE_URL =
 "https://ichirohns-jpg.github.io/skz30-kappa-dx/";
 
 const GAS_URL =
-"https://script.google.com/macros/s/AKfycbx0W_SbciDR5FhnofmAwV1Zglp3FI4FJ1gfSsQjcxfAEcmywGZVGOB-Jx5DmidrEkZkPg/exec";
+"https://script.google.com/macros/s/AKfycbwxh3Kef31DQBb34iMohUAXXZOvSRLzbLwL1R2pv1-wb54vAXcUVygnoVPtN5oi8xfF4w/exec";
 
 const STORAGE_KEY =
 "skz30VisitedIds";
@@ -1600,6 +1598,7 @@ let currentFilter =
 
 let kappaList = [];
 let newsList = [];
+let shopList = [];
 
 const fallbackNames = [
   ["1","引又おやじ","志木駅・本町"],
@@ -1708,6 +1707,14 @@ function escapeHTML(text){
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#39;");
+}
+
+function enc(value){
+  return encodeURIComponent(clean(value));
+}
+
+function dec(value){
+  return decodeURIComponent(clean(value));
 }
 
 function toNumber(value,defaultValue){
@@ -2403,12 +2410,12 @@ function newsCardHTML(news){
 
   const videoButton =
     news.videoUrl
-      ? `<button class="miniBtn btnGreen" type="button" onclick="openNewsVideo('${escapeHTML(news.id)}')">動画を見る</button>`
+      ? `<button class="miniBtn btnGreen" type="button" onclick="openNewsVideo('${enc(news.id)}')">動画を見る</button>`
       : "";
 
   const linkButton =
     news.linkUrl
-      ? `<button class="miniBtn btnDark" type="button" onclick="openNewsLink('${escapeHTML(news.id)}')">詳しく見る</button>`
+      ? `<button class="miniBtn btnDark" type="button" onclick="openNewsLink('${enc(news.id)}')">詳しく見る</button>`
       : "";
 
   const mainActions =
@@ -2426,10 +2433,10 @@ function newsCardHTML(news){
         <p class="newsText">${escapeHTML(news.text)}</p>
         ${mainActions}
         <div class="newsShareActions">
-          <button class="miniBtn btnLine" type="button" onclick="shareNews('${escapeHTML(news.id)}','line')">LINE</button>
-          <button class="miniBtn btnX" type="button" onclick="shareNews('${escapeHTML(news.id)}','x')">X</button>
-          <button class="miniBtn btnFb" type="button" onclick="shareNews('${escapeHTML(news.id)}','facebook')">Facebook</button>
-          <button class="miniBtn btnWhite" type="button" onclick="shareNews('${escapeHTML(news.id)}','copy')">コピー</button>
+          <button class="miniBtn btnLine" type="button" onclick="shareNews('${enc(news.id)}','line')">LINE</button>
+          <button class="miniBtn btnX" type="button" onclick="shareNews('${enc(news.id)}','x')">X</button>
+          <button class="miniBtn btnFb" type="button" onclick="shareNews('${enc(news.id)}','facebook')">Facebook</button>
+          <button class="miniBtn btnWhite" type="button" onclick="shareNews('${enc(news.id)}','copy')">コピー</button>
         </div>
       </div>
     </article>
@@ -2437,8 +2444,11 @@ function newsCardHTML(news){
 }
 
 function getNewsById(id){
+  const target =
+    dec(id);
+
   return newsList.find(function(news){
-    return news.id === id;
+    return String(news.id) === target;
   });
 }
 
@@ -2480,6 +2490,228 @@ function shareNews(id,type){
 
   const text =
     newsShareText(news);
+
+  if(type === "line"){
+    window.open(
+      "https://social-plugins.line.me/lineit/share?url=" +
+      encodeURIComponent(SITE_URL) +
+      "&text=" +
+      encodeURIComponent(text),
+      "_blank"
+    );
+    return;
+  }
+
+  if(type === "x"){
+    window.open(
+      "https://twitter.com/intent/tweet?text=" +
+      encodeURIComponent(text),
+      "_blank"
+    );
+    return;
+  }
+
+  if(type === "facebook"){
+    window.open(
+      "https://www.facebook.com/sharer/sharer.php?u=" +
+      encodeURIComponent(SITE_URL),
+      "_blank"
+    );
+    return;
+  }
+
+  copyText(text);
+}
+
+function renderShopList(){
+  const wrap =
+    document.getElementById("shopWrap");
+
+  if(!wrap){
+    return;
+  }
+
+  if(!shopList || shopList.length === 0){
+
+    wrap.innerHTML = `
+      <div class="emptyBox">
+        参加店舗・志木名物の情報は、まだ登録されていません。<br>
+        スプレッドシートの <strong>shop_list</strong> に店舗名・画像URL・動画URL・GoogleマップURL・商品紹介を入れると、ここにお店カードとして表示されます。
+      </div>
+    `;
+
+    return;
+  }
+
+  wrap.innerHTML =
+    shopList.map(function(shop){
+      return shopCardHTML(shop);
+    }).join("");
+}
+
+function shopCardHTML(shop){
+
+  const image =
+    shop.imageUrl
+      ? `<div class="shopImage"><img src="${escapeHTML(shop.imageUrl)}" alt="${escapeHTML(shop.name)}"></div>`
+      : "";
+
+  const label =
+    shop.shoppingStreet
+      ? `<div class="shopLabel">${escapeHTML(shop.shoppingStreet)}</div>`
+      : "";
+
+  const metaParts =
+    [shop.genre,shop.area].filter(function(v){
+      return clean(v) !== "";
+    });
+
+  const meta =
+    metaParts.length > 0
+      ? `<div class="shopMeta">${escapeHTML(metaParts.join(" / "))}</div>`
+      : "";
+
+  const product =
+    shop.product
+      ? `<div class="shopProduct">おすすめ：${escapeHTML(shop.product)}</div>`
+      : "";
+
+  const hintParts = [];
+
+  if(shop.hint){
+    hintParts.push("ヒント文字：" + shop.hint);
+  }
+
+  if(shop.keyword){
+    hintParts.push("キーワード：" + shop.keyword);
+  }
+
+  if(shop.benefit){
+    hintParts.push("特典：" + shop.benefit);
+  }
+
+  const hint =
+    hintParts.length > 0
+      ? `<div class="shopHint">${escapeHTML(hintParts.join(" / "))}</div>`
+      : "";
+
+  const mapButton =
+    hasShopMap(shop)
+      ? `<button class="miniBtn btnGreen" type="button" onclick="openShopDirections('${enc(shop.id)}')">MAPで行く</button>`
+      : "";
+
+  const videoButton =
+    shop.videoUrl
+      ? `<button class="miniBtn btnDark" type="button" onclick="openShopVideo('${enc(shop.id)}')">動画を見る</button>`
+      : "";
+
+  const mainActions =
+    mapButton || videoButton
+      ? `<div class="shopMainActions">${mapButton}${videoButton}</div>`
+      : "";
+
+  return `
+    <article class="shopCard" id="shop-${escapeHTML(shop.id)}">
+      ${image}
+      <div class="shopBody">
+        ${label}
+        ${meta}
+        <h3 class="shopTitle">${escapeHTML(shop.name)}</h3>
+        <p class="shopText">${escapeHTML(shop.description || "カッパ像めぐりと一緒に立ち寄れるお店・志木名物情報です。")}</p>
+        ${product}
+        ${hint}
+        ${mainActions}
+        <div class="shopShareActions">
+          <button class="miniBtn btnLine" type="button" onclick="shareShop('${enc(shop.id)}','line')">LINE</button>
+          <button class="miniBtn btnX" type="button" onclick="shareShop('${enc(shop.id)}','x')">X</button>
+          <button class="miniBtn btnFb" type="button" onclick="shareShop('${enc(shop.id)}','facebook')">Facebook</button>
+          <button class="miniBtn btnWhite" type="button" onclick="shareShop('${enc(shop.id)}','copy')">コピー</button>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function getShopById(id){
+  const target =
+    dec(id);
+
+  return shopList.find(function(shop){
+    return String(shop.id) === target;
+  });
+}
+
+function hasShopMap(shop){
+  return !!(shop.mapUrl || (shop.lat && shop.lng) || shop.address);
+}
+
+function shopDirectionsUrl(shop){
+
+  if(shop.mapUrl){
+    return shop.mapUrl;
+  }
+
+  if(shop.lat && shop.lng){
+    return "https://www.google.com/maps/dir/?api=1&destination=" +
+      encodeURIComponent(shop.lat + "," + shop.lng);
+  }
+
+  const destination =
+    "志木市 " +
+    shop.name +
+    " " +
+    shop.address +
+    " " +
+    shop.landmark;
+
+  return "https://www.google.com/maps/dir/?api=1&destination=" +
+    encodeURIComponent(destination);
+}
+
+function openShopDirections(id){
+  const shop =
+    getShopById(id);
+
+  if(!shop){
+    return;
+  }
+
+  window.open(
+    shopDirectionsUrl(shop),
+    "_blank"
+  );
+}
+
+function openShopVideo(id){
+  const shop =
+    getShopById(id);
+
+  if(shop && shop.videoUrl){
+    window.open(shop.videoUrl,"_blank");
+  }
+}
+
+function shopShareText(shop){
+  return (
+    shop.snsText ||
+    "SKZ30 カッパ像めぐりDXで「" + shop.name + "」も楽しもう。"
+  ) +
+  "\n" +
+  "#SKZ30 #志木カッパ像めぐり #志木市 #志木名物" +
+  "\n" +
+  SITE_URL;
+}
+
+function shareShop(id,type){
+  const shop =
+    getShopById(id);
+
+  if(!shop){
+    return;
+  }
+
+  const text =
+    shopShareText(shop);
 
   if(type === "line"){
     window.open(
@@ -2791,6 +3023,32 @@ function mapNewsRecord(record,index){
   };
 }
 
+function mapShopRecord(record,index){
+
+  return {
+    id:clean(record["ID"]) || ("shop-" + index),
+    shoppingStreet:clean(record["商店会名"]),
+    name:clean(record["店舗名"]),
+    genre:clean(record["ジャンル"]),
+    area:clean(record["エリア"]),
+    address:clean(record["住所"]),
+    landmark:clean(record["目印"]),
+    lat:clean(record["緯度"]),
+    lng:clean(record["経度"]),
+    mapUrl:clean(record["GoogleマップURL"]),
+    imageUrl:clean(record["画像URL"]),
+    videoUrl:clean(record["動画URL"]),
+    product:clean(record["商品・名物"]),
+    description:clean(record["紹介文"]),
+    hint:clean(record["ヒント文字"]),
+    keyword:clean(record["キーワード"]),
+    benefit:clean(record["特典・景品"]),
+    snsText:clean(record["SNS投稿文"]),
+    order:toNumber(record["表示順"],index + 1),
+    note:clean(record["備考"])
+  };
+}
+
 function sortByOrder(a,b){
   return toNumber(a.order,9999) - toNumber(b.order,9999);
 }
@@ -2803,8 +3061,12 @@ async function loadSheetData(){
   newsList =
     fallbackNewsList.slice();
 
+  shopList =
+    [];
+
   renderNews();
   renderKappaList();
+  renderShopList();
   fillSelects();
   updateProgress();
 
@@ -2902,8 +3164,54 @@ async function loadSheetData(){
 
   }
 
+  try{
+
+    const shopData =
+      await loadGasJsonp("getShops","skz30Shops");
+
+    if(shopData && shopData.ok && Array.isArray(shopData.records) && shopData.records.length > 0){
+
+      shopList =
+        shopData.records
+        .map(mapShopRecord)
+        .filter(function(shop){
+          return shop.name;
+        })
+        .sort(sortByOrder);
+
+      showLoadStatus(
+        "shopLoadStatus",
+        "スプレッドシートのお店情報を読み込みました。",
+        false
+      );
+
+    }else{
+
+      shopList = [];
+
+      showLoadStatus(
+        "shopLoadStatus",
+        "お店情報はまだ登録されていません。shop_list に入れると表示されます。",
+        false
+      );
+
+    }
+
+  }catch(err){
+
+    shopList = [];
+
+    showLoadStatus(
+      "shopLoadStatus",
+      "お店情報を読み込めませんでした。",
+      true
+    );
+
+  }
+
   renderNews();
   renderKappaList();
+  renderShopList();
   fillSelects();
   updateProgress();
   handleInitialQuery();
@@ -2965,6 +3273,18 @@ function handleInitialQuery(){
   if(shopId){
 
     location.hash = "#shops";
+
+    setTimeout(function(){
+      const target =
+        document.getElementById("shop-" + shopId);
+
+      if(target){
+        target.scrollIntoView({
+          behavior:"smooth",
+          block:"center"
+        });
+      }
+    },500);
 
   }
 
