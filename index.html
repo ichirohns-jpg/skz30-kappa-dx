@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>SKZ30 カッパ像めぐりDX</title>
 
 <meta name="description" content="志木市内30体のカッパ像をスマホでめぐり、推し3体を選んで楽しめるまち歩き参加ページです。">
@@ -32,3292 +33,2474 @@
 <meta name="twitter:image" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/images/skz30-top.jpg">
 
 <style>
+
 *{
-  box-sizing:border-box;
+ box-sizing:border-box;
 }
 
 html{
-  scroll-behavior:smooth;
+ scroll-behavior:smooth;
 }
 
 body{
-  margin:0;
-  font-family:
-    "Hiragino Sans",
-    "Yu Gothic",
-    "Meiryo",
-    sans-serif;
-  color:#073b2b;
-  background:
-    radial-gradient(circle at 12% 0%,rgba(254,240,138,.55),transparent 26%),
-    radial-gradient(circle at 90% 6%,rgba(134,239,172,.68),transparent 30%),
-    linear-gradient(180deg,#e7fff0 0%,#f7fff9 45%,#d9fbe6 100%);
-  line-height:1.65;
-  -webkit-text-size-adjust:100%;
+ margin:0;
+ font-family:
+ "Hiragino Sans",
+ "Yu Gothic",
+ "Meiryo",
+ sans-serif;
+ color:#073b2b;
+ background:
+ radial-gradient(circle at 12% 0%,rgba(254,240,138,.55),transparent 26%),
+ radial-gradient(circle at 90% 6%,rgba(134,239,172,.68),transparent 30%),
+ linear-gradient(180deg,#e7fff0 0%,#f7fff9 45%,#d9fbe6 100%);
+ line-height:1.65;
+ -webkit-text-size-adjust:100%;
 }
 
 a{
-  color:inherit;
-  text-decoration:none;
+ color:inherit;
+ text-decoration:none;
 }
 
 button,
 input,
 textarea,
 select{
-  font-family:inherit;
+ font-family:inherit;
 }
 
 img{
-  max-width:100%;
+ max-width:100%;
 }
 
 .wrap{
-  width:min(1080px,94%);
-  margin:auto;
-  padding:10px 0 88px;
+ width:min(1080px,94%);
+ margin:auto;
+ padding:10px 0 88px;
 }
 
 .header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:10px 0 12px;
-  position:sticky;
-  top:0;
-  z-index:30;
-  background:rgba(231,255,240,.82);
-  backdrop-filter:blur(14px);
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+ padding:10px 0 12px;
+ position:sticky;
+ top:0;
+ z-index:30;
+ background:rgba(231,255,240,.82);
+ backdrop-filter:blur(14px);
 }
 
 .logo{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-weight:900;
-  color:#064e3b;
-  font-size:17px;
-  letter-spacing:.01em;
+ display:flex;
+ align-items:center;
+ gap:8px;
+ font-weight:900;
+ color:#064e3b;
+ font-size:17px;
+ letter-spacing:.01em;
 }
 
 .logoMark{
-  width:34px;
-  height:34px;
-  border-radius:13px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,#064e3b,#16a34a);
-  color:#fff;
-  box-shadow:0 10px 24px rgba(6,78,59,.22);
+ width:34px;
+ height:34px;
+ border-radius:13px;
+ display:grid;
+ place-items:center;
+ background:linear-gradient(135deg,#064e3b,#16a34a);
+ color:#fff;
+ box-shadow:0 10px 24px rgba(6,78,59,.22);
 }
 
 .nav{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
+ display:flex;
+ flex-wrap:wrap;
+ gap:7px;
 }
 
 .nav a{
-  display:inline-block;
-  padding:8px 11px;
-  border-radius:999px;
-  background:rgba(255,255,255,.86);
-  border:1px solid rgba(21,128,61,.18);
-  color:#065f46;
-  font-size:12px;
-  font-weight:900;
+ display:inline-block;
+ padding:8px 11px;
+ border-radius:999px;
+ background:rgba(255,255,255,.86);
+ border:1px solid rgba(21,128,61,.18);
+ color:#065f46;
+ font-size:12px;
+ font-weight:900;
 }
 
 .nav a.active{
-  background:#064e3b;
-  color:#fff;
+ background:#064e3b;
+ color:#fff;
 }
 
 .page{
-  display:none;
+ display:none;
 }
 
 .page.active{
-  display:block;
+ display:block;
 }
 
 .appHero{
-  overflow:hidden;
-  border-radius:34px;
-  background:#fff;
-  box-shadow:0 24px 70px rgba(20,83,45,.18);
-  border:1px solid rgba(21,128,61,.12);
+ overflow:hidden;
+ border-radius:34px;
+ background:#fff;
+ box-shadow:0 24px 70px rgba(20,83,45,.18);
+ border:1px solid rgba(21,128,61,.12);
 }
 
 .appHeroImage{
-  position:relative;
-  background:#dcfce7;
+ position:relative;
+ min-height:230px;
+ background:
+ radial-gradient(circle at 20% 10%,#dcfce7,transparent 30%),
+ linear-gradient(135deg,#064e3b,#16a34a);
+ display:grid;
+ place-items:center;
+ overflow:hidden;
 }
 
 .appHeroImage img{
-  display:block;
-  width:100%;
+ display:block;
+ width:100%;
+ height:auto;
+}
+
+.heroFallback{
+ padding:36px 18px;
+ text-align:center;
+ color:#fff;
+}
+
+.heroFallback .big{
+ font-size:72px;
+ line-height:1;
 }
 
 .appHeroOverlay{
-  position:absolute;
-  inset:auto 14px 14px 14px;
-  color:#fff;
-  text-shadow:0 3px 14px rgba(0,0,0,.42);
+ position:absolute;
+ inset:auto 14px 14px 14px;
+ color:#fff;
+ text-shadow:0 3px 14px rgba(0,0,0,.42);
 }
 
 .appHeroOverlay small{
-  display:inline-block;
-  background:rgba(6,78,59,.88);
-  color:#fef08a;
-  border-radius:999px;
-  padding:6px 11px;
-  font-weight:900;
-  font-size:12px;
+ display:inline-block;
+ background:rgba(6,78,59,.88);
+ color:#fef08a;
+ border-radius:999px;
+ padding:6px 11px;
+ font-weight:900;
+ font-size:12px;
 }
 
 .appHeroOverlay h1{
-  margin:10px 0 0;
-  font-size:clamp(28px,8vw,56px);
-  line-height:1.08;
-  font-weight:900;
+ margin:10px 0 0;
+ font-size:clamp(28px,8vw,56px);
+ line-height:1.08;
+ font-weight:900;
 }
 
 .appHeroBody{
-  padding:20px;
-  background:
-    radial-gradient(circle at top right,rgba(254,240,138,.38),transparent 36%),
-    linear-gradient(135deg,#064e3b,#15803d);
-  color:#fff;
+ padding:20px;
+ background:
+ radial-gradient(circle at top right,rgba(254,240,138,.38),transparent 36%),
+ linear-gradient(135deg,#064e3b,#15803d);
+ color:#fff;
 }
 
 .catch{
-  margin:0;
-  color:#fef08a;
-  font-size:clamp(22px,6vw,34px);
-  font-weight:900;
-  line-height:1.25;
+ margin:0;
+ color:#fef08a;
+ font-size:clamp(22px,6vw,34px);
+ font-weight:900;
+ line-height:1.25;
 }
 
 .lead{
-  margin:10px 0 0;
-  color:#ecfdf5;
-  font-size:16px;
-  font-weight:800;
+ margin:12px 0 0;
+ color:#ecfdf5;
+ font-weight:850;
+ font-size:17px;
 }
 
 .mainActions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:18px;
+ margin-top:18px;
+ display:grid;
+ grid-template-columns:1fr;
+ gap:10px;
 }
 
-.actionBtn{
-  border-radius:24px;
-  padding:16px 12px;
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.22);
-  color:#fff;
-  text-align:center;
-  font-weight:900;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
+.bigBtn{
+ border:0;
+ border-radius:999px;
+ padding:15px 18px;
+ font-size:17px;
+ font-weight:900;
+ cursor:pointer;
+ text-align:center;
+ display:block;
+ width:100%;
+ box-shadow:0 12px 28px rgba(0,0,0,.16);
 }
 
-.actionBtn strong{
-  display:block;
-  font-size:18px;
-  line-height:1.3;
+.primary{
+ background:#fef08a;
+ color:#14532d;
 }
 
-.actionBtn span{
-  display:block;
-  margin-top:5px;
-  font-size:12px;
-  color:#dcfce7;
+.secondary{
+ background:#fff;
+ color:#064e3b;
 }
 
-.actionBtn.primary{
-  background:#fef08a;
-  color:#14532d;
-  border-color:#facc15;
+.green{
+ background:#16a34a;
+ color:#fff;
 }
 
-.actionBtn.primary span{
-  color:#166534;
+.dark{
+ background:#064e3b;
+ color:#fff;
 }
 
-.infoStrip{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:10px;
-  margin-top:14px;
-}
-
-.infoPill{
-  border-radius:18px;
-  padding:12px 14px;
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.22);
-  color:#fff;
-  font-weight:900;
-}
-
-.infoPill b{
-  color:#fef08a;
-}
-
-.section{
-  margin-top:22px;
+.danger{
+ background:#fee2e2;
+ color:#991b1b;
 }
 
 .card{
-  background:rgba(255,255,255,.96);
-  border:1px solid rgba(21,128,61,.13);
-  border-radius:28px;
-  padding:20px;
-  box-shadow:0 16px 44px rgba(20,83,45,.12);
+ background:rgba(255,255,255,.92);
+ border:1px solid rgba(21,128,61,.16);
+ border-radius:28px;
+ padding:18px;
+ box-shadow:0 14px 36px rgba(20,83,45,.10);
+ margin-top:18px;
 }
 
-.greenCard{
-  background:linear-gradient(135deg,rgba(236,253,245,.98),rgba(220,252,231,.97));
+.card h2{
+ margin:0 0 8px;
+ color:#064e3b;
+ font-size:26px;
+ line-height:1.25;
 }
 
-.darkCard{
-  background:linear-gradient(135deg,#064e3b,#15803d);
-  color:#fff;
+.card h3{
+ margin:0 0 8px;
+ color:#065f46;
+ font-size:20px;
 }
 
-.sectionTitle{
-  margin:0 0 8px;
-  font-size:clamp(25px,6vw,38px);
-  color:#064e3b;
-  line-height:1.22;
-  font-weight:900;
+.card p{
+ margin:8px 0 0;
+ color:#315d44;
+ font-weight:760;
 }
 
-.darkCard .sectionTitle{
-  color:#fff;
+.infoStrip{
+ display:grid;
+ grid-template-columns:1fr;
+ gap:10px;
+ margin-top:14px;
 }
 
-.sectionLead{
-  margin:0 0 16px;
-  color:#315d44;
-  font-weight:800;
+.infoBox{
+ background:#fff;
+ border:1px solid #bbf7d0;
+ border-radius:22px;
+ padding:14px;
 }
 
-.darkCard .sectionLead{
-  color:#ecfdf5;
+.infoBox strong{
+ display:block;
+ color:#064e3b;
+ font-size:14px;
 }
 
-.buttonRow{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:16px;
-}
-
-.btn{
-  border:0;
-  border-radius:999px;
-  padding:13px 18px;
-  font-size:16px;
-  font-weight:900;
-  cursor:pointer;
-  display:inline-block;
-  text-align:center;
-  box-shadow:0 12px 26px rgba(20,83,45,.12);
-}
-
-.btnMain{
-  background:#fef08a;
-  color:#14532d;
-}
-
-.btnGreen{
-  background:#16a34a;
-  color:#fff;
-}
-
-.btnWhite{
-  background:#fff;
-  color:#166534;
-}
-
-.btnDark{
-  background:#064e3b;
-  color:#fff;
-}
-
-.btnLine{
-  background:#06c755;
-  color:#fff;
-}
-
-.btnX{
-  background:#111827;
-  color:#fff;
-}
-
-.btnFb{
-  background:#1877f2;
-  color:#fff;
+.infoBox span{
+ display:block;
+ color:#14532d;
+ font-size:20px;
+ font-weight:900;
+ margin-top:2px;
 }
 
 .quickFlow{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:10px;
+ display:grid;
+ grid-template-columns:1fr;
+ gap:12px;
+ margin-top:14px;
 }
 
 .flowItem{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:14px;
-  border-radius:22px;
-  background:#fff;
-  border:1px solid #bbf7d0;
+ background:#fff;
+ border:1px solid #bbf7d0;
+ border-radius:22px;
+ padding:14px;
+ display:flex;
+ gap:12px;
+ align-items:center;
 }
 
 .flowIcon{
-  width:50px;
-  height:50px;
-  border-radius:18px;
-  display:grid;
-  place-items:center;
-  background:#dcfce7;
-  font-size:27px;
-  flex:0 0 auto;
+ width:44px;
+ height:44px;
+ border-radius:16px;
+ display:grid;
+ place-items:center;
+ background:#dcfce7;
+ color:#065f46;
+ font-size:24px;
+ flex:0 0 auto;
 }
 
-.flowItem strong{
-  display:block;
-  color:#064e3b;
-  font-size:18px;
+.flowItem b{
+ display:block;
+ color:#064e3b;
+ font-size:17px;
 }
 
-.flowItem span{
-  display:block;
-  color:#315d44;
-  font-weight:750;
+.flowItem small{
+ display:block;
+ color:#4b6b57;
+ font-weight:850;
 }
 
-.progressMini{
-  background:
-    radial-gradient(circle at 10% 0%,rgba(254,240,138,.22),transparent 32%),
-    linear-gradient(135deg,#052e1c,#064e3b);
-  color:#ecfdf5;
-  border-radius:26px;
-  padding:18px;
-  box-shadow:0 18px 46px rgba(6,78,59,.24);
+.sectionHero{
+ border-radius:32px;
+ padding:22px;
+ background:
+ radial-gradient(circle at top right,rgba(254,240,138,.52),transparent 34%),
+ linear-gradient(135deg,#064e3b,#16a34a);
+ color:#fff;
+ box-shadow:0 22px 58px rgba(6,78,59,.22);
 }
 
-.progressTop{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  align-items:flex-end;
-  margin-bottom:10px;
+.sectionHero h1,
+.sectionHero h2{
+ margin:0;
+ font-size:clamp(30px,8vw,46px);
+ line-height:1.15;
 }
 
-.progressTop h2{
-  margin:0;
-  font-size:22px;
-  line-height:1.25;
+.sectionHero p{
+ margin:12px 0 0;
+ color:#ecfdf5;
+ font-weight:850;
 }
 
-.progressCount{
-  font-size:31px;
-  font-weight:900;
-  color:#fef08a;
-  line-height:1;
+.sectionImage{
+ margin-top:14px;
+ border-radius:24px;
+ overflow:hidden;
+ background:#dcfce7;
+ min-height:120px;
+ display:grid;
+ place-items:center;
+ color:#166534;
+ font-weight:900;
 }
 
-.progressBarOuter{
-  height:16px;
-  border-radius:999px;
-  background:rgba(255,255,255,.16);
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.18);
+.sectionImage img{
+ width:100%;
+ display:block;
 }
 
-.progressBarInner{
-  width:0%;
-  height:100%;
-  background:linear-gradient(90deg,#fef08a,#4ade80);
-  border-radius:999px;
-  transition:.25s;
+.filterBar{
+ display:flex;
+ gap:8px;
+ flex-wrap:wrap;
+ margin-top:14px;
 }
 
-.progressHint{
-  margin:10px 0 0;
-  color:#dcfce7;
-  font-weight:800;
+.filterBtn{
+ border:1px solid #bbf7d0;
+ background:#fff;
+ color:#166534;
+ border-radius:999px;
+ padding:9px 12px;
+ font-weight:900;
+ cursor:pointer;
 }
 
-.visualImage{
-  border-radius:26px;
-  overflow:hidden;
-  border:1px solid rgba(21,128,61,.18);
-  background:#fff;
-  box-shadow:0 16px 38px rgba(20,83,45,.14);
-  margin:16px 0 20px;
-}
-
-.visualImage img{
-  display:block;
-  width:100%;
-  height:auto;
-}
-
-.loadStatus{
-  display:none;
-  margin-top:14px;
-  padding:10px 13px;
-  border-radius:16px;
-  background:#ecfdf5;
-  border:1px solid #bbf7d0;
-  color:#166534;
-  font-size:13px;
-  font-weight:900;
-}
-
-.loadStatus.show{
-  display:block;
-}
-
-.loadStatus.error{
-  background:#fee2e2;
-  color:#991b1b;
-  border-color:#fecaca;
-}
-
-.newsWrap,
-.shopWrap{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:16px;
-}
-
-.newsCard,
-.shopCard{
-  background:#fff;
-  border:1px solid #bbf7d0;
-  border-radius:26px;
-  overflow:hidden;
-  box-shadow:0 14px 34px rgba(20,83,45,.12);
-}
-
-.newsCard.pinned{
-  border:2px solid #facc15;
-  background:linear-gradient(135deg,#ffffff,#fefce8);
-}
-
-.newsImage,
-.shopImage{
-  background:#dcfce7;
-  overflow:hidden;
-}
-
-.newsImage img,
-.shopImage img{
-  display:block;
-  width:100%;
-  height:auto;
-}
-
-.newsBody,
-.shopBody{
-  padding:18px;
-}
-
-.newsLabel,
-.shopLabel{
-  display:inline-block;
-  background:#fef08a;
-  color:#14532d;
-  border:1px solid #fde047;
-  border-radius:999px;
-  padding:5px 10px;
-  font-size:12px;
-  font-weight:900;
-  margin-bottom:8px;
-}
-
-.newsDate,
-.shopMeta{
-  color:#4b6b57;
-  font-size:13px;
-  font-weight:900;
-  margin-bottom:4px;
-}
-
-.newsTitle,
-.shopTitle{
-  margin:0 0 8px;
-  color:#064e3b;
-  font-size:22px;
-  line-height:1.35;
-  font-weight:900;
-}
-
-.newsText,
-.shopText{
-  margin:0;
-  color:#315d44;
-  font-weight:750;
-}
-
-.shopProduct{
-  margin:10px 0 0;
-  padding:10px 12px;
-  border-radius:16px;
-  background:#ecfdf5;
-  border:1px solid #bbf7d0;
-  color:#14532d;
-  font-weight:900;
-}
-
-.shopHint{
-  margin:10px 0 0;
-  padding:10px 12px;
-  border-radius:16px;
-  background:#fef9c3;
-  border:1px solid #fde68a;
-  color:#713f12;
-  font-weight:900;
-}
-
-.newsMainActions,
-.shopMainActions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:14px;
-}
-
-.newsMainActions .miniBtn,
-.shopMainActions .miniBtn{
-  width:auto;
-  flex:1 1 150px;
-}
-
-.newsShareActions,
-.shopShareActions{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:6px;
-  margin-top:10px;
-}
-
-.newsShareActions .miniBtn,
-.shopShareActions .miniBtn{
-  width:auto;
-  min-width:0;
-  padding:8px 4px;
-  border-radius:14px;
-  font-size:12px;
-  line-height:1.2;
-}
-
-.emptyBox{
-  background:#fff;
-  border:1px dashed #86efac;
-  border-radius:24px;
-  padding:18px;
-  color:#315d44;
-  font-weight:800;
-}
-
-.routeButtons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:14px;
-}
-
-.routeBtn{
-  border:1px solid #bbf7d0;
-  background:#fff;
-  color:#166534;
-  border-radius:999px;
-  padding:9px 12px;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.routeBtn.active{
-  background:#064e3b;
-  color:#fff;
-  border-color:#064e3b;
-}
-
-.kappaTools{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin:14px 0 0;
-}
-
-.smallTag{
-  display:inline-block;
-  padding:7px 10px;
-  border-radius:999px;
-  background:#dcfce7;
-  color:#166534;
-  border:1px solid #bbf7d0;
-  font-size:13px;
-  font-weight:900;
+.filterBtn.active{
+ background:#064e3b;
+ color:#fff;
+ border-color:#064e3b;
 }
 
 .kappaGrid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:14px;
+ display:grid;
+ grid-template-columns:1fr;
+ gap:14px;
+ margin-top:16px;
 }
 
 .kappaCard{
-  background:#fff;
-  border:1px solid #bbf7d0;
-  border-radius:26px;
-  padding:16px;
-  box-shadow:0 12px 30px rgba(20,83,45,.1);
-  position:relative;
-  overflow:hidden;
+ background:#fff;
+ border:1px solid #bbf7d0;
+ border-radius:26px;
+ padding:16px;
+ box-shadow:0 12px 30px rgba(20,83,45,.10);
+ position:relative;
+ overflow:hidden;
 }
 
 .kappaCard.visited{
-  border-color:#16a34a;
-  background:linear-gradient(135deg,#fff,#ecfdf5);
+ border-color:#16a34a;
+ background:linear-gradient(135deg,#fff,#ecfdf5);
 }
 
 .kappaCard.visited::after{
-  content:"巡った";
-  position:absolute;
-  right:12px;
-  top:12px;
-  background:#fef08a;
-  color:#14532d;
-  border:1px solid #fde047;
-  border-radius:999px;
-  padding:5px 9px;
-  font-size:12px;
-  font-weight:900;
+ content:"巡った";
+ position:absolute;
+ right:12px;
+ top:12px;
+ background:#fef08a;
+ color:#14532d;
+ border:1px solid #fde047;
+ border-radius:999px;
+ padding:5px 9px;
+ font-size:12px;
+ font-weight:900;
 }
 
 .kappaTop{
-  display:flex;
-  gap:12px;
-  align-items:center;
-  padding-right:68px;
+ display:flex;
+ gap:12px;
+ align-items:center;
+ padding-right:68px;
 }
 
 .kappaVisual{
-  width:66px;
-  height:66px;
-  border-radius:22px;
-  background:linear-gradient(135deg,#bbf7d0,#4ade80);
-  display:grid;
-  place-items:center;
-  font-size:32px;
-  overflow:hidden;
-  flex:0 0 auto;
-  cursor:pointer;
-  border:2px solid #dcfce7;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.68);
-}
-
-.kappaVisual img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
+ width:66px;
+ height:66px;
+ border-radius:22px;
+ background:linear-gradient(135deg,#bbf7d0,#4ade80);
+ display:grid;
+ place-items:center;
+ font-size:32px;
+ overflow:hidden;
+ flex:0 0 auto;
+ border:2px solid #dcfce7;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.68);
 }
 
 .kappaName{
-  margin:0;
-  color:#064e3b;
-  font-size:19px;
-  font-weight:900;
-  line-height:1.35;
+ margin:0;
+ color:#064e3b;
+ font-size:19px;
+ font-weight:900;
+ line-height:1.35;
 }
 
 .kappaPlace{
-  margin:3px 0 0;
-  color:#4b6b57;
-  font-size:13px;
-  font-weight:850;
+ margin:3px 0 0;
+ color:#4b6b57;
+ font-size:13px;
+ font-weight:850;
 }
 
 .kappaCard p{
-  color:#315d44;
-  font-weight:750;
-  margin:12px 0 0;
+ color:#315d44;
+ font-weight:750;
+ margin:12px 0 0;
 }
 
 .kappaActions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:12px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:8px;
+ margin-top:12px;
 }
 
 .miniBtn{
-  border:0;
-  border-radius:999px;
-  padding:10px 12px;
-  font-size:14px;
-  font-weight:900;
-  cursor:pointer;
-  display:inline-block;
-  text-align:center;
+ border:0;
+ border-radius:999px;
+ padding:10px 12px;
+ font-size:14px;
+ font-weight:900;
+ cursor:pointer;
+ display:inline-block;
+ text-align:center;
 }
 
 .formGrid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:14px;
+ display:grid;
+ grid-template-columns:1fr;
+ gap:14px;
 }
 
 .field{
-  margin:0;
+ margin:0;
 }
 
 label{
-  display:block;
-  color:#064e3b;
-  font-weight:900;
-  margin:0 0 6px;
+ display:block;
+ color:#064e3b;
+ font-weight:900;
+ margin:0 0 6px;
 }
 
 input,
 textarea,
 select{
-  width:100%;
-  border:1px solid #a7f3d0;
-  border-radius:16px;
-  padding:13px 14px;
-  font-size:16px;
-  background:#fff;
-  color:#123524;
-  outline:none;
+ width:100%;
+ border:1px solid #a7f3d0;
+ border-radius:16px;
+ padding:13px 14px;
+ font-size:16px;
+ background:#fff;
+ color:#123524;
+ outline:none;
 }
 
 textarea{
-  min-height:90px;
-  resize:vertical;
+ min-height:90px;
+ resize:vertical;
 }
 
 input:focus,
 textarea:focus,
 select:focus{
-  border-color:#16a34a;
-  box-shadow:0 0 0 4px rgba(34,197,94,.18);
+ border-color:#16a34a;
+ box-shadow:0 0 0 4px rgba(34,197,94,.18);
+}
+
+.helpText{
+ color:#4b6b57;
+ font-size:13px;
+ font-weight:850;
+ margin-top:6px;
+}
+
+.reasonNote{
+ margin-top:8px;
+ padding:12px;
+ border-radius:18px;
+ background:#ecfdf5;
+ border:1px solid #bbf7d0;
+ color:#14532d;
+ font-size:14px;
+ font-weight:850;
 }
 
 .voteResult{
-  display:none;
-  margin-top:18px;
+ display:none;
+ margin-top:18px;
 }
 
 .voteResult.show{
-  display:block;
+ display:block;
 }
 
 .saveStatus{
-  display:none;
-  margin-top:16px;
-  padding:14px;
-  border-radius:18px;
-  font-weight:900;
-  background:#dcfce7;
-  color:#14532d;
-  border:1px solid #86efac;
+ display:none;
+ margin-top:16px;
+ padding:14px;
+ border-radius:18px;
+ font-weight:900;
+ background:#dcfce7;
+ color:#14532d;
+ border:1px solid #86efac;
 }
 
 .saveStatus.show{
-  display:block;
+ display:block;
 }
 
 .saveStatus.error{
-  background:#fee2e2;
-  color:#991b1b;
-  border-color:#fecaca;
+ background:#fee2e2;
+ color:#991b1b;
+ border-color:#fecaca;
 }
 
 pre{
-  white-space:pre-wrap;
-  word-break:break-word;
-  margin:0;
-  padding:16px;
-  background:#052e1c;
-  color:#ecfdf5;
-  border-radius:18px;
-  font-size:14px;
-  line-height:1.75;
+ white-space:pre-wrap;
+ word-break:break-word;
+ margin:0;
+ padding:16px;
+ background:#052e1c;
+ color:#ecfdf5;
+ border-radius:18px;
+ font-size:14px;
+ line-height:1.75;
 }
 
 .shareArea{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:10px;
-  margin-top:16px;
+ display:grid;
+ grid-template-columns:1fr;
+ gap:10px;
+ margin-top:16px;
 }
 
 .shopHero{
-  background:
-    radial-gradient(circle at top right,rgba(254,240,138,.5),transparent 32%),
-    linear-gradient(135deg,#064e3b,#16a34a);
-  color:#fff;
-  border-radius:32px;
-  padding:24px;
-  box-shadow:0 22px 58px rgba(6,78,59,.24);
+ background:
+ radial-gradient(circle at top right,rgba(254,240,138,.5),transparent 32%),
+ linear-gradient(135deg,#064e3b,#16a34a);
+ color:#fff;
+ border-radius:32px;
+ padding:24px;
+ box-shadow:0 22px 58px rgba(6,78,59,.24);
 }
 
 .shopHero h2{
-  margin:0;
-  font-size:clamp(28px,7vw,44px);
-  line-height:1.15;
+ margin:0;
+ font-size:clamp(28px,7vw,44px);
+ line-height:1.15;
 }
 
 .shopHero h2 span{
-  color:#fef08a;
+ color:#fef08a;
 }
 
 .shopHero p{
-  margin:14px 0 0;
-  color:#ecfdf5;
-  font-weight:850;
-  font-size:17px;
+ margin:14px 0 0;
+ color:#ecfdf5;
+ font-weight:850;
+ font-size:17px;
 }
 
 .keywordBox{
-  margin-top:16px;
-  background:rgba(255,255,255,.14);
-  border:1px solid rgba(255,255,255,.25);
-  border-radius:22px;
-  padding:14px;
-  color:#fff;
+ margin-top:16px;
+ background:rgba(255,255,255,.14);
+ border:1px solid rgba(255,255,255,.25);
+ border-radius:22px;
+ padding:14px;
+ color:#fff;
 }
 
 .keywordBox b{
-  color:#fef08a;
+ color:#fef08a;
 }
 
 .missionGrid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:12px;
+ display:grid;
+ grid-template-columns:1fr;
+ gap:12px;
 }
 
 .missionCard{
-  background:#fff;
-  border:1px solid #bbf7d0;
-  border-radius:24px;
-  padding:16px;
-  box-shadow:0 12px 30px rgba(20,83,45,.09);
+ background:#fff;
+ border:1px solid #bbf7d0;
+ border-radius:24px;
+ padding:16px;
+ box-shadow:0 12px 30px rgba(20,83,45,.09);
 }
 
 .missionNo{
-  width:38px;
-  height:38px;
-  border-radius:14px;
-  display:grid;
-  place-items:center;
-  background:#dcfce7;
-  color:#065f46;
-  font-weight:900;
-  margin-bottom:10px;
+ width:38px;
+ height:38px;
+ border-radius:14px;
+ display:grid;
+ place-items:center;
+ background:#dcfce7;
+ color:#065f46;
+ font-weight:900;
+ margin-bottom:10px;
 }
 
 .missionCard h3{
-  margin:0 0 6px;
-  color:#065f46;
+ margin:0 0 6px;
+ color:#065f46;
 }
 
 .missionCard p{
-  margin:0;
-  color:#315d44;
-  font-weight:750;
+ margin:0;
+ color:#315d44;
+ font-weight:750;
+}
+
+.noticeList{
+ display:grid;
+ grid-template-columns:1fr;
+ gap:12px;
+ margin-top:14px;
+}
+
+.notice{
+ background:#fff;
+ border:1px solid #bbf7d0;
+ border-radius:22px;
+ padding:14px;
+}
+
+.notice b{
+ color:#064e3b;
+}
+
+.notice small{
+ display:block;
+ color:#4b6b57;
+ font-weight:850;
+ margin-top:4px;
 }
 
 .footer{
-  margin-top:34px;
-  text-align:center;
-  color:#365946;
-  font-size:13px;
-  font-weight:800;
+ margin-top:34px;
+ text-align:center;
+ color:#365946;
+ font-size:13px;
+ font-weight:800;
 }
 
 .bottomNav{
-  position:fixed;
-  left:0;
-  right:0;
-  bottom:0;
-  z-index:40;
-  background:rgba(255,255,255,.96);
-  border-top:1px solid rgba(21,128,61,.22);
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  box-shadow:0 -12px 30px rgba(20,83,45,.14);
-  backdrop-filter:blur(14px);
+ position:fixed;
+ left:0;
+ right:0;
+ bottom:0;
+ z-index:40;
+ background:rgba(255,255,255,.96);
+ border-top:1px solid rgba(21,128,61,.22);
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ box-shadow:0 -12px 30px rgba(20,83,45,.14);
+ backdrop-filter:blur(14px);
 }
 
 .bottomNav a{
-  padding:8px 4px 7px;
-  text-align:center;
-  color:#166534;
-  font-size:11px;
-  font-weight:900;
+ padding:8px 4px 7px;
+ text-align:center;
+ color:#166534;
+ font-size:11px;
+ font-weight:900;
 }
 
 .bottomNav a span{
-  display:block;
-  font-size:20px;
-  line-height:1.1;
+ display:block;
+ font-size:20px;
+ line-height:1.1;
 }
 
 .bottomNav a.active{
-  background:#dcfce7;
+ background:#dcfce7;
 }
 
 @media (min-width:760px){
-  .appHeroImage img{
-    max-height:520px;
-    object-fit:cover;
-  }
 
-  .mainActions{
-    grid-template-columns:repeat(4,1fr);
-  }
+ .mainActions{
+  grid-template-columns:repeat(4,1fr);
+ }
 
-  .infoStrip{
-    grid-template-columns:1fr 1fr;
-  }
+ .infoStrip{
+  grid-template-columns:1fr 1fr;
+ }
 
-  .quickFlow{
-    grid-template-columns:repeat(4,1fr);
-  }
+ .quickFlow{
+  grid-template-columns:repeat(4,1fr);
+ }
 
-  .newsWrap,
-  .shopWrap{
-    grid-template-columns:1fr 1fr;
-  }
+ .kappaGrid{
+  grid-template-columns:repeat(2,1fr);
+ }
 
-  .newsCard.pinned{
-    grid-column:1 / -1;
-  }
+ .shareArea{
+  grid-template-columns:repeat(4,1fr);
+ }
 
-  .kappaGrid{
-    grid-template-columns:repeat(2,1fr);
-  }
+ .missionGrid{
+  grid-template-columns:repeat(4,1fr);
+ }
 
-  .formGrid{
-    grid-template-columns:1fr 1fr;
-  }
+ .noticeList{
+  grid-template-columns:repeat(2,1fr);
+ }
 
-  .wide{
-    grid-column:1 / -1;
-  }
-
-  .shareArea{
-    grid-template-columns:repeat(4,1fr);
-  }
-
-  .missionGrid{
-    grid-template-columns:repeat(3,1fr);
-  }
 }
 
-@media (max-width:560px){
-  .header{
-    padding-top:8px;
-  }
+@media (min-width:1020px){
 
-  .nav{
-    display:none;
-  }
+ .kappaGrid{
+  grid-template-columns:repeat(3,1fr);
+ }
 
-  .logo{
-    font-size:16px;
-  }
-
-  .appHero{
-    border-radius:28px;
-  }
-
-  .appHeroBody{
-    padding:18px;
-  }
-
-  .mainActions{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .actionBtn{
-    padding:14px 8px;
-  }
-
-  .actionBtn strong{
-    font-size:16px;
-  }
-
-  .actionBtn span{
-    font-size:11px;
-  }
-
-  .card{
-    padding:18px;
-  }
-
-  .btn,
-  .miniBtn{
-    width:100%;
-  }
-
-  .newsMainActions .miniBtn,
-  .shopMainActions .miniBtn{
-    width:100%;
-  }
-
-  .newsShareActions,
-  .shopShareActions{
-    grid-template-columns:repeat(4,minmax(0,1fr));
-  }
-
-  .newsShareActions .miniBtn,
-  .shopShareActions .miniBtn{
-    width:auto;
-    font-size:11px;
-    padding:8px 2px;
-  }
-
-  .kappaActions{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .progressTop{
-    flex-direction:column;
-    align-items:flex-start;
-  }
 }
+
 </style>
 </head>
 
 <body>
+
 <div class="wrap">
 
-  <header class="header">
-    <a class="logo" href="#home" data-nav="home">
-      <span class="logoMark">🐸</span>
-      <span>SKZ30 カッパ像めぐりDX</span>
+<header class="header">
+ <a class="logo" href="#top" data-page-link="top">
+  <span class="logoMark">河</span>
+  <span>SKZ30 カッパ像めぐりDX</span>
+ </a>
+
+ <nav class="nav">
+  <a href="#top" data-page-link="top">トップ</a>
+  <a href="#kappas" data-page-link="kappas">巡る</a>
+  <a href="#info" data-page-link="info">情報</a>
+  <a href="#vote" data-page-link="vote">推し</a>
+  <a href="#shops" data-page-link="shops">お店</a>
+ </nav>
+</header>
+
+<main>
+
+<section id="top" class="page active">
+
+ <div class="appHero">
+
+  <div class="appHeroImage">
+   <img src="images/skz30-top.jpg" alt="SKZ30 カッパ像めぐりDX" onerror="this.style.display='none';document.getElementById('heroFallback').style.display='block';">
+   <div id="heroFallback" class="heroFallback" style="display:none;">
+    <div class="big">🥒</div>
+    <div>志木まち歩き参加ページ</div>
+   </div>
+
+   <div class="appHeroOverlay">
+    <small>志木まち歩き参加ページ</small>
+    <h1>SKZ30<br>カッパ像めぐりDX</h1>
+   </div>
+  </div>
+
+  <div class="appHeroBody">
+   <p class="catch">
+    めぐって、めぐって、あなたの推し3体を！
+   </p>
+
+   <p class="lead">
+    カッパ像を見つけに行こう。気に入ったカッパを推しに選んで、まち歩きとお店めぐりも楽しめます。
+   </p>
+
+   <div class="mainActions">
+    <a class="bigBtn primary" href="#kappas" data-page-link="kappas">
+     巡る<br>カッパ像を選ぶ
     </a>
-    <nav class="nav">
-      <a href="#home" data-nav="home">トップ</a>
-      <a href="#kappa" data-nav="kappa">巡る</a>
-      <a href="#news" data-nav="news">情報</a>
-      <a href="#vote" data-nav="vote">推し</a>
-      <a href="#shops" data-nav="shops">お店</a>
-    </nav>
-  </header>
 
-  <main>
+    <a class="bigBtn secondary" href="#vote" data-page-link="vote">
+     ⭐ 推し<br>3体を選ぶ
+    </a>
 
-    <section id="page-home" class="page active">
+    <a class="bigBtn secondary" href="#info" data-page-link="info">
+     情報<br>お知らせを見る
+    </a>
 
-      <section class="appHero">
-        <div class="appHeroImage">
-          <img src="images/skz30-top.jpg" alt="SKZ30 カッパ像めぐりDX">
-          <div class="appHeroOverlay">
-            <small>志木まち歩き参加ページ</small>
-            <h1>SKZ30<br>カッパ像めぐりDX</h1>
-          </div>
-        </div>
+    <a class="bigBtn secondary" href="#shops" data-page-link="shops">
+     お店<br>名物も楽しむ
+    </a>
+   </div>
+  </div>
 
-        <div class="appHeroBody">
-          <p class="catch">めぐって、めぐって、あなたの推し3体を！</p>
-          <p class="lead">
-            カッパ像を見つけに行こう。気に入ったカッパを推しに選んで、まち歩きとお店めぐりも楽しめます。
-          </p>
+ </div>
 
-          <div class="mainActions">
-            <a class="actionBtn primary" href="#kappa">
-              <strong>🐸 巡る</strong>
-              <span>カッパ像を選ぶ</span>
-            </a>
+ <div class="infoStrip">
+  <div class="infoBox">
+   <strong>開催予定</strong>
+   <span>令和8年10月1日〜11月15日</span>
+  </div>
 
-            <a class="actionBtn" href="#vote">
-              <strong>⭐ 推し</strong>
-              <span>3体を選ぶ</span>
-            </a>
+  <div class="infoBox">
+   <strong>参加対象</strong>
+   <span>どなたでも参加できます</span>
+  </div>
+ </div>
 
-            <a class="actionBtn" href="#news">
-              <strong>📢 情報</strong>
-              <span>お知らせを見る</span>
-            </a>
+ <section class="card">
+  <h2>今日の巡った記録</h2>
+  <p>
+   このスマホに保存されます。途中から再開できます。
+  </p>
 
-            <a class="actionBtn" href="#shops">
-              <strong>🏮 お店</strong>
-              <span>名物も楽しむ</span>
-            </a>
-          </div>
+  <div class="infoBox" style="margin-top:12px;">
+   <strong>巡った数</strong>
+   <span id="homeVisitedCount">0/30</span>
+  </div>
+ </section>
 
-          <div class="infoStrip">
-            <div class="infoPill">
-              <b>開催予定</b><br>
-              令和8年10月1日〜11月15日
-            </div>
-            <div class="infoPill">
-              <b>参加対象</b><br>
-              どなたでも参加できます
-            </div>
-          </div>
-        </div>
-      </section>
+ <section class="card">
+  <h2>楽しみ方</h2>
+  <p>
+   説明を読まなくても、そのまま押して進めます。
+  </p>
 
-      <section class="section progressMini">
-        <div class="progressTop">
-          <div>
-            <h2>今日の巡った記録</h2>
-            <p class="progressHint">このスマホに保存されます。途中から再開できます。</p>
-          </div>
-          <div class="progressCount">
-            <span data-visited-count>0</span>/30
-          </div>
-        </div>
-        <div class="progressBarOuter">
-          <div class="progressBarInner" data-progress-bar></div>
-        </div>
-      </section>
+  <div class="quickFlow">
+   <div class="flowItem">
+    <div class="flowIcon">🥒</div>
+    <div>
+     <b>カッパ像をめぐる</b>
+     <small>30体から選べます</small>
+    </div>
+   </div>
 
-      <section class="section card greenCard">
-        <h2 class="sectionTitle">楽しみ方</h2>
-        <p class="sectionLead">
-          説明を読まなくても、そのまま押して進めます。
-        </p>
+   <div class="flowItem">
+    <div class="flowIcon">🗺️</div>
+    <div>
+     <b>MAPで行く</b>
+     <small>現在地から案内</small>
+    </div>
+   </div>
 
-        <div class="quickFlow">
-          <a class="flowItem" href="#kappa">
-            <div class="flowIcon">🐸</div>
-            <div>
-              <strong>カッパ像をめぐる</strong>
-              <span>30体から選べます</span>
-            </div>
-          </a>
+   <div class="flowItem">
+    <div class="flowIcon">⭐</div>
+    <div>
+     <b>推し3体を選ぶ</b>
+     <small>理由も記入できます</small>
+    </div>
+   </div>
 
-          <a class="flowItem" href="#kappa" onclick="openAllMap();">
-            <div class="flowIcon">🗺️</div>
-            <div>
-              <strong>MAPで行く</strong>
-              <span>現在地から案内</span>
-            </div>
-          </a>
+   <div class="flowItem">
+    <div class="flowIcon">🏬</div>
+    <div>
+     <b>お店も楽しむ</b>
+     <small>名物紹介へ</small>
+    </div>
+   </div>
+  </div>
+ </section>
 
-          <a class="flowItem" href="#vote">
-            <div class="flowIcon">⭐</div>
-            <div>
-              <strong>推し3体を選ぶ</strong>
-              <span>投票できます</span>
-            </div>
-          </a>
+ <section class="card">
+  <h2>最新情報</h2>
+  <p>
+   イベント情報、動画、写真、ヒントを確認できます。
+  </p>
 
-          <a class="flowItem" href="#shops">
-            <div class="flowIcon">🏮</div>
-            <div>
-              <strong>お店も楽しむ</strong>
-              <span>名物紹介へ</span>
-            </div>
-          </a>
-        </div>
-      </section>
+  <div class="noticeList">
+   <div class="notice">
+    <b>デモ版公開中</b>
+    <small>紙のMAPとスマホをつなぐ、まち歩き型DXの試験ページです。</small>
+   </div>
 
-    </section>
+   <div class="notice">
+    <b>推しの理由を集めます</b>
+    <small>1位〜3位それぞれの理由は、次年度以降のPR文づくりに活用できます。</small>
+   </div>
+  </div>
+ </section>
 
-    <section id="page-news" class="page">
-      <section class="section card greenCard">
-        <h2 class="sectionTitle">最新情報</h2>
-        <p class="sectionLead">
-          イベント情報、動画、写真、ヒントを確認できます。
-        </p>
-        <div id="newsLoadStatus" class="loadStatus">最新情報を読み込み中です。</div>
-        <div class="buttonRow">
-          <a class="btn btnDark" href="#home">トップへ戻る</a>
-          <a class="btn btnGreen" href="#kappa">カッパ像を巡る</a>
-        </div>
-      </section>
+</section>
 
-      <section class="section">
-        <div id="newsWrap" class="newsWrap"></div>
-      </section>
-    </section>
+<section id="kappas" class="page">
 
-    <section id="page-kappa" class="page">
-      <section class="section card greenCard">
-        <h2 class="sectionTitle">カッパ像を巡る</h2>
-        <p class="sectionLead">
-          気になるカッパ像を選んでください。MAPで行くを押すと、現在地から案内できます。
-        </p>
+ <div class="sectionHero">
+  <h2>カッパ像を巡る</h2>
+  <p>
+   気になるカッパ像を選んでください。MAPで行くを押すと、Googleマップで案内できます。
+  </p>
+ </div>
 
-        <div class="visualImage">
-          <img src="images/skz30-map-guide.jpg" alt="カッパ像一覧とMAP案内">
-        </div>
+ <div class="sectionImage">
+  <img src="images/skz30-map.jpg" alt="カッパ像一覧とMAP案内" onerror="this.style.display='none';this.parentElement.textContent='カッパ像一覧とMAP案内';">
+ </div>
 
-        <div id="kappaLoadStatus" class="loadStatus">カッパ像データを読み込み中です。</div>
+ <section class="card">
+  <h2>今日の巡った記録</h2>
+  <p>
+   このスマホに保存されます。
+  </p>
 
-        <div class="buttonRow">
-          <button class="btn btnGreen" type="button" onclick="openAllMap()">近くのカッパ像を探す</button>
-          <button class="btn btnDark" type="button" onclick="scrollToUnvisited()">まだ巡っていないカッパへ</button>
-          <a class="btn btnWhite" href="#home">トップへ戻る</a>
-        </div>
-      </section>
+  <div class="infoBox" style="margin-top:12px;">
+   <strong>巡った数</strong>
+   <span id="visitedCount">0/30</span>
+  </div>
 
-      <section class="section progressMini">
-        <div class="progressTop">
-          <div>
-            <h2>今日の巡った記録</h2>
-            <p class="progressHint">このスマホに保存されます。</p>
-          </div>
-          <div class="progressCount">
-            <span data-visited-count>0</span>/30
-          </div>
-        </div>
-        <div class="progressBarOuter">
-          <div class="progressBarInner" data-progress-bar></div>
-        </div>
-        <div class="buttonRow">
-          <button class="btn btnWhite" type="button" onclick="resetVisited()">巡った記録をリセット</button>
-        </div>
-      </section>
+  <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;">
+   <button type="button" class="bigBtn danger" onclick="resetVisited()">
+    巡った記録をリセット
+   </button>
+  </div>
+ </section>
 
-      <section class="section">
-        <div class="routeButtons">
-          <button class="routeBtn active" type="button" data-filter="all" onclick="setFilter('all')">全部</button>
-          <button class="routeBtn" type="button" data-filter="station" onclick="setFilter('station')">志木駅・本町</button>
-          <button class="routeBtn" type="button" data-filter="iroha" onclick="setFilter('iroha')">いろは</button>
-          <button class="routeBtn" type="button" data-filter="muneoka" onclick="setFilter('muneoka')">宗岡</button>
-          <button class="routeBtn" type="button" data-filter="tagoyama" onclick="setFilter('tagoyama')">田子山</button>
-          <button class="routeBtn" type="button" data-filter="houdouji" onclick="setFilter('houdouji')">宝幢寺</button>
-          <button class="routeBtn" type="button" data-filter="kapal" onclick="setFilter('kapal')">カパル像</button>
-        </div>
+ <div class="filterBar" id="filterBar"></div>
 
-        <div class="kappaTools">
-          <span class="smallTag">現在地から案内</span>
-          <span class="smallTag">巡った記録</span>
-          <span class="smallTag">推し投票</span>
-          <span class="smallTag">共有対応</span>
-        </div>
+ <div class="card">
+  <div class="quickFlow">
+   <div class="flowItem">
+    <div class="flowIcon">🗺️</div>
+    <div>
+     <b>現在地から案内</b>
+     <small>Googleマップで移動</small>
+    </div>
+   </div>
 
-        <div id="kappaGrid" class="kappaGrid section"></div>
-      </section>
-    </section>
+   <div class="flowItem">
+    <div class="flowIcon">✅</div>
+    <div>
+     <b>巡った記録</b>
+     <small>スマホに保存</small>
+    </div>
+   </div>
 
-    <section id="page-vote" class="page">
-      <section class="section card greenCard">
-        <h2 class="sectionTitle">推し3体を選ぶ</h2>
-        <p class="sectionLead">
-          巡って楽しかったカッパ像、名前が好きなカッパ像、写真を撮りたくなったカッパ像を選んで投票できます。
-        </p>
+   <div class="flowItem">
+    <div class="flowIcon">⭐</div>
+    <div>
+     <b>推し投票</b>
+     <small>気に入ったら選べます</small>
+    </div>
+   </div>
 
-        <div class="visualImage">
-          <img src="images/skz30-vote-sns.jpg" alt="推し3体投票">
-        </div>
+   <div class="flowItem">
+    <div class="flowIcon">📣</div>
+    <div>
+     <b>共有対応</b>
+     <small>SNS投稿文を作成</small>
+    </div>
+   </div>
+  </div>
 
-        <div class="buttonRow">
-          <a class="btn btnGreen" href="#kappa">カッパ像を選びに行く</a>
-          <a class="btn btnWhite" href="#home">トップへ戻る</a>
-        </div>
-      </section>
+  <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;">
+   <button type="button" class="bigBtn green" onclick="findNearby()">
+    近くのカッパ像を探す
+   </button>
 
-      <section class="section card">
-        <form id="voteForm">
-          <div class="formGrid">
-            <div class="field">
-              <label for="nickname">ニックネーム</label>
-              <input id="nickname" type="text" placeholder="例：志木カッパ好き">
-            </div>
+   <button type="button" class="bigBtn secondary" onclick="goFirstUnvisited()">
+    まだ巡っていないカッパへ
+   </button>
 
-            <div class="field">
-              <label for="oshi1">推し1位</label>
-              <select id="oshi1"></select>
-            </div>
+   <a class="bigBtn dark" href="#top" data-page-link="top">
+    トップへ戻る
+   </a>
+  </div>
+ </div>
 
-            <div class="field">
-              <label for="oshi2">推し2位</label>
-              <select id="oshi2"></select>
-            </div>
+ <div id="kappaList" class="kappaGrid"></div>
 
-            <div class="field">
-              <label for="oshi3">推し3位</label>
-              <select id="oshi3"></select>
-            </div>
+</section>
 
-            <div class="field wide">
-              <label for="comment">ひとこと感想</label>
-              <textarea id="comment" placeholder="例：親子で楽しく巡れました。名前も表情もそれぞれ違って、志木のまち歩きが楽しくなりました。"></textarea>
-            </div>
+<section id="info" class="page">
 
-            <div class="field wide">
-              <label for="groupName">カッパたちのグループ名アイデア</label>
-              <input id="groupName" type="text" placeholder="例：志木SKZ30、志木かっぱフレンズ など">
-            </div>
-          </div>
+ <div class="sectionHero">
+  <h2>最新情報</h2>
+  <p>
+   カッパ像めぐりのお知らせ、ヒント、商店会コラボ情報を表示します。
+  </p>
+ </div>
 
-          <div class="buttonRow">
-            <button class="btn btnGreen" type="button" onclick="makeVoteText()">投稿文を作る</button>
-            <button id="saveVoteBtn" class="btn btnMain" type="button" onclick="sendVote()">投票を送信する</button>
-            <button class="btn btnDark" type="button" onclick="clearVote()">クリア</button>
-          </div>
-        </form>
+ <section class="card">
+  <h2>お知らせ</h2>
 
-        <div id="saveStatus" class="saveStatus"></div>
+  <div class="noticeList">
+   <div class="notice">
+    <b>SKZ30 カッパ像めぐりDX デモ版</b>
+    <small>
+     紙のMAPをQRコードとスマホで楽しむための試験ページです。
+    </small>
+   </div>
 
-        <div id="voteResult" class="voteResult">
-          <h3>できあがった投稿文</h3>
-          <pre id="voteText"></pre>
+   <div class="notice">
+    <b>推し3体投票</b>
+    <small>
+     好きなカッパ像を1位〜3位まで選び、それぞれの推しの理由を記入できます。
+    </small>
+   </div>
 
-          <div class="shareArea">
-            <button class="btn btnDark" type="button" onclick="copyVote()">コピー</button>
-            <button class="btn btnLine" type="button" onclick="shareLine()">LINE</button>
-            <button class="btn btnX" type="button" onclick="shareX()">Xで投稿</button>
-            <button class="btn btnFb" type="button" onclick="shareFacebook()">Facebook</button>
-          </div>
-        </div>
-      </section>
-    </section>
+   <div class="notice">
+    <b>グループ名アイデア</b>
+    <small>
+     30体のカッパ像全体の呼び名や企画名のアイデアを募集できます。
+    </small>
+   </div>
 
-    <section id="page-shops" class="page">
+   <div class="notice">
+    <b>商店会コラボ</b>
+    <small>
+     隠れカッピー、文字集め、景品企画などに発展できます。
+    </small>
+   </div>
+  </div>
+ </section>
 
-      <section class="section shopHero">
-        <h2>
-          お店や志木名物も
-          <span>一緒に楽しもう</span>
-        </h2>
-        <p>
-          カッパ像めぐりの途中で、近くのお店や志木名物にも立ち寄れます。
-          お店の画像、動画、商品紹介、MAP案内を表示できます。
-        </p>
+ <section class="card">
+  <h2>今後追加できること</h2>
 
-        <div class="keywordBox">
-          <b>商店会コラボ：</b>
-          隠れカッピー、文字集め、景品企画にも広げられます。
-        </div>
+  <div class="missionGrid">
+   <div class="missionCard">
+    <div class="missionNo">1</div>
+    <h3>ランキング表示</h3>
+    <p>投票結果を集計して、人気カッパ像を紹介できます。</p>
+   </div>
 
-        <div class="buttonRow">
-          <a class="btn btnMain" href="#kappa">カッパ像を巡る</a>
-          <a class="btn btnWhite" href="#news">最新情報を見る</a>
-          <a class="btn btnDark" href="#home">トップへ戻る</a>
-        </div>
-      </section>
+   <div class="missionCard">
+    <div class="missionNo">2</div>
+    <h3>スタンプラリー</h3>
+    <p>巡った数に応じて記念画像や認定証を表示できます。</p>
+   </div>
 
-      <section class="section card greenCard">
-        <h2 class="sectionTitle">参加店舗・志木名物</h2>
-        <p class="sectionLead">
-          お店や志木名物の情報をここに表示できます。
-        </p>
-        <div id="shopLoadStatus" class="loadStatus">お店情報を読み込み中です。</div>
-      </section>
+   <div class="missionCard">
+    <div class="missionNo">3</div>
+    <h3>動画紹介</h3>
+    <p>カッパ像ごとの紹介動画や商店会動画を追加できます。</p>
+   </div>
 
-      <section class="section">
-        <div id="shopWrap" class="shopWrap"></div>
-      </section>
+   <div class="missionCard">
+    <div class="missionNo">4</div>
+    <h3>SNS発信</h3>
+    <p>推しカッパや参加体験を共有しやすくできます。</p>
+   </div>
+  </div>
+ </section>
 
-      <section class="section card">
-        <h2 class="sectionTitle">お店めぐりの楽しみ方</h2>
-        <div class="quickFlow">
-          <div class="flowItem">
-            <div class="flowIcon">🏮</div>
-            <div>
-              <strong>お店を見つける</strong>
-              <span>参加店舗や名物をチェック</span>
-            </div>
-          </div>
+</section>
 
-          <div class="flowItem">
-            <div class="flowIcon">🗺️</div>
-            <div>
-              <strong>MAPで向かう</strong>
-              <span>お店まで案内</span>
-            </div>
-          </div>
+<section id="vote" class="page">
 
-          <div class="flowItem">
-            <div class="flowIcon">🔎</div>
-            <div>
-              <strong>隠れカッピー</strong>
-              <span>文字集めにも対応</span>
-            </div>
-          </div>
+ <div class="sectionHero">
+  <h2>推し3体を選ぶ</h2>
+  <p>
+   巡って楽しかったカッパ像、名前が好きなカッパ像、写真を撮りたくなったカッパ像を選んで投票できます。
+  </p>
+ </div>
 
-          <div class="flowItem">
-            <div class="flowIcon">🎁</div>
-            <div>
-              <strong>景品企画へ</strong>
-              <span>商品券などに発展</span>
-            </div>
-          </div>
-        </div>
-      </section>
+ <div class="sectionImage">
+  <img src="images/skz30-vote.jpg" alt="推し3体投票" onerror="this.style.display='none';this.parentElement.textContent='推し3体投票';">
+ </div>
 
-    </section>
+ <section class="card">
+  <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:16px;">
+   <a class="bigBtn green" href="#kappas" data-page-link="kappas">
+    カッパ像を選びに行く
+   </a>
 
-  </main>
+   <a class="bigBtn secondary" href="#top" data-page-link="top">
+    トップへ戻る
+   </a>
+  </div>
 
-  <footer class="footer">
-    SKZ30 カッパ像めぐりDX<br>
-    志木市商工会 まちづくり観光事業
-  </footer>
+  <div class="formGrid">
+
+   <div class="field">
+    <label for="nickname">ニックネーム</label>
+    <input id="nickname" type="text" placeholder="例：かっぱ好き太郎">
+   </div>
+
+   <div class="field">
+    <label for="rank1">推し1位</label>
+    <select id="rank1"></select>
+   </div>
+
+   <div class="field">
+    <label for="reason1">推し1位の理由</label>
+    <textarea id="reason1" placeholder="例：表情がかわいくて、写真を撮りたくなったから。"></textarea>
+    <div class="helpText">
+     次年度以降の総選挙PR文に使えるよう、好きなところを書いてください。
+    </div>
+   </div>
+
+   <div class="field">
+    <label for="rank2">推し2位</label>
+    <select id="rank2"></select>
+   </div>
+
+   <div class="field">
+    <label for="reason2">推し2位の理由</label>
+    <textarea id="reason2" placeholder="例：場所の雰囲気と合っていて、見つけた時にうれしかったから。"></textarea>
+   </div>
+
+   <div class="field">
+    <label for="rank3">推し3位</label>
+    <select id="rank3"></select>
+   </div>
+
+   <div class="field">
+    <label for="reason3">推し3位の理由</label>
+    <textarea id="reason3" placeholder="例：名前やポーズが面白くて、家族にも紹介したくなったから。"></textarea>
+   </div>
+
+   <div class="field">
+    <label for="groupName">カッパたちのグループ名アイデア</label>
+    <textarea id="groupName" placeholder="例：志木カッパ30、しあわせカッパ隊、いろはカッピーズ など"></textarea>
+   </div>
+
+   <textarea id="comment" style="display:none;"></textarea>
+
+   <div class="reasonNote">
+    これまでの「ひとこと感想」はやめて、1位・2位・3位それぞれに「推しの理由」を書く形にしました。
+   </div>
+
+   <button type="button" class="bigBtn primary" onclick="makePostText()">
+    投稿文を作る
+   </button>
+
+   <button type="button" class="bigBtn green" onclick="submitVote()">
+    投票を送信する
+   </button>
+
+   <button type="button" class="bigBtn secondary" onclick="clearVoteForm()">
+    クリア
+   </button>
+
+  </div>
+
+  <div id="saveStatus" class="saveStatus"></div>
+
+  <div id="voteResultBox" class="voteResult">
+   <h3>できあがった投稿文</h3>
+   <pre id="voteText"></pre>
+
+   <div class="shareArea">
+    <button type="button" class="bigBtn secondary" onclick="copyVoteText()">
+     コピー
+    </button>
+
+    <button type="button" class="bigBtn green" onclick="shareLine()">
+     LINE
+    </button>
+
+    <button type="button" class="bigBtn dark" onclick="shareX()">
+     Xで投稿
+    </button>
+
+    <button type="button" class="bigBtn secondary" onclick="shareFacebook()">
+     Facebook
+    </button>
+   </div>
+  </div>
+
+ </section>
+
+</section>
+
+<section id="shops" class="page">
+
+ <div class="shopHero">
+  <h2>
+   お店や志木名物も<br>
+   <span>一緒に楽しもう</span>
+  </h2>
+
+  <p>
+   カッパ像めぐりの途中で、近くのお店や志木名物にも立ち寄れます。お店の画像、動画、商品紹介、MAP案内を表示できます。
+  </p>
+
+  <div class="keywordBox">
+   <b>商店会コラボ：</b>
+   隠れカッピー、文字集め、景品企画にも広げられます。
+  </div>
+ </div>
+
+ <section class="card">
+  <div style="display:grid;grid-template-columns:1fr;gap:10px;">
+   <a class="bigBtn primary" href="#kappas" data-page-link="kappas">
+    カッパ像を巡る
+   </a>
+
+   <a class="bigBtn secondary" href="#info" data-page-link="info">
+    最新情報を見る
+   </a>
+
+   <a class="bigBtn dark" href="#top" data-page-link="top">
+    トップへ戻る
+   </a>
+  </div>
+ </section>
+
+ <section class="card">
+  <h2>参加店舗・志木名物</h2>
+  <p>
+   お店や志木名物の情報をここに表示できます。
+  </p>
+
+  <div class="noticeList">
+   <div class="notice">
+    <b>志木名物紹介</b>
+    <small>商品画像、紹介文、店舗へのMAP案内に対応できます。</small>
+   </div>
+
+   <div class="notice">
+    <b>商店会回遊</b>
+    <small>カッパ像めぐりから商店会利用へつなげる導線を作れます。</small>
+   </div>
+  </div>
+ </section>
+
+ <section class="card">
+  <h2>お店めぐりの楽しみ方</h2>
+
+  <div class="missionGrid">
+   <div class="missionCard">
+    <div class="missionNo">1</div>
+    <h3>お店を見つける</h3>
+    <p>参加店舗や名物をチェックします。</p>
+   </div>
+
+   <div class="missionCard">
+    <div class="missionNo">2</div>
+    <h3>MAPで向かう</h3>
+    <p>お店まで案内できます。</p>
+   </div>
+
+   <div class="missionCard">
+    <div class="missionNo">3</div>
+    <h3>隠れカッピー</h3>
+    <p>文字集めにも対応できます。</p>
+   </div>
+
+   <div class="missionCard">
+    <div class="missionNo">4</div>
+    <h3>景品企画へ</h3>
+    <p>商品券などに発展できます。</p>
+   </div>
+  </div>
+ </section>
+
+</section>
+
+</main>
+
+<footer class="footer">
+ <div>SKZ30 カッパ像めぐりDX</div>
+ <div>志木市商工会 まちづくり観光事業</div>
+</footer>
 
 </div>
 
 <nav class="bottomNav">
-  <a href="#home" data-nav="home"><span>🏠</span>トップ</a>
-  <a href="#kappa" data-nav="kappa"><span>🐸</span>巡る</a>
-  <a href="#news" data-nav="news"><span>📢</span>情報</a>
-  <a href="#vote" data-nav="vote"><span>⭐</span>推し</a>
-  <a href="#shops" data-nav="shops"><span>🏮</span>お店</a>
+ <a href="#top" data-page-link="top">
+  <span>🏠</span>
+  トップ
+ </a>
+
+ <a href="#kappas" data-page-link="kappas">
+  <span>🥒</span>
+  巡る
+ </a>
+
+ <a href="#info" data-page-link="info">
+  <span>📢</span>
+  情報
+ </a>
+
+ <a href="#vote" data-page-link="vote">
+  <span>⭐</span>
+  推し
+ </a>
+
+ <a href="#shops" data-page-link="shops">
+  <span>🏬</span>
+  お店
+ </a>
 </nav>
 
 <script>
-const SITE_URL =
+
+const APP_URL =
 "https://ichirohns-jpg.github.io/skz30-kappa-dx/";
 
-const GAS_URL =
-"https://script.google.com/macros/s/AKfycbwxh3Kef31DQBb34iMohUAXXZOvSRLzbLwL1R2pv1-wb54vAXcUVygnoVPtN5oi8xfF4w/exec";
-
-const STORAGE_KEY =
-"skz30VisitedIds";
-
-const USER_ID_KEY =
-"skz30UserId";
-
-let currentFilter =
-"all";
-
-let kappaList = [];
-let newsList = [];
-let shopList = [];
-
-const fallbackNames = [
-  ["1","引又おやじ","志木駅・本町"],
-  ["2","お迎え母さん","志木駅・本町"],
-  ["3","おすましくん","志木駅・本町"],
-  ["4","流ちゃん","志木駅・本町"],
-  ["5","大門","志木駅・本町"],
-  ["6","育ちゃん","志木駅・本町"],
-  ["7","ユーユー","志木駅・本町"],
-  ["8","スイスイくん","志木駅・本町"],
-  ["9","宙太郎","志木駅・本町"],
-  ["10","愛ちゃん","志木駅・本町"],
-  ["11","番太郎","志木駅・本町"],
-  ["12","カッピー","志木駅・本町"],
-  ["13","足跡","志木駅・本町"],
-  ["14","遊花子","志木駅・本町"],
-  ["15","待太郎","志木駅・本町"],
-  ["16","さくら子","志木駅・本町"],
-  ["17","三十五郎","志木駅・本町"],
-  ["18","イロハカッパ","いろは"],
-  ["19","喋々喃々","いろは"],
-  ["20","きずーな","いろは"],
-  ["21","遠い記憶ー波動（波動ちゃん）","宗岡"],
-  ["22","やなっぱ","宗岡"],
-  ["23","まねきがっぱ","宗岡"],
-  ["24","たごちゃん","田子山"],
-  ["25","まちあわせ河童","志木駅"],
-  ["26","宝幢寺カッパ","宝幢寺"],
-  ["27","宝幢寺カッパ","宝幢寺"],
-  ["28","宝幢寺カッパ","宝幢寺"],
-  ["29","カパル像","マルイ8F"],
-  ["30","カパル像","志木市役所1階"]
+const KAPPAS = [
+ {
+  id:"kappa01",
+  no:1,
+  name:"カッパ像 01",
+  place:"志木市内",
+  area:"志木駅・本町",
+  desc:"志木市内にあるカッパ像です。正式名称・設置場所は実装前に確認して整理します。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa02",
+  no:2,
+  name:"カッパ像 02",
+  place:"志木市内",
+  area:"志木駅・本町",
+  desc:"まち歩きの途中で出会えるカッパ像です。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa03",
+  no:3,
+  name:"カッパ像 03",
+  place:"志木市内",
+  area:"志木駅・本町",
+  desc:"写真を撮りながら楽しめるカッパ像です。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa04",
+  no:4,
+  name:"カッパ像 04",
+  place:"志木市内",
+  area:"いろは",
+  desc:"水辺や街歩きと相性のよいカッパ像です。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa05",
+  no:5,
+  name:"カッパ像 05",
+  place:"志木市内",
+  area:"いろは",
+  desc:"表情やポーズに注目して楽しめます。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa06",
+  no:6,
+  name:"カッパ像 06",
+  place:"志木市内",
+  area:"いろは",
+  desc:"家族連れでも楽しみやすいスポットです。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa07",
+  no:7,
+  name:"カッパ像 07",
+  place:"志木市内",
+  area:"いろは",
+  desc:"散歩の途中で見つけたいカッパ像です。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa08",
+  no:8,
+  name:"カッパ像 08",
+  place:"志木市内",
+  area:"いろは",
+  desc:"推しカッパ候補として見比べて楽しめます。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa09",
+  no:9,
+  name:"カッパ像 09",
+  place:"志木市内",
+  area:"宗岡",
+  desc:"地域の魅力を感じながら巡れるカッパ像です。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa10",
+  no:10,
+  name:"カッパ像 10",
+  place:"志木市内",
+  area:"宗岡",
+  desc:"名前や姿の印象を理由として書き残せます。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa11",
+  no:11,
+  name:"カッパ像 11",
+  place:"志木市内",
+  area:"宗岡",
+  desc:"街の記憶や観光資源として楽しめます。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa12",
+  no:12,
+  name:"カッパ像 12",
+  place:"志木市内",
+  area:"宗岡",
+  desc:"推しの理由を集めることで、次年度以降のPR文に活用できます。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa13",
+  no:13,
+  name:"カッパ像 13",
+  place:"志木市内",
+  area:"宗岡",
+  desc:"見つけた時の感想を投票に反映できます。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa14",
+  no:14,
+  name:"カッパ像 14",
+  place:"志木市内",
+  area:"田子山",
+  desc:"田子山方面のまち歩きと一緒に楽しめます。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa15",
+  no:15,
+  name:"カッパ像 15",
+  place:"志木市内",
+  area:"田子山",
+  desc:"ゆっくり歩きながら見つけたいカッパ像です。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa16",
+  no:16,
+  name:"カッパ像 16",
+  place:"志木市内",
+  area:"田子山",
+  desc:"写真や動画と組み合わせた紹介にも発展できます。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa17",
+  no:17,
+  name:"カッパ像 17",
+  place:"志木市内",
+  area:"田子山",
+  desc:"推しに選んだ理由を残して、魅力を言葉にできます。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa18",
+  no:18,
+  name:"カッパ像 18",
+  place:"志木市内",
+  area:"宝幢寺",
+  desc:"歴史や地域散策と一緒に楽しめるスポットです。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa19",
+  no:19,
+  name:"カッパ像 19",
+  place:"志木市内",
+  area:"宝幢寺",
+  desc:"カッパ像めぐりの記録に残したいスポットです。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa20",
+  no:20,
+  name:"カッパ像 20",
+  place:"志木市内",
+  area:"宝幢寺",
+  desc:"まち歩きルートの途中で立ち寄れます。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa21",
+  no:21,
+  name:"カッパ像 21",
+  place:"志木市内",
+  area:"宝幢寺",
+  desc:"好きな表情や雰囲気を理由として書けます。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa22",
+  no:22,
+  name:"カッパ像 22",
+  place:"志木市内",
+  area:"志木駅・本町",
+  desc:"駅方面からの回遊にもつなげられます。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa23",
+  no:23,
+  name:"カッパ像 23",
+  place:"志木市内",
+  area:"志木駅・本町",
+  desc:"商店会や志木名物との組み合わせもできます。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa24",
+  no:24,
+  name:"カッパ像 24",
+  place:"志木市内",
+  area:"館",
+  desc:"館方面の回遊ルートに入れられるカッパ像です。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa25",
+  no:25,
+  name:"カッパ像 25",
+  place:"志木市内",
+  area:"館",
+  desc:"地域の散策と一緒に楽しめます。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa26",
+  no:26,
+  name:"カッパ像 26",
+  place:"志木市内",
+  area:"館",
+  desc:"親子で探して楽しめるカッパ像です。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa27",
+  no:27,
+  name:"カッパ像 27",
+  place:"志木市内",
+  area:"館",
+  desc:"思い出の写真と一緒に記録できます。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa28",
+  no:28,
+  name:"カッパ像 28",
+  place:"志木市内",
+  area:"館",
+  desc:"既存MAP掲載カッパ像として整理します。",
+  emoji:"🥒"
+ },
+ {
+  id:"kappa29",
+  no:29,
+  name:"カパル像（マルイ8F パルシティ窓口）",
+  place:"マルイ8F パルシティ窓口",
+  area:"カパル像",
+  desc:"追加候補のカパル像です。既存28体に加えて30体化する候補です。",
+  emoji:"⭐"
+ },
+ {
+  id:"kappa30",
+  no:30,
+  name:"カパル像（市役所1階）",
+  place:"志木市役所1階",
+  area:"カパル像",
+  desc:"追加候補のカパル像です。市役所で見つけられる案内スポットとして活用できます。",
+  emoji:"⭐"
+ }
 ];
 
-const fallbackKappaList =
-fallbackNames.map(function(row){
-  return {
-    id:Number(row[0]),
-    name:row[1],
-    area:row[2],
-    group:groupFromArea(row[2],row[1]),
-    place:"",
-    address:"",
-    lat:"",
-    lng:"",
-    mapUrl:"",
-    imageUrl:"",
-    videoUrl:"",
-    description:"MAPで行き方を開けます。見つけたら「巡った」を押して記録できます。",
-    snsText:"SKZ30 カッパ像めぐりDXで「" + row[1] + "」を巡ろう。",
-    order:Number(row[0]),
-    note:""
+const AREAS = [
+ "全部",
+ "志木駅・本町",
+ "いろは",
+ "宗岡",
+ "田子山",
+ "宝幢寺",
+ "館",
+ "カパル像"
+];
+
+let currentArea =
+"全部";
+
+function qs(id){
+ return document.getElementById(id);
+}
+
+function getVisited(){
+ try{
+  return JSON.parse(
+   localStorage.getItem("skz30Visited") || "[]"
+  );
+ }catch(e){
+  return [];
+ }
+}
+
+function saveVisited(list){
+ localStorage.setItem(
+  "skz30Visited",
+  JSON.stringify(list)
+ );
+}
+
+function updateCounts(){
+
+ const visited =
+ getVisited();
+
+ const text =
+ visited.length + "/" + KAPPAS.length;
+
+ if(qs("homeVisitedCount")){
+  qs("homeVisitedCount").textContent = text;
+ }
+
+ if(qs("visitedCount")){
+  qs("visitedCount").textContent = text;
+ }
+
+}
+
+function renderFilters(){
+
+ const box =
+ qs("filterBar");
+
+ if(!box){
+  return;
+ }
+
+ box.innerHTML = "";
+
+ AREAS.forEach(function(area){
+
+  const btn =
+  document.createElement("button");
+
+  btn.type = "button";
+  btn.className =
+  "filterBtn" + (area === currentArea ? " active" : "");
+
+  btn.textContent = area;
+
+  btn.onclick = function(){
+   currentArea = area;
+   renderFilters();
+   renderKappas();
   };
-});
 
-const fallbackNewsList = [
-  {
-    id:"welcome",
-    pinned:true,
-    date:"ようこそ",
-    title:"志木のカッパ像めぐりへようこそ",
-    text:"カッパ像をめぐりながら、志木の街、商店街、川辺の風景を楽しみましょう。",
-    imageUrl:"images/skz30-top.jpg",
-    videoUrl:"",
-    linkUrl:"#kappa",
-    snsText:"志木のカッパ像めぐりへようこそ。SKZ30 カッパ像めぐりDXで、見たいカッパ像を選んで街歩きを楽しめます。",
-    order:1
-  }
-];
+  box.appendChild(btn);
 
-function clean(value){
-  if(value === null || value === undefined){
-    return "";
-  }
-  return String(value).trim();
+ });
+
 }
 
-function escapeHTML(text){
-  return clean(text)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#39;");
-}
+function renderKappas(){
 
-function enc(value){
-  return encodeURIComponent(clean(value));
-}
+ const box =
+ qs("kappaList");
 
-function dec(value){
-  return decodeURIComponent(clean(value));
-}
+ if(!box){
+  return;
+ }
 
-function toNumber(value,defaultValue){
-  const n =
-    Number(value);
+ const visited =
+ getVisited();
 
-  if(isNaN(n)){
-    return defaultValue;
+ const list =
+ KAPPAS.filter(function(kappa){
+
+  if(currentArea === "全部"){
+   return true;
   }
 
-  return n;
+  return kappa.area === currentArea;
+
+ });
+
+ box.innerHTML = "";
+
+ list.forEach(function(kappa){
+
+  const card =
+  document.createElement("article");
+
+  const isVisited =
+  visited.indexOf(kappa.id) !== -1;
+
+  card.className =
+  "kappaCard" + (isVisited ? " visited" : "");
+
+  card.id =
+  "card-" + kappa.id;
+
+  card.innerHTML =
+  '<div class="kappaTop">' +
+   '<div class="kappaVisual">' + kappa.emoji + '</div>' +
+   '<div>' +
+    '<h3 class="kappaName">' + kappa.no + ". " + escapeHtml(kappa.name) + '</h3>' +
+    '<div class="kappaPlace">' + escapeHtml(kappa.area) + " / " + escapeHtml(kappa.place) + '</div>' +
+   '</div>' +
+  '</div>' +
+  '<p>' + escapeHtml(kappa.desc) + '</p>' +
+  '<div class="kappaActions">' +
+   '<a class="miniBtn dark" target="_blank" rel="noopener" href="' + makeMapUrl(kappa) + '">MAPで行く</a>' +
+   '<button type="button" class="miniBtn green" onclick="toggleVisited(\'' + kappa.id + '\')">' + (isVisited ? "記録を外す" : "巡った") + '</button>' +
+   '<button type="button" class="miniBtn primary" onclick="selectOshi(\'' + kappa.id + '\')">推しに選ぶ</button>' +
+   '<button type="button" class="miniBtn secondary" onclick="shareKappa(\'' + kappa.id + '\')">共有</button>' +
+  '</div>';
+
+  box.appendChild(card);
+
+ });
+
+ updateCounts();
+
 }
 
-function isTrueValue(value){
-  const v =
-    clean(value);
+function makeMapUrl(kappa){
 
-  return (
-    v === "固定" ||
-    v === "TRUE" ||
-    v === "true" ||
-    v === "1" ||
-    v === "はい" ||
-    v === "○"
-  );
-}
+ const query =
+ encodeURIComponent(
+  kappa.place + " " + kappa.name + " 志木市"
+ );
 
-function groupFromArea(area,name){
-  const text =
-    clean(area) + " " + clean(name);
+ return "https://www.google.com/maps/search/?api=1&query=" + query;
 
-  if(text.indexOf("カパル") !== -1 || text.indexOf("マルイ") !== -1 || text.indexOf("市役所") !== -1){
-    return "kapal";
-  }
-
-  if(text.indexOf("宝幢寺") !== -1){
-    return "houdouji";
-  }
-
-  if(text.indexOf("田子山") !== -1 || text.indexOf("敷島") !== -1){
-    return "tagoyama";
-  }
-
-  if(text.indexOf("宗岡") !== -1){
-    return "muneoka";
-  }
-
-  if(text.indexOf("いろは") !== -1){
-    return "iroha";
-  }
-
-  if(text.indexOf("志木駅") !== -1 || text.indexOf("本町") !== -1){
-    return "station";
-  }
-
-  return "station";
-}
-
-function getPageFromHash(){
-  const hash =
-    String(location.hash || "#home")
-    .replace("#","")
-    .trim();
-
-  const pages =
-    ["home","kappa","news","vote","shops"];
-
-  if(pages.indexOf(hash) !== -1){
-    return hash;
-  }
-
-  return "home";
-}
-
-function showPage(page){
-  document.querySelectorAll(".page").forEach(function(el){
-    el.classList.remove("active");
-  });
-
-  const target =
-    document.getElementById("page-" + page);
-
-  if(target){
-    target.classList.add("active");
-  }
-
-  document.querySelectorAll("[data-nav]").forEach(function(el){
-    el.classList.toggle(
-      "active",
-      el.getAttribute("data-nav") === page
-    );
-  });
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-}
-
-window.addEventListener("hashchange",function(){
-  showPage(getPageFromHash());
-});
-
-function getUserId(){
-  let userId =
-    localStorage.getItem(USER_ID_KEY);
-
-  if(!userId){
-    userId =
-      "skz30-" +
-      Date.now() +
-      "-" +
-      Math.random().toString(36).slice(2,10);
-
-    localStorage.setItem(USER_ID_KEY,userId);
-  }
-
-  return userId;
-}
-
-function getVisitedIds(){
-  try{
-    const raw =
-      localStorage.getItem(STORAGE_KEY);
-
-    if(!raw){
-      return [];
-    }
-
-    const parsed =
-      JSON.parse(raw);
-
-    if(!Array.isArray(parsed)){
-      return [];
-    }
-
-    return parsed.map(function(id){
-      return Number(id);
-    }).filter(function(id){
-      return !isNaN(id);
-    });
-  }catch(e){
-    return [];
-  }
-}
-
-function saveVisitedIds(ids){
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(ids)
-  );
-}
-
-function isVisited(id){
-  return getVisitedIds().indexOf(Number(id)) !== -1;
 }
 
 function toggleVisited(id){
-  id =
-    Number(id);
 
-  let ids =
-    getVisitedIds();
+ let visited =
+ getVisited();
 
-  if(ids.indexOf(id) === -1){
-    ids.push(id);
-  }else{
-    ids =
-      ids.filter(function(item){
-        return item !== id;
-      });
-  }
+ if(visited.indexOf(id) === -1){
 
-  saveVisitedIds(ids);
-  renderKappaList();
-  updateProgress();
+  visited.push(id);
+
+ }else{
+
+  visited =
+  visited.filter(function(item){
+   return item !== id;
+  });
+
+ }
+
+ saveVisited(visited);
+ renderKappas();
+ updateCounts();
+
 }
 
 function resetVisited(){
-  const ok =
-    confirm("巡った記録をリセットしますか？");
 
-  if(!ok){
-    return;
-  }
+ if(!confirm("巡った記録をリセットしますか？")){
+  return;
+ }
 
-  saveVisitedIds([]);
-  renderKappaList();
-  updateProgress();
+ saveVisited([]);
+ renderKappas();
+ updateCounts();
+
 }
 
-function updateProgress(){
-  const count =
-    getVisitedIds().length;
+function findNearby(){
 
-  document.querySelectorAll("[data-visited-count]").forEach(function(el){
-    el.textContent = count;
+ window.open(
+  "https://www.google.com/maps/search/?api=1&query=" +
+  encodeURIComponent("志木市 カッパ像"),
+  "_blank"
+ );
+
+}
+
+function goFirstUnvisited(){
+
+ const visited =
+ getVisited();
+
+ const kappa =
+ KAPPAS.find(function(item){
+  return visited.indexOf(item.id) === -1;
+ });
+
+ if(!kappa){
+  alert("30体すべて巡った記録になっています。");
+  return;
+ }
+
+ currentArea =
+ "全部";
+
+ renderFilters();
+ renderKappas();
+ showPage("kappas");
+
+ setTimeout(function(){
+
+  const card =
+  qs("card-" + kappa.id);
+
+  if(card){
+   card.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+   });
+  }
+
+ },100);
+
+}
+
+function renderSelectors(){
+
+ const ids =
+ ["rank1","rank2","rank3"];
+
+ ids.forEach(function(selectId){
+
+  const select =
+  qs(selectId);
+
+  if(!select){
+   return;
+  }
+
+  const current =
+  select.value;
+
+  select.innerHTML =
+  '<option value="">選択してください</option>';
+
+  KAPPAS.forEach(function(kappa){
+
+   const option =
+   document.createElement("option");
+
+   option.value =
+   kappa.id;
+
+   option.textContent =
+   kappa.no + ". " + kappa.name;
+
+   select.appendChild(option);
+
   });
 
-  document.querySelectorAll("[data-progress-bar]").forEach(function(el){
-    el.style.width =
-      Math.min(100,(count / 30) * 100) + "%";
-  });
-}
-
-function getKappaById(id){
-  return kappaList.find(function(kappa){
-    return Number(kappa.id) === Number(id);
-  });
-}
-
-function kappaLabel(kappa){
-  return kappa.id + ". " + kappa.name;
-}
-
-function directionsUrl(kappa){
-
-  if(kappa.mapUrl){
-    return kappa.mapUrl;
+  if(current){
+   select.value = current;
   }
 
-  if(kappa.lat && kappa.lng){
-    return "https://www.google.com/maps/dir/?api=1&destination=" +
-      encodeURIComponent(kappa.lat + "," + kappa.lng);
-  }
+ });
 
-  const destination =
-    "志木市 " +
-    kappa.name +
-    " " +
-    kappa.area +
-    " " +
-    kappa.place +
-    " カッパ像";
-
-  return "https://www.google.com/maps/dir/?api=1&destination=" +
-    encodeURIComponent(destination);
-}
-
-function openDirections(id){
-  const kappa =
-    getKappaById(id);
-
-  if(!kappa){
-    return;
-  }
-
-  window.open(
-    directionsUrl(kappa),
-    "_blank"
-  );
-}
-
-function openAllMap(){
-  window.open(
-    "https://www.google.com/maps/search/?api=1&query=" +
-    encodeURIComponent("志木市 カッパ像"),
-    "_blank"
-  );
-}
-
-function setFilter(filter){
-  currentFilter =
-    filter;
-
-  document.querySelectorAll(".routeBtn").forEach(function(btn){
-    btn.classList.toggle(
-      "active",
-      btn.getAttribute("data-filter") === filter
-    );
-  });
-
-  renderKappaList();
-}
-
-function filteredKappas(){
-  if(currentFilter === "all"){
-    return kappaList;
-  }
-
-  return kappaList.filter(function(kappa){
-    return kappa.group === currentFilter;
-  });
-}
-
-function renderKappaList(){
-  const grid =
-    document.getElementById("kappaGrid");
-
-  if(!grid){
-    return;
-  }
-
-  const list =
-    filteredKappas();
-
-  grid.innerHTML =
-    list.map(function(kappa){
-      const label =
-        kappaLabel(kappa);
-
-      const visited =
-        isVisited(kappa.id);
-
-      const visitedClass =
-        visited ? " visited" : "";
-
-      const visitedText =
-        visited ? "巡ったを取り消す" : "巡った";
-
-      const visual =
-        kappa.imageUrl
-          ? `<img src="${escapeHTML(kappa.imageUrl)}" alt="${escapeHTML(label)}">`
-          : `<span>🐸</span>`;
-
-      const description =
-        kappa.description || "MAPで行き方を開けます。見つけたら「巡った」を押して記録できます。";
-
-      const placeText =
-        kappa.place
-          ? kappa.area + " / " + kappa.place
-          : kappa.area;
-
-      return `
-        <article class="kappaCard${visitedClass}" id="kappa-${kappa.id}">
-          <div class="kappaTop">
-            <button class="kappaVisual" type="button" onclick="openDirections(${kappa.id})" aria-label="${escapeHTML(label)}へ行く">
-              ${visual}
-            </button>
-            <div>
-              <h3 class="kappaName">${escapeHTML(label)}</h3>
-              <p class="kappaPlace">${escapeHTML(placeText)}</p>
-            </div>
-          </div>
-          <p>${escapeHTML(description)}</p>
-          <div class="kappaActions">
-            <button class="miniBtn btnGreen" type="button" onclick="openDirections(${kappa.id})">MAPで行く</button>
-            <button class="miniBtn btnMain" type="button" onclick="toggleVisited(${kappa.id})">${visitedText}</button>
-            <button class="miniBtn btnDark" type="button" onclick="selectOshi(${kappa.id})">推しに入れる</button>
-            <button class="miniBtn btnWhite" type="button" onclick="shareKappa(${kappa.id})">共有</button>
-          </div>
-        </article>
-      `;
-    }).join("");
-}
-
-function scrollToUnvisited(){
-  const next =
-    kappaList.find(function(kappa){
-      return !isVisited(kappa.id);
-    });
-
-  if(!next){
-    alert("30体すべて巡っています。すごい！");
-    return;
-  }
-
-  if(currentFilter !== "all"){
-    setFilter("all");
-  }
-
-  location.hash = "#kappa";
-
-  setTimeout(function(){
-    const target =
-      document.getElementById("kappa-" + next.id);
-
-    if(target){
-      target.scrollIntoView({
-        behavior:"smooth",
-        block:"center"
-      });
-    }
-  },250);
-}
-
-function fillSelects(){
-  ["oshi1","oshi2","oshi3"].forEach(function(id){
-    const select =
-      document.getElementById(id);
-
-    if(!select){
-      return;
-    }
-
-    select.innerHTML =
-      `<option value="">選んでください</option>` +
-      kappaList.map(function(kappa){
-        const label =
-          kappaLabel(kappa);
-
-        return `<option value="${escapeHTML(label)}">${escapeHTML(label)}</option>`;
-      }).join("");
-  });
 }
 
 function selectOshi(id){
-  const kappa =
-    getKappaById(id);
 
-  if(!kappa){
-    return;
-  }
+ const rank1 =
+ qs("rank1");
 
-  const name =
-    kappaLabel(kappa);
+ const rank2 =
+ qs("rank2");
 
-  const ids =
-    ["oshi1","oshi2","oshi3"];
+ const rank3 =
+ qs("rank3");
 
-  for(let i = 0; i < ids.length; i++){
-    const el =
-      document.getElementById(ids[i]);
+ if(rank1 && !rank1.value){
+  rank1.value = id;
+ }else if(rank2 && !rank2.value){
+  rank2.value = id;
+ }else if(rank3 && !rank3.value){
+  rank3.value = id;
+ }else if(rank1){
+  rank1.value = id;
+ }
 
-    if(el && !el.value){
-      el.value = name;
-      location.hash = "#vote";
-      return;
-    }
-  }
+ showPage("vote");
 
-  location.hash = "#vote";
-}
-
-function val(id){
-  const el =
-    document.getElementById(id);
-
-  return el ? String(el.value || "").trim() : "";
-}
-
-function makeVoteData(){
-  const nicknameInput =
-    val("nickname");
-
-  const nickname =
-    nicknameInput || "匿名参加";
-
-  const oshi1 =
-    val("oshi1");
-
-  const oshi2 =
-    val("oshi2");
-
-  const oshi3 =
-    val("oshi3");
-
-  const comment =
-    val("comment") || "志木のカッパ像めぐりを楽しみました。";
-
-  const groupName =
-    val("groupName");
-
-  const visitedCount =
-    getVisitedIds().length;
-
-  if(!oshi1 || !oshi2 || !oshi3){
-    alert("推しカッパを3体選んでください。");
-    return null;
-  }
-
-  return {
-    userId:getUserId(),
-    nickname:nickname,
-    nicknameInput:nicknameInput,
-    oshi1:oshi1,
-    oshi2:oshi2,
-    oshi3:oshi3,
-    comment:comment,
-    groupName:groupName,
-    visitedCount:visitedCount
-  };
-}
-
-function buildVoteText(data){
-
-  const lines = [];
-
-  lines.push("【SKZ30 カッパ像めぐりDX】");
-  lines.push("");
-  lines.push("志木のカッパ像めぐりに参加しました！");
-  lines.push("");
-  lines.push("私の推しカッパ3体はこれです。");
-  lines.push("");
-  lines.push("1位：" + data.oshi1);
-  lines.push("2位：" + data.oshi2);
-  lines.push("3位：" + data.oshi3);
-  lines.push("");
-
-  if(data.visitedCount > 0){
-    lines.push("巡った数：" + data.visitedCount + "/30");
-    lines.push("");
-  }
-
-  lines.push("ひとこと：");
-  lines.push(data.comment);
-  lines.push("");
-
-  if(data.groupName){
-    lines.push("カッパたちのグループ名アイデア：");
-    lines.push(data.groupName);
-    lines.push("");
-  }
-
-  lines.push("めぐって、めぐって、あなたの推し3体を！");
-  lines.push("");
-  lines.push("#SKZ30");
-  lines.push("#志木カッパ像めぐり");
-  lines.push("#志木市");
-  lines.push("#カッパ像");
-  lines.push("#まち歩き");
-  lines.push("");
-  lines.push(SITE_URL);
-
-  return lines.join("\n");
-}
-
-function displayVoteText(text){
-  document.getElementById("voteText").textContent = text;
-  document.getElementById("voteResult").classList.add("show");
-  document.getElementById("voteResult").scrollIntoView({
+ setTimeout(function(){
+  const vote = qs("vote");
+  if(vote){
+   vote.scrollIntoView({
     behavior:"smooth",
     block:"start"
-  });
+   });
+  }
+ },100);
+
 }
 
-function makeVoteText(){
-  const data =
-    makeVoteData();
+function getKappaName(id){
 
-  if(!data){
-    return;
-  }
+ const kappa =
+ KAPPAS.find(function(item){
+  return item.id === id;
+ });
 
-  const text =
-    buildVoteText(data);
+ if(!kappa){
+  return "";
+ }
 
-  displayVoteText(text);
+ return kappa.no + ". " + kappa.name;
+
 }
 
-function buildSaveVoteUrl(data,postText){
-  const params =
-    new URLSearchParams();
+function syncReasonComment(){
 
-  params.set("mode","saveVote");
-  params.set("userId",data.userId);
-  params.set("nickname",data.nickname);
-  params.set("oshi1",data.oshi1);
-  params.set("oshi2",data.oshi2);
-  params.set("oshi3",data.oshi3);
-  params.set("comment",data.comment);
-  params.set("groupName",data.groupName);
-  params.set("visitedCount",String(data.visitedCount));
-  params.set("postText",postText);
+ const rank1 =
+ qs("rank1") ? qs("rank1").value : "";
 
-  return GAS_URL + "?" + params.toString();
+ const rank2 =
+ qs("rank2") ? qs("rank2").value : "";
+
+ const rank3 =
+ qs("rank3") ? qs("rank3").value : "";
+
+ const reason1 =
+ qs("reason1") ? qs("reason1").value.trim() : "";
+
+ const reason2 =
+ qs("reason2") ? qs("reason2").value.trim() : "";
+
+ const reason3 =
+ qs("reason3") ? qs("reason3").value.trim() : "";
+
+ const lines = [];
+
+ if(rank1 || reason1){
+  lines.push("【推し1位】" + getKappaName(rank1));
+  if(reason1){
+   lines.push("理由：" + reason1);
+  }
+  lines.push("");
+ }
+
+ if(rank2 || reason2){
+  lines.push("【推し2位】" + getKappaName(rank2));
+  if(reason2){
+   lines.push("理由：" + reason2);
+  }
+  lines.push("");
+ }
+
+ if(rank3 || reason3){
+  lines.push("【推し3位】" + getKappaName(rank3));
+  if(reason3){
+   lines.push("理由：" + reason3);
+  }
+ }
+
+ const comment =
+ qs("comment");
+
+ if(comment){
+  comment.value =
+  lines.join("\n").trim();
+ }
+
+ return lines.join("\n").trim();
+
 }
 
-function showSaveStatus(message,isError){
-  const el =
-    document.getElementById("saveStatus");
+function makePostText(){
 
-  if(!el){
-    return;
+ const nickname =
+ qs("nickname") ? qs("nickname").value.trim() : "";
+
+ const rank1 =
+ qs("rank1") ? qs("rank1").value : "";
+
+ const rank2 =
+ qs("rank2") ? qs("rank2").value : "";
+
+ const rank3 =
+ qs("rank3") ? qs("rank3").value : "";
+
+ const reason1 =
+ qs("reason1") ? qs("reason1").value.trim() : "";
+
+ const reason2 =
+ qs("reason2") ? qs("reason2").value.trim() : "";
+
+ const reason3 =
+ qs("reason3") ? qs("reason3").value.trim() : "";
+
+ const groupName =
+ qs("groupName") ? qs("groupName").value.trim() : "";
+
+ syncReasonComment();
+
+ const lines = [];
+
+ lines.push("SKZ30 カッパ像めぐりDX");
+ lines.push("");
+ lines.push("私の推しカッパ3体");
+ lines.push("");
+
+ if(nickname){
+  lines.push("ニックネーム：" + nickname);
+  lines.push("");
+ }
+
+ if(rank1){
+  lines.push("1位：" + getKappaName(rank1));
+  if(reason1){
+   lines.push("推しの理由：" + reason1);
   }
+  lines.push("");
+ }
 
-  el.textContent =
-    message;
-
-  el.classList.add("show");
-
-  if(isError){
-    el.classList.add("error");
-  }else{
-    el.classList.remove("error");
+ if(rank2){
+  lines.push("2位：" + getKappaName(rank2));
+  if(reason2){
+   lines.push("推しの理由：" + reason2);
   }
+  lines.push("");
+ }
+
+ if(rank3){
+  lines.push("3位：" + getKappaName(rank3));
+  if(reason3){
+   lines.push("推しの理由：" + reason3);
+  }
+  lines.push("");
+ }
+
+ if(groupName){
+  lines.push("カッパたちのグループ名アイデア：" + groupName);
+  lines.push("");
+ }
+
+ lines.push("めぐって、めぐって、あなたの推し3体を！");
+ lines.push(APP_URL);
+
+ const text =
+ lines.join("\n");
+
+ const result =
+ qs("voteText");
+
+ if(result){
+  result.textContent = text;
+ }
+
+ const box =
+ qs("voteResultBox");
+
+ if(box){
+  box.classList.add("show");
+ }
+
+ return text;
+
 }
 
-async function sendVote(){
-  const data =
-    makeVoteData();
+function validateVote(){
 
-  if(!data){
-    return;
-  }
+ const rank1 =
+ qs("rank1") ? qs("rank1").value : "";
 
-  const postText =
-    buildVoteText(data);
+ const rank2 =
+ qs("rank2") ? qs("rank2").value : "";
 
-  displayVoteText(postText);
+ const rank3 =
+ qs("rank3") ? qs("rank3").value : "";
 
-  const btn =
-    document.getElementById("saveVoteBtn");
+ if(!rank1 || !rank2 || !rank3){
+  showStatus("推し1位〜3位を選んでください。",true);
+  return false;
+ }
 
-  if(btn){
-    btn.disabled = true;
-    btn.textContent = "送信中...";
-  }
+ const set =
+ new Set([rank1,rank2,rank3]);
 
-  showSaveStatus("投票を送信しています。",false);
+ if(set.size !== 3){
+  showStatus("1位〜3位は、それぞれ別のカッパ像を選んでください。",true);
+  return false;
+ }
 
-  try{
+ return true;
 
-    const url =
-      buildSaveVoteUrl(data,postText);
-
-    await fetch(url,{
-      method:"GET",
-      mode:"no-cors",
-      cache:"no-store"
-    });
-
-    showSaveStatus(
-      "投票を送信しました。スプレッドシートの votes に反映されます。",
-      false
-    );
-
-  }catch(err){
-
-    showSaveStatus(
-      "送信できませんでした。通信状況かGASの公開設定を確認してください。",
-      true
-    );
-
-  }finally{
-
-    if(btn){
-      btn.disabled = false;
-      btn.textContent = "投票を送信する";
-    }
-
-  }
 }
 
-function clearVote(){
-  const form =
-    document.getElementById("voteForm");
+function submitVote(){
 
-  if(form){
-    form.reset();
-  }
+ if(!validateVote()){
+  return;
+ }
 
-  document.getElementById("voteText").textContent = "";
-  document.getElementById("voteResult").classList.remove("show");
+ const data =
+ {
+  datetime:new Date().toISOString(),
+  nickname:qs("nickname") ? qs("nickname").value.trim() : "",
+  rank1:qs("rank1") ? qs("rank1").value : "",
+  rank1Name:getKappaName(qs("rank1").value),
+  reason1:qs("reason1") ? qs("reason1").value.trim() : "",
+  rank2:qs("rank2") ? qs("rank2").value : "",
+  rank2Name:getKappaName(qs("rank2").value),
+  reason2:qs("reason2") ? qs("reason2").value.trim() : "",
+  rank3:qs("rank3") ? qs("rank3").value : "",
+  rank3Name:getKappaName(qs("rank3").value),
+  reason3:qs("reason3") ? qs("reason3").value.trim() : "",
+  groupName:qs("groupName") ? qs("groupName").value.trim() : "",
+  comment:syncReasonComment()
+ };
 
-  const status =
-    document.getElementById("saveStatus");
+ const votes =
+ getVotes();
 
-  if(status){
-    status.classList.remove("show");
-    status.classList.remove("error");
-    status.textContent = "";
-  }
+ votes.push(data);
+
+ localStorage.setItem(
+  "skz30Votes",
+  JSON.stringify(votes)
+ );
+
+ makePostText();
+
+ showStatus(
+  "投票内容をこのスマホに保存しました。デモ版のため、正式運用ではGoogleフォームやスプレッドシート連携に切り替えます。",
+  false
+ );
+
 }
 
-function getVoteText(){
-  const text =
-    document.getElementById("voteText").textContent || "";
-
-  if(!text.trim()){
-    alert("先に投稿文を作ってください。");
-    return "";
-  }
-
-  return text;
-}
-
-function renderNews(){
-  const wrap =
-    document.getElementById("newsWrap");
-
-  if(!wrap){
-    return;
-  }
-
-  wrap.innerHTML =
-    newsList.map(function(news){
-      return newsCardHTML(news);
-    }).join("");
-}
-
-function newsCardHTML(news){
-  const pinnedClass =
-    news.pinned ? " pinned" : "";
-
-  const label =
-    news.pinned ? `<div class="newsLabel">一番上に固定</div>` : "";
-
-  const image =
-    news.imageUrl
-      ? `<div class="newsImage"><img src="${escapeHTML(news.imageUrl)}" alt="${escapeHTML(news.title)}"></div>`
-      : "";
-
-  const videoButton =
-    news.videoUrl
-      ? `<button class="miniBtn btnGreen" type="button" onclick="openNewsVideo('${enc(news.id)}')">動画を見る</button>`
-      : "";
-
-  const linkButton =
-    news.linkUrl
-      ? `<button class="miniBtn btnDark" type="button" onclick="openNewsLink('${enc(news.id)}')">詳しく見る</button>`
-      : "";
-
-  const mainActions =
-    linkButton || videoButton
-      ? `<div class="newsMainActions">${linkButton}${videoButton}</div>`
-      : "";
-
-  return `
-    <article class="newsCard${pinnedClass}" id="news-${escapeHTML(news.id)}">
-      ${image}
-      <div class="newsBody">
-        ${label}
-        <div class="newsDate">${escapeHTML(news.date)}</div>
-        <h3 class="newsTitle">${escapeHTML(news.title)}</h3>
-        <p class="newsText">${escapeHTML(news.text)}</p>
-        ${mainActions}
-        <div class="newsShareActions">
-          <button class="miniBtn btnLine" type="button" onclick="shareNews('${enc(news.id)}','line')">LINE</button>
-          <button class="miniBtn btnX" type="button" onclick="shareNews('${enc(news.id)}','x')">X</button>
-          <button class="miniBtn btnFb" type="button" onclick="shareNews('${enc(news.id)}','facebook')">Facebook</button>
-          <button class="miniBtn btnWhite" type="button" onclick="shareNews('${enc(news.id)}','copy')">コピー</button>
-        </div>
-      </div>
-    </article>
-  `;
-}
-
-function getNewsById(id){
-  const target =
-    dec(id);
-
-  return newsList.find(function(news){
-    return String(news.id) === target;
-  });
-}
-
-function newsShareText(news){
-  return (news.snsText || news.title) + "\n" + SITE_URL;
-}
-
-function openNewsVideo(id){
-  const news =
-    getNewsById(id);
-
-  if(news && news.videoUrl){
-    window.open(news.videoUrl,"_blank");
-  }
-}
-
-function openNewsLink(id){
-  const news =
-    getNewsById(id);
-
-  if(!news || !news.linkUrl){
-    return;
-  }
-
-  if(news.linkUrl.indexOf("#") === 0){
-    location.hash = news.linkUrl;
-  }else{
-    window.open(news.linkUrl,"_blank");
-  }
-}
-
-function shareNews(id,type){
-  const news =
-    getNewsById(id);
-
-  if(!news){
-    return;
-  }
-
-  const text =
-    newsShareText(news);
-
-  if(type === "line"){
-    window.open(
-      "https://social-plugins.line.me/lineit/share?url=" +
-      encodeURIComponent(SITE_URL) +
-      "&text=" +
-      encodeURIComponent(text),
-      "_blank"
-    );
-    return;
-  }
-
-  if(type === "x"){
-    window.open(
-      "https://twitter.com/intent/tweet?text=" +
-      encodeURIComponent(text),
-      "_blank"
-    );
-    return;
-  }
-
-  if(type === "facebook"){
-    window.open(
-      "https://www.facebook.com/sharer/sharer.php?u=" +
-      encodeURIComponent(SITE_URL),
-      "_blank"
-    );
-    return;
-  }
-
-  copyText(text);
-}
-
-function renderShopList(){
-  const wrap =
-    document.getElementById("shopWrap");
-
-  if(!wrap){
-    return;
-  }
-
-  if(!shopList || shopList.length === 0){
-
-    wrap.innerHTML = `
-      <div class="emptyBox">
-        参加店舗・志木名物の情報は準備中です。<br>
-        登録されると、ここにお店カードとして表示されます。
-      </div>
-    `;
-
-    return;
-  }
-
-  wrap.innerHTML =
-    shopList.map(function(shop){
-      return shopCardHTML(shop);
-    }).join("");
-}
-
-function shopCardHTML(shop){
-
-  const image =
-    shop.imageUrl
-      ? `<div class="shopImage"><img src="${escapeHTML(shop.imageUrl)}" alt="${escapeHTML(shop.name)}"></div>`
-      : "";
-
-  const label =
-    shop.shoppingStreet
-      ? `<div class="shopLabel">${escapeHTML(shop.shoppingStreet)}</div>`
-      : "";
-
-  const metaParts =
-    [shop.genre,shop.area].filter(function(v){
-      return clean(v) !== "";
-    });
-
-  const meta =
-    metaParts.length > 0
-      ? `<div class="shopMeta">${escapeHTML(metaParts.join(" / "))}</div>`
-      : "";
-
-  const product =
-    shop.product
-      ? `<div class="shopProduct">おすすめ：${escapeHTML(shop.product)}</div>`
-      : "";
-
-  const hintParts = [];
-
-  if(shop.hint){
-    hintParts.push("ヒント文字：" + shop.hint);
-  }
-
-  if(shop.keyword){
-    hintParts.push("キーワード：" + shop.keyword);
-  }
-
-  if(shop.benefit){
-    hintParts.push("特典：" + shop.benefit);
-  }
-
-  const hint =
-    hintParts.length > 0
-      ? `<div class="shopHint">${escapeHTML(hintParts.join(" / "))}</div>`
-      : "";
-
-  const mapButton =
-    hasShopMap(shop)
-      ? `<button class="miniBtn btnGreen" type="button" onclick="openShopDirections('${enc(shop.id)}')">MAPで行く</button>`
-      : "";
-
-  const videoButton =
-    shop.videoUrl
-      ? `<button class="miniBtn btnDark" type="button" onclick="openShopVideo('${enc(shop.id)}')">動画を見る</button>`
-      : "";
-
-  const mainActions =
-    mapButton || videoButton
-      ? `<div class="shopMainActions">${mapButton}${videoButton}</div>`
-      : "";
-
-  return `
-    <article class="shopCard" id="shop-${escapeHTML(shop.id)}">
-      ${image}
-      <div class="shopBody">
-        ${label}
-        ${meta}
-        <h3 class="shopTitle">${escapeHTML(shop.name)}</h3>
-        <p class="shopText">${escapeHTML(shop.description || "カッパ像めぐりと一緒に立ち寄れるお店・志木名物情報です。")}</p>
-        ${product}
-        ${hint}
-        ${mainActions}
-        <div class="shopShareActions">
-          <button class="miniBtn btnLine" type="button" onclick="shareShop('${enc(shop.id)}','line')">LINE</button>
-          <button class="miniBtn btnX" type="button" onclick="shareShop('${enc(shop.id)}','x')">X</button>
-          <button class="miniBtn btnFb" type="button" onclick="shareShop('${enc(shop.id)}','facebook')">Facebook</button>
-          <button class="miniBtn btnWhite" type="button" onclick="shareShop('${enc(shop.id)}','copy')">コピー</button>
-        </div>
-      </div>
-    </article>
-  `;
-}
-
-function getShopById(id){
-  const target =
-    dec(id);
-
-  return shopList.find(function(shop){
-    return String(shop.id) === target;
-  });
-}
-
-function hasShopMap(shop){
-  return !!(shop.mapUrl || (shop.lat && shop.lng) || shop.address);
-}
-
-function shopDirectionsUrl(shop){
-
-  if(shop.mapUrl){
-    return shop.mapUrl;
-  }
-
-  if(shop.lat && shop.lng){
-    return "https://www.google.com/maps/dir/?api=1&destination=" +
-      encodeURIComponent(shop.lat + "," + shop.lng);
-  }
-
-  const destination =
-    "志木市 " +
-    shop.name +
-    " " +
-    shop.address +
-    " " +
-    shop.landmark;
-
-  return "https://www.google.com/maps/dir/?api=1&destination=" +
-    encodeURIComponent(destination);
-}
-
-function openShopDirections(id){
-  const shop =
-    getShopById(id);
-
-  if(!shop){
-    return;
-  }
-
-  window.open(
-    shopDirectionsUrl(shop),
-    "_blank"
+function getVotes(){
+ try{
+  return JSON.parse(
+   localStorage.getItem("skz30Votes") || "[]"
   );
+ }catch(e){
+  return [];
+ }
 }
 
-function openShopVideo(id){
-  const shop =
-    getShopById(id);
+function showStatus(message,isError){
 
-  if(shop && shop.videoUrl){
-    window.open(shop.videoUrl,"_blank");
-  }
+ const status =
+ qs("saveStatus");
+
+ if(!status){
+  return;
+ }
+
+ status.textContent = message;
+ status.className =
+ "saveStatus show" + (isError ? " error" : "");
+
 }
 
-function shopShareText(shop){
-  return (
-    shop.snsText ||
-    "SKZ30 カッパ像めぐりDXで「" + shop.name + "」も楽しもう。"
-  ) +
-  "\n" +
-  "#SKZ30 #志木カッパ像めぐり #志木市 #志木名物" +
-  "\n" +
-  SITE_URL;
+function clearVoteForm(){
+
+ [
+  "nickname",
+  "rank1",
+  "rank2",
+  "rank3",
+  "reason1",
+  "reason2",
+  "reason3",
+  "groupName",
+  "comment"
+ ].forEach(function(id){
+
+  const el =
+  qs(id);
+
+  if(el){
+   el.value = "";
+  }
+
+ });
+
+ const result =
+ qs("voteText");
+
+ if(result){
+  result.textContent = "";
+ }
+
+ const box =
+ qs("voteResultBox");
+
+ if(box){
+  box.classList.remove("show");
+ }
+
+ const status =
+ qs("saveStatus");
+
+ if(status){
+  status.className = "saveStatus";
+  status.textContent = "";
+ }
+
 }
 
-function shareShop(id,type){
-  const shop =
-    getShopById(id);
+function copyVoteText(){
 
-  if(!shop){
-    return;
-  }
+ const text =
+ makePostText();
 
-  const text =
-    shopShareText(shop);
+ if(!text){
+  return;
+ }
 
-  if(type === "line"){
-    window.open(
-      "https://social-plugins.line.me/lineit/share?url=" +
-      encodeURIComponent(SITE_URL) +
-      "&text=" +
-      encodeURIComponent(text),
-      "_blank"
-    );
-    return;
-  }
+ if(navigator.clipboard){
 
-  if(type === "x"){
-    window.open(
-      "https://twitter.com/intent/tweet?text=" +
-      encodeURIComponent(text),
-      "_blank"
-    );
-    return;
-  }
+  navigator.clipboard.writeText(text).then(function(){
+   showStatus("投稿文をコピーしました。",false);
+  }).catch(function(){
+   fallbackCopy(text);
+  });
 
-  if(type === "facebook"){
-    window.open(
-      "https://www.facebook.com/sharer/sharer.php?u=" +
-      encodeURIComponent(SITE_URL),
-      "_blank"
-    );
-    return;
-  }
+ }else{
 
-  copyText(text);
-}
+  fallbackCopy(text);
 
-function copyText(text){
-  if(!text){
-    return;
-  }
+ }
 
-  if(navigator.clipboard && window.isSecureContext){
-    navigator.clipboard.writeText(text).then(function(){
-      alert("コピーしました。");
-    }).catch(function(){
-      fallbackCopy(text);
-    });
-  }else{
-    fallbackCopy(text);
-  }
 }
 
 function fallbackCopy(text){
-  const area =
-    document.createElement("textarea");
 
-  area.value = text;
-  area.setAttribute("readonly","");
-  area.style.position = "fixed";
-  area.style.left = "-9999px";
-  document.body.appendChild(area);
-  area.select();
+ const area =
+ document.createElement("textarea");
 
-  try{
-    document.execCommand("copy");
-    alert("コピーしました。");
-  }catch(e){
-    alert("コピーできませんでした。文章を選択してコピーしてください。");
-  }
+ area.value = text;
+ document.body.appendChild(area);
+ area.select();
+ document.execCommand("copy");
+ document.body.removeChild(area);
 
-  document.body.removeChild(area);
-}
+ showStatus("投稿文をコピーしました。",false);
 
-function copyVote(){
-  copyText(getVoteText());
 }
 
 function shareLine(){
-  const text =
-    getVoteText();
 
-  if(!text){
-    return;
-  }
+ const text =
+ makePostText();
 
-  window.open(
-    "https://social-plugins.line.me/lineit/share?url=" +
-    encodeURIComponent(SITE_URL) +
-    "&text=" +
-    encodeURIComponent(text),
-    "_blank"
-  );
+ const url =
+ "https://line.me/R/msg/text/?" +
+ encodeURIComponent(text);
+
+ window.open(url,"_blank");
+
 }
 
 function shareX(){
-  const text =
-    getVoteText();
 
-  if(!text){
-    return;
-  }
+ const text =
+ makePostText();
 
-  window.open(
-    "https://twitter.com/intent/tweet?text=" +
-    encodeURIComponent(text),
-    "_blank"
-  );
+ const url =
+ "https://twitter.com/intent/tweet?text=" +
+ encodeURIComponent(text);
+
+ window.open(url,"_blank");
+
 }
 
 function shareFacebook(){
-  window.open(
-    "https://www.facebook.com/sharer/sharer.php?u=" +
-    encodeURIComponent(SITE_URL),
-    "_blank"
-  );
+
+ const url =
+ "https://www.facebook.com/sharer/sharer.php?u=" +
+ encodeURIComponent(APP_URL);
+
+ window.open(url,"_blank");
+
 }
 
 function shareKappa(id){
-  const kappa =
-    getKappaById(id);
 
-  if(!kappa){
-    return;
-  }
+ const kappa =
+ KAPPAS.find(function(item){
+  return item.id === id;
+ });
 
-  const label =
-    kappaLabel(kappa);
+ if(!kappa){
+  return;
+ }
 
-  const text =
-    (kappa.snsText || `SKZ30 カッパ像めぐりDXで「${label}」を巡っています！`) +
-    "\n" +
-    "#SKZ30 #志木カッパ像めぐり #志木市" +
-    "\n" +
-    SITE_URL;
+ const text =
+ "SKZ30 カッパ像めぐりDX\n" +
+ "気になるカッパ像：" + kappa.no + ". " + kappa.name + "\n" +
+ "めぐって、めぐって、あなたの推し3体を！\n" +
+ APP_URL;
 
-  if(navigator.share){
-    navigator.share({
-      title:"SKZ30 カッパ像めぐりDX",
-      text:text,
-      url:SITE_URL
-    }).catch(function(){});
+ if(navigator.share){
+
+  navigator.share({
+   title:"SKZ30 カッパ像めぐりDX",
+   text:text,
+   url:APP_URL
+  }).catch(function(){});
+
+ }else if(navigator.clipboard){
+
+  navigator.clipboard.writeText(text);
+  alert("共有文をコピーしました。");
+
+ }else{
+
+  alert(text);
+
+ }
+
+}
+
+function showPage(id){
+
+ document.querySelectorAll(".page").forEach(function(page){
+  page.classList.remove("active");
+ });
+
+ const page =
+ qs(id);
+
+ if(page){
+  page.classList.add("active");
+ }
+
+ document.querySelectorAll("[data-page-link]").forEach(function(link){
+
+  if(link.getAttribute("data-page-link") === id){
+   link.classList.add("active");
   }else{
-    copyText(text);
+   link.classList.remove("active");
   }
+
+ });
+
+ if(location.hash !== "#" + id){
+  history.replaceState(null,"","#" + id);
+ }
+
+ window.scrollTo({
+  top:0,
+  behavior:"smooth"
+ });
+
 }
 
-function buildVoteText(data){
+function setupNavigation(){
 
-  const lines = [];
+ document.querySelectorAll("[data-page-link]").forEach(function(link){
 
-  lines.push("【SKZ30 カッパ像めぐりDX】");
-  lines.push("");
-  lines.push("志木のカッパ像めぐりに参加しました！");
-  lines.push("");
-  lines.push("私の推しカッパ3体はこれです。");
-  lines.push("");
-  lines.push("1位：" + data.oshi1);
-  lines.push("2位：" + data.oshi2);
-  lines.push("3位：" + data.oshi3);
-  lines.push("");
+  link.addEventListener("click",function(e){
 
-  if(data.visitedCount > 0){
-    lines.push("巡った数：" + data.visitedCount + "/30");
-    lines.push("");
-  }
+   e.preventDefault();
 
-  lines.push("ひとこと：");
-  lines.push(data.comment);
-  lines.push("");
+   const id =
+   link.getAttribute("data-page-link");
 
-  if(data.groupName){
-    lines.push("カッパたちのグループ名アイデア：");
-    lines.push(data.groupName);
-    lines.push("");
-  }
-
-  lines.push("めぐって、めぐって、あなたの推し3体を！");
-  lines.push("");
-  lines.push("#SKZ30");
-  lines.push("#志木カッパ像めぐり");
-  lines.push("#志木市");
-  lines.push("#カッパ像");
-  lines.push("#まち歩き");
-  lines.push("");
-  lines.push(SITE_URL);
-
-  return lines.join("\n");
-}
-
-function makeVoteData(){
-  const nicknameInput =
-    val("nickname");
-
-  const nickname =
-    nicknameInput || "匿名参加";
-
-  const oshi1 =
-    val("oshi1");
-
-  const oshi2 =
-    val("oshi2");
-
-  const oshi3 =
-    val("oshi3");
-
-  const comment =
-    val("comment") || "志木のカッパ像めぐりを楽しみました。";
-
-  const groupName =
-    val("groupName");
-
-  const visitedCount =
-    getVisitedIds().length;
-
-  if(!oshi1 || !oshi2 || !oshi3){
-    alert("推しカッパを3体選んでください。");
-    return null;
-  }
-
-  return {
-    userId:getUserId(),
-    nickname:nickname,
-    nicknameInput:nicknameInput,
-    oshi1:oshi1,
-    oshi2:oshi2,
-    oshi3:oshi3,
-    comment:comment,
-    groupName:groupName,
-    visitedCount:visitedCount
-  };
-}
-
-function displayVoteText(text){
-  document.getElementById("voteText").textContent = text;
-  document.getElementById("voteResult").classList.add("show");
-  document.getElementById("voteResult").scrollIntoView({
-    behavior:"smooth",
-    block:"start"
-  });
-}
-
-function makeVoteText(){
-  const data =
-    makeVoteData();
-
-  if(!data){
-    return;
-  }
-
-  const text =
-    buildVoteText(data);
-
-  displayVoteText(text);
-}
-
-function buildSaveVoteUrl(data,postText){
-  const params =
-    new URLSearchParams();
-
-  params.set("mode","saveVote");
-  params.set("userId",data.userId);
-  params.set("nickname",data.nickname);
-  params.set("oshi1",data.oshi1);
-  params.set("oshi2",data.oshi2);
-  params.set("oshi3",data.oshi3);
-  params.set("comment",data.comment);
-  params.set("groupName",data.groupName);
-  params.set("visitedCount",String(data.visitedCount));
-  params.set("postText",postText);
-
-  return GAS_URL + "?" + params.toString();
-}
-
-function showSaveStatus(message,isError){
-  const el =
-    document.getElementById("saveStatus");
-
-  if(!el){
-    return;
-  }
-
-  el.textContent =
-    message;
-
-  el.classList.add("show");
-
-  if(isError){
-    el.classList.add("error");
-  }else{
-    el.classList.remove("error");
-  }
-}
-
-async function sendVote(){
-  const data =
-    makeVoteData();
-
-  if(!data){
-    return;
-  }
-
-  const postText =
-    buildVoteText(data);
-
-  displayVoteText(postText);
-
-  const btn =
-    document.getElementById("saveVoteBtn");
-
-  if(btn){
-    btn.disabled = true;
-    btn.textContent = "送信中...";
-  }
-
-  showSaveStatus("投票を送信しています。",false);
-
-  try{
-
-    const url =
-      buildSaveVoteUrl(data,postText);
-
-    await fetch(url,{
-      method:"GET",
-      mode:"no-cors",
-      cache:"no-store"
-    });
-
-    showSaveStatus(
-      "投票を送信しました。スプレッドシートの votes に反映されます。",
-      false
-    );
-
-  }catch(err){
-
-    showSaveStatus(
-      "送信できませんでした。通信状況かGASの公開設定を確認してください。",
-      true
-    );
-
-  }finally{
-
-    if(btn){
-      btn.disabled = false;
-      btn.textContent = "投票を送信する";
-    }
-
-  }
-}
-
-function clearVote(){
-  const form =
-    document.getElementById("voteForm");
-
-  if(form){
-    form.reset();
-  }
-
-  document.getElementById("voteText").textContent = "";
-  document.getElementById("voteResult").classList.remove("show");
-
-  const status =
-    document.getElementById("saveStatus");
-
-  if(status){
-    status.classList.remove("show");
-    status.classList.remove("error");
-    status.textContent = "";
-  }
-}
-
-function getVoteText(){
-  const text =
-    document.getElementById("voteText").textContent || "";
-
-  if(!text.trim()){
-    alert("先に投稿文を作ってください。");
-    return "";
-  }
-
-  return text;
-}
-
-function showLoadStatus(id,message,isError){
-  const el =
-    document.getElementById(id);
-
-  if(!el){
-    return;
-  }
-
-  el.textContent =
-    message;
-
-  if(isError){
-    el.classList.add("show");
-    el.classList.add("error");
-  }else{
-    el.classList.remove("show");
-    el.classList.remove("error");
-  }
-}
-
-function loadGasJsonp(mode,callbackName){
-  return new Promise(function(resolve,reject){
-
-    const name =
-      callbackName +
-      "_" +
-      Date.now() +
-      "_" +
-      Math.random().toString(36).slice(2,8);
-
-    const script =
-      document.createElement("script");
-
-    const params =
-      new URLSearchParams();
-
-    params.set("mode",mode);
-    params.set("callback",name);
-    params.set("v",String(Date.now()));
-
-    window[name] = function(data){
-      resolve(data);
-      cleanup();
-    };
-
-    function cleanup(){
-      try{
-        delete window[name];
-      }catch(e){
-        window[name] = undefined;
-      }
-
-      if(script.parentNode){
-        script.parentNode.removeChild(script);
-      }
-    }
-
-    script.onerror = function(){
-      cleanup();
-      reject(new Error("GAS読み込みに失敗しました"));
-    };
-
-    script.src =
-      GAS_URL + "?" + params.toString();
-
-    document.body.appendChild(script);
+   showPage(id);
 
   });
-}
 
-function mapKappaRecord(record){
+ });
 
-  const id =
-    toNumber(record["ID"],0);
+ const initial =
+ location.hash ? location.hash.replace("#","") : "top";
 
-  const name =
-    clean(record["カッパ像名"]);
-
-  const area =
-    clean(record["エリア"]);
-
-  const place =
-    clean(record["設置場所"]);
-
-  const address =
-    clean(record["住所・目印"]);
-
-  return {
-    id:id,
-    name:name,
-    area:area,
-    group:groupFromArea(area + " " + place + " " + address,name),
-    place:place || address,
-    address:address,
-    lat:clean(record["緯度"]),
-    lng:clean(record["経度"]),
-    mapUrl:clean(record["GoogleマップURL"]),
-    imageUrl:clean(record["画像URL"]),
-    videoUrl:clean(record["動画URL"]),
-    description:clean(record["紹介文"]),
-    snsText:clean(record["SNS投稿文"]),
-    order:toNumber(record["表示順"],id),
-    note:clean(record["備考"])
-  };
-}
-
-function mapNewsRecord(record,index){
-
-  return {
-    id:clean(record["ID"]) || ("news-" + index),
-    pinned:isTrueValue(record["固定表示"]),
-    date:clean(record["日付"]),
-    title:clean(record["タイトル"]),
-    text:clean(record["本文"]),
-    imageUrl:clean(record["画像URL"]),
-    videoUrl:clean(record["動画URL"]),
-    linkUrl:clean(record["リンクURL"]),
-    snsText:clean(record["SNS投稿文"]),
-    order:toNumber(record["表示順"],index + 1)
-  };
-}
-
-function mapShopRecord(record,index){
-
-  return {
-    id:clean(record["ID"]) || ("shop-" + index),
-    shoppingStreet:clean(record["商店会名"]),
-    name:clean(record["店舗名"]),
-    genre:clean(record["ジャンル"]),
-    area:clean(record["エリア"]),
-    address:clean(record["住所"]),
-    landmark:clean(record["目印"]),
-    lat:clean(record["緯度"]),
-    lng:clean(record["経度"]),
-    mapUrl:clean(record["GoogleマップURL"]),
-    imageUrl:clean(record["画像URL"]),
-    videoUrl:clean(record["動画URL"]),
-    product:clean(record["商品・名物"]),
-    description:clean(record["紹介文"]),
-    hint:clean(record["ヒント文字"]),
-    keyword:clean(record["キーワード"]),
-    benefit:clean(record["特典・景品"]),
-    snsText:clean(record["SNS投稿文"]),
-    order:toNumber(record["表示順"],index + 1),
-    note:clean(record["備考"])
-  };
-}
-
-function sortByOrder(a,b){
-  return toNumber(a.order,9999) - toNumber(b.order,9999);
-}
-
-async function loadSheetData(){
-
-  kappaList =
-    fallbackKappaList.slice();
-
-  newsList =
-    fallbackNewsList.slice();
-
-  shopList =
-    [];
-
-  renderNews();
-  renderKappaList();
-  renderShopList();
-  fillSelects();
-  updateProgress();
-
-  try{
-
-    const kappaData =
-      await loadGasJsonp("getKappas","skz30Kappas");
-
-    if(kappaData && kappaData.ok && Array.isArray(kappaData.records) && kappaData.records.length > 0){
-
-      kappaList =
-        kappaData.records
-        .map(mapKappaRecord)
-        .filter(function(kappa){
-          return kappa.id && kappa.name;
-        })
-        .sort(sortByOrder);
-
-    }
-
-  }catch(err){
-
-    showLoadStatus(
-      "kappaLoadStatus",
-      "カッパ像データを読み込めませんでした。仮データで表示しています。",
-      true
-    );
-
-  }
-
-  try{
-
-    const newsData =
-      await loadGasJsonp("getNews","skz30News");
-
-    if(newsData && newsData.ok && Array.isArray(newsData.records) && newsData.records.length > 0){
-
-      newsList =
-        newsData.records
-        .map(mapNewsRecord)
-        .filter(function(news){
-          return news.title || news.text;
-        })
-        .sort(function(a,b){
-
-          if(a.pinned && !b.pinned){
-            return -1;
-          }
-
-          if(!a.pinned && b.pinned){
-            return 1;
-          }
-
-          return sortByOrder(a,b);
-
-        });
-
-    }
-
-  }catch(err){
-
-    showLoadStatus(
-      "newsLoadStatus",
-      "最新情報を読み込めませんでした。",
-      true
-    );
-
-  }
-
-  try{
-
-    const shopData =
-      await loadGasJsonp("getShops","skz30Shops");
-
-    if(shopData && shopData.ok && Array.isArray(shopData.records) && shopData.records.length > 0){
-
-      shopList =
-        shopData.records
-        .map(mapShopRecord)
-        .filter(function(shop){
-          return shop.name;
-        })
-        .sort(sortByOrder);
-
-    }else{
-
-      shopList = [];
-
-    }
-
-  }catch(err){
-
-    shopList = [];
-
-    showLoadStatus(
-      "shopLoadStatus",
-      "お店情報を読み込めませんでした。",
-      true
-    );
-
-  }
-
-  renderNews();
-  renderKappaList();
-  renderShopList();
-  fillSelects();
-  updateProgress();
-  handleInitialQuery();
+ if(qs(initial)){
+  showPage(initial);
+ }else{
+  showPage("top");
+ }
 
 }
 
-function handleInitialQuery(){
+function escapeHtml(text){
 
-  const params =
-    new URLSearchParams(location.search);
-
-  const kappaId =
-    params.get("kappa");
-
-  const newsId =
-    params.get("news");
-
-  const shopId =
-    params.get("shop");
-
-  if(kappaId){
-
-    location.hash = "#kappa";
-
-    setTimeout(function(){
-      const target =
-        document.getElementById("kappa-" + kappaId);
-
-      if(target){
-        target.scrollIntoView({
-          behavior:"smooth",
-          block:"center"
-        });
-      }
-    },500);
-
-    return;
-  }
-
-  if(newsId){
-
-    location.hash = "#news";
-
-    setTimeout(function(){
-      const target =
-        document.getElementById("news-" + newsId);
-
-      if(target){
-        target.scrollIntoView({
-          behavior:"smooth",
-          block:"center"
-        });
-      }
-    },500);
-
-    return;
-  }
-
-  if(shopId){
-
-    location.hash = "#shops";
-
-    setTimeout(function(){
-      const target =
-        document.getElementById("shop-" + shopId);
-
-      if(target){
-        target.scrollIntoView({
-          behavior:"smooth",
-          block:"center"
-        });
-      }
-    },500);
-
-  }
+ return String(text || "")
+ .replace(/&/g,"&amp;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;")
+ .replace(/"/g,"&quot;")
+ .replace(/'/g,"&#039;");
 
 }
 
-showPage(getPageFromHash());
-getUserId();
-loadSheetData();
+document.addEventListener("input",function(e){
+
+ if(
+  e.target &&
+  (
+   e.target.id === "reason1" ||
+   e.target.id === "reason2" ||
+   e.target.id === "reason3" ||
+   e.target.id === "rank1" ||
+   e.target.id === "rank2" ||
+   e.target.id === "rank3"
+  )
+ ){
+  syncReasonComment();
+ }
+
+});
+
+document.addEventListener("DOMContentLoaded",function(){
+
+ setupNavigation();
+ renderFilters();
+ renderKappas();
+ renderSelectors();
+ updateCounts();
+
+});
+
 </script>
+
 </body>
 </html>
