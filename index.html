@@ -281,6 +281,93 @@ img{
  margin-top:18px;
 }
 
+.prizeBadge{
+ display:inline-block;
+ margin-top:8px;
+ padding:7px 11px;
+ border-radius:999px;
+ background:#fef08a;
+ color:#14532d;
+ font-size:13px;
+ font-weight:900;
+ line-height:1.25;
+ text-shadow:none;
+ box-shadow:0 6px 16px rgba(0,0,0,.18);
+}
+
+.prizePromo{
+ background:
+ radial-gradient(circle at top right,rgba(254,240,138,.48),transparent 32%),
+ linear-gradient(135deg,#fff,#ecfdf5);
+}
+
+.prizeIntro{
+ color:#315d44;
+ font-weight:850;
+ margin:0;
+}
+
+.prizeGrid{
+ display:grid;
+ grid-template-columns:1fr;
+ gap:14px;
+ margin-top:16px;
+}
+
+.prizeCard{
+ overflow:hidden;
+ background:#fff;
+ border:1px solid #bbf7d0;
+ border-radius:24px;
+ box-shadow:0 12px 30px rgba(20,83,45,.10);
+}
+
+.prizeCard img{
+ display:block;
+ width:100%;
+ aspect-ratio:1 / 1;
+ object-fit:cover;
+}
+
+.prizeCardBody{
+ padding:14px;
+}
+
+.prizeLabel{
+ display:inline-block;
+ padding:5px 9px;
+ border-radius:999px;
+ background:#dcfce7;
+ color:#166534;
+ font-size:12px;
+ font-weight:900;
+}
+
+.prizeCard h3{
+ margin:10px 0 0;
+ color:#064e3b;
+ font-size:20px;
+ line-height:1.35;
+}
+
+.prizeCard p{
+ margin:7px 0 0;
+ color:#4b6b57;
+ font-size:14px;
+ font-weight:800;
+}
+
+.prizeNote{
+ margin:14px 0 0;
+ padding:12px 14px;
+ border-radius:18px;
+ background:#fefce8;
+ border:1px solid #fde68a;
+ color:#713f12;
+ font-size:13px;
+ font-weight:850;
+}
+
 .card h2{
  margin:0 0 8px;
  color:#064e3b;
@@ -809,6 +896,10 @@ pre{
   grid-template-columns:repeat(2,1fr);
  }
 
+ .prizeGrid{
+  grid-template-columns:1fr 1fr;
+ }
+
 }
 
 @media (min-width:1020px){
@@ -855,7 +946,8 @@ pre{
    </div>
 
    <div class="appHeroOverlay">
-    <small>志木まち歩き参加ページ</small>
+   <small>志木まち歩き参加ページ</small>
+    <span class="prizeBadge">抽選でステキなプレゼントが当たる！</span>
     <h1>SKZ30<br>カッパ像めぐりDX</h1>
    </div>
   </div>
@@ -866,7 +958,7 @@ pre{
    </p>
 
    <p class="lead">
-    カッパ像を見つけに行こう。気に入ったカッパを推しに選んで、まち歩きとお店めぐりも楽しめます。
+    カッパ像を見つけに行こう。推し3体を選ぶと、抽選でステキなプレゼントが当たります。まち歩きとお店めぐりも楽しめます。
    </p>
 
    <div class="mainActions">
@@ -901,6 +993,37 @@ pre{
    <span>どなたでも参加できます</span>
   </div>
  </div>
+
+ <section class="card prizePromo">
+  <h2>抽選でステキなプレゼントが当たる！</h2>
+  <p class="prizeIntro">
+   推し3体を選んで参加した方の中から、抽選でプレゼントが当たります。
+  </p>
+
+  <div class="prizeGrid">
+   <article class="prizeCard">
+    <img src="prize-ouchicafe-autumn.jpg" alt="おうちcafeパン工房 秋の味覚セット">
+    <div class="prizeCardBody">
+     <span class="prizeLabel">プレゼント例 1</span>
+     <h3>おうちcafeパン工房<br>秋の味覚セット</h3>
+     <p>おうちcafeパン工房からのおいしいプレゼントです。</p>
+    </div>
+   </article>
+
+   <article class="prizeCard">
+    <img src="prize-shiki-ori.jpg" alt="志木織々 純米酒 無濾過生原酒 2本">
+    <div class="prizeCardBody">
+     <span class="prizeLabel">プレゼント例 2</span>
+     <h3>志木織々 × 2本</h3>
+     <p>純米酒 無濾過生原酒のプレゼントです。</p>
+    </div>
+   </article>
+  </div>
+
+  <div class="prizeNote">
+   ※プレゼント内容・応募条件・抽選方法は正式決定後にご案内します。
+  </div>
+ </section>
 
  <section class="card">
   <h2>今日の巡った記録</h2>
@@ -1675,6 +1798,7 @@ function qs(id){
 
 function getVisited(){
  try{
+
   return JSON.parse(
    localStorage.getItem("skz30Visited") || "[]"
   );
