@@ -4,933 +4,313 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SKZカッパ像めぐり2026｜デモ</title>
-
 <style>
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  color:#073b2b;
-  background:
-    linear-gradient(
-      180deg,
-      #e7fff0,
-      #f7fff9 48%,
-      #d9fbe6
-    );
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Hiragino Sans",
-    "Yu Gothic",
-    "Meiryo",
-    sans-serif;
-  line-height:1.65;
-}
-
-.wrap{
-  width:min(1080px,94%);
-  margin:auto;
-  padding:10px 0 70px;
-}
-
-.header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  padding:10px 0 12px;
-  position:sticky;
-  top:0;
-  z-index:10;
-  background:#e7fff0dd;
-  backdrop-filter:blur(12px);
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  color:#064e3b;
-  font-weight:900;
-  font-size:15px;
-}
-
-.logoMark{
-  width:34px;
-  height:34px;
-  display:grid;
-  place-items:center;
-  border-radius:13px;
-  background:
-    linear-gradient(
-      135deg,
-      #064e3b,
-      #16a34a
-    );
-  color:#fff;
-}
-
-.nav{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-}
-
-.nav a{
-  padding:7px 9px;
-  border-radius:999px;
-  background:#fff;
-  color:#065f46;
-  border:1px solid #bbf7d0;
-  font-size:11px;
-  font-weight:900;
-}
-
-.hero{
-  overflow:hidden;
-  border-radius:30px;
-  background:#fff;
-  box-shadow:0 20px 55px #14532d2b;
-}
-
-.heroImage{
-  position:relative;
-  min-height:220px;
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-  background:
-    linear-gradient(
-      135deg,
-      #064e3b,
-      #16a34a
-    );
-}
-
-.heroImage img{
-  display:block;
-  width:100%;
-  height:auto;
-}
-
-.heroText{
-  position:absolute;
-  left:15px;
-  right:15px;
-  bottom:15px;
-  color:#fff;
-  text-shadow:0 3px 14px #0008;
-}
-
-.heroText small{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:999px;
-  background:#064e3bdd;
-  color:#fef08a;
-  font-weight:900;
-}
-
-.heroText h1{
-  margin:8px 0 0;
-  font-size:clamp(28px,8vw,54px);
-  line-height:1.1;
-}
-
-.heroBody{
-  padding:20px;
-  background:
-    linear-gradient(
-      135deg,
-      #064e3b,
-      #15803d
-    );
-  color:#fff;
-}
-
-.catch{
-  margin:0;
-  color:#fef08a;
-  font-size:clamp(22px,6vw,34px);
-  font-weight:900;
-  line-height:1.25;
-}
-
-.heroBody p{
-  font-weight:800;
-}
-
-.actions{
-  display:grid;
-  gap:9px;
-  margin-top:16px;
-}
-
-.btn{
-  display:block;
-  width:100%;
-  padding:13px 15px;
-  border:0;
-  border-radius:999px;
-  text-align:center;
-  font-weight:900;
-  cursor:pointer;
-  background:#fff;
-  color:#064e3b;
-  box-shadow:0 8px 18px #0002;
-}
-
-.btn.yellow{
-  background:#fef08a;
-  color:#14532d;
-}
-
-.btn.green{
-  background:#16a34a;
-  color:#fff;
-}
-
-.btn.dark{
-  background:#064e3b;
-  color:#fff;
-}
-
-.section{
-  margin-top:16px;
-  padding:17px;
-  border-radius:26px;
-  background:#fffffff2;
-  border:1px solid #15803d29;
-  box-shadow:0 12px 32px #14532d1a;
-}
-
-.section h2{
-  margin:0 0 8px;
-  color:#064e3b;
-  font-size:clamp(24px,6vw,34px);
-  line-height:1.25;
-}
-
-.section p{
-  margin:7px 0;
-  color:#315d44;
-  font-weight:750;
-}
-
-.notice{
-  padding:12px 14px;
-  border-radius:17px;
-  background:#fefce8;
-  border:1px solid #fde68a;
-  color:#713f12;
-  font-weight:850;
-}
-
-.steps{
-  display:grid;
-  gap:9px;
-  margin-top:12px;
-}
-
-.step{
-  padding:12px;
-  border-left:5px solid #16a34a;
-  border-radius:14px;
-  background:#ecfdf5;
-  font-weight:850;
-}
-
-.prizes{
-  display:grid;
-  gap:13px;
-}
-
-.prize{
-  overflow:hidden;
-  border:1px solid #bbf7d0;
-  border-radius:22px;
-  background:#fff;
-}
-
-.prize img{
-  display:block;
-  width:100%;
-  aspect-ratio:1/1;
-  object-fit:cover;
-}
-
-.prizeImage{
-  min-height:190px;
-  display:grid;
-  place-items:center;
-  background:
-    linear-gradient(
-      135deg,
-      #dcfce7,
-      #fef3c7
-    );
-  color:#166534;
-  font-weight:900;
-  text-align:center;
-}
-
-.prizeBody{
-  padding:13px;
-}
-
-.prizeBody h3{
-  margin:0;
-  color:#064e3b;
-  font-size:21px;
-}
-
-.prizeBody p{
-  margin:6px 0 0;
-  color:#4b6b57;
-  font-size:14px;
-}
-
-.countBox{
-  margin-top:12px;
-  padding:13px;
-  border-radius:18px;
-  background:#fefce8;
-  border:1px solid #fde68a;
-  color:#713f12;
-  text-align:center;
-  font-weight:900;
-}
-
-.countBox strong{
-  font-size:28px;
-}
-
-.kappaGrid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:13px;
-  margin-top:14px;
-}
-
-.kappa{
-  overflow:hidden;
-  border:1px solid #bbf7d0;
-  border-radius:23px;
-  background:#fff;
-  box-shadow:0 10px 25px #14532d17;
-}
-
-.photo{
-  min-height:155px;
-  display:grid;
-  place-items:center;
-  background:
-    linear-gradient(
-      135deg,
-      #dcfce7,
-      #d1fae5
-    );
-  color:#166534;
-  font-weight:900;
-  text-align:center;
-}
-
-.photo b{
-  display:block;
-  font-size:52px;
-}
-
-.photo small{
-  font-size:12px;
-}
-
-.kappaBody{
-  padding:14px;
-}
-
-.kappaBody h3{
-  margin:0;
-  color:#064e3b;
-  font-size:21px;
-}
-
-.place{
-  margin:2px 0 0;
-  color:#4b6b57;
-  font-size:13px;
-  font-weight:850;
-}
-
-.desc{
-  min-height:48px;
-}
-
-.video{
-  min-height:100px;
-  display:grid;
-  place-items:center;
-  margin-top:10px;
-  border-radius:15px;
-  background:#052e1c;
-  color:#ecfdf5;
-  font-weight:900;
-  text-align:center;
-}
-
-.kappaActions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:10px;
-}
-
-.mini{
-  padding:10px 7px;
-  border:0;
-  border-radius:999px;
-  background:#dcfce7;
-  color:#065f46;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.mini.selected{
-  background:#fef08a;
-}
-
-.infoGrid{
-  display:grid;
-  gap:10px;
-}
-
-.infoCard{
-  padding:14px;
-  border-radius:18px;
-  background:#fff;
-  border:1px solid #bbf7d0;
-}
-
-.infoCard b{
-  color:#064e3b;
-}
-
-.infoCard small{
-  display:block;
-  color:#4b6b57;
-  font-weight:750;
-}
-
-.footer{
-  margin-top:26px;
-  color:#365946;
-  font-size:13px;
-  font-weight:800;
-  text-align:center;
-}
-
-.bottom{
-  position:fixed;
-  left:0;
-  right:0;
-  bottom:0;
-  z-index:20;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  background:#fffffff2;
-  border-top:1px solid #15803d38;
-  box-shadow:0 -8px 25px #14532d22;
-}
-
-.bottom a{
-  padding:7px 3px;
-  text-align:center;
-  color:#166534;
-  font-size:11px;
-  font-weight:900;
-}
-
-.bottom span{
-  display:block;
-  font-size:19px;
-}
-
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:#073b2b;background:linear-gradient(180deg,#e7fff0,#f7fff9 48%,#d9fbe6);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;line-height:1.65}
+.wrap{width:min(1080px,94%);margin:auto;padding:10px 0 70px}
+.header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0 12px;position:sticky;top:0;z-index:10;background:#e7fff0dd;backdrop-filter:blur(12px)}
+.logo{display:flex;align-items:center;gap:8px;color:#064e3b;font-weight:900;font-size:15px}
+.logoMark{width:34px;height:34px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,#064e3b,#16a34a);color:#fff}
+.nav{display:flex;flex-wrap:wrap;gap:6px}
+.nav a{padding:7px 9px;border-radius:999px;background:#fff;color:#065f46;border:1px solid #bbf7d0;font-size:11px;font-weight:900}
+.hero{overflow:hidden;border-radius:30px;background:#fff;box-shadow:0 20px 55px #14532d2b}
+.heroImage{position:relative;min-height:220px;display:grid;place-items:center;overflow:hidden;background:linear-gradient(135deg,#064e3b,#16a34a)}
+.heroImage img{display:block;width:100%;height:auto}
+.heroText{position:absolute;left:15px;right:15px;bottom:15px;color:#fff;text-shadow:0 3px 14px #0008}
+.heroText small{display:inline-block;padding:5px 9px;border-radius:999px;background:#064e3bdd;color:#fef08a;font-weight:900}
+.heroText h1{margin:8px 0 0;font-size:clamp(28px,8vw,54px);line-height:1.1}
+.heroBody{padding:20px;background:linear-gradient(135deg,#064e3b,#15803d);color:#fff}
+.catch{margin:0;color:#fef08a;font-size:clamp(22px,6vw,34px);font-weight:900;line-height:1.25}
+.heroBody p{font-weight:800}
+.actions{display:grid;gap:9px;margin-top:16px}
+.btn{display:block;width:100%;padding:13px 15px;border:0;border-radius:999px;text-align:center;font-weight:900;cursor:pointer;background:#fff;color:#064e3b;box-shadow:0 8px 18px #0002}
+.btn.yellow{background:#fef08a;color:#14532d}
+.section{margin-top:16px;padding:17px;border-radius:26px;background:#fffffff2;border:1px solid #15803d29;box-shadow:0 12px 32px #14532d1a}
+.section h2{margin:0 0 8px;color:#064e3b;font-size:clamp(24px,6vw,34px);line-height:1.25}
+.section p{margin:7px 0;color:#315d44;font-weight:750}
+.notice{padding:12px 14px;border-radius:17px;background:#fefce8;border:1px solid #fde68a;color:#713f12;font-weight:850}
+.steps{display:grid;gap:9px;margin-top:12px}
+.step{padding:12px;border-left:5px solid #16a34a;border-radius:14px;background:#ecfdf5;font-weight:850}
+.prizes{display:grid;gap:13px}
+.prize{overflow:hidden;border:1px solid #bbf7d0;border-radius:22px;background:#fff}
+.prize img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+.prizeImage{min-height:190px;display:grid;place-items:center;background:linear-gradient(135deg,#dcfce7,#fef3c7);color:#166534;font-weight:900;text-align:center}
+.prizeBody{padding:13px}
+.prizeBody h3{margin:0;color:#064e3b;font-size:21px}
+.prizeBody p{margin:6px 0 0;color:#4b6b57;font-size:14px}
+.countBox{margin-top:12px;padding:13px;border-radius:18px;background:#fefce8;border:1px solid #fde68a;color:#713f12;text-align:center;font-weight:900}
+.countBox strong{font-size:28px}
+.kappaGrid{display:grid;grid-template-columns:1fr;gap:13px;margin-top:14px}
+.kappa{overflow:hidden;border:1px solid #bbf7d0;border-radius:23px;background:#fff;box-shadow:0 10px 25px #14532d17}
+.photo{min-height:155px;display:grid;place-items:center;background:linear-gradient(135deg,#dcfce7,#d1fae5);color:#166534;font-weight:900;text-align:center}
+.photo b{display:block;font-size:52px}
+.photo small{font-size:12px}
+.kappaBody{padding:14px}
+.kappaBody h3{margin:0;color:#064e3b;font-size:21px}
+.place{margin:2px 0 0;color:#4b6b57;font-size:13px;font-weight:850}
+.desc{min-height:48px}
+.video{min-height:100px;display:grid;place-items:center;margin-top:10px;border-radius:15px;background:#052e1c;color:#ecfdf5;font-weight:900;text-align:center}
+.kappaActions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.mini{padding:10px 7px;border:0;border-radius:999px;background:#dcfce7;color:#065f46;font-weight:900;cursor:pointer}
+.mini.selected{background:#fef08a}
+.infoGrid{display:grid;gap:10px}
+.infoCard{padding:14px;border-radius:18px;background:#fff;border:1px solid #bbf7d0}
+.infoCard b{color:#064e3b}
+.infoCard small{display:block;color:#4b6b57;font-weight:750}
+.footer{margin-top:26px;color:#365946;font-size:13px;font-weight:800;text-align:center}
+.bottom{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(4,1fr);background:#fffffff2;border-top:1px solid #15803d38;box-shadow:0 -8px 25px #14532d22}
+.bottom a{padding:7px 3px;text-align:center;color:#166534;font-size:11px;font-weight:900}
+.bottom span{display:block;font-size:19px}
 @media(min-width:700px){
-
-  .actions{
-    grid-template-columns:repeat(4,1fr);
-  }
-
-  .prizes{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .kappaGrid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .infoGrid{
-    grid-template-columns:repeat(2,1fr);
-  }
+.actions{grid-template-columns:repeat(4,1fr)}
+.prizes{grid-template-columns:repeat(2,1fr)}
+.kappaGrid{grid-template-columns:repeat(2,1fr)}
+.infoGrid{grid-template-columns:repeat(2,1fr)}
 }
-
 @media(min-width:1020px){
-
-  .kappaGrid{
-    grid-template-columns:repeat(3,1fr);
-  }
+.kappaGrid{grid-template-columns:repeat(3,1fr)}
 }
 </style>
 </head>
 
 <body>
-
 <div class="wrap">
 
 <header class="header">
-
-  <a class="logo" href="#top">
-    <span class="logoMark">河</span>
-    <span>SKZ30 カッパ像めぐりDX</span>
-  </a>
-
-  <nav class="nav">
-    <a href="#top">トップ</a>
-    <a href="#kappas">カッパ</a>
-    <a href="#prize">景品</a>
-    <a href="#info">情報</a>
-  </nav>
-
+<a class="logo" href="#top">
+<span class="logoMark">河</span>
+<span>SKZ30 カッパ像めぐりDX</span>
+</a>
+<nav class="nav">
+<a href="#top">トップ</a>
+<a href="#kappas">カッパ</a>
+<a href="#prize">景品</a>
+<a href="#info">情報</a>
+</nav>
 </header>
 
 <main>
 
 <section id="top" class="hero">
+<div class="heroImage">
+<img src="../images/skz30-top.jpg" alt="SKZ30 カッパ像めぐり" onerror="this.style.display='none'">
+<div class="heroText">
+<small>志木まち歩き参加ページ</small>
+<h1>SKZ30<br>カッパ像めぐり2026</h1>
+</div>
+</div>
 
-  <div class="heroImage">
-
-    <img
-      src="../images/skz30-top.jpg"
-      alt="SKZ30 カッパ像めぐり"
-      onerror="this.style.display='none'"
-    >
-
-    <div class="heroText">
-      <small>志木まち歩き参加ページ</small>
-      <h1>
-        SKZ30<br>
-        カッパ像めぐり2026
-      </h1>
-    </div>
-
-  </div>
-
-  <div class="heroBody">
-
-    <p class="catch">
-      めぐって、めぐって、あなたの推し3体を！
-    </p>
-
-    <p>
-      まずはこのページでカッパ像と景品をチェック。
-      実際にカッパ像へ行き、現地QRコードを読み込んだ方が応募できます。
-    </p>
-
-    <div class="actions">
-
-      <a class="btn yellow" href="#kappas">
-        カッパ像を見る
-      </a>
-
-      <a class="btn" href="#prize">
-        景品を見る
-      </a>
-
-      <a class="btn" href="#info">
-        マップ・お店・SNS
-      </a>
-
-    </div>
-
-  </div>
-
+<div class="heroBody">
+<p class="catch">めぐって、めぐって、あなたの推し3体を！</p>
+<p>まずはこのページでカッパ像と景品をチェック。実際にカッパ像へ行き、現地QRコードを読み込んだ方が応募できます。</p>
+<div class="actions">
+<a class="btn yellow" href="#kappas">カッパ像を見る</a>
+<a class="btn" href="#prize">景品を見る</a>
+<a class="btn" href="#info">マップ・お店・SNS</a>
+</div>
+</div>
 </section>
 
 <section class="section">
+<div class="notice">
+開催期間：2026年10月10日（土）〜11月15日（日）<br>
+このページは明日の説明用デモです。正式な写真・名称・説明は後から差し替えます。
+</div>
 
-  <div class="notice">
-    開催期間：2026年10月10日（土）〜11月15日（日）<br>
-    このページは明日の説明用デモです。正式な写真・名称・説明は後から差し替えます。
-  </div>
-
-  <div class="steps">
-
-    <div class="step">
-      ① 専用サイトでカッパ像・景品・お店を見る
-    </div>
-
-    <div class="step">
-      ② 現地のカッパ像でQRコードを読み込む
-    </div>
-
-    <div class="step">
-      ③ 3体めぐって、推しカッパと景品に応募する
-    </div>
-
-  </div>
-
+<div class="steps">
+<div class="step">① 専用サイトでカッパ像・景品・お店を見る</div>
+<div class="step">② 現地のカッパ像でQRコードを読み込む</div>
+<div class="step">③ 3体めぐって、推しカッパと景品に応募する</div>
+</div>
 </section>
 
 <section id="prize" class="section">
+<h2>プレゼント</h2>
+<p>推しカッパ3体を選んで応募すると、景品が当たります。</p>
 
-  <h2>プレゼント</h2>
+<div class="prizes">
 
-  <p>
-    推しカッパ3体を選んで応募すると、景品が当たります。
-  </p>
+<article class="prize">
+<img src="../IMG_0002.JPG" alt="長野県飯綱町産りんご 約5kg" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+<div class="prizeImage" style="display:none">りんご景品画像</div>
+<div class="prizeBody">
+<h3>特賞</h3>
+<p>長野県飯綱町産 サンふじりんご 約5kg<br>農家直送・家庭用</p>
+</div>
+</article>
 
-  <div class="prizes">
+<article class="prize">
+<img src="../IMG_0014.JPG" alt="りんご結び賞の景品画像" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+<div class="prizeImage" style="display:none">景品画像準備中</div>
+<div class="prizeBody">
+<h3>りんご結び賞</h3>
+<p>志木名物りんご結び オリジナル商品詰め合わせ</p>
+</div>
+</article>
 
-    <article class="prize">
-
-      <img
-        src="../apple-prize.jpg"
-        alt="長野県飯綱町産りんご 約5kg"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"
-      >
-
-      <div class="prizeImage" style="display:none">
-        りんご景品画像
-      </div>
-
-      <div class="prizeBody">
-        <h3>特賞</h3>
-
-        <p>
-          長野県飯綱町産 サンふじりんご 約5kg<br>
-          農家直送・家庭用
-        </p>
-      </div>
-
-    </article>
-
-    <article class="prize">
-
-      <div class="prizeImage">
-        景品画像<br>
-        準備中
-      </div>
-
-      <div class="prizeBody">
-        <h3>りんご結び賞</h3>
-
-        <p>
-          志木名物りんご結び<br>
-          オリジナル商品詰め合わせ
-        </p>
-      </div>
-
-    </article>
-
-  </div>
-
+</div>
 </section>
 
 <section id="kappas" class="section">
+<h2>カッパ像を見てみよう</h2>
+<p>写真・説明・動画・マップを、カッパ像ごとにまとめて表示します。</p>
 
-  <h2>カッパ像を見てみよう</h2>
+<div class="countBox">
+推しカッパ：
+<strong id="selectedCount">0</strong>
+/ 3体
+<div id="selectedNames">まだ選ばれていません</div>
+</div>
 
-  <p>
-    写真・説明・動画・マップを、カッパ像ごとにまとめて表示します。
-  </p>
-
-  <div class="countBox">
-    推しカッパ：
-    <strong id="selectedCount">0</strong>
-    / 3体
-
-    <div id="selectedNames">
-      まだ選ばれていません
-    </div>
-  </div>
-
-  <div id="kappaGrid" class="kappaGrid"></div>
-
+<div id="kappaGrid" class="kappaGrid"></div>
 </section>
 
 <section id="info" class="section">
+<h2>マップ・お店・SNS</h2>
+<p>商工会のマップや公式SNSのURLは、確認後に差し替えます。</p>
 
-  <h2>マップ・お店・SNS</h2>
+<div class="infoGrid">
 
-  <p>
-    商工会のマップや公式SNSのURLは、確認後に差し替えます。
-  </p>
+<div class="infoCard">
+<b>🗺️ 商工会のカッパマップ</b>
+<small>正式リンクを後から設定します。</small>
+<button class="mini" type="button">マップ準備中</button>
+</div>
 
-  <div class="infoGrid">
+<div class="infoCard">
+<b>🍎 りんごを使った志木名物</b>
+<small>参加店舗・商品・紹介動画を後から追加します。</small>
+<button class="mini" type="button">お店情報準備中</button>
+</div>
 
-    <div class="infoCard">
-      <b>🗺️ 商工会のカッパマップ</b>
-      <small>正式リンクを後から設定します。</small>
-      <button class="mini" type="button">
-        マップ準備中
-      </button>
-    </div>
+<div class="infoCard">
+<b>📣 SNS</b>
+<small>公式Instagramなどのリンクを後から追加します。</small>
+<button class="mini" type="button">SNS準備中</button>
+</div>
 
-    <div class="infoCard">
-      <b>🍎 りんごを使った志木名物</b>
-      <small>
-        参加店舗・商品・紹介動画を後から追加します。
-      </small>
-      <button class="mini" type="button">
-        お店情報準備中
-      </button>
-    </div>
+<div class="infoCard">
+<b>🎥 動画</b>
+<small>カッパ像ごとの紹介動画をここに追加します。</small>
+<button class="mini" type="button">動画準備中</button>
+</div>
 
-    <div class="infoCard">
-      <b>📣 SNS</b>
-      <small>
-        公式Instagramなどのリンクを後から追加します。
-      </small>
-      <button class="mini" type="button">
-        SNS準備中
-      </button>
-    </div>
-
-    <div class="infoCard">
-      <b>🎥 動画</b>
-      <small>
-        カッパ像ごとの紹介動画をここに追加します。
-      </small>
-      <button class="mini" type="button">
-        動画準備中
-      </button>
-    </div>
-
-  </div>
-
+</div>
 </section>
 
 </main>
 
 <footer class="footer">
-  SKZカッパ像めぐり2026<br>
-  志木市・志木市商工会
+SKZカッパ像めぐり2026<br>
+志木市・志木市商工会
 </footer>
 
 </div>
 
 <nav class="bottom">
-
-  <a href="#top">
-    <span>🏠</span>
-    トップ
-  </a>
-
-  <a href="#kappas">
-    <span>🥒</span>
-    カッパ
-  </a>
-
-  <a href="#prize">
-    <span>🎁</span>
-    景品
-  </a>
-
-  <a href="#info">
-    <span>📣</span>
-    情報
-  </a>
-
+<a href="#top"><span>🏠</span>トップ</a>
+<a href="#kappas"><span>🥒</span>カッパ</a>
+<a href="#prize"><span>🎁</span>景品</a>
+<a href="#info"><span>📣</span>情報</a>
 </nav>
 
 <script>
-const selected = [];
+const selected=[];
+const grid=document.getElementById("kappaGrid");
+const count=document.getElementById("selectedCount");
+const names=document.getElementById("selectedNames");
 
-const grid =
-  document.getElementById(
-    "kappaGrid"
-  );
+for(let i=1;i<=30;i++){
 
-const count =
-  document.getElementById(
-    "selectedCount"
-  );
+const no=String(i).padStart(2,"0");
+const id="kappa-"+no;
+const name="カッパ像 "+no;
 
-const names =
-  document.getElementById(
-    "selectedNames"
-  );
+const card=document.createElement("article");
+card.className="kappa";
 
-for(
-  let i = 1;
-  i <= 30;
-  i++
-){
+card.innerHTML=`
+<div class="photo">
+<div>
+<b>🥒</b>
+写真準備中<br>
+<small>画像は後から差し替え</small>
+</div>
+</div>
 
-  const no =
-    String(i).padStart(2,"0");
+<div class="kappaBody">
+<h3>${name}</h3>
 
-  const id =
-    "kappa-" + no;
+<div class="place">
+志木市内・設置場所確認中
+</div>
 
-  const name =
-    "カッパ像 " + no;
+<p class="desc">
+正式名称・設置場所・カッパの説明は、資料到着後に掲載します。
+</p>
 
-  const card =
-    document.createElement(
-      "article"
-    );
+<div class="video">
+この下に紹介動画を入れます
+</div>
 
-  card.className =
-    "kappa";
+<div class="kappaActions">
+<button class="mini choose" type="button">
+推しに選ぶ
+</button>
 
-  card.innerHTML =
-    `
-    <div class="photo">
-      <div>
-        <b>🥒</b>
-        写真準備中<br>
-        <small>画像は後から差し替え</small>
-      </div>
-    </div>
+<button class="mini map" type="button">
+Googleマップ
+</button>
+</div>
+</div>
+`;
 
-    <div class="kappaBody">
+const choose=card.querySelector(".choose");
+const map=card.querySelector(".map");
 
-      <h3>${name}</h3>
+choose.onclick=function(){
 
-      <div class="place">
-        志木市内・設置場所確認中
-      </div>
+const position=selected.indexOf(id);
 
-      <p class="desc">
-        正式名称・設置場所・カッパの説明は、資料到着後に掲載します。
-      </p>
+if(position>=0){
 
-      <div class="video">
-        この下に紹介動画を入れます
-      </div>
+selected.splice(position,1);
+choose.textContent="推しに選ぶ";
+choose.classList.remove("selected");
 
-      <div class="kappaActions">
+}else{
 
-        <button
-          class="mini choose"
-          type="button"
-        >
-          推しに選ぶ
-        </button>
+if(selected.length>=3){
+alert("推しカッパは3体まで選べます。");
+return;
+}
 
-        <button
-          class="mini map"
-          type="button"
-        >
-          Googleマップ
-        </button>
+selected.push(id);
+choose.textContent="選択中";
+choose.classList.add("selected");
+}
 
-      </div>
+count.textContent=selected.length;
 
-    </div>
-    `;
+names.textContent=
+selected.length
+?selected.map(function(value){
+return "カッパ像 "+value.replace("kappa-","");
+}).join("・")
+:"まだ選ばれていません";
+};
 
-  const choose =
-    card.querySelector(
-      ".choose"
-    );
+map.onclick=function(){
 
-  const map =
-    card.querySelector(
-      ".map"
-    );
+const url=
+"https://www.google.com/maps/search/?api=1&query="+
+encodeURIComponent("志木市 カッパ像 "+no);
 
-  choose.onclick =
-    function(){
+window.open(url,"_blank");
+};
 
-      const position =
-        selected.indexOf(
-          id
-        );
-
-      if(position >= 0){
-
-        selected.splice(
-          position,
-          1
-        );
-
-        choose.textContent =
-          "推しに選ぶ";
-
-        choose.classList.remove(
-          "selected"
-        );
-
-      }else{
-
-        if(
-          selected.length >= 3
-        ){
-
-          alert(
-            "推しカッパは3体まで選べます。"
-          );
-
-          return;
-        }
-
-        selected.push(
-          id
-        );
-
-        choose.textContent =
-          "選択中";
-
-        choose.classList.add(
-          "selected"
-        );
-      }
-
-      count.textContent =
-        selected.length;
-
-      names.textContent =
-        selected.length
-          ? selected
-              .map(
-                function(value){
-                  return "カッパ像 " +
-                    value.replace(
-                      "kappa-",
-                      ""
-                    );
-                }
-              )
-              .join("・")
-          : "まだ選ばれていません";
-    };
-
-  map.onclick =
-    function(){
-
-      const url =
-        "https://www.google.com/maps/search/?api=1&query=" +
-        encodeURIComponent(
-          "志木市 カッパ像 " + no
-        );
-
-      window.open(
-        url,
-        "_blank"
-      );
-    };
-
-  grid.appendChild(
-    card
-  );
+grid.appendChild(card);
 }
 </script>
 
