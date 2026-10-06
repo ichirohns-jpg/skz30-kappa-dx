@@ -1181,74 +1181,16 @@ fieldset{margin:16px 0;padding:16px;border:1px solid #a7f3d0;border-radius:20px;
 </section>
 
 <section id="info" class="page">
-
- <div class="sectionHero">
-  <h2>最新情報</h2>
-  <p>
-   カッパ像めぐりのお知らせ、ヒント、商店会コラボ情報を表示します。
-  </p>
- </div>
-
- <section class="card">
-  <h2>お知らせ</h2>
-
-  <div class="noticeList">
-   <div class="notice">
-    <b>SKZ30 カッパ像めぐり2026</b>
-    <small>
-     開催期間は2026年10月15日〜11月15日です。
-    </small>
-   </div>
-
-   <div class="notice">
-    <b>推し3体投票</b>
-    <small>
-     QRのない像を含め、30体すべてから推し3体を選び、それぞれの魅力を記入します。
-    </small>
-   </div>
-
-   <div class="notice"><b>応募は1人1回</b><small>当選のご連絡はメールでお送りします。11月29日の会場で賞品を受け取れる方が対象です。</small></div>
-
-   <div class="notice">
-    <b>商店会コラボ</b>
-    <small>
-     隠れカッピー、文字集め、景品企画などに発展できます。
-    </small>
-   </div>
-  </div>
- </section>
-
- <section class="card">
-  <h2>今後追加できること</h2>
-
-  <div class="missionGrid">
-   <div class="missionCard">
-    <div class="missionNo">1</div>
-    <h3>ランキング表示</h3>
-    <p>投票結果を集計して、人気カッパ像を紹介できます。</p>
-   </div>
-
-   <div class="missionCard">
-    <div class="missionNo">2</div>
-    <h3>スタンプラリー</h3>
-    <p>異なる3か所で参加資格に応じて記念画像や認定証を表示できます。</p>
-   </div>
-
-   <div class="missionCard">
-    <div class="missionNo">3</div>
-    <h3>動画紹介</h3>
-    <p>カッパ像ごとの紹介動画や商店会動画を追加できます。</p>
-   </div>
-
-   <div class="missionCard">
-    <div class="missionNo">4</div>
-    <h3>SNS発信</h3>
-    <p>推しカッパや参加体験を共有しやすくできます。</p>
-   </div>
-  </div>
-
- </section>
-
+ <div class="sectionHero"><h2>イベント情報</h2><p>参加方法と最新のお知らせをご確認ください。</p></div>
+ <section class="card"><h2>参加方法</h2><div class="noticeList">
+ <div class="notice"><b>開催期間</b><small>2026年10月15日〜11月15日</small></div>
+ <div class="notice"><b>異なる3か所のQRを読み取る</b><small>現地のQRを1か所読むごとに、推しを1体ずつ入力できます。同じQRを繰り返し読んでも地点数は増えません。</small></div>
+ <div class="notice"><b>30体から推し3体を選ぶ</b><small>読み取ったQRの場所に関係なく、30体すべてから選べます。QRを貼らない9体も投票対象です。異なる3体を選び、それぞれの魅力を書いて保存してください。</small></div>
+ <div class="notice"><b>プレゼントに応募</b><small>3か所のQRと推し3体の理由を保存し、氏名・メールアドレス・賞品受取への同意を入力して応募します。応募は1人1回です。</small></div>
+ <div class="notice"><b>賞品のお受け取り</b><small>当選者にはメールでご連絡します。11月29日（日）の市民まつりステージで賞品を受け取れる方が対象です。</small></div>
+ </div></section>
+ <section class="card"><h2>最新のお知らせ</h2><p id="newsStatus" role="status" aria-live="polite">お知らせを読み込みます。</p><div id="newsList" class="noticeList"></div><button id="retryNews" type="button" class="bigBtn secondary" hidden>お知らせを再読み込み</button></section>
+ <section class="card"><a class="bigBtn green" href="#vote" data-page-link="vote">推しを入力する</a></section>
 </section>
 
 <section id="vote" class="page">
@@ -1304,88 +1246,10 @@ fieldset{margin:16px 0;padding:16px;border:1px solid #a7f3d0;border-radius:20px;
 </section>
 
 <section id="shops" class="page">
-
- <div class="shopHero">
-  <h2>
-   お店や志木名物も<br>
-   <span>一緒に楽しもう</span>
-  </h2>
-
-  <p>
-   カッパ像めぐりの途中で、近くのお店や志木名物にも立ち寄れます。お店の画像、動画、商品紹介、MAP案内を表示できます。
-  </p>
-
-  <div class="keywordBox">
-   <b>商店会コラボ：</b>
-   隠れカッピー、文字集め、景品企画にも広げられます。
-  </div>
- </div>
-
- <section class="card">
-  <div style="display:grid;grid-template-columns:1fr;gap:10px;">
-   <a class="bigBtn primary" href="#kappas" data-page-link="kappas">
-    カッパ像を巡る
-   </a>
-
-   <a class="bigBtn secondary" href="#info" data-page-link="info">
-    最新情報を見る
-   </a>
-
-   <a class="bigBtn dark" href="#top" data-page-link="top">
-    トップへ戻る
-   </a>
-  </div>
- </section>
-
- <section class="card">
-  <h2>参加店舗・志木名物</h2>
-  <p>
-   お店や志木名物の情報をここに表示できます。
-  </p>
-
-  <div class="noticeList">
-   <div class="notice">
-    <b>志木名物紹介</b>
-    <small>商品画像、紹介文、店舗へのMAP案内に対応できます。</small>
-   </div>
-
-   <div class="notice">
-    <b>商店会回遊</b>
-    <small>カッパ像めぐりから商店会利用へつなげる導線を作れます。</small>
-   </div>
-  </div>
- </section>
-
- <section class="card">
-  <h2>お店めぐりの楽しみ方</h2>
-
-  <div class="missionGrid">
-   <div class="missionCard">
-    <div class="missionNo">1</div>
-    <h3>お店を見つける</h3>
-    <p>参加店舗や名物をチェックします。</p>
-   </div>
-
-   <div class="missionCard">
-    <div class="missionNo">2</div>
-    <h3>MAPで向かう</h3>
-    <p>お店まで案内できます。</p>
-   </div>
-
-   <div class="missionCard">
-    <div class="missionNo">3</div>
-    <h3>隠れカッピー</h3>
-    <p>文字集めにも対応できます。</p>
-   </div>
-
-   <div class="missionCard">
-    <div class="missionNo">4</div>
-    <h3>景品企画へ</h3>
-    <p>商品券などに発展できます。</p>
-   </div>
-  </div>
- </section>
-
+ <div class="shopHero"><h2>志木名物も<br><span>一緒に楽しもう</span></h2><p>かっぱ像めぐりの途中で、志木の名物やお店にも立ち寄ってみませんか。</p></div>
+ <section class="card"><h2>お店と名物の地図</h2><p>地図のグレーの印がお店・志木名物、モスグリーンの印がかっぱ像です。</p><a class="bigBtn green" href="https://www.google.com/maps/d/viewer?mid=1IL2cZBQ7GCIZ8yq1bbZXlQnIWa2rRiE" target="_blank" rel="noopener">お店とかっぱ像の地図を見る</a><p>お店への立ち寄りは、応募に必要なQRの読み取り地点数には含まれません。</p></section>
+ <section class="card"><h2>お店・志木名物一覧</h2><p id="shopsStatus" role="status" aria-live="polite">お店の情報を読み込みます。</p><div id="shopList" class="kappaGrid"></div><button id="retryShops" type="button" class="bigBtn secondary" hidden>お店を再読み込み</button></section>
+ <section class="card"><a class="bigBtn primary" href="#kappas" data-page-link="kappas">カッパ像を巡る</a></section>
 </section>
 
 </main>
@@ -1456,4 +1320,22 @@ function shareX(){if(makePostText())window.open('https://twitter.com/intent/twee
 function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(APP_URL),'_blank','noopener');}
 async function init(){try{auth=identity();const data=await api('getKappas');KAPPAS=data.records.map(k=>({id:String(k.ID),name:k['カッパ像名']||'名称確認中',place:k['設置場所'],description:k['紹介文'],image:k['画像URL']}));if(KAPPAS.length!==30||new Set(KAPPAS.map(k=>k.id)).size!==30)throw Error('30体の一覧を確認できません。主催者へお問い合わせください。');renderKappas();ready=true;progress=await api('getProgress',auth);for(let n=1;n<=3;n++){const saved=progress.choices.find(c=>c.slot===n);const draft=JSON.parse(localStorage.getItem(draftKey(n))||'null');if(progress.submitted&&saved){$('rank'+n).value=saved.kappaId;$('reason'+n).value=saved.reason;}else if(draft){$('rank'+n).value=draft.id;$('reason'+n).value=draft.reason;}else if(saved){$('rank'+n).value=saved.kappaId;$('reason'+n).value=saved.reason;}}renderProgress();const qr=new URL(location.href).searchParams.get('qr');if(qr){busy=true;renderProgress();status('QRの記録を確認しています…');try{progress=await api('recordVisit',{...auth,qr});status(progress.alreadyVisited?'この地点は確認済みです。':progress.pointName+'のQRを記録しました。');const url=new URL(location.href);url.searchParams.delete('qr');url.hash='vote';history.replaceState(null,'',url);showPage();}finally{busy=false;renderProgress();}}}catch(e){$('eventStatus').textContent=e.message;status(e.message,true);busy=false;renderProgress();}}
 init();
+
+// 公開案内は、QR記録・応募の処理とは独立して読み込みます。
+const publicContentState={info:'idle',shops:'idle'};
+function contentText(row,key){return String(row[key]??'').trim();}
+function contentURL(value){const text=String(value??'').trim();if(!text)return '';if(text.startsWith('#'))return ['#top','#kappas','#info','#vote','#shops'].includes(text)?text:'';return safeURL(text);}
+function addContentText(card,tag,value){if(!value)return;const node=document.createElement(tag);node.textContent=value;node.style.whiteSpace='pre-wrap';card.append(node);}
+function addContentLink(card,value,label){const href=contentURL(value);if(!href)return;const link=document.createElement('a');link.className='miniBtn green';link.href=href;link.textContent=label;if(!href.startsWith('#')){link.target='_blank';link.rel='noopener';}card.append(link);}
+function addContentPhoto(card,value,label){const text=String(value??'').trim();if(!text||text.startsWith('#'))return;const src=contentURL(text);if(!src)return;const img=document.createElement('img');img.src=src;img.alt=label;img.loading='lazy';img.className='kappaPhoto';img.onerror=()=>img.remove();card.append(img);}
+function orderedContent(records,news=false){return records.map((row,i)=>({row,i})).sort((a,b)=>{if(news){const fixed=x=>/^(固定|true|1|はい|○)$/i.test(contentText(x.row,'固定表示'))?0:1;const diff=fixed(a)-fixed(b);if(diff)return diff;}const rank=x=>{const t=contentText(x.row,'表示順');return t&&Number.isFinite(Number(t))?Number(t):Infinity;};return rank(a)-rank(b)||a.i-b.i;}).map(x=>x.row);}
+function renderNews(records){const list=$('newsList');list.replaceChildren();const rows=orderedContent(records,true).filter(row=>contentText(row,'タイトル')||contentText(row,'本文'));rows.forEach(row=>{const card=document.createElement('article');card.className='notice';addContentText(card,'small',contentText(row,'日付'));addContentText(card,'h3',contentText(row,'タイトル'));addContentPhoto(card,row['画像URL'],contentText(row,'タイトル'));addContentText(card,'p',contentText(row,'本文'));addContentLink(card,row['リンクURL'],'詳しく見る');addContentLink(card,row['動画URL'],'紹介動画を見る');list.append(card);});$('newsStatus').textContent=rows.length?'':'新しいお知らせは、準備ができ次第掲載します。';}
+function renderShops(records){const list=$('shopList');list.replaceChildren();const rows=orderedContent(records).filter(row=>contentText(row,'店舗名'));rows.forEach(row=>{const card=document.createElement('article');card.className='kappaCard';const name=contentText(row,'店舗名');addContentText(card,'h3',name);addContentPhoto(card,row['画像URL'],name);addContentText(card,'h4',contentText(row,'商品・名物'));addContentText(card,'p',contentText(row,'紹介文'));addContentText(card,'p',contentText(row,'住所'));addContentText(card,'p',contentText(row,'目印'));const hours=contentText(row,'営業時間'),closed=contentText(row,'定休日');if(hours)addContentText(card,'p','営業時間：'+hours);if(closed)addContentText(card,'p','定休日：'+closed);addContentLink(card,row['GoogleマップURL'],'お店の地図を見る');addContentLink(card,row['公式サイトURL'],'公式サイトを見る');addContentLink(card,row['動画URL'],'紹介動画を見る');list.append(card);});$('shopsStatus').textContent=rows.length?rows.length+'か所のお店・名物を紹介しています。':'お店の詳しい紹介と写真は準備中です。上の地図で場所をご確認いただけます。';}
+async function loadPublicContent(page,force=false){if(!['info','shops'].includes(page)||publicContentState[page]==='loading'||(!force&&publicContentState[page]==='loaded'))return;const news=page==='info',message=$(news?'newsStatus':'shopsStatus'),retry=$(news?'retryNews':'retryShops');publicContentState[page]='loading';retry.hidden=true;message.textContent=news?'お知らせを読み込み中…':'お店の情報を読み込み中…';try{const data=await api(news?'getNews':'getShops');if(!Array.isArray(data.records))throw Error('一覧を確認できません。');if(news)renderNews(data.records);else renderShops(data.records);publicContentState[page]='loaded';}catch(e){publicContentState[page]='error';message.textContent='読み込めませんでした。電波を確認して、再読み込みを押してください。';retry.hidden=false;}}
+$('retryNews').addEventListener('click',()=>loadPublicContent('info',true));
+$('retryShops').addEventListener('click',()=>loadPublicContent('shops',true));
+window.addEventListener('hashchange',()=>loadPublicContent(location.hash.slice(1)));
+loadPublicContent(location.hash.slice(1));
+
 </script></body></html>
+
