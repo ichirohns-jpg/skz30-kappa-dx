@@ -33,6 +33,8 @@
 <meta name="twitter:image" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/images/skz30-top.jpg">
 
 <style>
+.header{flex-wrap:wrap}.wrap,.card,.page,.kappaCard,.field{min-width:0;max-width:100%}h1,h2,h3,p,span,a{overflow-wrap:anywhere}button:disabled{opacity:.65;cursor:default}.bottomNav{padding-bottom:env(safe-area-inset-bottom)}.wrap{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+
 
 *{
  box-sizing:border-box;
@@ -960,7 +962,7 @@ pre{
    </p>
 
    <p class="lead">
-    カッパ像を見つけに行こう。推し3体を選ぶと、抽選でステキなプレゼントが当たります。まち歩きとお店めぐりも楽しめます。
+    21か所のうち異なる3か所でQRコードを読み取り、30体から推し3体を選んで、それぞれの魅力を書いて応募します。
    </p>
 
    <div class="mainActions">
@@ -986,64 +988,52 @@ pre{
 
  <div class="infoStrip">
   <div class="infoBox">
-   <strong>開催予定</strong>
-   <span>令和8年10月1日〜11月15日</span>
+   <strong>開催期間</strong>
+   <span>2026年10月15日〜11月15日</span>
   </div>
 
   <div class="infoBox">
    <strong>参加対象</strong>
-   <span>どなたでも参加できます</span>
+   <span>応募は1人1回</span>
   </div>
  </div>
 
  <section class="card prizePromo">
-  <h2>推し3体を選ぶと、プレゼントが当たる！</h2>
-  <p class="prizeIntro">
-   カッパ像をめぐって、あなたの推し3体を選んで参加しよう！<br>
-   参加した方の中から抽選で、次のプレゼントが当たります。
-  </p>
-
+  <h2>抽選で合計17名様にプレゼント</h2>
+  <p class="prizeIntro">異なる3か所のQRを読み取り、推し3体とそれぞれの理由を入力して応募します。</p>
   <div class="prizeGrid">
-   <article class="prizeCard">
-    <img src="prize-ouchicafe-autumn.jpg" alt="おうちcafeパン工房 秋の味覚セット">
-    <div class="prizeCardBody">
-     <span class="prizeLabel">プレゼント例 1</span>
-     <h3>おうちcafeパン工房<br>秋の味覚セット</h3>
-     <p>おうちcafeパン工房からのおいしいプレゼントです。</p>
-    </div>
-   </article>
-
-   <article class="prizeCard">
-    <img src="prize-shiki-ori.jpg" alt="志木織々 純米酒 無濾過生原酒 2本">
-    <div class="prizeCardBody">
-     <span class="prizeLabel">プレゼント例 2</span>
-     <h3>志木織々 × 2本</h3>
-     <p>純米酒 無濾過生原酒のプレゼントです。</p>
-    </div>
-   </article>
+   <article class="prizeCard"><div class="prizeCardBody">
+    <span class="prizeLabel">特賞・2名様</span>
+    <h3>りんご縁結び賞</h3><p>「長野県飯綱町産りんご」5kg</p>
+   </div></article>
+   <article class="prizeCard"><div class="prizeCardBody">
+    <span class="prizeLabel">10名様</span>
+    <h3>りんご結び賞</h3><p>志木名物「りんご結びオリジナル商品」詰め合わせ</p>
+   </div></article>
+   <article class="prizeCard"><div class="prizeCardBody">
+    <span class="prizeLabel">5名様</span>
+    <h3>カッピーハッピー賞</h3><p>志木名物「特別チョイス」詰め合わせ</p>
+   </div></article>
   </div>
-
-  <div class="prizeNote">
-   ※プレゼント内容・応募条件・抽選方法は正式決定後にご案内します。
-  </div>
+  <p class="prizeNote">抽選日：11月20日。当選者へメールでご連絡します。<br>賞品は11月29日（日）、志木市民まつり・いろは親水公園カッピーステージでお渡しします。当日お受け取りができる方が対象です。</p>
  </section>
 
  <section class="card">
-  <h2>今日の巡った記録</h2>
+  <h2>QRの読み取り記録</h2>
   <p>
-   このスマホに保存されます。途中から再開できます。
+   QR受付は準備中です。現在は応募できません。
   </p>
 
   <div class="infoBox" style="margin-top:12px;">
-   <strong>巡った数</strong>
-   <span id="homeVisitedCount">0/30</span>
+   <strong>異なる3か所で参加資格</strong>
+   <span id="homeVisitedCount">受付準備中</span>
   </div>
  </section>
 
  <section class="card">
   <h2>楽しみ方</h2>
   <p>
-   説明を読まなくても、そのまま押して進めます。
+   異なる3か所のQRを読み、推し3体と理由を入力して応募します。
   </p>
 
   <div class="quickFlow">
@@ -1058,8 +1048,8 @@ pre{
    <div class="flowItem">
     <div class="flowIcon">🗺️</div>
     <div>
-     <b>MAPで行く</b>
-     <small>現在地から案内</small>
+     <b>現地のQRを読む</b>
+     <small>異なる3か所をめぐる</small>
     </div>
    </div>
 
@@ -1067,7 +1057,7 @@ pre{
     <div class="flowIcon">⭐</div>
     <div>
      <b>推し3体を選ぶ</b>
-     <small>理由も記入できます</small>
+     <small>それぞれの魅力を入力</small>
     </div>
    </div>
 
@@ -1095,7 +1085,7 @@ pre{
 
    <div class="notice">
     <b>推しの理由を集めます</b>
-    <small>1位〜3位それぞれの理由は、次年度以降のPR文づくりに活用できます。</small>
+    <small>推し3体それぞれの理由は、次年度以降のPR文づくりに活用できます。</small>
    </div>
   </div>
  </section>
@@ -1107,7 +1097,7 @@ pre{
  <div class="sectionHero">
   <h2>カッパ像を巡る</h2>
   <p>
-   気になるカッパ像を選んでください。MAPで行くを押すと、Googleマップで案内できます。
+   商工会から届いたGoogleマップで、かっぱ像の位置を確認できます。正式な一覧は確定PDFと照合して掲載します。
   </p>
  </div>
 
@@ -1116,23 +1106,24 @@ pre{
  </div>
 
  <section class="card">
-  <h2>今日の巡った記録</h2>
+  <h2>QRの読み取り記録</h2>
   <p>
-   このスマホに保存されます。
+   QR受付は準備中です。
   </p>
 
   <div class="infoBox" style="margin-top:12px;">
-   <strong>巡った数</strong>
-   <span id="visitedCount">0/30</span>
+   <strong>異なる3か所で参加資格</strong>
+   <span id="visitedCount">受付準備中</span>
   </div>
 
   <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;">
-   <button type="button" class="bigBtn danger" onclick="resetVisited()">
-    巡った記録をリセット
+   <button type="button" class="bigBtn danger" disabled>
+    QR受付準備中
    </button>
   </div>
  </section>
 
+ <div class="card"><h2>30体すべてが投票対象です</h2><p>QRを貼らない9体も、推しに選べます。同じQRを繰り返し読んでも、訪問数は増えません。</p><a class="bigBtn green" href="https://www.google.com/maps/d/viewer?mid=1IL2cZBQ7GCIZ8yq1bbZXlQnIWa2rRiE" target="_blank" rel="noopener">かっぱ像とお店の地図を見る</a></div>
  <div class="filterBar" id="filterBar"></div>
 
  <div class="card">
@@ -1171,12 +1162,12 @@ pre{
   </div>
 
   <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;">
-   <button type="button" class="bigBtn green" onclick="findNearby()">
-    近くのカッパ像を探す
-   </button>
+   <a class="bigBtn green" href="https://www.google.com/maps/d/viewer?mid=1IL2cZBQ7GCIZ8yq1bbZXlQnIWa2rRiE" target="_blank" rel="noopener">
+    かっぱ像の地図を見る
+   </a>
 
-   <button type="button" class="bigBtn secondary" onclick="goFirstUnvisited()">
-    まだ巡っていないカッパへ
+   <button type="button" class="bigBtn secondary" disabled>
+    訪問記録は準備中
    </button>
 
    <a class="bigBtn dark" href="#top" data-page-link="top">
@@ -1212,16 +1203,11 @@ pre{
    <div class="notice">
     <b>推し3体投票</b>
     <small>
-     好きなカッパ像を1位〜3位まで選び、それぞれの推しの理由を記入できます。
+     QRのない像を含め、30体すべてから推し3体を選び、それぞれの魅力を記入します。
     </small>
    </div>
 
-   <div class="notice">
-    <b>グループ名アイデア</b>
-    <small>
-     30体のカッパ像全体の呼び名や企画名のアイデアを募集できます。
-    </small>
-   </div>
+   <div class="notice"><b>応募は1人1回</b><small>当選のご連絡はメールでお送りします。11月29日の会場で賞品を受け取れる方が対象です。</small></div>
 
    <div class="notice">
     <b>商店会コラボ</b>
@@ -1245,7 +1231,7 @@ pre{
    <div class="missionCard">
     <div class="missionNo">2</div>
     <h3>スタンプラリー</h3>
-    <p>巡った数に応じて記念画像や認定証を表示できます。</p>
+    <p>異なる3か所で参加資格に応じて記念画像や認定証を表示できます。</p>
    </div>
 
    <div class="missionCard">
@@ -1297,12 +1283,12 @@ pre{
    </div>
 
    <div class="field">
-    <label for="rank1">推し1位</label>
+    <label for="rank1">推し1体目</label>
     <select id="rank1"></select>
    </div>
 
    <div class="field">
-    <label for="reason1">推し1位の理由</label>
+    <label for="reason1">推し1体目の理由</label>
     <textarea id="reason1" placeholder="例：表情がかわいくて、写真を撮りたくなったから。"></textarea>
     <div class="helpText">
      次年度以降の総選挙PR文に使えるよう、好きなところを書いてください。
@@ -1310,22 +1296,22 @@ pre{
    </div>
 
    <div class="field">
-    <label for="rank2">推し2位</label>
+    <label for="rank2">推し2体目</label>
     <select id="rank2"></select>
    </div>
 
    <div class="field">
-    <label for="reason2">推し2位の理由</label>
+    <label for="reason2">推し2体目の理由</label>
     <textarea id="reason2" placeholder="例：場所の雰囲気と合っていて、見つけた時にうれしかったから。"></textarea>
    </div>
 
    <div class="field">
-    <label for="rank3">推し3位</label>
+    <label for="rank3">推し3体目</label>
     <select id="rank3"></select>
    </div>
 
    <div class="field">
-    <label for="reason3">推し3位の理由</label>
+    <label for="reason3">推し3体目の理由</label>
     <textarea id="reason3" placeholder="例：名前やポーズが面白くて、家族にも紹介したくなったから。"></textarea>
    </div>
 
@@ -1337,15 +1323,15 @@ pre{
    <textarea id="comment" style="display:none;"></textarea>
 
    <div class="reasonNote">
-    これまでの「ひとこと感想」はやめて、1位・2位・3位それぞれに「推しの理由」を書く形にしました。
+    応募受付は準備中です。現在の選択・入力は確認用で、応募として送信されません。
    </div>
 
    <button type="button" class="bigBtn primary" onclick="makePostText()">
     投稿文を作る
    </button>
 
-   <button type="button" class="bigBtn green" onclick="submitVote()">
-    投票を送信する
+   <button type="button" class="bigBtn green" disabled>
+    応募受付は準備中
    </button>
 
    <button type="button" class="bigBtn secondary" onclick="clearVoteForm()">
@@ -1505,179 +1491,68 @@ pre{
 </nav>
 
 <script>
-
-const APP_URL =
-"https://ichirohns-jpg.github.io/skz30-kappa-dx/";
-
-const KAPPAS = [
- {
-  id:"kappa01",
-  no:1,
-  name:"カッパ像 01",
-  place:"志木市内",
-  area:"志木駅・本町",
-  desc:"志木市内にあるカッパ像です。正式名称・設置場所は実装前に確認して整理します。",
-  emoji:"🥒"
- },
- {
-  id:"kappa02",
-  no:2,
-  name:"カッパ像 02",
-  place:"志木市内",
-  area:"志木駅・本町",
-  desc:"まち歩きの途中で出会えるカッパ像です。",
-  emoji:"🥒"
- },
- {
-  id:"kappa03",
-  no:3,
-  name:"カッパ像 03",
-  place:"志木市内",
-  area:"志木駅・本町",
-  desc:"写真を撮りながら楽しめるカッパ像です。",
-  emoji:"🥒"
- },
- {
-  id:"kappa04",
-  no:4,
-  name:"カッパ像 04",
-  place:"志木市内",
-  area:"いろは",
-  desc:"水辺や街歩きと相性のよいカッパ像です。",
-  emoji:"🥒"
- },
- {
-  id:"kappa05",
-  no:5,
-  name:"カッパ像 05",
-  place:"志木市内",
-  area:"いろは",
-  desc:"表情やポーズに注目して楽しめます。",
-  emoji:"🥒"
- },
- {
-  id:"kappa06",
-  no:6,
-  name:"カッパ像 06",
-  place:"志木市内",
-  area:"いろは",
-  desc:"家族連れでも楽しみやすいスポットです。",
-  emoji:"🥒"
- },
- {
-  id:"kappa07",
-  no:7,
-  name:"カッパ像 07",
-  place:"志木市内",
-  area:"いろは",
-  desc:"散歩の途中で見つけたいカッパ像です。",
-  emoji:"🥒"
- },
- {
-  id:"kappa08",
-  no:8,
-  name:"カッパ像 08",
-  place:"志木市内",
-  area:"いろは",
-  desc:"推しカッパ候補として見比べて楽しめます。",
-  emoji:"🥒"
- },
- {
-  id:"kappa09",
-  no:9,
-  name:"カッパ像 09",
-  place:"志木市内",
-  area:"宗岡",
-  desc:"地域の魅力を感じながら巡れるカッパ像です。",
-  emoji:"🥒"
- },
- {
-  id:"kappa10",
-  no:10,
-  name:"カッパ像 10",
-  place:"志木市内",
-  area:"宗岡",
-  desc:"名前や姿の印象を理由として書き残せます。",
-  emoji:"🥒"
- },
- {
-  id:"kappa11",
-  no:11,
-  name:"カッパ像 11",
-  place:"志木市内",
-  area:"宗岡",
-  desc:"街の記憶や観光資源として楽しめます。",
-  emoji:"🥒"
- },
- {
-  id:"kappa12",
-  no:12,
-  name:"カッパ像 12",
-  place:"志木市内",
-  area:"宗岡",
-  desc:"推しの理由を集めることで、次年度以降のPR文に活用できます。",
-  emoji:"🥒"
- },
- {
-  id:"kappa13",
-  no:13,
-  name:"カッパ像 13",
-  place:"志木市内",
-  area:"宗岡",
-  desc:"見つけた時の感想を投票に反映できます。",
-  emoji:"🥒"
- },
- {
-  id:"kappa14",
-  no:14,
-  name:"カッパ像 14",
-  place:"志木市内",
-  area:"田子山",
-  desc:"田子山方面のまち歩きと一緒に楽しめます。",
-  emoji:"🥒"
- },
- {
-  id:"kappa15",
-  no:15,
-  name:"カッパ像 15",
-  place:"志木市内",
-  area:"田子山",
-  desc:"ゆっくり歩きながら見つけたいカッパ像です。",
-  emoji:"🥒"
- },
- {
-  id:"kappa16",
-  no:16,
-  name:"カッパ像 16",
-  place:"志木市内",
-  area:"田子山",
-  desc:"写真や動画と組み合わせた紹介にも発展できます。",
-  emoji:"🥒"
- },
- {
-  id:"kappa17",
-  no:17,
-  name:"カッパ像 17",
-  place:"志木市内",
-  area:"田子山",
-  desc:"推しに選んだ理由を残して、魅力を言葉にできます。",
-  emoji:"🥒"
- },
- {
-  id:"kappa18",
-  no:18,
-  name:"カッパ像 18",
-  place:"志木市内",
-  area:"宝幢寺",
-  desc:"歴史や地域散策と一緒に楽しめるスポットです。",
-  emoji:"🥒"
- },
- {
-  id:"kappa19",
-  no:19,
-  name:"カッパ像 19",
-  place:"志木市内",
-  area:"宝幢寺",
-  desc:"カッパ像めぐりの記録に残したいスポットです。",
-  emoji:"🥒"
- },
+"use strict";
+const APP_URL = "https://ichirohns-jpg.github.io/skz30-kappa-dx/";
+const MAP_URL = "https://www.google.com/maps/d/viewer?mid=1IL2cZBQ7GCIZ8yq1bbZXlQnIWa2rRiE";
+const KAPPAS = Array.from({length:30}, (_,i) => ({
+ id: "kappa"+String(i+1).padStart(2,"0"), no:i+1,
+ name:"マップ番号 "+(i+1)
+}));
+function showPage(){
+ const page=location.hash.slice(1);
+ const active=["top","kappas","info","vote","shops"].includes(page)?page:"top";
+ document.querySelectorAll(".page").forEach(el=>el.classList.toggle("active",el.id===active));
+ document.querySelectorAll("[data-page-link]").forEach(el=>{
+  const selected=el.dataset.pageLink===active;
+  el.classList.toggle("active",selected);
+  if(selected)el.setAttribute("aria-current","page");else el.removeAttribute("aria-current");
+ });
+}
+window.addEventListener("hashchange",()=>{showPage();window.scrollTo(0,0)});
+showPage();
+const list=document.getElementById("kappaList");
+KAPPAS.forEach(k=>{
+ const card=document.createElement("article");card.className="kappaCard";
+ const title=document.createElement("h3");title.className="kappaName";title.textContent=k.name;
+ const note=document.createElement("p");note.textContent="正式名称・写真は確定資料と照合して掲載します。";
+ const link=document.createElement("a");link.className="miniBtn green";link.href=MAP_URL;
+ link.target="_blank";link.rel="noopener";link.textContent="全体マップを見る";
+ card.append(title,note,link);list.append(card);
+});
+["rank1","rank2","rank3"].forEach(id=>{
+ const select=document.getElementById(id);
+ select.add(new Option("選んでください",""));
+ KAPPAS.forEach(k=>select.add(new Option(k.name,k.id)));
+});
+function makePostText(){
+ const ids=[1,2,3].map(n=>document.getElementById("rank"+n).value);
+ if(ids.some(id=>!id)||new Set(ids).size!==3){alert("異なる推し3体を選んでください。");return false;}
+ const reasons=[1,2,3].map(n=>document.getElementById("reason"+n).value.trim());
+ if(reasons.some(reason=>!reason)){alert("3体それぞれの魅力を入力してください。");return false;}
+ const lines=["SKZ30 カッパ像めぐり2026"];
+ ids.forEach((id,i)=>lines.push(KAPPAS.find(k=>k.id===id).name+"："+reasons[i]));
+ lines.push(APP_URL);
+ document.getElementById("voteText").textContent=lines.join("\n\n");
+ document.getElementById("voteResultBox").classList.add("show");
+ return true;
+}
+function clearVoteForm(){
+ if(!confirm("入力した内容を消しますか？"))return;
+ document.querySelectorAll("#vote input,#vote textarea,#vote select").forEach(el=>el.value="");
+ document.getElementById("voteResultBox").classList.remove("show");
+}
+async function copyVoteText(){
+ if(!makePostText())return;
+ try{await navigator.clipboard.writeText(document.getElementById("voteText").textContent);alert("コピーしました。");}
+ catch{alert("本文を長押ししてコピーしてください。");}
+}
+function shareLine(){
+ if(makePostText())location.href="https://line.me/R/share?text="+encodeURIComponent(document.getElementById("voteText").textContent);
+}
+function shareX(){
+ if(makePostText())window.open("https://twitter.com/intent/tweet?text="+encodeURIComponent(document.getElementById("voteText").textContent),"_blank","noopener");
+}
+function shareFacebook(){window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(APP_URL),"_blank","noopener");}
+</script>
+</body>
+</html>
