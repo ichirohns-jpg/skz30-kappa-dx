@@ -1302,7 +1302,20 @@ function randomHex(n){return Array.from(crypto.getRandomValues(new Uint8Array(n)
 function identity(){const key='skz30-event-auth-v1';let data=JSON.parse(localStorage.getItem(key)||'null');if(!data){data={userId:randomHex(16),sessionKey:randomHex(32)};localStorage.setItem(key,JSON.stringify(data));}if(!/^[A-Za-z0-9_-]{20,100}$/.test(data.userId)||!/^[A-Za-z0-9_-]{32,150}$/.test(data.sessionKey))throw Error('参加者情報を確認できません。記録を消さず、主催者へお問い合わせください。');return data;}
 function api(mode,params={}){return new Promise((resolve,reject)=>{const callback='skz30cb'+Date.now()+'_'+(++serial),script=document.createElement('script'),url=new URL(GAS_URL);let timer;const done=()=>{clearTimeout(timer);script.remove();delete window[callback];};window[callback]=result=>{done();if(result&&result.ok)resolve(result);else reject(Error(result&&result.error||'読み込みに失敗しました。'));};url.search=new URLSearchParams({...params,mode,callback}).toString();script.src=url.href;script.onerror=()=>{done();reject(Error('通信できません。電波を確認して再確認してください。'));};timer=setTimeout(()=>{done();reject(Error('通信に時間がかかっています。記録を再確認してください。'));},30000);document.head.append(script);});}
 function safeURL(value){try{const u=new URL(value,APP_URL);return /^https?:$/.test(u.protocol)?u.href:'';}catch{return '';}}
-function renderKappas(){const list=$('kappaList');list.replaceChildren();KAPPAS.forEach(k=>{const card=document.createElement('article');card.className='kappaCard';const title=document.createElement('h3');title.className='kappaName';title.textContent=k.name;card.append(title);const photo=safeURL(k.image);if(photo){const img=document.createElement('img');img.src=photo;img.alt=k.name;img.loading='lazy';img.className='kappaPhoto';img.onerror=()=>img.remove();card.append(img);}const note=document.createElement('p');note.textContent=k.description||k.place||'名称・場所は確定資料と照合して更新します。';card.append(note);const link=document.createElement('a');link.className='miniBtn green';link.href=MAP_URL;link.target='_blank';link.rel='noopener';link.textContent='全体マップを見る';card.append(link);list.append(card);});for(let n=1;n<=3;n++){const select=$('rank'+n);select.replaceChildren(new Option('選んでください',''));KAPPAS.forEach(k=>select.add(new Option(k.name,k.id)));}}
+function renderKappas(){
+ const list=$('kappaList');list.replaceChildren();
+ KAPPAS.forEach(k=>{
+  const card=document.createElement('article');card.className='kappaCard';
+  const title=document.createElement('h3');title.className='kappaName';title.textContent=k.id+'．'+k.name;card.append(title);
+  if(k.place){const place=document.createElement('p');place.textContent='設置場所：'+k.place;card.append(place);}
+  const imageValue=String(k.image??'').trim();
+  const photo=imageValue?safeURL(imageValue):'';
+  if(photo){const img=document.createElement('img');img.src=photo;img.alt=k.name;img.loading='lazy';img.className='kappaPhoto';img.onerror=()=>img.remove();card.append(img);}
+  const note=document.createElement('p');note.textContent=k.description||'紹介は準備中です。';card.append(note);
+  const link=document.createElement('a');link.className='miniBtn green';link.href=MAP_URL;link.target='_blank';link.rel='noopener';link.textContent='30体の全体マップを見る';card.append(link);list.append(card);
+ });
+ for(let n=1;n<=3;n++){const select=$('rank'+n);select.replaceChildren(new Option('選んでください',''));KAPPAS.forEach(k=>select.add(new Option(k.id+'．'+k.name,k.id)));}
+}
 function draftKey(n){return 'skz30-choice-'+auth.userId+'-'+n;}
 function remember(n){if(auth)localStorage.setItem(draftKey(n),JSON.stringify({id:$('rank'+n).value,reason:$('reason'+n).value}));}
 function renderProgress(){if(!progress)return;const count=progress.visitedCount;for(const id of ['homeVisitedCount','visitedCount'])$(id).textContent=count+'か所／参加資格は3か所';$('eventStatus').textContent=progress.submitted?'応募済みです。受付番号：'+progress.receipt:count>=3?'3か所を確認しました。推し3体の理由を保存して応募してください。':'確認済み '+count+'か所。現地の異なるQRを読むと、推しを1体ずつ入力できます。';for(let n=1;n<=3;n++){const choice=progress.choices.find(c=>c.slot===n);$('slot'+n).disabled=busy||!ready||progress.submitted||progress.unlockedSlots<n;$('slotNote'+n).textContent=choice?'保存済み：'+choice.name:progress.unlockedSlots>=n?'30体の中から選び、理由を書いて保存してください。':'異なる'+n+'か所のQRを読むと入力できます。';}const today=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());$('entryFields').disabled=busy||!ready||!progress.canApply||progress.submitted||today<'2026-10-15'||today>'2026-11-15';$('refreshProgress').disabled=busy;}
@@ -1338,4 +1351,5 @@ window.addEventListener('hashchange',()=>loadPublicContent(location.hash.slice(1
 loadPublicContent(location.hash.slice(1));
 
 </script></body></html>
+
 
