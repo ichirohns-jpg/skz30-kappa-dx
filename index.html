@@ -922,6 +922,12 @@ fieldset{margin:16px 0;padding:16px;border:1px solid #a7f3d0;border-radius:20px;
 .bottomNav a{min-height:52px;font-size:13px}
 input,textarea,select,button{scroll-margin-top:calc(var(--header-height,120px) + 16px);scroll-margin-bottom:calc(var(--bottom-nav-height,88px) + 24px)}
 html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-bottom:calc(var(--bottom-nav-height,88px) + 24px)}
+
+.prizeApplePhoto{
+ width:100%;
+ aspect-ratio:1 / 1;
+ background:#fff url("IMG_3221.jpeg") right bottom / 185% auto no-repeat;
+}
 </style>
 </head>
 
@@ -1010,15 +1016,15 @@ html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-b
   <h2>抽選で合計17名様にプレゼント</h2>
   <p class="prizeIntro">異なる3か所のQRを読み取り、推し3体とそれぞれの理由を入力して応募します。</p>
   <div class="prizeGrid">
-   <article class="prizeCard"><div class="prizeCardBody">
+   <article class="prizeCard"><div class="prizeApplePhoto" role="img" aria-label="長野県飯綱町産りんご5kg"></div><div class="prizeCardBody">
     <span class="prizeLabel">特賞・2名様</span>
     <h3>りんご縁結び賞</h3><p>「長野県飯綱町産りんご」5kg</p>
    </div></article>
-   <article class="prizeCard"><div class="prizeCardBody">
+   <article class="prizeCard"><img src="IMG_3222.png" alt="りんご結びオリジナル商品の詰め合わせ" loading="lazy" decoding="async"><div class="prizeCardBody">
     <span class="prizeLabel">10名様</span>
     <h3>りんご結び賞</h3><p>志木名物「りんご結びオリジナル商品」詰め合わせ</p>
    </div></article>
-   <article class="prizeCard"><div class="prizeCardBody">
+   <article class="prizeCard"><img src="IMG_3223.jpeg" alt="カッピーハッピー賞の特別チョイス詰め合わせ" loading="lazy" decoding="async"><div class="prizeCardBody">
     <span class="prizeLabel">5名様</span>
     <h3>カッピーハッピー賞</h3><p>志木名物「特別チョイス」詰め合わせ</p>
    </div></article>
@@ -1368,6 +1374,7 @@ window.addEventListener('hashchange',()=>loadPublicContent(location.hash.slice(1
 loadPublicContent(location.hash.slice(1));
 
 </script></body></html>
+
 
 
 
