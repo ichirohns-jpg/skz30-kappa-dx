@@ -914,7 +914,15 @@ pre{
 
 }
 
-fieldset{margin:16px 0;padding:16px;border:1px solid #a7f3d0;border-radius:20px;min-width:0}legend{font-size:22px;font-weight:900}fieldset:disabled{background:#f1f5f2}label{margin-top:14px}.consent{display:flex;align-items:flex-start;gap:12px;font-size:16px}.consent input{width:26px;height:26px;flex:0 0 26px}.bigBtn{min-height:48px}#eventStatus{font-size:17px}select,textarea{margin-bottom:12px}.kappaPhoto{width:100%;max-height:300px;object-fit:contain;border-radius:16px} </style>
+fieldset{margin:16px 0;padding:16px;border:1px solid #a7f3d0;border-radius:20px;min-width:0}legend{font-size:22px;font-weight:900}fieldset:disabled{background:#f1f5f2}label{margin-top:14px}.consent{display:flex;align-items:flex-start;gap:12px;font-size:16px}.consent input{width:26px;height:26px;flex:0 0 26px}.bigBtn{min-height:48px}#eventStatus{font-size:17px}select,textarea{margin-bottom:12px}.kappaPhoto{width:100%;max-height:300px;object-fit:contain;border-radius:16px} 
+/* iPhoneの下メニューと文字サイズ変更に合わせた余白 */
+.wrap{padding-bottom:calc(var(--bottom-nav-height,88px) + 24px)}
+.bottomNav{padding-bottom:env(safe-area-inset-bottom,0px)}
+.nav a,.miniBtn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.bottomNav a{min-height:52px;font-size:13px}
+input,textarea,select,button{scroll-margin-top:calc(var(--header-height,120px) + 16px);scroll-margin-bottom:calc(var(--bottom-nav-height,88px) + 24px)}
+html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-bottom:calc(var(--bottom-nav-height,88px) + 24px)}
+</style>
 </head>
 
 <body>
@@ -1261,6 +1269,19 @@ fieldset{margin:16px 0;padding:16px;border:1px solid #a7f3d0;border-radius:20px;
 
 <script>
 "use strict";
+
+function updateLayoutInsets(){
+ const header=document.querySelector('.header'),nav=document.querySelector('.bottomNav');
+ if(header)document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px');
+ if(nav)document.documentElement.style.setProperty('--bottom-nav-height',Math.ceil(nav.getBoundingClientRect().height)+'px');
+}
+window.addEventListener('resize',updateLayoutInsets);
+if('ResizeObserver' in window){
+ const layoutObserver=new ResizeObserver(updateLayoutInsets);
+ for(const selector of ['.header','.bottomNav']){const element=document.querySelector(selector);if(element)layoutObserver.observe(element);}
+}
+updateLayoutInsets();
+
 const APP_URL="https://ichirohns-jpg.github.io/skz30-kappa-dx/";
 const GAS_URL="https://script.google.com/macros/s/AKfycbwxh3Kef31DQBb34iMohUAXXZOvSRLzbLwL1R2pv1-wb54vAXcUVygnoVPtN5oi8xfF4w/exec";
 const MAP_URL="https://www.google.com/maps/d/viewer?mid=1IL2cZBQ7GCIZ8yq1bbZXlQnIWa2rRiE";
@@ -1347,6 +1368,7 @@ window.addEventListener('hashchange',()=>loadPublicContent(location.hash.slice(1
 loadPublicContent(location.hash.slice(1));
 
 </script></body></html>
+
 
 
 
