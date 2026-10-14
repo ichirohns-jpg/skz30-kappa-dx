@@ -1014,7 +1014,7 @@ html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-b
  <div class="infoStrip">
   <div class="infoBox">
    <strong>開催期間</strong>
-   <span>2026年10月15日〜11月15日</span>
+   <span>2026年10月中旬〜11月15日</span>
   </div>
 
   <div class="infoBox">
@@ -1046,7 +1046,7 @@ html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-b
  <section class="card">
   <h2>QRの読み取り記録</h2>
   <p>
-   現地のQRを読み取ると、推しを1体ずつ入力できます。応募は10月15日からです。
+   現地のQRを読み取ると、推しを1体ずつ入力できます。応募は10月中旬からです。
   </p>
 
   <div class="infoBox" style="margin-top:12px;">
@@ -1075,7 +1075,7 @@ html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-b
 
   <div class="noticeList">
    <div class="notice">
-    <b>10月15日スタート</b>
+    <b>10月中旬スタート</b>
     <small>現地のQRを3か所で読み取り、推し3体の魅力を書いて応募します。</small>
    </div>
 
@@ -1179,7 +1179,7 @@ html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-b
 <section id="info" class="page">
  <div class="sectionHero"><h2>イベント情報</h2><p>参加方法と最新のお知らせをご確認ください。</p></div>
  <section class="card"><h2>参加方法</h2><div class="noticeList">
- <div class="notice"><b>開催期間</b><small>2026年10月15日〜11月15日</small></div>
+ <div class="notice"><b>開催期間</b><small>2026年10月中旬〜11月15日</small></div>
  <div class="notice"><b>異なる3か所のQRを読み取る</b><small>現地のQRを1か所読むごとに、推しを1体ずつ入力できます。同じQRを繰り返し読んでも地点数は増えません。</small></div>
  <div class="notice"><b>30体から推し3体を選ぶ</b><small>読み取ったQRの場所に関係なく、30体すべてから選べます。QRを貼らない9体も投票対象です。異なる3体を選び、それぞれの魅力を書いて保存してください。</small></div>
  <div class="notice"><b>プレゼントに応募</b><small>3か所のQRと推し3体の理由を保存し、氏名・メールアドレス・賞品受取への同意を入力して応募します。応募は1人1回です。</small></div>
@@ -1213,7 +1213,18 @@ html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-b
    </a>
   </div>
 
-<div id="eventStatus" class="reasonNote" role="status" aria-live="polite">読み取り記録を確認中…</div><button id="refreshProgress" type="button" class="bigBtn secondary">記録を再確認</button><div class="formGrid"><fieldset id="slot1" disabled><legend>推し1体目</legend><p id="slotNote1">異なる1か所のQRを読むと入力できます。</p><label for="rank1">かっぱを選ぶ（30体から）</label><select id="rank1"><option value="">一覧を読み込み中…</option></select><label for="reason1">好きなところ・魅力</label><textarea id="reason1" maxlength="1000" placeholder="好きなところを書いてください"></textarea><button id="saveChoice1" type="button" class="bigBtn green">1体目を保存</button></fieldset><fieldset id="slot2" disabled><legend>推し2体目</legend><p id="slotNote2">異なる2か所のQRを読むと入力できます。</p><label for="rank2">かっぱを選ぶ（30体から）</label><select id="rank2"><option value="">一覧を読み込み中…</option></select><label for="reason2">好きなところ・魅力</label><textarea id="reason2" maxlength="1000" placeholder="好きなところを書いてください"></textarea><button id="saveChoice2" type="button" class="bigBtn green">2体目を保存</button></fieldset><fieldset id="slot3" disabled><legend>推し3体目</legend><p id="slotNote3">異なる3か所のQRを読むと入力できます。</p><label for="rank3">かっぱを選ぶ（30体から）</label><select id="rank3"><option value="">一覧を読み込み中…</option></select><label for="reason3">好きなところ・魅力</label><textarea id="reason3" maxlength="1000" placeholder="好きなところを書いてください"></textarea><button id="saveChoice3" type="button" class="bigBtn green">3体目を保存</button></fieldset><section class="card" aria-labelledby="savedChoicesTitle"><h2 id="savedChoicesTitle">保存した推しの確認</h2><p>応募には、ここに表示される保存済みの内容を使います。変更したときは、もう一度「保存」を押してください。</p><div id="savedChoicesReview">読み取り記録を確認中…</div></section><p id="entryAvailability" class="reasonNote" role="status" aria-live="polite">応募条件を確認中…</p><form id="entryForm"><fieldset id="entryFields" disabled><legend>プレゼントに応募</legend><p>異なる3か所のQRと、推し3体の理由を保存すると応募できます。応募期間：10月15日〜11月15日。</p><label for="entryName">氏名</label><input id="entryName" autocomplete="name" maxlength="100" required><label for="entryEmail">当選連絡用メールアドレス</label><input id="entryEmail" type="email" autocomplete="email" maxlength="254" required><label class="consent"><input id="pickupConsent" type="checkbox" required>当選した場合、11月29日（日）の市民まつり・いろは親水公園カッピーステージで賞品を受け取れます。</label><p>応募は1人1回です。</p><button type="submit" class="bigBtn primary">この内容で応募する</button></fieldset></form><button type="button" class="bigBtn secondary" onclick="makePostText()">推しの紹介文を作る</button></div><div id="saveStatus" class="saveStatus" role="status" aria-live="polite"></div>
+<div id="eventStatus" class="reasonNote" role="status" aria-live="polite">読み取り記録を確認中…</div><button id="refreshProgress" type="button" class="bigBtn secondary">記録を再確認</button><div class="formGrid"><fieldset id="slot1" disabled><legend>推し1体目</legend><p id="slotNote1">異なる1か所のQRを読むと入力できます。</p><label for="rank1">かっぱを選ぶ（30体から）</label><select id="rank1"><option value="">一覧を読み込み中…</option></select><label for="reason1">好きなところ・魅力</label><textarea id="reason1" maxlength="1000" placeholder="好きなところを書いてください"></textarea><button id="saveChoice1" type="button" class="bigBtn green">1体目を保存</button></fieldset><fieldset id="slot2" disabled><legend>推し2体目</legend><p id="slotNote2">異なる2か所のQRを読むと入力できます。</p><label for="rank2">かっぱを選ぶ（30体から）</label><select id="rank2"><option value="">一覧を読み込み中…</option></select><label for="reason2">好きなところ・魅力</label><textarea id="reason2" maxlength="1000" placeholder="好きなところを書いてください"></textarea><button id="saveChoice2" type="button" class="bigBtn green">2体目を保存</button></fieldset><fieldset id="slot3" disabled><legend>推し3体目</legend><p id="slotNote3">異なる3か所のQRを読むと入力できます。</p><label for="rank3">かっぱを選ぶ（30体から）</label><select id="rank3"><option value="">一覧を読み込み中…</option></select><label for="reason3">好きなところ・魅力</label><textarea id="reason3" maxlength="1000" placeholder="好きなところを書いてください"></textarea><button id="saveChoice3" type="button" class="bigBtn green">3体目を保存</button></fieldset><section class="card" aria-labelledby="savedChoicesTitle"><h2 id="savedChoicesTitle">保存した推しの確認</h2><p>応募には、ここに表示される保存済みの内容を使います。変更したときは、もう一度「保存」を押してください。</p><div id="savedChoicesReview">読み取り記録を確認中…</div></section><p id="entryAvailability" class="reasonNote" role="status" aria-live="polite">応募条件を確認中…</p><form id="entryForm"><fieldset id="entryFields" disabled><legend>プレゼントに応募</legend><p>異なる3か所のQRと、推し3体の理由を保存すると応募できます。応募期間：10月中旬〜11月15日。</p><section aria-labelledby="shopSurveyTitle">
+<h3 id="shopSurveyTitle">Q.めぐってみて、おススメのお店はありましたか？</h3>
+<label for="shopSurveyAnswer">こたえ</label>
+<select id="shopSurveyAnswer" required>
+<option value="">選んでください</option>
+<option value="A">A. ある</option>
+<option value="B">B. 特になかった</option>
+<option value="C">C. まだお店へは寄っていないのでわからない</option>
+</select>
+<div id="shopSurveyNameArea" hidden><label for="shopSurveyName">おススメのお店の店名</label>
+<select id="shopSurveyName" disabled><option value="">店舗一覧を読み込み中…</option></select><p id="shopSurveyLoadStatus" role="status"></p><button id="retrySurveyShops" type="button" class="miniBtn green" hidden>店舗一覧を再読み込み</button></div>
+</section><label for="entryName">氏名</label><input id="entryName" autocomplete="name" maxlength="100" required><label for="entryEmail">当選連絡用メールアドレス</label><input id="entryEmail" type="email" autocomplete="email" maxlength="254" required><label class="consent"><input id="pickupConsent" type="checkbox" required>当選した場合、11月29日（日）の市民まつり・いろは親水公園カッピーステージで賞品を受け取れます。</label><p>応募は1人1回です。</p><button type="submit" class="bigBtn primary">この内容で応募する</button></fieldset></form><button type="button" class="bigBtn secondary" onclick="makePostText()">推しの紹介文を作る</button></div><div id="saveStatus" class="saveStatus" role="status" aria-live="polite"></div>
   <div id="voteResultBox" class="voteResult">
    <h3>できあがった投稿文</h3>
    <pre id="voteText"></pre>
@@ -1343,7 +1354,7 @@ function renderSavedChoices(){
 function applicationNotice(state,today,working,isReady){
  if(state.submitted)return '応募を受け付けました。受付番号：'+state.receipt;
  if(working)return '記録を確認・保存しています。しばらくお待ちください。';
- if(today<'2026-10-15')return '応募受付は2026年10月15日からです。今は応募ボタンを押せません。';
+ if(today<'2026-10-15')return '応募受付は2026年10月中旬からです。今は応募ボタンを押せません。';
  if(today>'2026-11-15')return '応募受付は2026年11月15日で終了しました。';
  if(!isReady)return '参加記録を確認中です。';
  if(state.visitedCount<3)return '応募するには、異なるQRをあと'+(3-state.visitedCount)+'か所で読み取ってください。';
@@ -1357,7 +1368,45 @@ async function refresh(){if(busy)return;if(!auth||!ready){await init();return;}b
 // 保存の完了は、送信後にサーバーの記録を読み直して確認します。
 async function postAndConfirm(fields,confirmed){const frame=document.createElement('iframe');frame.name='skz30post'+Date.now();frame.hidden=true;const form=document.createElement('form');form.method='POST';form.action=GAS_URL;form.target=frame.name;form.hidden=true;for(const [name,value] of Object.entries({...auth,...fields})){const input=document.createElement('input');input.type='hidden';input.name=name;input.value=String(value);form.append(input);}let responseError=null;const receive=e=>{if(!/^https:\/\/(?:script\.google\.com|[a-z0-9-]+\.googleusercontent\.com)$/.test(e.origin))return;if(e.data&&e.data.source==='skz30-event'&&e.data.result&&e.data.result.ok===false)responseError=Error(e.data.result.error);};window.addEventListener('message',receive);document.body.append(frame,form);form.submit();try{const deadline=Date.now()+65000;while(Date.now()<deadline){await new Promise(r=>setTimeout(r,2500));if(responseError)throw responseError;try{const state=await api('getProgress',auth);if(confirmed(state)){progress=state;return;}}catch(e){if(responseError)throw responseError;}}throw Error('保存完了をまだ確認できません。「記録を再確認」で確認してください。');}finally{window.removeEventListener('message',receive);form.remove();frame.remove();}}
 async function savePick(n){if(busy)return;const id=$('rank'+n).value,reason=$('reason'+n).value.trim();if(!id||!reason){status('かっぱと推しの理由を入力してください。',true);return;}if([1,2,3].some(m=>m!==n&&$('rank'+m).value===id)){status('推しは異なる3体を選んでください。',true);return;}busy=true;renderProgress();status(n+'体目を保存しています…');try{remember(n);await postAndConfirm({mode:'saveChoice',slot:n,kappaId:id,reason},state=>state.choices.some(c=>c.slot===n&&c.kappaId===id&&(c.reason===reason||c.reason==="'"+reason)));status(n+'体目の保存を確認しました。');}catch(e){status(e.message,true);}finally{busy=false;renderProgress();}}
-$('entryForm').addEventListener('submit',async e=>{e.preventDefault();if(busy||!progress?.canApply||!$('entryForm').reportValidity())return;if(!confirm('推し3体と理由を確認しましたか？応募後は変更できません。'))return;busy=true;renderProgress();status('応募の受付を確認しています…');try{await postAndConfirm({mode:'saveVote',name:$('entryName').value.trim(),email:$('entryEmail').value.trim(),pickupConsent:$('pickupConsent').checked?'yes':''},state=>state.submitted);status('応募を受け付けました。受付番号：'+progress.receipt);}catch(e){status(e.message,true);}finally{busy=false;renderProgress();}});
+let surveyShopsReady=false;
+let surveyShopsLoading=false;
+function updateShopSurvey(){
+ const hasShop=$('shopSurveyAnswer').value==='A';
+ $('shopSurveyNameArea').hidden=!hasShop;
+ $('shopSurveyName').disabled=!hasShop||!surveyShopsReady;
+ $('shopSurveyName').required=hasShop;
+ $('shopSurveyAnswer').setCustomValidity(hasShop&&!surveyShopsReady?'店舗一覧の読み込みが必要です。再読み込みしてください。':'');
+ if(hasShop&&!surveyShopsReady)loadSurveyShops();
+}
+async function loadSurveyShops(){
+ if(surveyShopsLoading||surveyShopsReady)return;
+ surveyShopsLoading=true;
+ $('retrySurveyShops').hidden=true;
+ $('shopSurveyLoadStatus').textContent='店舗一覧を読み込んでいます…';
+ try{
+  const data=await api('getShops');
+  if(!Array.isArray(data.records))throw Error('一覧がありません。');
+  const rows=orderedContent(data.records).filter(row=>String(row.ID??'').trim()&&contentText(row,'店舗名'));
+  const ids=rows.map(row=>String(row.ID).trim());
+  if(!rows.length||new Set(ids).size!==ids.length)throw Error('店舗の登録情報を確認できません。');
+  const select=$('shopSurveyName');select.replaceChildren();
+  const empty=document.createElement('option');empty.value='';empty.textContent='お店を選んでください';select.append(empty);
+  rows.forEach(row=>{const option=document.createElement('option');option.value=String(row.ID).trim();option.textContent=contentText(row,'店舗名');select.append(option);});
+  surveyShopsReady=true;$('shopSurveyLoadStatus').textContent='';
+ }catch(error){
+  $('shopSurveyLoadStatus').textContent='店舗一覧を読み込めませんでした。再読み込みを押してください。';
+  $('retrySurveyShops').hidden=false;
+ }finally{
+  surveyShopsLoading=false;
+  const hasShop=$('shopSurveyAnswer').value==='A';
+  $('shopSurveyName').disabled=!hasShop||!surveyShopsReady;
+  $('shopSurveyAnswer').setCustomValidity(hasShop&&!surveyShopsReady?'店舗一覧の読み込みが必要です。再読み込みしてください。':'');
+ }
+}
+$('shopSurveyAnswer').addEventListener('change',updateShopSurvey);
+$('retrySurveyShops').addEventListener('click',loadSurveyShops);
+updateShopSurvey();
+$('entryForm').addEventListener('submit',async e=>{e.preventDefault();if(busy||!progress?.canApply||!$('entryForm').reportValidity())return;if(progress.shopSurveyVersion!==1){status('応募画面を更新しています。少し待って「記録を再確認」を押してください。',true);return;}if(!confirm('推し3体と理由を確認しましたか？応募後は変更できません。'))return;busy=true;renderProgress();status('応募の受付を確認しています…');try{await postAndConfirm({mode:'saveVote',shopSurveyAnswer:$('shopSurveyAnswer').value,shopSurveyShopId:$('shopSurveyAnswer').value==='A'?$('shopSurveyName').value:'',name:$('entryName').value.trim(),email:$('entryEmail').value.trim(),pickupConsent:$('pickupConsent').checked?'yes':''},state=>state.submitted);status('応募を受け付けました。受付番号：'+progress.receipt);}catch(e){status(e.message,true);}finally{busy=false;renderProgress();}});
 $('refreshProgress').addEventListener('click',refresh);
 for(let n=1;n<=3;n++){$('saveChoice'+n).addEventListener('click',()=>savePick(n));for(const prefix of ['rank','reason'])$(prefix+n).addEventListener('input',()=>{try{remember(n);}catch{status('入力の一時保存ができません。',true);}});}
 function makePostText(){const ids=[1,2,3].map(n=>$('rank'+n).value),reasons=[1,2,3].map(n=>$('reason'+n).value.trim());if(ids.some(id=>!id)||new Set(ids).size!==3||reasons.some(r=>!r)){status('異なる推し3体と、それぞれの理由を入力してください。',true);return false;}const lines=['SKZ30 カッパ像めぐり2026'];ids.forEach((id,i)=>lines.push(KAPPAS.find(k=>k.id===id).name+'：'+reasons[i]));lines.push(APP_URL);$('voteText').textContent=lines.join('\n\n');$('voteResultBox').classList.add('show');return true;}
