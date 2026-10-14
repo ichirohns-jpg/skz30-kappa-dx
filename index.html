@@ -1420,6 +1420,7 @@ init();
 // 公開案内は、QR記録・応募の処理とは独立して読み込みます。
 // 商品写真は店舗IDで対応します。既存の画像URLを登録した場合はそちらを表示します。
 const SHOP_PHOTOS={} ;
+const publicContentState={info:"idle",shops:"idle"};
 function contentText(row,key){return String(row[key]??'').trim();}
 function contentURL(value){const text=String(value??'').trim();if(!text)return '';if(text.startsWith('#'))return ['#top','#kappas','#info','#vote','#shops'].includes(text)?text:'';return safeURL(text);}
 function addContentText(card,tag,value){if(!value)return;const node=document.createElement(tag);node.textContent=value;node.style.whiteSpace='pre-wrap';card.append(node);}
