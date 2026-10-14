@@ -24,13 +24,20 @@
 <meta property="og:title" content="SKZ30 カッパ像めぐりDX">
 <meta property="og:description" content="めぐって、めぐって、あなたの推し3体を！志木のカッパ像をめぐろう。">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
 <meta property="og:url" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/">
 <meta property="og:image" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/images/skz30-top.jpg">
+<meta property="og:image:secure_url" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/images/skz30-top.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="SKZ30 カッパ像めぐりDX：志木のまち歩きとカッパ像">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="SKZ30 カッパ像めぐりDX">
 <meta name="twitter:description" content="志木市内30体のカッパ像をめぐって、推し3体を選ぼう！">
 <meta name="twitter:image" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/images/skz30-top.jpg">
+<meta name="twitter:image:alt" content="SKZ30 カッパ像めぐりDX：志木のまち歩きとカッパ像">
 
 <style>
 .header{flex-wrap:wrap}.wrap,.card,.page,.kappaCard,.field{min-width:0;max-width:100%}h1,h2,h3,p,span,a{overflow-wrap:anywhere}button:disabled{opacity:.65;cursor:default}.bottomNav{padding-bottom:env(safe-area-inset-bottom)}.wrap{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
@@ -1148,7 +1155,7 @@ html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-b
     <div class="flowIcon">📣</div>
     <div>
      <b>共有対応</b>
-     <small>SNS投稿文を作成</small>
+     <small>QRなしで1体から紹介</small>
     </div>
    </div>
   </div>
@@ -1176,7 +1183,7 @@ html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-b
  <div class="sectionHero"><h2>イベント情報</h2><p>参加方法と最新のお知らせをご確認ください。</p></div>
  <section class="card"><h2>参加方法</h2><div class="noticeList">
  <div class="notice"><b>開催期間</b><small>2026年10月中旬〜11月15日</small></div>
- <div class="notice"><b>異なる3か所のQRを読み取る</b><small>現地のQRを1か所読むごとに、推しを1体ずつ入力できます。同じQRを繰り返し読んでも地点数は増えません。</small></div>
+ <div class="notice"><b>異なる3か所のQRを読み取る</b><small>現地のQRを1か所読むごとに、応募用の推しを1体ずつ保存できます。SNS用の紹介文はQRなしでも作れます。同じQRを繰り返し読んでも地点数は増えません。</small></div>
  <div class="notice"><b>30体から推し3体を選ぶ</b><small>読み取ったQRの場所に関係なく、30体すべてから選べます。QRを貼らない9体も投票対象です。異なる3体を選び、それぞれの魅力を書いて保存してください。</small></div>
  <div class="notice"><b>プレゼントに応募</b><small>3か所のQRと推し3体の理由を保存し、氏名・メールアドレス・賞品受取への同意を入力して応募します。応募は1人1回です。</small></div>
  <div class="notice"><b>賞品のお受け取り</b><small>当選者にはメールでご連絡します。11月29日（日）の市民まつりステージで賞品を受け取れる方が対象です。</small></div>
@@ -1188,9 +1195,9 @@ html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-b
 <section id="vote" class="page">
 
  <div class="sectionHero">
-  <h2>推し3体を選ぶ</h2>
+  <h2>推しを選ぶ・SNSで紹介</h2>
   <p>
-   巡って楽しかったカッパ像、名前が好きなカッパ像、写真を撮りたくなったカッパ像を選んで投票できます。
+   QRを読む前でも、30体から好きなかっぱを選んで紹介できます。1体から文章を作れます。プレゼントへの応募には、異なる3か所のQRと推し3体の保存が必要です。
   </p>
  </div>
 
@@ -1205,7 +1212,7 @@ html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-b
    </a>
   </div>
 
-<div id="eventStatus" class="reasonNote" role="status" aria-live="polite">読み取り記録を確認中…</div><button id="refreshProgress" type="button" class="bigBtn secondary">記録を再確認</button><div class="formGrid"><fieldset id="slot1" disabled><legend>推し1体目</legend><p id="slotNote1">異なる1か所のQRを読むと入力できます。</p><label for="rank1">かっぱを選ぶ（30体から）</label><select id="rank1"><option value="">一覧を読み込み中…</option></select><label for="reason1">好きなところ・魅力</label><textarea id="reason1" maxlength="1000" placeholder="好きなところを書いてください"></textarea><button id="saveChoice1" type="button" class="bigBtn green">1体目を保存</button></fieldset><fieldset id="slot2" disabled><legend>推し2体目</legend><p id="slotNote2">異なる2か所のQRを読むと入力できます。</p><label for="rank2">かっぱを選ぶ（30体から）</label><select id="rank2"><option value="">一覧を読み込み中…</option></select><label for="reason2">好きなところ・魅力</label><textarea id="reason2" maxlength="1000" placeholder="好きなところを書いてください"></textarea><button id="saveChoice2" type="button" class="bigBtn green">2体目を保存</button></fieldset><fieldset id="slot3" disabled><legend>推し3体目</legend><p id="slotNote3">異なる3か所のQRを読むと入力できます。</p><label for="rank3">かっぱを選ぶ（30体から）</label><select id="rank3"><option value="">一覧を読み込み中…</option></select><label for="reason3">好きなところ・魅力</label><textarea id="reason3" maxlength="1000" placeholder="好きなところを書いてください"></textarea><button id="saveChoice3" type="button" class="bigBtn green">3体目を保存</button></fieldset><section class="card" aria-labelledby="savedChoicesTitle"><h2 id="savedChoicesTitle">保存した推しの確認</h2><p>応募には、ここに表示される保存済みの内容を使います。変更したときは、もう一度「保存」を押してください。</p><div id="savedChoicesReview">読み取り記録を確認中…</div></section><p id="entryAvailability" class="reasonNote" role="status" aria-live="polite">応募条件を確認中…</p><form id="entryForm"><fieldset id="entryFields" disabled><legend>プレゼントに応募</legend><p>異なる3か所のQRと、推し3体の理由を保存すると応募できます。応募期間：10月中旬〜11月15日。</p><section aria-labelledby="shopSurveyTitle">
+<div id="eventStatus" class="reasonNote" role="status" aria-live="polite">読み取り記録を確認中…</div><button id="refreshProgress" type="button" class="bigBtn secondary">記録を再確認</button><div class="formGrid"><fieldset id="slot1" disabled><legend>推し1体目</legend><p id="slotNote1">SNS用の紹介はQRなしで使えます。応募用の保存には異なる1か所のQRが必要です。</p><label for="rank1">かっぱを選ぶ（30体から）</label><select id="rank1"><option value="">一覧を読み込み中…</option></select><label for="reason1">好きなところ・魅力</label><textarea id="reason1" maxlength="1000" placeholder="好きなところを書いてください"></textarea><button id="saveChoice1" type="button" class="bigBtn green">1体目を応募用に保存</button></fieldset><fieldset id="slot2" disabled><legend>推し2体目</legend><p id="slotNote2">SNS用の紹介はQRなしで使えます。応募用の保存には異なる2か所のQRが必要です。</p><label for="rank2">かっぱを選ぶ（30体から）</label><select id="rank2"><option value="">一覧を読み込み中…</option></select><label for="reason2">好きなところ・魅力</label><textarea id="reason2" maxlength="1000" placeholder="好きなところを書いてください"></textarea><button id="saveChoice2" type="button" class="bigBtn green">2体目を応募用に保存</button></fieldset><fieldset id="slot3" disabled><legend>推し3体目</legend><p id="slotNote3">SNS用の紹介はQRなしで使えます。応募用の保存には異なる3か所のQRが必要です。</p><label for="rank3">かっぱを選ぶ（30体から）</label><select id="rank3"><option value="">一覧を読み込み中…</option></select><label for="reason3">好きなところ・魅力</label><textarea id="reason3" maxlength="1000" placeholder="好きなところを書いてください"></textarea><button id="saveChoice3" type="button" class="bigBtn green">3体目を応募用に保存</button></fieldset><section class="card" aria-labelledby="savedChoicesTitle"><h2 id="savedChoicesTitle">保存した推しの確認</h2><p>応募には、ここに表示される保存済みの内容を使います。変更したときは、もう一度「保存」を押してください。</p><div id="savedChoicesReview">読み取り記録を確認中…</div></section><p id="entryAvailability" class="reasonNote" role="status" aria-live="polite">応募条件を確認中…</p><form id="entryForm"><fieldset id="entryFields" disabled><legend>プレゼントに応募</legend><p>異なる3か所のQRと、推し3体の理由を保存すると応募できます。応募期間：10月中旬〜11月15日。</p><section aria-labelledby="shopSurveyTitle">
 <h3 id="shopSurveyTitle">Q.めぐってみて、おススメのお店はありましたか？</h3>
 <label for="shopSurveyAnswer">こたえ</label>
 <select id="shopSurveyAnswer" required>
@@ -1216,9 +1223,9 @@ html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-b
 </select>
 <div id="shopSurveyNameArea" hidden><label for="shopSurveyName">おススメのお店の店名</label>
 <select id="shopSurveyName" disabled><option value="">店舗一覧を読み込み中…</option></select><p id="shopSurveyLoadStatus" role="status"></p><button id="retrySurveyShops" type="button" class="miniBtn green" hidden>店舗一覧を再読み込み</button></div>
-</section><label for="entryName">氏名</label><input id="entryName" autocomplete="name" maxlength="100" required><label for="entryEmail">当選連絡用メールアドレス</label><input id="entryEmail" type="email" autocomplete="email" maxlength="254" required><label class="consent"><input id="pickupConsent" type="checkbox" required>当選した場合、11月29日（日）の市民まつり・いろは親水公園カッピーステージで賞品を受け取れます。</label><p>応募は1人1回です。</p><button type="submit" class="bigBtn primary">この内容で応募する</button></fieldset></form><button type="button" class="bigBtn secondary" onclick="makePostText()">推しの紹介文を作る</button></div><div id="saveStatus" class="saveStatus" role="status" aria-live="polite"></div>
+</section><label for="entryName">氏名</label><input id="entryName" autocomplete="name" maxlength="100" required><label for="entryEmail">当選連絡用メールアドレス</label><input id="entryEmail" type="email" autocomplete="email" maxlength="254" required><label class="consent"><input id="pickupConsent" type="checkbox" required>当選した場合、11月29日（日）の市民まつり・いろは親水公園カッピーステージで賞品を受け取れます。</label><p>応募は1人1回です。</p><button type="submit" class="bigBtn primary">この内容で応募する</button></fieldset></form><button type="button" class="bigBtn secondary" onclick="makePostText()">SNS用の紹介文を作る（1体から）</button></div><div id="saveStatus" class="saveStatus" role="status" aria-live="polite"></div>
   <div id="voteResultBox" class="voteResult">
-   <h3>できあがった投稿文</h3>
+   <h3>できあがった投稿文</h3><p>SNSへの投稿では応募になりません。紹介文の作成・コピー・共有だけでは、応募用スプレッドシートに記録されません。Facebookでは下の文章をコピーして投稿欄に貼り付けてください。</p>
    <pre id="voteText"></pre>
 
    <div class="shareArea">
@@ -1357,11 +1364,11 @@ function applicationNotice(state,today,working,isReady){
  if(!state.canApply)return '応募条件を確認できません。「記録を再確認」を押してください。';
  return '応募できます。氏名・メールを入力し、11月29日の賞品受け取りに同意して送信してください。';
 }
-function renderProgress(){if(!progress)return;renderSavedChoices();const count=progress.visitedCount;for(const id of ['homeVisitedCount','visitedCount'])$(id).textContent=count+'か所／参加資格は3か所';$('eventStatus').textContent=progress.submitted?'応募済みです。受付番号：'+progress.receipt:count>=3?(progress.canApply?'推し3体の理由を保存済みです。下の応募案内をご確認ください。':'3か所を確認しました。推し3体の理由を保存して応募してください。'):'確認済み '+count+'か所。現地の異なるQRを読むと、推しを1体ずつ入力できます。';for(let n=1;n<=3;n++){const choice=progress.choices.find(c=>c.slot===n);$('slot'+n).disabled=busy||!ready||progress.submitted||progress.unlockedSlots<n;$('slotNote'+n).textContent=choice?'保存済み：'+choice.name:progress.unlockedSlots>=n?'30体の中から選び、理由を書いて保存してください。':'異なる'+n+'か所のQRを読むと入力できます。';}const today=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());$('entryAvailability').textContent=applicationNotice(progress,today,busy,ready);$('entryFields').disabled=busy||!ready||!progress.canApply||progress.submitted||today<'2026-10-11'||today>'2026-11-15';$('refreshProgress').disabled=busy;$('refreshVisitProgress').disabled=busy;}
+function renderProgress(){if(!progress)return;renderSavedChoices();const count=progress.visitedCount;for(const id of ['homeVisitedCount','visitedCount'])$(id).textContent=count+'か所／参加資格は3か所';$('eventStatus').textContent=progress.submitted?'応募済みです。受付番号：'+progress.receipt:count>=3?(progress.canApply?'推し3体の理由を保存済みです。下の応募案内をご確認ください。':'3か所を確認しました。推し3体の理由を保存して応募してください。'):'確認済み '+count+'か所。SNS用の紹介文はQRなしで作れます。応募用の保存は、異なるQRを読むごとに1体ずつ使えます。';for(let n=1;n<=3;n++){const choice=progress.choices.find(c=>c.slot===n);$('slot'+n).disabled=busy||KAPPAS.length!==30;$('saveChoice'+n).disabled=busy||!ready||progress.submitted||progress.unlockedSlots<n;$('slotNote'+n).textContent=progress.submitted?'応募済みの内容は変更できません。SNS用の文章は作れます。':choice?'応募用に保存済み：'+choice.name+'。編集したら、応募用にもう一度保存してください。':progress.unlockedSlots>=n?'SNSで紹介できます。応募する場合は、選んだかっぱと理由を保存してください。':'SNSで紹介できます。応募用の保存には、異なる'+n+'か所のQRが必要です。';}const today=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());$('entryAvailability').textContent=applicationNotice(progress,today,busy,ready);$('entryFields').disabled=busy||!ready||!progress.canApply||progress.submitted||today<'2026-10-11'||today>'2026-11-15';$('refreshProgress').disabled=busy;$('refreshVisitProgress').disabled=busy;}
 async function refresh(){if(busy)return;if(!auth||!ready){await init();return;}busy=true;renderProgress();try{const qr=new URL(location.href).searchParams.get('qr');progress=await api(qr?'recordVisit':'getProgress',{...auth,...(qr?{qr}:{})});if(qr){const url=new URL(location.href);url.searchParams.delete('qr');url.hash='vote';history.replaceState(null,'',url);showPage();}renderProgress();status('読み取り・保存の記録を確認しました。');}catch(e){status(e.message,true);}finally{busy=false;renderProgress();}}
 // 保存の完了は、送信後にサーバーの記録を読み直して確認します。
 async function postAndConfirm(fields,confirmed){const frame=document.createElement('iframe');frame.name='skz30post'+Date.now();frame.hidden=true;const form=document.createElement('form');form.method='POST';form.action=GAS_URL;form.target=frame.name;form.hidden=true;for(const [name,value] of Object.entries({...auth,...fields})){const input=document.createElement('input');input.type='hidden';input.name=name;input.value=String(value);form.append(input);}let responseError=null;const receive=e=>{if(!/^https:\/\/(?:script\.google\.com|[a-z0-9-]+\.googleusercontent\.com)$/.test(e.origin))return;if(e.data&&e.data.source==='skz30-event'&&e.data.result&&e.data.result.ok===false)responseError=Error(e.data.result.error);};window.addEventListener('message',receive);document.body.append(frame,form);form.submit();try{const deadline=Date.now()+65000;while(Date.now()<deadline){await new Promise(r=>setTimeout(r,2500));if(responseError)throw responseError;try{const state=await api('getProgress',auth);if(confirmed(state)){progress=state;return;}}catch(e){if(responseError)throw responseError;}}throw Error('保存完了をまだ確認できません。「記録を再確認」で確認してください。');}finally{window.removeEventListener('message',receive);form.remove();frame.remove();}}
-async function savePick(n){if(busy)return;const id=$('rank'+n).value,reason=$('reason'+n).value.trim();if(!id||!reason){status('かっぱと推しの理由を入力してください。',true);return;}if([1,2,3].some(m=>m!==n&&$('rank'+m).value===id)){status('推しは異なる3体を選んでください。',true);return;}busy=true;renderProgress();status(n+'体目を保存しています…');try{remember(n);await postAndConfirm({mode:'saveChoice',slot:n,kappaId:id,reason},state=>state.choices.some(c=>c.slot===n&&c.kappaId===id&&(c.reason===reason||c.reason==="'"+reason)));status(n+'体目の保存を確認しました。');}catch(e){status(e.message,true);}finally{busy=false;renderProgress();}}
+async function savePick(n){if(busy)return;if(!ready||progress.submitted||progress.unlockedSlots<n){status(progress.submitted?'応募済みの内容は変更できません。':'応募用の保存には、異なる'+n+'か所のQRを読んでください。',true);return;}const id=$('rank'+n).value,reason=$('reason'+n).value.trim();if(!id||!reason){status('かっぱと推しの理由を入力してください。',true);return;}if([1,2,3].some(m=>m!==n&&$('rank'+m).value===id)){status('推しは異なる3体を選んでください。',true);return;}busy=true;renderProgress();status(n+'体目を保存しています…');try{remember(n);await postAndConfirm({mode:'saveChoice',slot:n,kappaId:id,reason},state=>state.choices.some(c=>c.slot===n&&c.kappaId===id&&(c.reason===reason||c.reason==="'"+reason)));status(n+'体目の保存を確認しました。');}catch(e){status(e.message,true);}finally{busy=false;renderProgress();}}
 let surveyShopsReady=false;
 let surveyShopsLoading=false;
 function updateShopSurvey(){
@@ -1404,12 +1411,21 @@ $('entryForm').addEventListener('submit',async e=>{e.preventDefault();if(busy||!
 $('refreshProgress').addEventListener('click',refresh);
 $('refreshVisitProgress').addEventListener('click',refresh);
 for(let n=1;n<=3;n++){$('saveChoice'+n).addEventListener('click',()=>savePick(n));for(const prefix of ['rank','reason'])$(prefix+n).addEventListener('input',()=>{try{remember(n);}catch{status('入力の一時保存ができません。',true);}});}
-function makePostText(){const ids=[1,2,3].map(n=>$('rank'+n).value),reasons=[1,2,3].map(n=>$('reason'+n).value.trim());if(ids.some(id=>!id)||new Set(ids).size!==3||reasons.some(r=>!r)){status('異なる推し3体と、それぞれの理由を入力してください。',true);return false;}const lines=['SKZ30 カッパ像めぐり2026'];ids.forEach((id,i)=>lines.push(KAPPAS.find(k=>k.id===id).name+'：'+reasons[i]));lines.push(APP_URL);$('voteText').textContent=lines.join('\n\n');$('voteResultBox').classList.add('show');return true;}
+function makePostText(){
+ const picks=[1,2,3].map(n=>({id:$('rank'+n).value,reason:$('reason'+n).value.trim()})).filter(p=>p.id||p.reason);
+ if(!picks.length){status('好きなかっぱを1体以上選び、紹介文を書いてください。',true);return false;}
+ if(picks.some(p=>!p.id||!p.reason)){status('紹介するかっぱと、好きなところを入力してください。',true);return false;}
+ if(new Set(picks.map(p=>p.id)).size!==picks.length){status('紹介するかっぱは、それぞれ異なる像を選んでください。',true);return false;}
+ const selected=picks.map(p=>({...p,kappa:KAPPAS.find(k=>k.id===p.id)}));
+ if(selected.some(p=>!p.kappa)){status('かっぱの一覧を読み込み直してください。',true);return false;}
+ const lines=['SKZ30 カッパ像めぐり2026'];selected.forEach(p=>lines.push(p.kappa.name+'：'+p.reason));lines.push('#SKZ30 #志木市 #かっぱ像めぐり',APP_URL);
+ $('voteText').textContent=lines.join('\n\n');$('voteResultBox').classList.add('show');return true;
+}
 async function copyVoteText(){if(!makePostText())return;try{await navigator.clipboard.writeText($('voteText').textContent);status('コピーしました。');}catch{status('本文を長押ししてコピーしてください。');}}
 function shareLine(){if(makePostText())location.href='https://line.me/R/share?text='+encodeURIComponent($('voteText').textContent);}
 function shareX(){if(makePostText())window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent($('voteText').textContent),'_blank','noopener');}
 function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(APP_URL),'_blank','noopener');}
-async function init(){try{const data=await api('getKappas');KAPPAS=data.records.map(k=>({id:String(k.ID),name:k['カッパ像名']||'名称確認中',place:k['設置場所'],description:k['紹介文'],image:k['画像URL']}));if(KAPPAS.length!==30||new Set(KAPPAS.map(k=>k.id)).size!==30)throw Error('30体の一覧を確認できません。主催者へお問い合わせください。');renderKappas();try{auth=identity();}catch(e){const message='このブラウザーでは参加記録を利用できません。カッパ像やお店の情報は閲覧できます。参加する場合は、ブラウザーの保存設定をご確認ください。';$('eventStatus').textContent=message;for(const id of ['homeVisitedCount','visitedCount'])$(id).textContent='参加記録を確認できません';status(message,true);return;}ready=true;progress=await api('getProgress',auth);for(let n=1;n<=3;n++){const saved=progress.choices.find(c=>c.slot===n);const draft=JSON.parse(localStorage.getItem(draftKey(n))||'null');if(progress.submitted&&saved){$('rank'+n).value=saved.kappaId;$('reason'+n).value=saved.reason;}else if(draft){$('rank'+n).value=draft.id;$('reason'+n).value=draft.reason;}else if(saved){$('rank'+n).value=saved.kappaId;$('reason'+n).value=saved.reason;}}renderProgress();const qr=new URL(location.href).searchParams.get('qr');if(qr){busy=true;renderProgress();status('QRの記録を確認しています…');try{progress=await api('recordVisit',{...auth,qr});status(progress.alreadyVisited?'この地点は確認済みです。':progress.pointName+'のQRを記録しました。');const url=new URL(location.href);url.searchParams.delete('qr');url.hash='vote';history.replaceState(null,'',url);showPage();}finally{busy=false;renderProgress();}}}catch(e){$('eventStatus').textContent=e.message;status(e.message,true);busy=false;renderProgress();}}
+async function init(){try{const data=await api('getKappas');KAPPAS=data.records.map(k=>({id:String(k.ID),name:k['カッパ像名']||'名称確認中',place:k['設置場所'],description:k['紹介文'],image:k['画像URL']}));if(KAPPAS.length!==30||new Set(KAPPAS.map(k=>k.id)).size!==30)throw Error('30体の一覧を確認できません。主催者へお問い合わせください。');renderKappas();for(let n=1;n<=3;n++){$('slot'+n).disabled=false;$('saveChoice'+n).disabled=true;}try{auth=identity();}catch(e){const message='このブラウザーでは参加記録を利用できません。カッパ像やお店の情報は閲覧できます。参加する場合は、ブラウザーの保存設定をご確認ください。';$('eventStatus').textContent=message;for(const id of ['homeVisitedCount','visitedCount'])$(id).textContent='参加記録を確認できません';status(message,true);return;}ready=true;progress=await api('getProgress',auth);for(let n=1;n<=3;n++){const saved=progress.choices.find(c=>c.slot===n);const draft=JSON.parse(localStorage.getItem(draftKey(n))||'null');if(progress.submitted&&saved){$('rank'+n).value=saved.kappaId;$('reason'+n).value=saved.reason;}else if(draft){$('rank'+n).value=draft.id;$('reason'+n).value=draft.reason;}else if(saved){$('rank'+n).value=saved.kappaId;$('reason'+n).value=saved.reason;}}renderProgress();const qr=new URL(location.href).searchParams.get('qr');if(qr){busy=true;renderProgress();status('QRの記録を確認しています…');try{progress=await api('recordVisit',{...auth,qr});status(progress.alreadyVisited?'この地点は確認済みです。':progress.pointName+'のQRを記録しました。');const url=new URL(location.href);url.searchParams.delete('qr');url.hash='vote';history.replaceState(null,'',url);showPage();}finally{busy=false;renderProgress();}}}catch(e){$('eventStatus').textContent=e.message;status(e.message,true);busy=false;renderProgress();}}
 init();
 
 // 公開案内は、QR記録・応募の処理とは独立して読み込みます。
@@ -1421,46 +1437,4 @@ function contentURL(value){const text=String(value??'').trim();if(!text)return '
 function addContentText(card,tag,value){if(!value)return;const node=document.createElement(tag);node.textContent=value;node.style.whiteSpace='pre-wrap';card.append(node);}
 function addContentLink(card,value,label){const href=contentURL(value);if(!href)return;const link=document.createElement('a');link.className='miniBtn green';link.href=href;link.textContent=label;if(!href.startsWith('#')){link.target='_blank';link.rel='noopener';}card.append(link);}
 function addContentPhoto(card,value,label){const text=String(value??'').trim();if(!text||text.startsWith('#'))return;const src=contentURL(text);if(!src)return;const img=document.createElement('img');img.src=src;img.alt=label;img.loading='lazy';img.className='kappaPhoto';img.onerror=()=>img.remove();card.append(img);}
-function orderedContent(records,news=false){return records.map((row,i)=>({row,i})).sort((a,b)=>{if(news){const fixed=x=>/^(固定|true|1|はい|○)$/i.test(contentText(x.row,'固定表示'))?0:1;const diff=fixed(a)-fixed(b);if(diff)return diff;}const rank=x=>{const t=contentText(x.row,'表示順');return t&&Number.isFinite(Number(t))?Number(t):Infinity;};return rank(a)-rank(b)||a.i-b.i;}).map(x=>x.row);}
-function renderNews(records){const list=$('newsList');list.replaceChildren();const rows=orderedContent(records,true).filter(row=>contentText(row,'タイトル')||contentText(row,'本文'));rows.forEach(row=>{const card=document.createElement('article');card.className='notice';addContentText(card,'small',contentText(row,'日付'));addContentText(card,'h3',contentText(row,'タイトル'));addContentPhoto(card,row['画像URL'],contentText(row,'タイトル'));addContentText(card,'p',contentText(row,'本文'));addContentLink(card,row['リンクURL'],'詳しく見る');addContentLink(card,row['動画URL'],'紹介動画を見る');list.append(card);});$('newsStatus').textContent=rows.length?'':'新しいお知らせは、準備ができ次第掲載します。';}
-function addShopPhotos(card,row,name){
- const value=contentText(row,'画像URL');
- const registered=value?(value.startsWith('data:image/')?[value]:value.split(/[\r\n]+/).map(text=>text.trim()).filter(Boolean)):[];
- const photos=registered.length?registered.slice(0,6).map(src=>({src,label:contentText(row,'商品・名物')||name})):(SHOP_PHOTOS[contentText(row,'ID')]||[]);
- const gallery=document.createElement('div');gallery.className='shopPhotos';
- for(const photo of photos){
-  const src=contentURL(photo.src);
-  if(!src||src.startsWith('#'))continue;
-  const figure=document.createElement('figure');figure.className='shopPhoto';
-  const img=document.createElement('img');img.src=src;img.alt=(photo.label||name)+'（'+name+'）';img.loading='lazy';img.decoding='async';
-  img.onerror=()=>figure.remove();
-  figure.append(img);
-  if(photo.label){const caption=document.createElement('figcaption');caption.textContent=photo.label;figure.append(caption);}
-  gallery.append(figure);
- }
- if(gallery.children.length)card.append(gallery);
-}
-function shopSocialURL(value){
- const text=String(value??'').trim();
- if(!text)return '';
- const candidate=/^www\./i.test(text)?'https://'+text:text;
- if(!/^https?:\/\//i.test(candidate))return '';
- try{const url=new URL(candidate);return /^https?:$/.test(url.protocol)&&url.hostname&&!url.username&&!url.password?url.href:'';}catch{return '';}
-}
-function addShopSocialLinks(card,row,name){
- const group=document.createElement('div');group.className='shopSocialLinks';
- group.setAttribute('aria-label',name+'のSNS');
- for(const [key,label] of [['Instagram URL','Instagramを見る'],['X URL','Xを見る'],['Facebook URL','Facebookを見る'],['LINE公式URL','LINE公式を見る']]){
-  const href=shopSocialURL(row[key]);if(!href)continue;
-  const link=document.createElement('a');link.className='miniBtn green';link.href=href;link.textContent=label;link.target='_blank';link.rel='noopener noreferrer';group.append(link);
- }
- if(group.children.length)card.append(group);
-}
-function renderShops(records){const list=$('shopList');list.replaceChildren();const rows=orderedContent(records).filter(row=>contentText(row,'店舗名'));rows.forEach(row=>{const card=document.createElement('article');card.className='kappaCard';const name=contentText(row,'店舗名');addContentText(card,'h3',name);addShopPhotos(card,row,name);addContentText(card,'h4',contentText(row,'商品・名物'));addContentText(card,'p',contentText(row,'紹介文'));addContentText(card,'p',contentText(row,'住所'));addContentText(card,'p',contentText(row,'目印'));const hours=contentText(row,'営業時間'),closed=contentText(row,'定休日');if(hours)addContentText(card,'p','営業時間：'+hours);if(closed)addContentText(card,'p','定休日：'+closed);addContentLink(card,row['GoogleマップURL'],'お店の地図を見る');addContentLink(card,row['公式サイトURL'],'公式サイトを見る');addContentLink(card,row['動画URL'],'紹介動画を見る');addShopSocialLinks(card,row,name);list.append(card);});$('shopsStatus').textContent=rows.length?rows.length+'か所のお店・名物を紹介しています。':'お店の詳しい紹介と写真は準備中です。上の地図で場所をご確認いただけます。';}
-async function loadPublicContent(page,force=false){if(!['info','shops'].includes(page)||publicContentState[page]==='loading'||(!force&&publicContentState[page]==='loaded'))return;const news=page==='info',message=$(news?'newsStatus':'shopsStatus'),retry=$(news?'retryNews':'retryShops');publicContentState[page]='loading';retry.hidden=true;message.textContent=news?'お知らせを読み込み中…':'お店の情報を読み込み中…';try{const data=await api(news?'getNews':'getShops');if(!Array.isArray(data.records))throw Error('一覧を確認できません。');if(news)renderNews(data.records);else renderShops(data.records);publicContentState[page]='loaded';}catch(e){publicContentState[page]='error';message.textContent='読み込めませんでした。電波を確認して、再読み込みを押してください。';retry.hidden=false;}}
-$('retryNews').addEventListener('click',()=>loadPublicContent('info',true));
-$('retryShops').addEventListener('click',()=>loadPublicContent('shops',true));
-window.addEventListener('hashchange',()=>loadPublicContent(location.hash.slice(1)));
-loadPublicContent(location.hash.slice(1));
-
-</script></body></html>
+function orderedContent(records,news=false){return records.map((row,i)=>({row,i})).sort((a,b)=>{if(news){const fixed=x=>/^(固定|true|1|はい|○)$/i.test(contentText(x.row,'固定表示'))?0:1;const diff=fixed(a)-fixed(b);if(diff)return diff;}const rank=x=>{const t=content
