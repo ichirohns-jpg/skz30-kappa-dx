@@ -33,6 +33,8 @@
 <meta name="twitter:image" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/images/skz30-top.jpg">
 <meta name="twitter:image:alt" content="SKZ30 カッパ像めぐりDX：志木のまち歩きとカッパ像">
 <style>
+#voteText[hidden]{display:none!important}.sharePhotoPreview{display:grid;gap:24px;min-width:0}.sharePhotoPreview img{display:block;width:100%;height:auto;max-height:none;border-radius:16px}.sharePhotoPreview figcaption{font-weight:700;padding:10px 0;}
+
 .header{flex-wrap:wrap}.wrap,.card,.page,.kappaCard,.field{min-width:0;max-width:100%}h1,h2,h3,p,span,a{overflow-wrap:anywhere}button:disabled{opacity:.65;cursor:default}.bottomNav{padding-bottom:env(safe-area-inset-bottom)}.wrap{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
 *{
 box-sizing:border-box;
@@ -1040,20 +1042,20 @@ QRを読む前でも、30体から好きなかっぱを選んで紹介できま�
 <select id="shopSurveyName" disabled><option value="">店舗一覧を読み込み中…</option></select><p id="shopSurveyLoadStatus" role="status"></p><button id="retrySurveyShops" type="button" class="miniBtn green" hidden>店舗一覧を再読み込み</button></div>
 </section><label for="entryName">氏名</label><input id="entryName" autocomplete="name" maxlength="100" required><label for="entryPhone">連絡先電話番号</label><input id="entryPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" required placeholder="例：09012345678"><label for="entryEmail">当選連絡用メールアドレス</label><input id="entryEmail" type="email" autocomplete="email" maxlength="254" required><label class="consent"><input id="pickupConsent" type="checkbox" required>当選した場合、11月29日（日）の市民まつり・いろは親水公園カッピーステージへ賞品を取りに行きます。</label><p>応募は1人1回です。</p><button id="entrySubmit" type="submit" class="bigBtn primary" disabled>この内容で応募する</button></fieldset></form><button type="button" class="bigBtn secondary" onclick="makePostText()">SNS用の紹介文を作る（1体から）</button></div><div id="saveStatus" class="saveStatus" role="status" aria-live="polite"></div>
 <div id="voteResultBox" class="voteResult">
-<h3>できあがった投稿文</h3><p>SNSへの投稿では応募になりません。紹介文の作成・コピー・共有だけでは、応募用スプレッドシートに記録されません。Facebookでは下の文章をコピーして投稿欄に貼り付けてください。</p>
-<pre id="voteText"></pre>
+<h3>できあがった投稿文</h3><p>SNSへの投稿では応募になりません。紹介文の作成・コピー・共有だけでは、応募用スプレッドシートに記録されません。SNSの本文に紹介文を入れる場合は「文章をコピー」を使ってください。</p>
+<pre id="voteText" hidden></pre><pre id="shareIntroText"></pre><div id="sharePhotoPreview" class="sharePhotoPreview"></div><pre id="shareTagsText"></pre><p id="sharePhotoStatus" role="status"></p><button id="shareWithPhotos" type="button" class="bigBtn green" onclick="shareWithPhotos()" disabled>写真付きで共有する</button><button type="button" class="miniBtn green" onclick="makePostText(true)">写真を再準備</button><p>写真付きで投稿する場合は、上の「写真付きで共有する」からSNSを選んでください。本文が入らない場合は「文章をコピー」を貼り付けてください。写真を保存して、SNSに直接添付することもできます。</p>
 <div class="shareArea">
 <button type="button" class="bigBtn secondary" onclick="copyVoteText()">
-コピー
+文章をコピー
 </button>
 <button type="button" class="bigBtn green" onclick="shareLine()">
-LINE
+LINEで文章とリンクを送る
 </button>
 <button type="button" class="bigBtn dark" onclick="shareX()">
-Xで投稿
+Xで文章とリンクを投稿
 </button>
 <button type="button" class="bigBtn secondary" onclick="shareFacebook()">
-Facebook
+Facebookでリンクを共有
 </button>
 </div>
 </div>
@@ -1210,7 +1212,58 @@ $('entryForm').addEventListener('submit',async e=>{e.preventDefault();if(busy||!
 $('refreshProgress').addEventListener('click',refresh);
 $('refreshVisitProgress').addEventListener('click',refresh);
 for(let n=1;n<=3;n++){$('saveChoice'+n).addEventListener('click',()=>savePick(n));for(const prefix of ['rank','reason'])$(prefix+n).addEventListener('input',()=>{try{remember(n);}catch{status('入力の一時保存ができません。',true);}});}
-function makePostText(){
+let sharePhotoFiles=[],sharePhotoKey='',sharePhotoJob=0,sharePhotoLoading=false;
+let sharePhotoDownloads=[];
+const sharePhotoCache=new Map();
+async function sharePhotoFile(kappa){
+ if(sharePhotoCache.has(kappa.id))return sharePhotoCache.get(kappa.id);
+ const task=(async()=>{
+  let source=String(kappa.image||'').trim();
+  let photo=/^data:(image\/(?:jpeg|jpg|png|webp|gif));base64,([A-Za-z0-9+/=]+)$/i.exec(source);
+  let mime,base64;
+  if(photo){mime=photo[1].toLowerCase().replace('image/jpg','image/jpeg');base64=photo[2];}
+  else{const data=await api('getSharePhoto',{kappaId:kappa.id});mime=data.mime;base64=data.base64;}
+  if(!/^image\/(?:jpeg|png|webp|gif)$/.test(mime||'')||typeof base64!=='string'||!base64||base64.length>7000000||!/^[A-Za-z0-9+/=]+$/.test(base64))throw Error('写真共有の設定を更新して、もう一度お試しください。');
+  const raw=atob(base64),bytes=Uint8Array.from(raw,c=>c.charCodeAt(0));
+  const extension={"image/jpeg":"jpg","image/png":"png","image/webp":"webp","image/gif":"gif"}[mime];
+  return new File([bytes],'skz30-kappa-'+kappa.id+'.'+extension,{type:mime});
+ })();sharePhotoCache.set(kappa.id,task);
+ try{return await task;}catch(e){sharePhotoCache.delete(kappa.id);throw e;}
+}
+async function preparePhotoShare(selected,key,force=false){
+ if(!force&&key===sharePhotoKey&&(sharePhotoLoading||sharePhotoFiles.length))return;
+ const job=++sharePhotoJob;sharePhotoKey=key;sharePhotoFiles=[];sharePhotoLoading=true;
+ for(const url of sharePhotoDownloads)URL.revokeObjectURL(url);sharePhotoDownloads=[];
+ $('shareWithPhotos').disabled=true;$('sharePhotoStatus').textContent='選んだかっぱの写真を準備しています…';
+ $('sharePhotoPreview').replaceChildren();
+ const figures=selected.map(p=>{
+  const figure=document.createElement('figure');figure.style.margin='0';
+  const img=document.createElement('img');img.src=safeURL(p.kappa.image);img.alt=p.kappa.name;img.style.width='100%';img.style.height='auto';img.style.borderRadius='16px';
+  const caption=document.createElement('figcaption');caption.textContent=p.kappa.name;
+  figure.append(img,caption);$('sharePhotoPreview').append(figure);return figure;
+ });
+ try{
+  const files=await Promise.all(selected.map(p=>sharePhotoFile(p.kappa)));
+  if(job!==sharePhotoJob)return;
+  sharePhotoFiles=files;
+  files.forEach((file,i)=>{
+   const url=URL.createObjectURL(file);sharePhotoDownloads.push(url);
+   const link=document.createElement('a');link.href=url;link.download=file.name;link.className='miniBtn green';link.textContent=selected[i].kappa.name+'の写真を保存';figures[i].append(link);
+  });
+  $('shareWithPhotos').disabled=false;$('sharePhotoStatus').textContent='「写真付きで共有する」で、紹介文と写真を一緒に送れます。';
+ }catch(e){if(job===sharePhotoJob)$('sharePhotoStatus').textContent=e.message+'「写真を再準備」を押してください。';}
+ finally{if(job===sharePhotoJob)sharePhotoLoading=false;}
+}
+async function shareWithPhotos(){
+ if(!makePostText())return;
+ if(!sharePhotoFiles.length||sharePhotoLoading){status('写真を準備中です。準備が終わったら、もう一度押してください。',true);return;}
+ const data={title:'SKZ30 カッパ像めぐり2026',text:$('voteText').textContent,files:sharePhotoFiles};
+ if(!navigator.share||!navigator.canShare||!navigator.canShare(data)){status('このブラウザーでは写真付き共有を開けません。写真を保存し、「文章をコピー」を使ってSNSに添付してください。',true);return;}
+ try{await navigator.share(data);}
+ catch(e){if(e.name!=='AbortError')status('写真付き共有を開けませんでした。写真を保存し、文章をコピーしてSNSに添付してください。',true);}
+}
+
+function makePostText(forcePhoto=false){
  const picks=[1,2,3].map(n=>({id:$('rank'+n).value,reason:$('reason'+n).value.trim()})).filter(p=>p.id||p.reason);
  if(!picks.length){status('好きなかっぱを1体以上選び、紹介文を書いてください。',true);return false;}
  if(picks.some(p=>!p.id||!p.reason)){status('紹介するかっぱと、好きなところを入力してください。',true);return false;}
@@ -1218,7 +1271,7 @@ function makePostText(){
  const selected=picks.map(p=>({...p,kappa:KAPPAS.find(k=>k.id===p.id)}));
  if(selected.some(p=>!p.kappa)){status('かっぱの一覧を読み込み直してください。',true);return false;}
  const lines=['SKZ30 カッパ像めぐり2026'];selected.forEach(p=>lines.push(p.kappa.name+'：'+p.reason));lines.push('#SKZ30 #志木市 #かっぱ像めぐり',APP_URL);
- $('voteText').textContent=lines.join('\n\n');$('voteResultBox').classList.add('show');return true;
+ $('voteText').textContent=lines.join('\n\n');$('shareIntroText').textContent=lines.slice(0,-2).join('\n\n');$('shareTagsText').textContent=lines.slice(-2).join('\n\n');$('voteResultBox').classList.add('show');preparePhotoShare(selected,JSON.stringify(selected.map(p=>p.id)),forcePhoto);return true;
 }
 async function copyVoteText(){if(!makePostText())return;try{await navigator.clipboard.writeText($('voteText').textContent);status('コピーしました。');}catch{status('本文を長押ししてコピーしてください。');}}
 function shareLine(){if(makePostText())location.href='https://line.me/R/share?text='+encodeURIComponent($('voteText').textContent);}
