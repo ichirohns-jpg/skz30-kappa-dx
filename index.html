@@ -3,23 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
 <title>SKZ30 カッパ像めぐりDX</title>
-
 <meta name="description" content="志木市内30体のカッパ像をスマホでめぐり、推し3体を選んで楽しめるまち歩き参加ページです。">
 <meta name="theme-color" content="#064e3b">
-
 <link rel="icon" type="image/png" href="https://ichirohns-jpg.github.io/skz30-kappa-dx/apple-touch-icon.png">
 <link rel="shortcut icon" type="image/png" href="https://ichirohns-jpg.github.io/skz30-kappa-dx/apple-touch-icon.png">
 <link rel="apple-touch-icon" href="https://ichirohns-jpg.github.io/skz30-kappa-dx/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="https://ichirohns-jpg.github.io/skz30-kappa-dx/apple-touch-icon.png">
-
 <meta name="apple-mobile-web-app-title" content="SKZ30">
 <meta name="application-name" content="SKZ30">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
 <meta property="og:site_name" content="SKZ30 カッパ像めぐりDX">
 <meta property="og:title" content="SKZ30 カッパ像めぐりDX">
 <meta property="og:description" content="めぐって、めぐって、あなたの推し3体を！志木のカッパ像をめぐろう。">
@@ -32,898 +27,767 @@
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="720">
 <meta property="og:image:alt" content="SKZ30 カッパ像めぐりDX：志木のまち歩きとカッパ像">
-
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="SKZ30 カッパ像めぐりDX">
 <meta name="twitter:description" content="志木市内30体のカッパ像をめぐって、推し3体を選ぼう！">
 <meta name="twitter:image" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/images/skz30-top.jpg">
 <meta name="twitter:image:alt" content="SKZ30 カッパ像めぐりDX：志木のまち歩きとカッパ像">
-
 <style>
 .header{flex-wrap:wrap}.wrap,.card,.page,.kappaCard,.field{min-width:0;max-width:100%}h1,h2,h3,p,span,a{overflow-wrap:anywhere}button:disabled{opacity:.65;cursor:default}.bottomNav{padding-bottom:env(safe-area-inset-bottom)}.wrap{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
-
-
 *{
- box-sizing:border-box;
+box-sizing:border-box;
 }
-
 html{
- scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
-
 body{
- margin:0;
- font-family:
- "Hiragino Sans",
- "Yu Gothic",
- "Meiryo",
- sans-serif;
- color:#073b2b;
- background:
- radial-gradient(circle at 12% 0%,rgba(254,240,138,.55),transparent 26%),
- radial-gradient(circle at 90% 6%,rgba(134,239,172,.68),transparent 30%),
- linear-gradient(180deg,#e7fff0 0%,#f7fff9 45%,#d9fbe6 100%);
- line-height:1.65;
- -webkit-text-size-adjust:100%;
+margin:0;
+font-family:
+"Hiragino Sans",
+"Yu Gothic",
+"Meiryo",
+sans-serif;
+color:#073b2b;
+background:
+radial-gradient(circle at 12% 0%,rgba(254,240,138,.55),transparent 26%),
+radial-gradient(circle at 90% 6%,rgba(134,239,172,.68),transparent 30%),
+linear-gradient(180deg,#e7fff0 0%,#f7fff9 45%,#d9fbe6 100%);
+line-height:1.65;
+-webkit-text-size-adjust:100%;
 }
-
 a{
- color:inherit;
- text-decoration:none;
+color:inherit;
+text-decoration:none;
 }
-
 button,
 input,
 textarea,
 select{
- font-family:inherit;
+font-family:inherit;
 }
-
 img{
- max-width:100%;
+max-width:100%;
 }
-
 .wrap{
- width:min(1080px,94%);
- margin:auto;
- padding:10px 0 88px;
+width:min(1080px,94%);
+margin:auto;
+padding:10px 0 88px;
 }
-
 .header{
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:12px;
- padding:10px 0 12px;
- position:sticky;
- top:0;
- z-index:30;
- background:rgba(231,255,240,.82);
- backdrop-filter:blur(14px);
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+padding:10px 0 12px;
+position:sticky;
+top:0;
+z-index:30;
+background:rgba(231,255,240,.82);
+backdrop-filter:blur(14px);
 }
-
 .logo{
- display:flex;
- align-items:center;
- gap:8px;
- font-weight:900;
- color:#064e3b;
- font-size:17px;
- letter-spacing:.01em;
+display:flex;
+align-items:center;
+gap:8px;
+font-weight:900;
+color:#064e3b;
+font-size:17px;
+letter-spacing:.01em;
 }
-
 .logoMark img{width:100%;height:100%;object-fit:contain;border-radius:12px}
-
 .logoMark{
- width:34px;
- height:34px;
- border-radius:13px;
- display:grid;
- place-items:center;
- background:linear-gradient(135deg,#064e3b,#16a34a);
- color:#fff;
- box-shadow:0 10px 24px rgba(6,78,59,.22);
+width:34px;
+height:34px;
+border-radius:13px;
+display:grid;
+place-items:center;
+background:linear-gradient(135deg,#064e3b,#16a34a);
+color:#fff;
+box-shadow:0 10px 24px rgba(6,78,59,.22);
 }
-
 .nav{
- display:flex;
- flex-wrap:wrap;
- gap:7px;
+display:flex;
+flex-wrap:wrap;
+gap:7px;
 }
-
 .nav a{
- display:inline-block;
- padding:8px 11px;
- border-radius:999px;
- background:rgba(255,255,255,.86);
- border:1px solid rgba(21,128,61,.18);
- color:#065f46;
- font-size:12px;
- font-weight:900;
+display:inline-block;
+padding:8px 11px;
+border-radius:999px;
+background:rgba(255,255,255,.86);
+border:1px solid rgba(21,128,61,.18);
+color:#065f46;
+font-size:12px;
+font-weight:900;
 }
-
 .nav a.active{
- background:#064e3b;
- color:#fff;
+background:#064e3b;
+color:#fff;
 }
-
 .page{
- display:none;
+display:none;
 }
-
 .page.active{
- display:block;
+display:block;
 }
-
 .appHero{
- overflow:hidden;
- border-radius:34px;
- background:#fff;
- box-shadow:0 24px 70px rgba(20,83,45,.18);
- border:1px solid rgba(21,128,61,.12);
+overflow:hidden;
+border-radius:34px;
+background:#fff;
+box-shadow:0 24px 70px rgba(20,83,45,.18);
+border:1px solid rgba(21,128,61,.12);
 }
-
 .appHeroImage{
- position:relative;
- min-height:230px;
- background:
- radial-gradient(circle at 20% 10%,#dcfce7,transparent 30%),
- linear-gradient(135deg,#064e3b,#16a34a);
- display:grid;
- place-items:center;
- overflow:hidden;
+position:relative;
+min-height:230px;
+background:
+radial-gradient(circle at 20% 10%,#dcfce7,transparent 30%),
+linear-gradient(135deg,#064e3b,#16a34a);
+display:grid;
+place-items:center;
+overflow:hidden;
 }
-
 .appHeroImage img{
- display:block;
- width:100%;
- height:auto;
+display:block;
+width:100%;
+height:auto;
 }
-
 .heroFallback{
- padding:36px 18px;
- text-align:center;
- color:#fff;
+padding:36px 18px;
+text-align:center;
+color:#fff;
 }
-
 .heroFallback .big{
- font-size:72px;
- line-height:1;
+font-size:72px;
+line-height:1;
 }
-
 .appHeroOverlay{
- position:absolute;
- inset:auto 14px 14px 14px;
- color:#fff;
- text-shadow:0 3px 14px rgba(0,0,0,.42);
+position:absolute;
+inset:auto 14px 14px 14px;
+color:#fff;
+text-shadow:0 3px 14px rgba(0,0,0,.42);
 }
-
 .appHeroOverlay small{
- display:inline-block;
- background:rgba(6,78,59,.88);
- color:#fef08a;
- border-radius:999px;
- padding:6px 11px;
- font-weight:900;
- font-size:12px;
+display:inline-block;
+background:rgba(6,78,59,.88);
+color:#fef08a;
+border-radius:999px;
+padding:6px 11px;
+font-weight:900;
+font-size:12px;
 }
-
 .appHeroOverlay h1{
- margin:10px 0 0;
- font-size:clamp(28px,8vw,56px);
- line-height:1.08;
- font-weight:900;
+margin:10px 0 0;
+font-size:clamp(28px,8vw,56px);
+line-height:1.08;
+font-weight:900;
 }
-
 .appHeroBody{
- padding:20px;
- background:
- radial-gradient(circle at top right,rgba(254,240,138,.38),transparent 36%),
- linear-gradient(135deg,#064e3b,#15803d);
- color:#fff;
+padding:20px;
+background:
+radial-gradient(circle at top right,rgba(254,240,138,.38),transparent 36%),
+linear-gradient(135deg,#064e3b,#15803d);
+color:#fff;
 }
-
 .catch{
- margin:0;
- color:#fef08a;
- font-size:clamp(22px,6vw,34px);
- font-weight:900;
- line-height:1.25;
+margin:0;
+color:#fef08a;
+font-size:clamp(22px,6vw,34px);
+font-weight:900;
+line-height:1.25;
 }
-
 .lead{
- margin:12px 0 0;
- color:#ecfdf5;
- font-weight:850;
- font-size:17px;
+margin:12px 0 0;
+color:#ecfdf5;
+font-weight:850;
+font-size:17px;
 }
-
 .mainActions{
- margin-top:18px;
- display:grid;
- grid-template-columns:1fr;
- gap:10px;
+margin-top:18px;
+display:grid;
+grid-template-columns:1fr;
+gap:10px;
 }
-
 .bigBtn{
- border:0;
- border-radius:999px;
- padding:15px 18px;
- font-size:17px;
- font-weight:900;
- cursor:pointer;
- text-align:center;
- display:block;
- width:100%;
- box-shadow:0 12px 28px rgba(0,0,0,.16);
+border:0;
+border-radius:999px;
+padding:15px 18px;
+font-size:17px;
+font-weight:900;
+cursor:pointer;
+text-align:center;
+display:block;
+width:100%;
+box-shadow:0 12px 28px rgba(0,0,0,.16);
 }
-
 .primary{
- background:#fef08a;
- color:#14532d;
+background:#fef08a;
+color:#14532d;
 }
-
 .secondary{
- background:#fff;
- color:#064e3b;
+background:#fff;
+color:#064e3b;
 }
-
 .green{
- background:#16a34a;
- color:#fff;
+background:#16a34a;
+color:#fff;
 }
-
 .dark{
- background:#064e3b;
- color:#fff;
+background:#064e3b;
+color:#fff;
 }
-
 .danger{
- background:#fee2e2;
- color:#991b1b;
+background:#fee2e2;
+color:#991b1b;
 }
-
 .card{
- background:rgba(255,255,255,.92);
- border:1px solid rgba(21,128,61,.16);
- border-radius:28px;
- padding:18px;
- box-shadow:0 14px 36px rgba(20,83,45,.10);
- margin-top:18px;
+background:rgba(255,255,255,.92);
+border:1px solid rgba(21,128,61,.16);
+border-radius:28px;
+padding:18px;
+box-shadow:0 14px 36px rgba(20,83,45,.10);
+margin-top:18px;
 }
-
 .prizeBadge{
- display:inline-block;
- margin-top:8px;
- padding:7px 11px;
- border-radius:999px;
- background:#fef08a;
- color:#14532d;
- font-size:13px;
- font-weight:900;
- line-height:1.25;
- text-shadow:none;
- box-shadow:0 6px 16px rgba(0,0,0,.18);
+display:inline-block;
+margin-top:8px;
+padding:7px 11px;
+border-radius:999px;
+background:#fef08a;
+color:#14532d;
+font-size:13px;
+font-weight:900;
+line-height:1.25;
+text-shadow:none;
+box-shadow:0 6px 16px rgba(0,0,0,.18);
 }
-
 .prizePromo{
- background:
- radial-gradient(circle at top right,rgba(254,240,138,.48),transparent 32%),
- linear-gradient(135deg,#fff,#ecfdf5);
+background:
+radial-gradient(circle at top right,rgba(254,240,138,.48),transparent 32%),
+linear-gradient(135deg,#fff,#ecfdf5);
 }
-
 .prizeIntro{
- color:#315d44;
- font-weight:850;
- margin:0;
+color:#315d44;
+font-weight:850;
+margin:0;
 }
-
 .prizeGrid{
- display:grid;
- grid-template-columns:1fr;
- gap:14px;
- margin-top:16px;
+display:grid;
+grid-template-columns:1fr;
+gap:14px;
+margin-top:16px;
 }
-
 .prizeCard{
- overflow:hidden;
- background:#fff;
- border:1px solid #bbf7d0;
- border-radius:24px;
- box-shadow:0 12px 30px rgba(20,83,45,.10);
+overflow:hidden;
+background:#fff;
+border:1px solid #bbf7d0;
+border-radius:24px;
+box-shadow:0 12px 30px rgba(20,83,45,.10);
 }
-
 .prizeCard img{
- display:block;
- width:100%;
- aspect-ratio:1 / 1;
- object-fit:cover;
+display:block;
+width:100%;
+aspect-ratio:1 / 1;
+object-fit:cover;
 }
-
 .prizeCardBody{
- padding:14px;
+padding:14px;
 }
-
 .prizeLabel{
- display:inline-block;
- padding:5px 9px;
- border-radius:999px;
- background:#dcfce7;
- color:#166534;
- font-size:12px;
- font-weight:900;
+display:inline-block;
+padding:5px 9px;
+border-radius:999px;
+background:#dcfce7;
+color:#166534;
+font-size:12px;
+font-weight:900;
 }
-
 .prizeCard h3{
- margin:10px 0 0;
- color:#064e3b;
- font-size:20px;
- line-height:1.35;
+margin:10px 0 0;
+color:#064e3b;
+font-size:20px;
+line-height:1.35;
 }
-
 .prizeCard p{
- margin:7px 0 0;
- color:#4b6b57;
- font-size:14px;
- font-weight:800;
+margin:7px 0 0;
+color:#4b6b57;
+font-size:14px;
+font-weight:800;
 }
-
 .prizeNote{
- margin:14px 0 0;
- padding:12px 14px;
- border-radius:18px;
- background:#fefce8;
- border:1px solid #fde68a;
- color:#713f12;
- font-size:13px;
- font-weight:850;
+margin:14px 0 0;
+padding:12px 14px;
+border-radius:18px;
+background:#fefce8;
+border:1px solid #fde68a;
+color:#713f12;
+font-size:13px;
+font-weight:850;
 }
-
 .card h2{
- margin:0 0 8px;
- color:#064e3b;
- font-size:26px;
- line-height:1.25;
+margin:0 0 8px;
+color:#064e3b;
+font-size:26px;
+line-height:1.25;
 }
-
 .card h3{
- margin:0 0 8px;
- color:#065f46;
- font-size:20px;
+margin:0 0 8px;
+color:#065f46;
+font-size:20px;
 }
-
 .card p{
- margin:8px 0 0;
- color:#315d44;
- font-weight:760;
+margin:8px 0 0;
+color:#315d44;
+font-weight:760;
 }
-
 .infoStrip{
- display:grid;
- grid-template-columns:1fr;
- gap:10px;
- margin-top:14px;
+display:grid;
+grid-template-columns:1fr;
+gap:10px;
+margin-top:14px;
 }
-
 .infoBox{
- background:#fff;
- border:1px solid #bbf7d0;
- border-radius:22px;
- padding:14px;
+background:#fff;
+border:1px solid #bbf7d0;
+border-radius:22px;
+padding:14px;
 }
-
 .infoBox strong{
- display:block;
- color:#064e3b;
- font-size:14px;
+display:block;
+color:#064e3b;
+font-size:14px;
 }
-
 .infoBox span{
- display:block;
- color:#14532d;
- font-size:20px;
- font-weight:900;
- margin-top:2px;
+display:block;
+color:#14532d;
+font-size:20px;
+font-weight:900;
+margin-top:2px;
 }
-
 .quickFlow{
- display:grid;
- grid-template-columns:1fr;
-
- gap:12px;
- margin-top:14px;
+display:grid;
+grid-template-columns:1fr;
+gap:12px;
+margin-top:14px;
 }
-
 .flowItem{
- background:#fff;
- border:1px solid #bbf7d0;
- border-radius:22px;
- padding:14px;
- display:flex;
- gap:12px;
- align-items:center;
+background:#fff;
+border:1px solid #bbf7d0;
+border-radius:22px;
+padding:14px;
+display:flex;
+gap:12px;
+align-items:center;
 }
-
 .flowIcon{
- width:44px;
- height:44px;
- border-radius:16px;
- display:grid;
- place-items:center;
- background:#dcfce7;
- color:#065f46;
- font-size:24px;
- flex:0 0 auto;
+width:44px;
+height:44px;
+border-radius:16px;
+display:grid;
+place-items:center;
+background:#dcfce7;
+color:#065f46;
+font-size:24px;
+flex:0 0 auto;
 }
-
 .flowItem b{
- display:block;
- color:#064e3b;
- font-size:17px;
+display:block;
+color:#064e3b;
+font-size:17px;
 }
-
 .flowItem small{
- display:block;
- color:#4b6b57;
- font-weight:850;
+display:block;
+color:#4b6b57;
+font-weight:850;
 }
-
 .sectionHero{
- border-radius:32px;
- padding:22px;
- background:
- radial-gradient(circle at top right,rgba(254,240,138,.52),transparent 34%),
- linear-gradient(135deg,#064e3b,#16a34a);
- color:#fff;
- box-shadow:0 22px 58px rgba(6,78,59,.22);
+border-radius:32px;
+padding:22px;
+background:
+radial-gradient(circle at top right,rgba(254,240,138,.52),transparent 34%),
+linear-gradient(135deg,#064e3b,#16a34a);
+color:#fff;
+box-shadow:0 22px 58px rgba(6,78,59,.22);
 }
-
 .sectionHero h1,
 .sectionHero h2{
- margin:0;
- font-size:clamp(30px,8vw,46px);
- line-height:1.15;
+margin:0;
+font-size:clamp(30px,8vw,46px);
+line-height:1.15;
 }
-
 .sectionHero p{
- margin:12px 0 0;
- color:#ecfdf5;
- font-weight:850;
+margin:12px 0 0;
+color:#ecfdf5;
+font-weight:850;
 }
-
 .sectionImage{
- margin-top:14px;
- border-radius:24px;
- overflow:hidden;
- background:#dcfce7;
- min-height:120px;
- display:grid;
- place-items:center;
- color:#166534;
- font-weight:900;
+margin-top:14px;
+border-radius:24px;
+overflow:hidden;
+background:#dcfce7;
+min-height:120px;
+display:grid;
+place-items:center;
+color:#166534;
+font-weight:900;
 }
-
 .sectionImage img{
- width:100%;
- display:block;
+width:100%;
+display:block;
 }
-
 .filterBar{
- display:flex;
- gap:8px;
- flex-wrap:wrap;
- margin-top:14px;
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-top:14px;
 }
-
 .filterBtn{
- border:1px solid #bbf7d0;
- background:#fff;
- color:#166534;
- border-radius:999px;
- padding:9px 12px;
- font-weight:900;
- cursor:pointer;
+border:1px solid #bbf7d0;
+background:#fff;
+color:#166534;
+border-radius:999px;
+padding:9px 12px;
+font-weight:900;
+cursor:pointer;
 }
-
 .filterBtn.active{
- background:#064e3b;
- color:#fff;
- border-color:#064e3b;
+background:#064e3b;
+color:#fff;
+border-color:#064e3b;
 }
-
 .kappaGrid{
- display:grid;
- grid-template-columns:1fr;
- gap:14px;
- margin-top:16px;
+display:grid;
+grid-template-columns:1fr;
+gap:14px;
+margin-top:16px;
 }
-
 .kappaCard{
- background:#fff;
- border:1px solid #bbf7d0;
- border-radius:26px;
- padding:16px;
- box-shadow:0 12px 30px rgba(20,83,45,.10);
- position:relative;
- overflow:hidden;
+background:#fff;
+border:1px solid #bbf7d0;
+border-radius:26px;
+padding:16px;
+box-shadow:0 12px 30px rgba(20,83,45,.10);
+position:relative;
+overflow:hidden;
 }
-
 .kappaCard.visited{
- border-color:#16a34a;
- background:linear-gradient(135deg,#fff,#ecfdf5);
+border-color:#16a34a;
+background:linear-gradient(135deg,#fff,#ecfdf5);
 }
-
 .kappaCard.visited::after{
- content:"巡った";
- position:absolute;
- right:12px;
- top:12px;
- background:#fef08a;
- color:#14532d;
- border:1px solid #fde047;
- border-radius:999px;
- padding:5px 9px;
- font-size:12px;
- font-weight:900;
+content:"巡った";
+position:absolute;
+right:12px;
+top:12px;
+background:#fef08a;
+color:#14532d;
+border:1px solid #fde047;
+border-radius:999px;
+padding:5px 9px;
+font-size:12px;
+font-weight:900;
 }
-
 .kappaTop{
- display:flex;
- gap:12px;
- align-items:center;
- padding-right:68px;
+display:flex;
+gap:12px;
+align-items:center;
+padding-right:68px;
 }
-
 .kappaVisual{
- width:66px;
- height:66px;
- border-radius:22px;
- background:linear-gradient(135deg,#bbf7d0,#4ade80);
- display:grid;
- place-items:center;
- font-size:32px;
- overflow:hidden;
- flex:0 0 auto;
- border:2px solid #dcfce7;
- box-shadow:inset 0 1px 0 rgba(255,255,255,.68);
+width:66px;
+height:66px;
+border-radius:22px;
+background:linear-gradient(135deg,#bbf7d0,#4ade80);
+display:grid;
+place-items:center;
+font-size:32px;
+overflow:hidden;
+flex:0 0 auto;
+border:2px solid #dcfce7;
+box-shadow:inset 0 1px 0 rgba(255,255,255,.68);
 }
-
 .kappaName{
- margin:0;
- color:#064e3b;
- font-size:19px;
- font-weight:900;
- line-height:1.35;
+margin:0;
+color:#064e3b;
+font-size:19px;
+font-weight:900;
+line-height:1.35;
 }
-
 .kappaPlace{
- margin:3px 0 0;
- color:#4b6b57;
- font-size:13px;
- font-weight:850;
+margin:3px 0 0;
+color:#4b6b57;
+font-size:13px;
+font-weight:850;
 }
-
 .kappaCard p{
- color:#315d44;
- font-weight:750;
- margin:12px 0 0;
+color:#315d44;
+font-weight:750;
+margin:12px 0 0;
 }
-
 .kappaActions{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:8px;
- margin-top:12px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+margin-top:12px;
 }
-
 .miniBtn{
- border:0;
- border-radius:999px;
- padding:10px 12px;
- font-size:14px;
- font-weight:900;
- cursor:pointer;
- display:inline-block;
- text-align:center;
+border:0;
+border-radius:999px;
+padding:10px 12px;
+font-size:14px;
+font-weight:900;
+cursor:pointer;
+display:inline-block;
+text-align:center;
 }
-
 .formGrid{
- display:grid;
- grid-template-columns:1fr;
- gap:14px;
+display:grid;
+grid-template-columns:1fr;
+gap:14px;
 }
-
 .field{
- margin:0;
+margin:0;
 }
-
 label{
- display:block;
- color:#064e3b;
- font-weight:900;
- margin:0 0 6px;
+display:block;
+color:#064e3b;
+font-weight:900;
+margin:0 0 6px;
 }
-
 input,
 textarea,
 select{
- width:100%;
- border:1px solid #a7f3d0;
- border-radius:16px;
- padding:13px 14px;
- font-size:16px;
- background:#fff;
- color:#123524;
- outline:none;
+width:100%;
+border:1px solid #a7f3d0;
+border-radius:16px;
+padding:13px 14px;
+font-size:16px;
+background:#fff;
+color:#123524;
+outline:none;
 }
-
 textarea{
- min-height:90px;
- resize:vertical;
+min-height:90px;
+resize:vertical;
 }
-
 input:focus,
 textarea:focus,
 select:focus{
- border-color:#16a34a;
- box-shadow:0 0 0 4px rgba(34,197,94,.18);
+border-color:#16a34a;
+box-shadow:0 0 0 4px rgba(34,197,94,.18);
 }
-
 .helpText{
- color:#4b6b57;
- font-size:13px;
- font-weight:850;
- margin-top:6px;
+color:#4b6b57;
+font-size:13px;
+font-weight:850;
+margin-top:6px;
 }
-
 .reasonNote{
- margin-top:8px;
- padding:12px;
- border-radius:18px;
- background:#ecfdf5;
- border:1px solid #bbf7d0;
- color:#14532d;
- font-size:14px;
- font-weight:850;
+margin-top:8px;
+padding:12px;
+border-radius:18px;
+background:#ecfdf5;
+border:1px solid #bbf7d0;
+color:#14532d;
+font-size:14px;
+font-weight:850;
 }
-
 .voteResult{
- display:none;
- margin-top:18px;
+display:none;
+margin-top:18px;
 }
-
 .voteResult.show{
- display:block;
+display:block;
 }
-
 .saveStatus{
- display:none;
- margin-top:16px;
- padding:14px;
- border-radius:18px;
- font-weight:900;
- background:#dcfce7;
- color:#14532d;
- border:1px solid #86efac;
+display:none;
+margin-top:16px;
+padding:14px;
+border-radius:18px;
+font-weight:900;
+background:#dcfce7;
+color:#14532d;
+border:1px solid #86efac;
 }
-
 .saveStatus.show{
- display:block;
+display:block;
 }
-
 .saveStatus.error{
- background:#fee2e2;
- color:#991b1b;
- border-color:#fecaca;
+background:#fee2e2;
+color:#991b1b;
+border-color:#fecaca;
 }
-
 pre{
- white-space:pre-wrap;
- word-break:break-word;
- margin:0;
- padding:16px;
- background:#052e1c;
- color:#ecfdf5;
- border-radius:18px;
- font-size:14px;
- line-height:1.75;
+white-space:pre-wrap;
+word-break:break-word;
+margin:0;
+padding:16px;
+background:#052e1c;
+color:#ecfdf5;
+border-radius:18px;
+font-size:14px;
+line-height:1.75;
 }
-
 .shareArea{
- display:grid;
- grid-template-columns:1fr;
- gap:10px;
- margin-top:16px;
+display:grid;
+grid-template-columns:1fr;
+gap:10px;
+margin-top:16px;
 }
-
 .shopHero{
- background:
- radial-gradient(circle at top right,rgba(254,240,138,.5),transparent 32%),
- linear-gradient(135deg,#064e3b,#16a34a);
- color:#fff;
- border-radius:32px;
- padding:24px;
- box-shadow:0 22px 58px rgba(6,78,59,.24);
+background:
+radial-gradient(circle at top right,rgba(254,240,138,.5),transparent 32%),
+linear-gradient(135deg,#064e3b,#16a34a);
+color:#fff;
+border-radius:32px;
+padding:24px;
+box-shadow:0 22px 58px rgba(6,78,59,.24);
 }
-
 .shopHero h2{
- margin:0;
- font-size:clamp(28px,7vw,44px);
- line-height:1.15;
+margin:0;
+font-size:clamp(28px,7vw,44px);
+line-height:1.15;
 }
-
 .shopHero h2 span{
- color:#fef08a;
+color:#fef08a;
 }
-
 .shopHero p{
- margin:14px 0 0;
- color:#ecfdf5;
- font-weight:850;
- font-size:17px;
+margin:14px 0 0;
+color:#ecfdf5;
+font-weight:850;
+font-size:17px;
 }
-
 .keywordBox{
- margin-top:16px;
- background:rgba(255,255,255,.14);
- border:1px solid rgba(255,255,255,.25);
- border-radius:22px;
- padding:14px;
- color:#fff;
+margin-top:16px;
+background:rgba(255,255,255,.14);
+border:1px solid rgba(255,255,255,.25);
+border-radius:22px;
+padding:14px;
+color:#fff;
 }
-
 .keywordBox b{
- color:#fef08a;
+color:#fef08a;
 }
-
 .missionGrid{
- display:grid;
- grid-template-columns:1fr;
- gap:12px;
+display:grid;
+grid-template-columns:1fr;
+gap:12px;
 }
-
 .missionCard{
- background:#fff;
- border:1px solid #bbf7d0;
- border-radius:24px;
- padding:16px;
- box-shadow:0 12px 30px rgba(20,83,45,.09);
+background:#fff;
+border:1px solid #bbf7d0;
+border-radius:24px;
+padding:16px;
+box-shadow:0 12px 30px rgba(20,83,45,.09);
 }
-
 .missionNo{
- width:38px;
- height:38px;
- border-radius:14px;
- display:grid;
- place-items:center;
- background:#dcfce7;
- color:#065f46;
- font-weight:900;
- margin-bottom:10px;
+width:38px;
+height:38px;
+border-radius:14px;
+display:grid;
+place-items:center;
+background:#dcfce7;
+color:#065f46;
+font-weight:900;
+margin-bottom:10px;
 }
-
 .missionCard h3{
- margin:0 0 6px;
- color:#065f46;
+margin:0 0 6px;
+color:#065f46;
 }
-
 .missionCard p{
- margin:0;
- color:#315d44;
- font-weight:750;
+margin:0;
+color:#315d44;
+font-weight:750;
 }
-
 .noticeList{
- display:grid;
- grid-template-columns:1fr;
- gap:12px;
- margin-top:14px;
+display:grid;
+grid-template-columns:1fr;
+gap:12px;
+margin-top:14px;
 }
-
 .notice{
- background:#fff;
- border:1px solid #bbf7d0;
- border-radius:22px;
- padding:14px;
+background:#fff;
+border:1px solid #bbf7d0;
+border-radius:22px;
+padding:14px;
 }
-
 .notice b{
- color:#064e3b;
+color:#064e3b;
 }
-
 .notice small{
- display:block;
- color:#4b6b57;
- font-weight:850;
- margin-top:4px;
+display:block;
+color:#4b6b57;
+font-weight:850;
+margin-top:4px;
 }
-
 .footer{
- margin-top:34px;
- text-align:center;
- color:#365946;
- font-size:13px;
- font-weight:800;
+margin-top:34px;
+text-align:center;
+color:#365946;
+font-size:13px;
+font-weight:800;
 }
-
 .bottomNav{
- position:fixed;
- left:0;
- right:0;
-
- bottom:0;
- z-index:40;
- background:rgba(255,255,255,.96);
- border-top:1px solid rgba(21,128,61,.22);
- display:grid;
- grid-template-columns:repeat(5,1fr);
- box-shadow:0 -12px 30px rgba(20,83,45,.14);
- backdrop-filter:blur(14px);
+position:fixed;
+left:0;
+right:0;
+bottom:0;
+z-index:40;
+background:rgba(255,255,255,.96);
+border-top:1px solid rgba(21,128,61,.22);
+display:grid;
+grid-template-columns:repeat(5,1fr);
+box-shadow:0 -12px 30px rgba(20,83,45,.14);
+backdrop-filter:blur(14px);
 }
-
 .bottomNav a{
- padding:8px 4px 7px;
- text-align:center;
- color:#166534;
- font-size:11px;
- font-weight:900;
+padding:8px 4px 7px;
+text-align:center;
+color:#166534;
+font-size:11px;
+font-weight:900;
 }
-
 .bottomNav a span{
- display:block;
- font-size:20px;
- line-height:1.1;
+display:block;
+font-size:20px;
+line-height:1.1;
 }
-
 .bottomNav a.active{
- background:#dcfce7;
+background:#dcfce7;
 }
-
 @media (min-width:760px){
-
- .mainActions{
-  grid-template-columns:repeat(4,1fr);
- }
-
- .infoStrip{
-  grid-template-columns:1fr 1fr;
- }
-
- .quickFlow{
-  grid-template-columns:repeat(4,1fr);
- }
-
- .kappaGrid{
-  grid-template-columns:repeat(2,1fr);
- }
-
- .shareArea{
-  grid-template-columns:repeat(4,1fr);
- }
-
- .missionGrid{
-  grid-template-columns:repeat(4,1fr);
- }
-
- .noticeList{
-  grid-template-columns:repeat(2,1fr);
- }
-
- .prizeGrid{
-  grid-template-columns:1fr 1fr;
- }
-
+.mainActions{
+grid-template-columns:repeat(4,1fr);
 }
-
+.infoStrip{
+grid-template-columns:1fr 1fr;
+}
+.quickFlow{
+grid-template-columns:repeat(4,1fr);
+}
+.kappaGrid{
+grid-template-columns:repeat(2,1fr);
+}
+.shareArea{
+grid-template-columns:repeat(4,1fr);
+}
+.missionGrid{
+grid-template-columns:repeat(4,1fr);
+}
+.noticeList{
+grid-template-columns:repeat(2,1fr);
+}
+.prizeGrid{
+grid-template-columns:1fr 1fr;
+}
+}
 @media (min-width:1020px){
-
- .kappaGrid{
-  grid-template-columns:repeat(3,1fr);
- }
-
+.kappaGrid{
+grid-template-columns:repeat(3,1fr);
 }
-
-fieldset{margin:16px 0;padding:16px;border:1px solid #a7f3d0;border-radius:20px;min-width:0}legend{font-size:22px;font-weight:900}fieldset:disabled{background:#f1f5f2}label{margin-top:14px}.consent{display:flex;align-items:flex-start;gap:12px;font-size:16px}.consent input{width:26px;height:26px;flex:0 0 26px}.bigBtn{min-height:48px}#eventStatus{font-size:17px}select,textarea{margin-bottom:12px}.kappaPhoto{width:100%;max-height:300px;object-fit:contain;border-radius:16px} 
+}
+fieldset{margin:16px 0;padding:16px;border:1px solid #a7f3d0;border-radius:20px;min-width:0}legend{font-size:22px;font-weight:900}fieldset:disabled{background:#f1f5f2}label{margin-top:14px}.consent{display:flex;align-items:flex-start;gap:12px;font-size:16px}.consent input{width:26px;height:26px;flex:0 0 26px}.bigBtn{min-height:48px}#eventStatus{font-size:17px}select,textarea{margin-bottom:12px}.kappaPhoto{width:100%;max-height:300px;object-fit:contain;border-radius:16px}
 /* iPhoneの下メニューと文字サイズ変更に合わせた余白 */
 .wrap{padding-bottom:calc(var(--bottom-nav-height,88px) + 24px)}
 .bottomNav{padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -931,13 +795,11 @@ fieldset{margin:16px 0;padding:16px;border:1px solid #a7f3d0;border-radius:20px;
 .bottomNav a{min-height:52px;font-size:13px}
 input,textarea,select,button{scroll-margin-top:calc(var(--header-height,120px) + 16px);scroll-margin-bottom:calc(var(--bottom-nav-height,88px) + 24px)}
 html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-bottom:calc(var(--bottom-nav-height,88px) + 24px)}
-
 .prizeApplePhoto{
- width:100%;
- aspect-ratio:1 / 1;
- background:#fff url("IMG_3221.jpeg") right bottom / 185% auto no-repeat;
+width:100%;
+aspect-ratio:1 / 1;
+background:#fff url("IMG_3221.jpeg") right bottom / 185% auto no-repeat;
 }
-
 /* 商品写真は全体を表示し、縦長の瓶も切りません。 */
 .shopPhotos{display:grid;gap:12px;margin:12px 0}
 .shopPhoto{margin:0;background:#fff;border:1px solid #dcfce7;border-radius:16px;overflow:hidden}
@@ -948,270 +810,223 @@ html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-b
 .shopSocialLinks .miniBtn{margin:0}
 </style>
 </head>
-
 <body>
-
 <div class="wrap">
-
 <header class="header">
- <a class="logo" href="#top" data-page-link="top">
-  <span class="logoMark"><img src="fujiko-logo.png" alt="ふじこ"></span>
-  <span>SKZ30 カッパ像めぐりDX</span>
- </a>
-
- <nav class="nav">
-  <a href="#top" data-page-link="top">トップ</a>
-  <a href="#kappas" data-page-link="kappas">巡る</a>
-  <a href="#info" data-page-link="info">情報</a>
-  <a href="#vote" data-page-link="vote">推し</a>
-  <a href="#shops" data-page-link="shops">お店</a>
- </nav>
+<a class="logo" href="#top" data-page-link="top">
+<span class="logoMark"><img src="fujiko-logo.png" alt="ふじこ"></span>
+<span>SKZ30 カッパ像めぐりDX</span>
+</a>
+<nav class="nav">
+<a href="#top" data-page-link="top">トップ</a>
+<a href="#kappas" data-page-link="kappas">巡る</a>
+<a href="#info" data-page-link="info">情報</a>
+<a href="#vote" data-page-link="vote">推し</a>
+<a href="#shops" data-page-link="shops">お店</a>
+</nav>
 </header>
-
 <main>
-
 <section id="top" class="page active">
-
- <div class="appHero">
-
-  <div class="appHeroImage">
-   <img src="images/skz30-top.jpg" alt="SKZ30 カッパ像めぐりDX" onerror="this.style.display='none';document.getElementById('heroFallback').style.display='block';">
-   <div id="heroFallback" class="heroFallback" style="display:none;">
-    <div class="big">🥒</div>
-    <div>志木まち歩き参加ページ</div>
-   </div>
-
-   <div class="appHeroOverlay">
-   <small>志木まち歩き参加ページ</small>
-    <span class="prizeBadge">抽選でステキなプレゼントが当たる！</span>
-    <h1>SKZ30<br>カッパ像めぐりDX</h1>
-   </div>
-  </div>
-
-  <div class="appHeroBody">
-   <p class="catch">
-    めぐって、めぐって、あなたの推し3体を！
-   </p>
-
-   <p class="lead">
-    19か所のうち異なる3か所でQRコードを読み取り、30体から推し3体を選んで、それぞれの魅力を書いて応募します。
-   </p>
-
-   <div class="mainActions">
-    <a class="bigBtn primary" href="#kappas" data-page-link="kappas">
-     巡る<br>カッパ像を選ぶ
-    </a>
-
-    <a class="bigBtn secondary" href="#vote" data-page-link="vote">
-     ⭐ 推し<br>3体を選ぶ
-    </a>
-
-    <a class="bigBtn secondary" href="#info" data-page-link="info">
-     情報<br>お知らせを見る
-    </a>
-
-    <a class="bigBtn secondary" href="#shops" data-page-link="shops">
-     お店<br>名物も楽しむ
-    </a>
-   </div>
-  </div>
-
- </div>
-
- <div class="infoStrip">
-  <div class="infoBox">
-   <strong>開催期間</strong>
-   <span>2026年10月中旬〜11月15日</span>
-  </div>
-
-  <div class="infoBox">
-   <strong>参加対象</strong>
-   <span>応募は1人1回</span>
-  </div>
- </div>
-
- <section class="card prizePromo">
-  <h2>抽選で合計17名様にプレゼント</h2>
-  <p class="prizeIntro">異なる3か所のQRを読み取り、推し3体とそれぞれの理由を入力して応募します。</p>
-  <div class="prizeGrid">
-   <article class="prizeCard"><div class="prizeApplePhoto" role="img" aria-label="長野県飯綱町産りんご5kg"></div><div class="prizeCardBody">
-    <span class="prizeLabel">特賞・2名様</span>
-    <h3>りんご縁結び賞</h3><p>「長野県飯綱町産りんご」5kg</p>
-   </div></article>
-   <article class="prizeCard"><img src="IMG_3222.png" alt="りんご結びオリジナル商品の詰め合わせ" loading="lazy" decoding="async"><div class="prizeCardBody">
-    <span class="prizeLabel">10名様</span>
-    <h3>りんご結び賞</h3><p>志木名物「りんご結びオリジナル商品」詰め合わせ</p>
-   </div></article>
-   <article class="prizeCard"><img src="IMG_3223.jpeg" alt="カッピーハッピー賞の特別チョイス詰め合わせ" loading="lazy" decoding="async"><div class="prizeCardBody">
-    <span class="prizeLabel">5名様</span>
-    <h3>カッピーハッピー賞</h3><p>志木名物「特別チョイス」詰め合わせ</p>
-   </div></article>
-  </div>
-  <p class="prizeNote">抽選日：11月20日。当選者へメールでご連絡します。<br>賞品は11月29日（日）、志木市民まつり・いろは親水公園カッピーステージでお渡しします。当日お受け取りができる方が対象です。</p>
- </section>
-
- <section class="card">
-  <h2>QRの読み取り記録</h2>
-  <p>
-   現地のQRを読み取ると、推しを1体ずつ入力できます。応募は10月中旬からです。
-  </p>
-
-  <div class="infoBox" style="margin-top:12px;">
-   <strong>異なる3か所で参加資格</strong>
-   <span id="homeVisitedCount">確認中…</span>
-  </div>
- </section>
-
- <section class="card">
-  <h2>参加のしかた</h2>
-  <p>QRを読んだ場所の像に限らず、30体すべてから推しを選べます。QRがない9体も投票対象です。</p>
-  <div class="quickFlow">
-   <div class="flowItem"><div class="flowIcon">1</div><div><b>1か所目のQRを読む</b><small>30体から推し1体を選び、魅力を書いて保存します。</small></div></div>
-   <div class="flowItem"><div class="flowIcon">2</div><div><b>別の場所のQRを読む</b><small>2体目の推しを選び、魅力を書いて保存します。</small></div></div>
-   <div class="flowItem"><div class="flowIcon">3</div><div><b>さらに別の場所のQRを読む</b><small>3体目の推しを選び、魅力を書いて保存します。推しは異なる3体です。</small></div></div>
-   <div class="flowItem"><div class="flowIcon">✓</div><div><b>氏名・メールを入力して応募</b><small>11月29日の賞品受け取りに同意して送信します。応募後に受付番号が表示されます。</small></div></div>
-  </div>
-  <p class="reasonNote">同じ場所のQRを何回読んでも、確認地点は1か所です。続きは同じスマホ・同じブラウザーで開いてください。</p>
- </section>
-
- <section class="card">
-  <h2>最新情報</h2>
-  <p>
-   開催期間、参加方法、賞品のお知らせを確認できます。
-  </p>
-
-  <div class="noticeList">
-   <div class="notice">
-    <b>10月中旬スタート</b>
-    <small>現地のQRを3か所で読み取り、推し3体の魅力を書いて応募します。</small>
-   </div>
-
-   <div class="notice">
-    <b>QRがない像も選べます</b>
-    <small>投票対象は30体すべて。QRを読んだ場所の像に限らず、好きな3体を選べます。</small>
-   </div>
-  </div>
- </section>
-
+<div class="appHero">
+<div class="appHeroImage">
+<img src="images/skz30-top.jpg" alt="SKZ30 カッパ像めぐりDX" onerror="this.style.display='none';document.getElementById('heroFallback').style.display='block';">
+<div id="heroFallback" class="heroFallback" style="display:none;">
+<div class="big">🥒</div>
+<div>志木まち歩き参加ページ</div>
+</div>
+<div class="appHeroOverlay">
+<small>志木まち歩き参加ページ</small>
+<span class="prizeBadge">抽選でステキなプレゼントが当たる！</span>
+<h1>SKZ30<br>カッパ像めぐりDX</h1>
+</div>
+</div>
+<div class="appHeroBody">
+<p class="catch">
+めぐって、めぐって、あなたの推し3体を！
+</p>
+<p class="lead">
+19か所のうち異なる3か所でQRコードを読み取り、30体から推し3体を選んで、それぞれの魅力を書いて応募します。
+</p>
+<div class="mainActions">
+<a class="bigBtn primary" href="#kappas" data-page-link="kappas">
+巡る<br>カッパ像を選ぶ
+</a>
+<a class="bigBtn secondary" href="#vote" data-page-link="vote">
+⭐ 推し<br>3体を選ぶ
+</a>
+<a class="bigBtn secondary" href="#info" data-page-link="info">
+情報<br>お知らせを見る
+</a>
+<a class="bigBtn secondary" href="#shops" data-page-link="shops">
+お店<br>名物も楽しむ
+</a>
+</div>
+</div>
+</div>
+<div class="infoStrip">
+<div class="infoBox">
+<strong>開催期間</strong>
+<span>2026年10月中旬〜11月15日</span>
+</div>
+<div class="infoBox">
+<strong>参加対象</strong>
+<span>応募は1人1回</span>
+</div>
+</div>
+<section class="card prizePromo">
+<h2>抽選で合計17名様にプレゼント</h2>
+<p class="prizeIntro">異なる3か所のQRを読み取り、推し3体とそれぞれの理由を入力して応募します。</p>
+<div class="prizeGrid">
+<article class="prizeCard"><div class="prizeApplePhoto" role="img" aria-label="長野県飯綱町産りんご5kg"></div><div class="prizeCardBody">
+<span class="prizeLabel">特賞・2名様</span>
+<h3>りんご縁結び賞</h3><p>「長野県飯綱町産りんご」5kg</p>
+</div></article>
+<article class="prizeCard"><img src="IMG_3222.png" alt="りんご結びオリジナル商品の詰め合わせ" loading="lazy" decoding="async"><div class="prizeCardBody">
+<span class="prizeLabel">10名様</span>
+<h3>りんご結び賞</h3><p>志木名物「りんご結びオリジナル商品」詰め合わせ</p>
+</div></article>
+<article class="prizeCard"><img src="IMG_3223.jpeg" alt="カッピーハッピー賞の特別チョイス詰め合わせ" loading="lazy" decoding="async"><div class="prizeCardBody">
+<span class="prizeLabel">5名様</span>
+<h3>カッピーハッピー賞</h3><p>志木名物「特別チョイス」詰め合わせ</p>
+</div></article>
+</div>
+<p class="prizeNote">抽選日：11月20日。当選者へメールでご連絡します。<br>賞品は11月29日（日）、志木市民まつり・いろは親水公園カッピーステージでお渡しします。当日お受け取りができる方が対象です。</p>
 </section>
-
+<section class="card">
+<h2>QRの読み取り記録</h2>
+<p>
+現地のQRを読み取ると、推しを1体ずつ入力できます。応募は10月中旬からです。
+</p>
+<div class="infoBox" style="margin-top:12px;">
+<strong>異なる3か所で参加資格</strong>
+<span id="homeVisitedCount">確認中…</span>
+</div>
+</section>
+<section class="card">
+<h2>参加のしかた</h2>
+<p>QRを読んだ場所の像に限らず、30体すべてから推しを選べます。QRがない9体も投票対象です。</p>
+<div class="quickFlow">
+<div class="flowItem"><div class="flowIcon">1</div><div><b>1か所目のQRを読む</b><small>30体から推し1体を選び、魅力を書いて保存します。</small></div></div>
+<div class="flowItem"><div class="flowIcon">2</div><div><b>別の場所のQRを読む</b><small>2体目の推しを選び、魅力を書いて保存します。</small></div></div>
+<div class="flowItem"><div class="flowIcon">3</div><div><b>さらに別の場所のQRを読む</b><small>3体目の推しを選び、魅力を書いて保存します。推しは異なる3体です。</small></div></div>
+<div class="flowItem"><div class="flowIcon">✓</div><div><b>氏名・メールを入力して応募</b><small>11月29日の賞品受け取りに同意して送信します。応募後に受付番号が表示されます。</small></div></div>
+</div>
+<p class="reasonNote">同じ場所のQRを何回読んでも、確認地点は1か所です。続きは同じスマホ・同じブラウザーで開いてください。</p>
+</section>
+<section class="card">
+<h2>最新情報</h2>
+<p>
+開催期間、参加方法、賞品のお知らせを確認できます。
+</p>
+<div class="noticeList">
+<div class="notice">
+<b>10月中旬スタート</b>
+<small>現地のQRを3か所で読み取り、推し3体の魅力を書いて応募します。</small>
+</div>
+<div class="notice">
+<b>QRがない像も選べます</b>
+<small>投票対象は30体すべて。QRを読んだ場所の像に限らず、好きな3体を選べます。</small>
+</div>
+</div>
+</section>
+</section>
 <section id="kappas" class="page">
-
- <div class="sectionHero">
-  <h2>カッパ像を巡る</h2>
-  <p>
-   30体のかっぱ像を紹介しています。場所はGoogleマップで確認できます。QRは19か所に設置し、宝幢寺カッパ（26〜28番）は3体で1か所です。
-  </p>
- </div>
-
+<div class="sectionHero">
+<h2>カッパ像を巡る</h2>
+<p>
+30体のかっぱ像を紹介しています。場所はGoogleマップで確認できます。QRは19か所に設置し、宝幢寺カッパ（26〜28番）は3体で1か所です。
+</p>
+</div>
 <section class="card">
-  <h2>QRの読み取り記録</h2>
-  <p>
-   現地のQRを読み取ると、記録がここに表示されます。
-  </p>
-
-  <div class="infoBox" style="margin-top:12px;">
-   <strong>異なる3か所で参加資格</strong>
-   <span id="visitedCount">確認中…</span>
-  </div>
-
-  <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;">
-   <button type="button" class="bigBtn green" id="refreshVisitProgress">
-    記録を再確認
-   </button>
-  </div>
- </section>
-
- <div class="card"><h2>30体すべてが投票対象です</h2><p>QRを貼らない9体も、推しに選べます。同じQRを繰り返し読んでも、訪問数は増えません。</p><a class="bigBtn green" href="https://www.google.com/maps/d/viewer?mid=1IL2cZBQ7GCIZ8yq1bbZXlQnIWa2rRiE" target="_blank" rel="noopener">かっぱ像とお店の地図を見る</a></div>
- <div class="filterBar" id="filterBar"></div>
-
- <div class="card">
-  <div class="quickFlow">
-   <div class="flowItem">
-    <div class="flowIcon">🗺️</div>
-    <div>
-     <b>現在地から案内</b>
-     <small>Googleマップで移動</small>
-    </div>
-   </div>
-
-   <div class="flowItem">
-    <div class="flowIcon">✅</div>
-    <div>
-     <b>巡った記録</b>
-     <small>スマホに保存</small>
-    </div>
-   </div>
-
-   <div class="flowItem">
-    <div class="flowIcon">⭐</div>
-    <div>
-     <b>推し投票</b>
-     <small>気に入ったら選べます</small>
-    </div>
-   </div>
-
-   <div class="flowItem">
-    <div class="flowIcon">📣</div>
-    <div>
-     <b>共有対応</b>
-     <small>QRなしで1体から紹介</small>
-    </div>
-   </div>
-  </div>
-
-  <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;">
-   <a class="bigBtn green" href="https://www.google.com/maps/d/viewer?mid=1IL2cZBQ7GCIZ8yq1bbZXlQnIWa2rRiE" target="_blank" rel="noopener">
-    かっぱ像の地図を見る
-   </a>
-
-   <button type="button" class="bigBtn secondary" disabled>
-    記録は上の「QRの読み取り記録」で確認できます
-   </button>
-
-   <a class="bigBtn dark" href="#top" data-page-link="top">
-    トップへ戻る
-   </a>
-  </div>
- </div>
-
- <div id="kappaList" class="kappaGrid"></div>
-
+<h2>QRの読み取り記録</h2>
+<p>
+現地のQRを読み取ると、記録がここに表示されます。
+</p>
+<div class="infoBox" style="margin-top:12px;">
+<strong>異なる3か所で参加資格</strong>
+<span id="visitedCount">確認中…</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;">
+<button type="button" class="bigBtn green" id="refreshVisitProgress">
+記録を再確認
+</button>
+</div>
 </section>
-
+<div class="card"><h2>30体すべてが投票対象です</h2><p>QRを貼らない9体も、推しに選べます。同じQRを繰り返し読んでも、訪問数は増えません。</p><a class="bigBtn green" href="https://www.google.com/maps/d/viewer?mid=1IL2cZBQ7GCIZ8yq1bbZXlQnIWa2rRiE" target="_blank" rel="noopener">かっぱ像とお店の地図を見る</a></div>
+<div class="filterBar" id="filterBar"></div>
+<div class="card">
+<div class="quickFlow">
+<div class="flowItem">
+<div class="flowIcon">🗺️</div>
+<div>
+<b>現在地から案内</b>
+<small>Googleマップで移動</small>
+</div>
+</div>
+<div class="flowItem">
+<div class="flowIcon">✅</div>
+<div>
+<b>巡った記録</b>
+<small>スマホに保存</small>
+</div>
+</div>
+<div class="flowItem">
+<div class="flowIcon">⭐</div>
+<div>
+<b>推し投票</b>
+<small>気に入ったら選べます</small>
+</div>
+</div>
+<div class="flowItem">
+<div class="flowIcon">📣</div>
+<div>
+<b>共有対応</b>
+<small>QRなしで1体から紹介</small>
+</div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;">
+<a class="bigBtn green" href="https://www.google.com/maps/d/viewer?mid=1IL2cZBQ7GCIZ8yq1bbZXlQnIWa2rRiE" target="_blank" rel="noopener">
+かっぱ像の地図を見る
+</a>
+<button type="button" class="bigBtn secondary" disabled>
+記録は上の「QRの読み取り記録」で確認できます
+</button>
+<a class="bigBtn dark" href="#top" data-page-link="top">
+トップへ戻る
+</a>
+</div>
+</div>
+<div id="kappaList" class="kappaGrid"></div>
+</section>
 <section id="info" class="page">
- <div class="sectionHero"><h2>イベント情報</h2><p>参加方法と最新のお知らせをご確認ください。</p></div>
- <section class="card"><h2>参加方法</h2><div class="noticeList">
- <div class="notice"><b>開催期間</b><small>2026年10月中旬〜11月15日</small></div>
- <div class="notice"><b>異なる3か所のQRを読み取る</b><small>現地のQRを1か所読むごとに、応募用の推しを1体ずつ保存できます。SNS用の紹介文はQRなしでも作れます。同じQRを繰り返し読んでも地点数は増えません。</small></div>
- <div class="notice"><b>30体から推し3体を選ぶ</b><small>読み取ったQRの場所に関係なく、30体すべてから選べます。QRを貼らない9体も投票対象です。異なる3体を選び、それぞれの魅力を書いて保存してください。</small></div>
- <div class="notice"><b>プレゼントに応募</b><small>3か所のQRと推し3体の理由を保存し、氏名・メールアドレス・賞品受取への同意を入力して応募します。応募は1人1回です。</small></div>
- <div class="notice"><b>賞品のお受け取り</b><small>当選者にはメールでご連絡します。11月29日（日）の市民まつりステージで賞品を受け取れる方が対象です。</small></div>
- </div></section>
- <section class="card"><h2>最新のお知らせ</h2><p id="newsStatus" role="status" aria-live="polite">お知らせを読み込みます。</p><div id="newsList" class="noticeList"></div><button id="retryNews" type="button" class="bigBtn secondary" hidden>お知らせを再読み込み</button></section>
- <section class="card"><a class="bigBtn green" href="#vote" data-page-link="vote">推しを入力する</a></section>
+<div class="sectionHero"><h2>イベント情報</h2><p>参加方法と最新のお知らせをご確認ください。</p></div>
+<section class="card"><h2>参加方法</h2><div class="noticeList">
+<div class="notice"><b>開催期間</b><small>2026年10月中旬〜11月15日</small></div>
+<div class="notice"><b>異なる3か所のQRを読み取る</b><small>現地のQRを1か所読むごとに、応募用の推しを1体ずつ保存できます。SNS用の紹介文はQRなしでも作れます。同じQRを繰り返し読んでも地点数は増えません。</small></div>
+<div class="notice"><b>30体から推し3体を選ぶ</b><small>読み取ったQRの場所に関係なく、30体すべてから選べます。QRを貼らない9体も投票対象です。異なる3体を選び、それぞれの魅力を書いて保存してください。</small></div>
+<div class="notice"><b>プレゼントに応募</b><small>3か所のQRと推し3体の理由を保存し、氏名・メールアドレス・賞品受取への同意を入力して応募します。応募は1人1回です。</small></div>
+<div class="notice"><b>賞品のお受け取り</b><small>当選者にはメールでご連絡します。11月29日（日）の市民まつりステージで賞品を受け取れる方が対象です。</small></div>
+</div></section>
+<section class="card"><h2>最新のお知らせ</h2><p id="newsStatus" role="status" aria-live="polite">お知らせを読み込みます。</p><div id="newsList" class="noticeList"></div><button id="retryNews" type="button" class="bigBtn secondary" hidden>お知らせを再読み込み</button></section>
+<section class="card"><a class="bigBtn green" href="#vote" data-page-link="vote">推しを入力する</a></section>
 </section>
-
 <section id="vote" class="page">
-
- <div class="sectionHero">
-  <h2>推しを選ぶ・SNSで紹介</h2>
-  <p>
-   QRを読む前でも、30体から好きなかっぱを選んで紹介できます。1体から文章を作れます。プレゼントへの応募には、異なる3か所のQRと推し3体の保存が必要です。
-  </p>
- </div>
-
+<div class="sectionHero">
+<h2>推しを選ぶ・SNSで紹介</h2>
+<p>
+QRを読む前でも、30体から好きなかっぱを選んで紹介できます。1体から文章を作れます。プレゼントへの応募には、異なる3か所のQRと推し3体の保存が必要です。
+</p>
+</div>
 <section class="card">
-  <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:16px;">
-   <a class="bigBtn green" href="#kappas" data-page-link="kappas">
-    カッパ像を選びに行く
-   </a>
-
-   <a class="bigBtn secondary" href="#top" data-page-link="top">
-    トップへ戻る
-   </a>
-  </div>
-
+<div style="display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:16px;">
+<a class="bigBtn green" href="#kappas" data-page-link="kappas">
+カッパ像を選びに行く
+</a>
+<a class="bigBtn secondary" href="#top" data-page-link="top">
+トップへ戻る
+</a>
+</div>
 <div id="eventStatus" class="reasonNote" role="status" aria-live="polite">読み取り記録を確認中…</div><button id="refreshProgress" type="button" class="bigBtn secondary">記録を再確認</button><div class="formGrid"><fieldset id="slot1" disabled><legend>推し1体目</legend><p id="slotNote1">SNS用の紹介はQRなしで使えます。応募用の保存には異なる1か所のQRが必要です。</p><label for="rank1">かっぱを選ぶ（30体から）</label><select id="rank1"><option value="">一覧を読み込み中…</option></select><label for="reason1">好きなところ・魅力</label><textarea id="reason1" maxlength="1000" placeholder="好きなところを書いてください"></textarea><button id="saveChoice1" type="button" class="bigBtn green">1体目を応募用に保存</button></fieldset><fieldset id="slot2" disabled><legend>推し2体目</legend><p id="slotNote2">SNS用の紹介はQRなしで使えます。応募用の保存には異なる2か所のQRが必要です。</p><label for="rank2">かっぱを選ぶ（30体から）</label><select id="rank2"><option value="">一覧を読み込み中…</option></select><label for="reason2">好きなところ・魅力</label><textarea id="reason2" maxlength="1000" placeholder="好きなところを書いてください"></textarea><button id="saveChoice2" type="button" class="bigBtn green">2体目を応募用に保存</button></fieldset><fieldset id="slot3" disabled><legend>推し3体目</legend><p id="slotNote3">SNS用の紹介はQRなしで使えます。応募用の保存には異なる3か所のQRが必要です。</p><label for="rank3">かっぱを選ぶ（30体から）</label><select id="rank3"><option value="">一覧を読み込み中…</option></select><label for="reason3">好きなところ・魅力</label><textarea id="reason3" maxlength="1000" placeholder="好きなところを書いてください"></textarea><button id="saveChoice3" type="button" class="bigBtn green">3体目を応募用に保存</button></fieldset><section class="card" aria-labelledby="savedChoicesTitle"><h2 id="savedChoicesTitle">保存した推しの確認</h2><p>応募には、ここに表示される保存済みの内容を使います。変更したときは、もう一度「保存」を押してください。</p><div id="savedChoicesReview">読み取り記録を確認中…</div></section><p id="entryAvailability" class="reasonNote" role="status" aria-live="polite">応募条件を確認中…</p><form id="entryForm"><fieldset id="entryFields" disabled><legend>プレゼントに応募</legend><p>異なる3か所のQRと、推し3体の理由を保存すると応募できます。応募期間：10月中旬〜11月15日。</p><section aria-labelledby="shopSurveyTitle">
 <h3 id="shopSurveyTitle">Q.めぐってみて、おススメのお店はありましたか？</h3>
 <label for="shopSurveyAnswer">こたえ</label>
@@ -1224,78 +1039,62 @@ html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-b
 <div id="shopSurveyNameArea" hidden><label for="shopSurveyName">おススメのお店の店名</label>
 <select id="shopSurveyName" disabled><option value="">店舗一覧を読み込み中…</option></select><p id="shopSurveyLoadStatus" role="status"></p><button id="retrySurveyShops" type="button" class="miniBtn green" hidden>店舗一覧を再読み込み</button></div>
 </section><label for="entryName">氏名</label><input id="entryName" autocomplete="name" maxlength="100" required><label for="entryEmail">当選連絡用メールアドレス</label><input id="entryEmail" type="email" autocomplete="email" maxlength="254" required><label class="consent"><input id="pickupConsent" type="checkbox" required>当選した場合、11月29日（日）の市民まつり・いろは親水公園カッピーステージで賞品を受け取れます。</label><p>応募は1人1回です。</p><button type="submit" class="bigBtn primary">この内容で応募する</button></fieldset></form><button type="button" class="bigBtn secondary" onclick="makePostText()">SNS用の紹介文を作る（1体から）</button></div><div id="saveStatus" class="saveStatus" role="status" aria-live="polite"></div>
-  <div id="voteResultBox" class="voteResult">
-   <h3>できあがった投稿文</h3><p>SNSへの投稿では応募になりません。紹介文の作成・コピー・共有だけでは、応募用スプレッドシートに記録されません。Facebookでは下の文章をコピーして投稿欄に貼り付けてください。</p>
-   <pre id="voteText"></pre>
-
-   <div class="shareArea">
-    <button type="button" class="bigBtn secondary" onclick="copyVoteText()">
-     コピー
-    </button>
-
-    <button type="button" class="bigBtn green" onclick="shareLine()">
-     LINE
-    </button>
-
-    <button type="button" class="bigBtn dark" onclick="shareX()">
-     Xで投稿
-    </button>
-
-    <button type="button" class="bigBtn secondary" onclick="shareFacebook()">
-     Facebook
-    </button>
-   </div>
-  </div>
-
- </section>
-
-</section>
-
-<section id="shops" class="page">
- <div class="shopHero"><h2>志木名物も<br><span>一緒に楽しもう</span></h2><p>かっぱ像めぐりの途中で、志木の名物やお店にも立ち寄ってみませんか。</p></div>
- <section class="card"><h2>お店と名物の地図</h2><p>地図のグレーの印がお店・志木名物、モスグリーンの印がかっぱ像です。</p><a class="bigBtn green" href="https://www.google.com/maps/d/viewer?mid=1IL2cZBQ7GCIZ8yq1bbZXlQnIWa2rRiE" target="_blank" rel="noopener">お店とかっぱ像の地図を見る</a><p>お店への立ち寄りは、応募に必要なQRの読み取り地点数には含まれません。</p></section>
- <section class="card"><h2>お店・志木名物一覧</h2><p id="shopsStatus" role="status" aria-live="polite">お店の情報を読み込みます。</p><div id="shopList" class="kappaGrid"></div><button id="retryShops" type="button" class="bigBtn secondary" hidden>お店を再読み込み</button></section>
- <section class="card"><a class="bigBtn primary" href="#kappas" data-page-link="kappas">カッパ像を巡る</a></section>
-</section>
-
-</main>
-
-<footer class="footer">
- <div>SKZ30 カッパ像めぐりDX</div>
- <div>主催：志木市商工会</div>
- <div>後援：志木市</div>
- <div>協力：志木かっぱ村</div>
-</footer>
-
+<div id="voteResultBox" class="voteResult">
+<h3>できあがった投稿文</h3><p>SNSへの投稿では応募になりません。紹介文の作成・コピー・共有だけでは、応募用スプレッドシートに記録されません。Facebookでは下の文章をコピーして投稿欄に貼り付けてください。</p>
+<pre id="voteText"></pre>
+<div class="shareArea">
+<button type="button" class="bigBtn secondary" onclick="copyVoteText()">
+コピー
+</button>
+<button type="button" class="bigBtn green" onclick="shareLine()">
+LINE
+</button>
+<button type="button" class="bigBtn dark" onclick="shareX()">
+Xで投稿
+</button>
+<button type="button" class="bigBtn secondary" onclick="shareFacebook()">
+Facebook
+</button>
 </div>
-
+</div>
+</section>
+</section>
+<section id="shops" class="page">
+<div class="shopHero"><h2>志木名物も<br><span>一緒に楽しもう</span></h2><p>かっぱ像めぐりの途中で、志木の名物やお店にも立ち寄ってみませんか。</p></div>
+<section class="card"><h2>お店と名物の地図</h2><p>地図のグレーの印がお店・志木名物、モスグリーンの印がかっぱ像です。</p><a class="bigBtn green" href="https://www.google.com/maps/d/viewer?mid=1IL2cZBQ7GCIZ8yq1bbZXlQnIWa2rRiE" target="_blank" rel="noopener">お店とかっぱ像の地図を見る</a><p>お店への立ち寄りは、応募に必要なQRの読み取り地点数には含まれません。</p></section>
+<section class="card"><h2>お店・志木名物一覧</h2><p id="shopsStatus" role="status" aria-live="polite">お店の情報を読み込みます。</p><div id="shopList" class="kappaGrid"></div><button id="retryShops" type="button" class="bigBtn secondary" hidden>お店を再読み込み</button></section>
+<section class="card"><a class="bigBtn primary" href="#kappas" data-page-link="kappas">カッパ像を巡る</a></section>
+</section>
+</main>
+<footer class="footer">
+<div>SKZ30 カッパ像めぐりDX</div>
+<div>主催：志木市商工会</div>
+<div>後援：志木市</div>
+<div>協力：志木かっぱ村</div>
+</footer>
+</div>
 <nav class="bottomNav">
- <a href="#top" data-page-link="top">
-  <span>🏠</span>
-  トップ
- </a>
-
- <a href="#kappas" data-page-link="kappas">
-  <span>🥒</span>
-  巡る
- </a>
-
- <a href="#info" data-page-link="info">
-  <span>📢</span>
-  情報
- </a>
-
- <a href="#vote" data-page-link="vote">
-  <span>⭐</span>
-  推し
- </a>
-
- <a href="#shops" data-page-link="shops">
-  <span>🏬</span>
-  お店
- </a>
+<a href="#top" data-page-link="top">
+<span>🏠</span>
+トップ
+</a>
+<a href="#kappas" data-page-link="kappas">
+<span>🥒</span>
+巡る
+</a>
+<a href="#info" data-page-link="info">
+<span>📢</span>
+情報
+</a>
+<a href="#vote" data-page-link="vote">
+<span>⭐</span>
+推し
+</a>
+<a href="#shops" data-page-link="shops">
+<span>🏬</span>
+お店
+</a>
 </nav>
-
 <script>
 "use strict";
 
@@ -1437,4 +1236,46 @@ function contentURL(value){const text=String(value??'').trim();if(!text)return '
 function addContentText(card,tag,value){if(!value)return;const node=document.createElement(tag);node.textContent=value;node.style.whiteSpace='pre-wrap';card.append(node);}
 function addContentLink(card,value,label){const href=contentURL(value);if(!href)return;const link=document.createElement('a');link.className='miniBtn green';link.href=href;link.textContent=label;if(!href.startsWith('#')){link.target='_blank';link.rel='noopener';}card.append(link);}
 function addContentPhoto(card,value,label){const text=String(value??'').trim();if(!text||text.startsWith('#'))return;const src=contentURL(text);if(!src)return;const img=document.createElement('img');img.src=src;img.alt=label;img.loading='lazy';img.className='kappaPhoto';img.onerror=()=>img.remove();card.append(img);}
-function orderedContent(records,news=false){return records.map((row,i)=>({row,i})).sort((a,b)=>{if(news){const fixed=x=>/^(固定|true|1|はい|○)$/i.test(contentText(x.row,'固定表示'))?0:1;const diff=fixed(a)-fixed(b);if(diff)return diff;}const rank=x=>{const t=content
+function orderedContent(records,news=false){return records.map((row,i)=>({row,i})).sort((a,b)=>{if(news){const fixed=x=>/^(固定|true|1|はい|○)$/i.test(contentText(x.row,'固定表示'))?0:1;const diff=fixed(a)-fixed(b);if(diff)return diff;}const rank=x=>{const t=contentText(x.row,'表示順');return t&&Number.isFinite(Number(t))?Number(t):Infinity;};return rank(a)-rank(b)||a.i-b.i;}).map(x=>x.row);}
+function renderNews(records){const list=$('newsList');list.replaceChildren();const rows=orderedContent(records,true).filter(row=>contentText(row,'タイトル')||contentText(row,'本文'));rows.forEach(row=>{const card=document.createElement('article');card.className='notice';addContentText(card,'small',contentText(row,'日付'));addContentText(card,'h3',contentText(row,'タイトル'));addContentPhoto(card,row['画像URL'],contentText(row,'タイトル'));addContentText(card,'p',contentText(row,'本文'));addContentLink(card,row['リンクURL'],'詳しく見る');addContentLink(card,row['動画URL'],'紹介動画を見る');list.append(card);});$('newsStatus').textContent=rows.length?'':'新しいお知らせは、準備ができ次第掲載します。';}
+function addShopPhotos(card,row,name){
+ const value=contentText(row,'画像URL');
+ const registered=value?(value.startsWith('data:image/')?[value]:value.split(/[\r\n]+/).map(text=>text.trim()).filter(Boolean)):[];
+ const photos=registered.length?registered.slice(0,6).map(src=>({src,label:contentText(row,'商品・名物')||name})):(SHOP_PHOTOS[contentText(row,'ID')]||[]);
+ const gallery=document.createElement('div');gallery.className='shopPhotos';
+ for(const photo of photos){
+  const src=contentURL(photo.src);
+  if(!src||src.startsWith('#'))continue;
+  const figure=document.createElement('figure');figure.className='shopPhoto';
+  const img=document.createElement('img');img.src=src;img.alt=(photo.label||name)+'（'+name+'）';img.loading='lazy';img.decoding='async';
+  img.onerror=()=>figure.remove();
+  figure.append(img);
+  if(photo.label){const caption=document.createElement('figcaption');caption.textContent=photo.label;figure.append(caption);}
+  gallery.append(figure);
+ }
+ if(gallery.children.length)card.append(gallery);
+}
+function shopSocialURL(value){
+ const text=String(value??'').trim();
+ if(!text)return '';
+ const candidate=/^www\./i.test(text)?'https://'+text:text;
+ if(!/^https?:\/\//i.test(candidate))return '';
+ try{const url=new URL(candidate);return /^https?:$/.test(url.protocol)&&url.hostname&&!url.username&&!url.password?url.href:'';}catch{return '';}
+}
+function addShopSocialLinks(card,row,name){
+ const group=document.createElement('div');group.className='shopSocialLinks';
+ group.setAttribute('aria-label',name+'のSNS');
+ for(const [key,label] of [['Instagram URL','Instagramを見る'],['X URL','Xを見る'],['Facebook URL','Facebookを見る'],['LINE公式URL','LINE公式を見る']]){
+  const href=shopSocialURL(row[key]);if(!href)continue;
+  const link=document.createElement('a');link.className='miniBtn green';link.href=href;link.textContent=label;link.target='_blank';link.rel='noopener noreferrer';group.append(link);
+ }
+ if(group.children.length)card.append(group);
+}
+function renderShops(records){const list=$('shopList');list.replaceChildren();const rows=orderedContent(records).filter(row=>contentText(row,'店舗名'));rows.forEach(row=>{const card=document.createElement('article');card.className='kappaCard';const name=contentText(row,'店舗名');addContentText(card,'h3',name);addShopPhotos(card,row,name);addContentText(card,'h4',contentText(row,'商品・名物'));addContentText(card,'p',contentText(row,'紹介文'));addContentText(card,'p',contentText(row,'住所'));addContentText(card,'p',contentText(row,'目印'));const hours=contentText(row,'営業時間'),closed=contentText(row,'定休日');if(hours)addContentText(card,'p','営業時間：'+hours);if(closed)addContentText(card,'p','定休日：'+closed);addContentLink(card,row['GoogleマップURL'],'お店の地図を見る');addContentLink(card,row['公式サイトURL'],'公式サイトを見る');addContentLink(card,row['動画URL'],'紹介動画を見る');addShopSocialLinks(card,row,name);list.append(card);});$('shopsStatus').textContent=rows.length?rows.length+'か所のお店・名物を紹介しています。':'お店の詳しい紹介と写真は準備中です。上の地図で場所をご確認いただけます。';}
+async function loadPublicContent(page,force=false){if(!['info','shops'].includes(page)||publicContentState[page]==='loading'||(!force&&publicContentState[page]==='loaded'))return;const news=page==='info',message=$(news?'newsStatus':'shopsStatus'),retry=$(news?'retryNews':'retryShops');publicContentState[page]='loading';retry.hidden=true;message.textContent=news?'お知らせを読み込み中…':'お店の情報を読み込み中…';try{const data=await api(news?'getNews':'getShops');if(!Array.isArray(data.records))throw Error('一覧を確認できません。');if(news)renderNews(data.records);else renderShops(data.records);publicContentState[page]='loaded';}catch(e){publicContentState[page]='error';message.textContent='読み込めませんでした。電波を確認して、再読み込みを押してください。';retry.hidden=false;}}
+$('retryNews').addEventListener('click',()=>loadPublicContent('info',true));
+$('retryShops').addEventListener('click',()=>loadPublicContent('shops',true));
+window.addEventListener('hashchange',()=>loadPublicContent(location.hash.slice(1)));
+loadPublicContent(location.hash.slice(1));
+
+</script></body></html>
