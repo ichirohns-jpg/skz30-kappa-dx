@@ -937,6 +937,8 @@ html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-b
 .shopPhoto img{display:block;width:100%;height:auto;max-height:320px;aspect-ratio:1100 / 760;object-fit:contain}
 .shopPhoto figcaption{padding:8px 10px;color:#315d44;font-size:13px;font-weight:800}
 .shopPhotos--variants img{height:220px;aspect-ratio:auto}
+.shopSocialLinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.shopSocialLinks .miniBtn{margin:0}
 </style>
 </head>
 
@@ -1376,7 +1378,40 @@ function addContentLink(card,value,label){const href=contentURL(value);if(!href)
 function addContentPhoto(card,value,label){const text=String(value??'').trim();if(!text||text.startsWith('#'))return;const src=contentURL(text);if(!src)return;const img=document.createElement('img');img.src=src;img.alt=label;img.loading='lazy';img.className='kappaPhoto';img.onerror=()=>img.remove();card.append(img);}
 function orderedContent(records,news=false){return records.map((row,i)=>({row,i})).sort((a,b)=>{if(news){const fixed=x=>/^(固定|true|1|はい|○)$/i.test(contentText(x.row,'固定表示'))?0:1;const diff=fixed(a)-fixed(b);if(diff)return diff;}const rank=x=>{const t=contentText(x.row,'表示順');return t&&Number.isFinite(Number(t))?Number(t):Infinity;};return rank(a)-rank(b)||a.i-b.i;}).map(x=>x.row);}
 function renderNews(records){const list=$('newsList');list.replaceChildren();const rows=orderedContent(records,true).filter(row=>contentText(row,'タイトル')||contentText(row,'本文'));rows.forEach(row=>{const card=document.createElement('article');card.className='notice';addContentText(card,'small',contentText(row,'日付'));addContentText(card,'h3',contentText(row,'タイトル'));addContentPhoto(card,row['画像URL'],contentText(row,'タイトル'));addContentText(card,'p',contentText(row,'本文'));addContentLink(card,row['リンクURL'],'詳しく見る');addContentLink(card,row['動画URL'],'紹介動画を見る');list.append(card);});$('newsStatus').textContent=rows.length?'':'新しいお知らせは、準備ができ次第掲載します。';}
-function renderShops(records){const list=$('shopList');list.replaceChildren();const rows=orderedContent(records).filter(row=>contentText(row,'店舗名'));rows.forEach(row=>{const card=document.createElement('article');card.className='kappaCard';const name=contentText(row,'店舗名');addContentText(card,'h3',name);addShopPhotos(card,row,name);addContentText(card,'h4',contentText(row,'商品・名物'));addContentText(card,'p',contentText(row,'紹介文'));addContentText(card,'p',contentText(row,'住所'));addContentText(card,'p',contentText(row,'目印'));const hours=contentText(row,'営業時間'),closed=contentText(row,'定休日');if(hours)addContentText(card,'p','営業時間：'+hours);if(closed)addContentText(card,'p','定休日：'+closed);addContentLink(card,row['GoogleマップURL'],'お店の地図を見る');addContentLink(card,row['公式サイトURL'],'公式サイトを見る');addContentLink(card,row['動画URL'],'紹介動画を見る');list.append(card);});$('shopsStatus').textContent=rows.length?rows.length+'か所のお店・名物を紹介しています。':'お店の詳しい紹介と写真は準備中です。上の地図で場所をご確認いただけます。';}
+function addShopPhotos(card,row,name){
+ const value=contentText(row,'画像URL');
+ const registered=value?(value.startsWith('data:image/')?[value]:value.split(/[\r\n]+/).map(text=>text.trim()).filter(Boolean)):[];
+ const photos=registered.length?registered.slice(0,6).map(src=>({src,label:contentText(row,'商品・名物')||name})):(SHOP_PHOTOS[contentText(row,'ID')]||[]);
+ const gallery=document.createElement('div');gallery.className='shopPhotos';
+ for(const photo of photos){
+  const src=contentURL(photo.src);
+  if(!src||src.startsWith('#'))continue;
+  const figure=document.createElement('figure');figure.className='shopPhoto';
+  const img=document.createElement('img');img.src=src;img.alt=(photo.label||name)+'（'+name+'）';img.loading='lazy';img.decoding='async';
+  img.onerror=()=>figure.remove();
+  figure.append(img);
+  if(photo.label){const caption=document.createElement('figcaption');caption.textContent=photo.label;figure.append(caption);}
+  gallery.append(figure);
+ }
+ if(gallery.children.length)card.append(gallery);
+}
+function shopSocialURL(value){
+ const text=String(value??'').trim();
+ if(!text)return '';
+ const candidate=/^www\./i.test(text)?'https://'+text:text;
+ if(!/^https?:\/\//i.test(candidate))return '';
+ try{const url=new URL(candidate);return /^https?:$/.test(url.protocol)&&url.hostname&&!url.username&&!url.password?url.href:'';}catch{return '';}
+}
+function addShopSocialLinks(card,row,name){
+ const group=document.createElement('div');group.className='shopSocialLinks';
+ group.setAttribute('aria-label',name+'のSNS');
+ for(const [key,label] of [['Instagram URL','Instagramを見る'],['X URL','Xを見る'],['Facebook URL','Facebookを見る'],['LINE公式URL','LINE公式を見る']]){
+  const href=shopSocialURL(row[key]);if(!href)continue;
+  const link=document.createElement('a');link.className='miniBtn green';link.href=href;link.textContent=label;link.target='_blank';link.rel='noopener noreferrer';group.append(link);
+ }
+ if(group.children.length)card.append(group);
+}
+function renderShops(records){const list=$('shopList');list.replaceChildren();const rows=orderedContent(records).filter(row=>contentText(row,'店舗名'));rows.forEach(row=>{const card=document.createElement('article');card.className='kappaCard';const name=contentText(row,'店舗名');addContentText(card,'h3',name);addShopPhotos(card,row,name);addContentText(card,'h4',contentText(row,'商品・名物'));addContentText(card,'p',contentText(row,'紹介文'));addContentText(card,'p',contentText(row,'住所'));addContentText(card,'p',contentText(row,'目印'));const hours=contentText(row,'営業時間'),closed=contentText(row,'定休日');if(hours)addContentText(card,'p','営業時間：'+hours);if(closed)addContentText(card,'p','定休日：'+closed);addContentLink(card,row['GoogleマップURL'],'お店の地図を見る');addContentLink(card,row['公式サイトURL'],'公式サイトを見る');addContentLink(card,row['動画URL'],'紹介動画を見る');addShopSocialLinks(card,row,name);list.append(card);});$('shopsStatus').textContent=rows.length?rows.length+'か所のお店・名物を紹介しています。':'お店の詳しい紹介と写真は準備中です。上の地図で場所をご確認いただけます。';}
 async function loadPublicContent(page,force=false){if(!['info','shops'].includes(page)||publicContentState[page]==='loading'||(!force&&publicContentState[page]==='loaded'))return;const news=page==='info',message=$(news?'newsStatus':'shopsStatus'),retry=$(news?'retryNews':'retryShops');publicContentState[page]='loading';retry.hidden=true;message.textContent=news?'お知らせを読み込み中…':'お店の情報を読み込み中…';try{const data=await api(news?'getNews':'getShops');if(!Array.isArray(data.records))throw Error('一覧を確認できません。');if(news)renderNews(data.records);else renderShops(data.records);publicContentState[page]='loaded';}catch(e){publicContentState[page]='error';message.textContent='読み込めませんでした。電波を確認して、再読み込みを押してください。';retry.hidden=false;}}
 $('retryNews').addEventListener('click',()=>loadPublicContent('info',true));
 $('retryShops').addEventListener('click',()=>loadPublicContent('shops',true));
