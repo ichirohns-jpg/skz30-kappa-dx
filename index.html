@@ -916,7 +916,7 @@ background:#fff url("IMG_3221.jpeg") right bottom / 185% auto no-repeat;
 <div class="flowItem"><div class="flowIcon">1</div><div><b>1か所目のQRを読む</b><small>30体から推し1体を選び、魅力を書いて保存します。</small></div></div>
 <div class="flowItem"><div class="flowIcon">2</div><div><b>別の場所のQRを読む</b><small>2体目の推しを選び、魅力を書いて保存します。</small></div></div>
 <div class="flowItem"><div class="flowIcon">3</div><div><b>さらに別の場所のQRを読む</b><small>3体目の推しを選び、魅力を書いて保存します。推しは異なる3体です。</small></div></div>
-<div class="flowItem"><div class="flowIcon">✓</div><div><b>氏名・メールを入力して応募</b><small>11月29日の賞品受け取りに同意して送信します。応募後に受付番号が表示されます。</small></div></div>
+<div class="flowItem"><div class="flowIcon">✓</div><div><b>氏名・電話番号・メールを入力して応募</b><small>11月29日の賞品受け取りに同意して送信します。応募後に受付番号が表示されます。</small></div></div>
 </div>
 <p class="reasonNote">同じ場所のQRを何回読んでも、確認地点は1か所です。続きは同じスマホ・同じブラウザーで開いてください。</p>
 </section>
@@ -1046,7 +1046,7 @@ QRを読む前でも、30体から好きなかっぱを選んで紹介できま�
 </select>
 <div id="shopSurveyNameArea" hidden><label for="shopSurveyName">おススメのお店の店名</label>
 <select id="shopSurveyName" disabled><option value="">店舗一覧を読み込み中…</option></select><p id="shopSurveyLoadStatus" role="status"></p><button id="retrySurveyShops" type="button" class="miniBtn green" hidden>店舗一覧を再読み込み</button></div>
-</section><label for="entryName">氏名</label><input id="entryName" autocomplete="name" maxlength="100" required><label for="entryPhone">連絡先電話番号</label><input id="entryPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" required placeholder="例：09012345678"><label for="entryEmail">当選連絡用メールアドレス</label><input id="entryEmail" type="email" autocomplete="email" maxlength="254" required><label class="consent"><input id="pickupConsent" type="checkbox" required>当選した場合、11月29日（日）の市民まつり・いろは親水公園カッピーステージへ賞品を取りに行きます。</label><p>応募は1人1回です。</p><button id="entrySubmit" type="submit" class="bigBtn primary" disabled>この内容で応募する</button></fieldset></form><button type="button" class="bigBtn secondary" onclick="makePostText()">SNS用の紹介文を作る（1体から）</button></div><div id="saveStatus" class="saveStatus" role="status" aria-live="polite"></div>
+</section><label for="entryName">氏名</label><input id="entryName" autocomplete="name" maxlength="100" required><label for="entryPhone">連絡先電話番号</label><input id="entryPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" required placeholder="例：09012345678"><label for="entryEmail">当選連絡用メールアドレス</label><input id="entryEmail" type="email" autocomplete="email" maxlength="254" required><label class="consent"><input id="pickupConsent" type="checkbox" required>当選した場合、11月29日（日）の市民まつり・いろは親水公園カッピーステージへ賞品を受け取りに行きます（代理受取可）。</label><p>応募は1人1回です。</p><button id="entrySubmit" type="submit" class="bigBtn primary" disabled>この内容で応募する</button></fieldset></form><button type="button" class="bigBtn secondary" onclick="makePostText()">SNS用の紹介文を作る（1体から）</button></div><div id="saveStatus" class="saveStatus" role="status" aria-live="polite"></div>
 <div id="voteResultBox" class="voteResult">
 <h3>できあがった投稿文</h3><p>写真と紹介文で、好きなかっぱをSNSで紹介できます。プレゼントへの応募は、上の応募欄から行ってください。</p>
 <pre id="voteText" hidden></pre><pre id="shareIntroText"></pre><div id="sharePhotoPreview" class="sharePhotoPreview"></div><pre id="shareTagsText"></pre>
@@ -1184,7 +1184,7 @@ function applicationNotice(state,today,working,isReady){
  const saved=[1,2,3].filter(slot=>state.choices.some(choice=>choice.slot===slot)).length;
  if(saved<3)return '推し3体それぞれの理由を保存してください。保存済み：'+saved+'体／3体。';
  if(!state.canApply)return '応募条件を確認できません。「記録を再確認」を押してください。';
- return '応募できます。氏名・メールを入力し、11月29日の賞品受け取りに同意して送信してください。';
+ return '応募できます。氏名・連絡先電話番号・メールを入力し、11月29日の賞品受け取り（代理受取可）に同意して送信してください。';
 }
 function visitRefreshStatus(text,error=false){const el=$('visitRefreshStatus');if(!el)return;el.textContent=text;el.classList.toggle('error',error);}
 function renderProgress(){if(!progress)return;renderSavedChoices();const count=progress.visitedCount;for(const id of ['homeVisitedCount','visitedCount'])$(id).textContent=count+'か所／参加資格は3か所';$('eventStatus').textContent=progress.submitted?'応募済みです。受付番号：'+progress.receipt:count>=3?(progress.canApply?'推し3体の理由を保存済みです。下の応募案内をご確認ください。':'3か所を確認しました。推し3体の理由を保存して応募してください。'):'確認済み '+count+'か所。SNS用の紹介文はQRなしで作れます。応募用の保存は、異なるQRを読むごとに1体ずつ使えます。';for(let n=1;n<=3;n++){const choice=progress.choices.find(c=>c.slot===n);$('slot'+n).disabled=busy||KAPPAS.length!==30;$('saveChoice'+n).disabled=busy||!ready||progress.submitted||progress.unlockedSlots<n;$('slotNote'+n).textContent=progress.submitted?'応募済みの内容は変更できません。SNS用の文章は作れます。':choice?'応募用に保存済み：'+choice.name+'。編集したら、応募用にもう一度保存してください。':progress.unlockedSlots>=n?'SNSで紹介できます。応募する場合は、選んだかっぱと理由を保存してください。':'SNSで紹介できます。応募用の保存には、異なる'+n+'か所のQRが必要です。';}const today=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());$('entryAvailability').textContent=applicationNotice(progress,today,busy,ready);$('entryFields').disabled=busy||progress.submitted;$('entrySubmit').disabled=busy||!ready||!progress.canApply||progress.submitted||today<'2026-10-11'||today>'2026-11-15';$('refreshProgress').disabled=busy;$('refreshVisitProgress').disabled=busy;}
