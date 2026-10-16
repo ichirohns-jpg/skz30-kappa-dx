@@ -382,6 +382,10 @@ display:flex;
 gap:12px;
 align-items:center;
 }
+a.flowItem{cursor:pointer;text-decoration:none;color:inherit;}
+a.flowItem::after{content:"›";margin-left:auto;color:#15803d;font-size:26px;font-weight:900;}
+a.flowItem:hover{background:#f0fdf4;}
+a.flowItem:focus-visible{outline:3px solid #15803d;outline-offset:3px;}
 .flowIcon{
 width:44px;
 height:44px;
@@ -940,8 +944,8 @@ background:#fff url("IMG_3221.jpeg") right bottom / 185% auto no-repeat;
 30体のかっぱ像を紹介しています。場所はGoogleマップで確認できます。QRは19か所に設置し、宝幢寺カッパ（26〜28番）は3体で1か所です。
 </p>
 </div>
-<section class="card">
-<h2>QRの読み取り記録</h2>
+<section class="card" id="visitRecords" tabindex="-1" aria-labelledby="visitRecordsTitle">
+<h2 id="visitRecordsTitle">QRの読み取り記録</h2>
 <p>
 現地のQRを読み取ると、記録がここに表示されます。
 </p>
@@ -960,42 +964,42 @@ background:#fff url("IMG_3221.jpeg") right bottom / 185% auto no-repeat;
 <div class="filterBar" id="filterBar"></div>
 <div class="card">
 <div class="quickFlow">
-<div class="flowItem">
-<div class="flowIcon">🗺️</div>
+<a class="flowItem" href="https://www.google.com/maps/d/viewer?mid=1IL2cZBQ7GCIZ8yq1bbZXlQnIWa2rRiE" target="_blank" rel="noopener">
+<div class="flowIcon" aria-hidden="true">🗺️</div>
 <div>
-<b>現在地から案内</b>
-<small>Googleマップで移動</small>
+<b>地図で行き先を選ぶ</b>
+<small>Googleマップを開く</small>
 </div>
-</div>
-<div class="flowItem">
-<div class="flowIcon">✅</div>
+</a>
+<a class="flowItem" href="#kappas" data-page-link="kappas" data-scroll-target="visitRecords">
+<div class="flowIcon" aria-hidden="true">✅</div>
 <div>
 <b>巡った記録</b>
-<small>スマホに保存</small>
+<small>QRの読み取り件数を確認</small>
 </div>
-</div>
-<div class="flowItem">
-<div class="flowIcon">⭐</div>
+</a>
+<a class="flowItem" href="#vote" data-page-link="vote">
+<div class="flowIcon" aria-hidden="true">⭐</div>
 <div>
 <b>推し投票</b>
-<small>気に入ったら選べます</small>
+<small>推しを選ぶ画面へ</small>
 </div>
-</div>
-<div class="flowItem">
-<div class="flowIcon">📣</div>
+</a>
+<a class="flowItem" href="#vote" data-page-link="vote">
+<div class="flowIcon" aria-hidden="true">📣</div>
 <div>
 <b>SNSで紹介</b>
 <small>QRなしで1体から紹介</small>
 </div>
-</div>
+</a>
 </div>
 <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;">
 <a class="bigBtn green" href="https://www.google.com/maps/d/viewer?mid=1IL2cZBQ7GCIZ8yq1bbZXlQnIWa2rRiE" target="_blank" rel="noopener">
 かっぱ像の地図を見る
 </a>
-<button type="button" class="bigBtn secondary" disabled>
-記録は上の「QRの読み取り記録」で確認できます
-</button>
+<a class="bigBtn secondary" href="#kappas" data-page-link="kappas" data-scroll-target="visitRecords">
+QRの読み取り記録を見る
+</a>
 <a class="bigBtn dark" href="#top" data-page-link="top">
 トップへ戻る
 </a>
@@ -1124,6 +1128,18 @@ let KAPPAS=[],auth=null,progress=null,busy=false,ready=false,serial=0;
 const $=id=>document.getElementById(id);
 function showPage(){const page=location.hash.slice(1),active=["top","kappas","info","vote","shops"].includes(page)?page:"top";document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.id===active));document.querySelectorAll('[data-page-link]').forEach(el=>{const on=el.dataset.pageLink===active;el.classList.toggle('active',on);if(on)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});}
 window.addEventListener('hashchange',()=>{showPage();window.scrollTo(0,0);});showPage();
+// 同じ「巡る」画面内でも、記録へのリンクは毎回対象の欄まで移動します。
+document.querySelectorAll('a[data-scroll-target]').forEach(link=>{
+ link.addEventListener('click',event=>{
+  const target=document.getElementById(link.dataset.scrollTarget);
+  if(!target)return;
+  event.preventDefault();
+  if(location.hash!==link.hash)history.pushState(null,'',link.hash);
+  showPage();updateLayoutInsets();
+  target.scrollIntoView({behavior:'smooth',block:'start'});
+  target.focus({preventScroll:true});
+ });
+});
 function status(text,error=false){$('saveStatus').textContent=text;$('saveStatus').classList.add('show');$('saveStatus').classList.toggle('error',error);}
 function randomHex(n){return Array.from(crypto.getRandomValues(new Uint8Array(n)),b=>b.toString(16).padStart(2,'0')).join('');}
 function identity(){const key='skz30-event-auth-v1';let data=JSON.parse(localStorage.getItem(key)||'null');if(!data){data={userId:randomHex(16),sessionKey:randomHex(32)};localStorage.setItem(key,JSON.stringify(data));}if(!/^[A-Za-z0-9_-]{20,100}$/.test(data.userId)||!/^[A-Za-z0-9_-]{32,150}$/.test(data.sessionKey))throw Error('参加者情報を確認できません。記録を消さず、主催者へお問い合わせください。');return data;}
