@@ -1351,7 +1351,7 @@ function makeSimpleShareText(){
  const id=$('shareKappaSimple').value,reason=$('shareReasonSimple').value.trim();
  if(!id){$('shareReasonSimple').focus();$('saveStatus').textContent='まず紹介するカッパを選んでください。';$('saveStatus').classList.add('show','error');return false;}
  if(!reason){$('shareReasonSimple').focus();$('saveStatus').textContent='好きなところを一言入力してください。';$('saveStatus').classList.add('show','error');return false;}
- $('rank1').value=id;$('reason1').value=reason;
+ $('rank1').value=id;$('reason1').value=reason;$('saveStatus').classList.remove('show','error');
  return makePostText();
 }
 function makePostText(forcePhoto=false){
@@ -1363,7 +1363,7 @@ function makePostText(forcePhoto=false){
  const selected=picks.map(p=>({...p,kappa:KAPPAS.find(k=>k.id===p.id)}));
  if(selected.some(p=>!p.kappa)){status('かっぱの一覧を読み込み直してください。',true);return false;}
  const lines=['SKZ30 カッパ像めぐり2026'];selected.forEach(p=>lines.push(p.kappa.name+'：'+p.reason));lines.push('#SKZ30 #志木市 #かっぱ像めぐり',APP_URL);
- $('voteText').textContent=lines.join('\n\n');$('shareIntroText').textContent=lines.slice(0,-2).join('\n\n');$('shareTagsText').textContent=lines.slice(-2).join('\n\n');$('voteResultBox').classList.add('show');preparePhotoShare(selected,JSON.stringify(selected.map(p=>p.id)),forcePhoto);return true;
+ $('voteText').textContent=lines.join('\n\n');$('shareIntroText').textContent=lines.slice(0,-2).join('\n\n');$('shareTagsText').textContent=lines.slice(-2).join('\n\n');$('saveStatus').classList.remove('show','error');$('voteResultBox').classList.add('show');$('voteResultBox').scrollIntoView({behavior:'smooth',block:'start'});preparePhotoShare(selected,JSON.stringify(selected.map(p=>p.id)),forcePhoto);return true;
 }
 async function copyVoteText(){
  if(!makePostText())return;
