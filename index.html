@@ -1046,19 +1046,9 @@ QRを読む前でも、30体から好きなかっぱを選んで紹介できま�
 </select>
 <div id="shopSurveyNameArea" hidden><label for="shopSurveyName">おススメのお店の店名</label>
 <select id="shopSurveyName" disabled><option value="">店舗一覧を読み込み中…</option></select><p id="shopSurveyLoadStatus" role="status"></p><button id="retrySurveyShops" type="button" class="miniBtn green" hidden>店舗一覧を再読み込み</button></div>
-</section><label for="entryName">氏名</label><input id="entryName" autocomplete="name" maxlength="100" required><label for="entryPhone">連絡先電話番号</label><input id="entryPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" required placeholder="例：09012345678"><label for="entryEmail">当選連絡用メールアドレス</label><input id="entryEmail" type="email" autocomplete="email" maxlength="254" required><label class="consent"><input id="pickupConsent" type="checkbox" required>当選した場合、11月29日（日）の市民まつり・いろは親水公園カッピーステージへ賞品を受け取りに行きます（代理受取可）。</label><p>応募は1人1回です。</p><button id="entrySubmit" type="submit" class="bigBtn primary" disabled>この内容で応募する</button></fieldset></form><button type="button" class="bigBtn secondary" onclick="makePostText()">SNS用の紹介文を作る（1体から）</button></div><div id="saveStatus" class="saveStatus" role="status" aria-live="polite"></div>
+ </section><label for="entryName">氏名</label><input id="entryName" autocomplete="name" maxlength="100" required><label for="entryPhone">連絡先電話番号</label><input id="entryPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" required placeholder="例：09012345678"><label for="entryEmail">当選連絡用メールアドレス</label><input id="entryEmail" type="email" autocomplete="email" maxlength="254" required><label class="consent"><input id="pickupConsent" type="checkbox" required>当選した場合、11月29日（日）の市民まつり・いろは親水公園カッピーステージへ賞品を受け取りに行きます（代理受取可）。</label><p>応募は1人1回です。</p><button id="entrySubmit" type="submit" class="bigBtn primary" disabled>この内容で応募する</button></fieldset></form><button type="button" class="bigBtn secondary" onclick="showSimpleShareForm()">📣 SNSで写真付き紹介を作る（1体から）</button><div id="simpleShareForm" class="reasonNote" hidden><h3>SNSで紹介するカッパを選ぶ</h3><label for="shareKappaSimple">紹介するカッパ</label><select id="shareKappaSimple"><option value="">カッパを選んでください</option></select><label for="shareReasonSimple">好きなところ</label><textarea id="shareReasonSimple" maxlength="300" placeholder="例：表情がかわいくて、見つけた瞬間に元気になりました。"></textarea><button type="button" class="bigBtn green" onclick="makeSimpleShareText()">このカッパで写真付き紹介を作る</button></div></div><div id="saveStatus" class="saveStatus" role="status" aria-live="polite"></div>
 <div id="voteResultBox" class="voteResult">
 <h3>できあがった投稿文</h3><p>写真と紹介文で、好きなかっぱをSNSで紹介できます。プレゼントへの応募は、上の応募欄から行ってください。</p>
-<div class="reasonNote"><b>あなたの1枚が、次の誰かのカッパめぐりに。</b>
-<p>自分で撮った写真で、推しカッパを紹介しよう！</p>
-<div class="shareControls">
-<label class="bigBtn green" for="visitorCamera">📷 写真を撮る</label>
-<input id="visitorCamera" type="file" accept="image/*" capture="environment" hidden>
-<label class="bigBtn secondary" for="visitorAlbum">🖼 スマホの写真を選ぶ（3枚まで）</label>
-<input id="visitorAlbum" type="file" accept="image/*" multiple hidden>
-<button id="visitorClear" type="button" class="miniBtn secondary" hidden>自分の写真を外す</button>
-</div><p id="visitorPhotoStatus" role="status" aria-live="polite"></p>
-<p class="helpText">写真はこの画面で共有するためだけに使用し、DXには保存しません。顔や車のナンバーなどが写っていないか確認してください。</p></div>
 <pre id="voteText" hidden></pre><pre id="shareIntroText"></pre><div id="sharePhotoPreview" class="sharePhotoPreview"></div><pre id="shareTagsText"></pre>
 <div class="shareControls"><p id="sharePhotoStatus" role="status" aria-live="polite"></p><button id="shareWithPhotos" type="button" class="bigBtn green" onclick="shareWithPhotos()" disabled hidden>写真と文章を共有</button><button id="sharePhotosOnly" type="button" class="bigBtn secondary" onclick="sharePhotosOnly()" disabled hidden>写真だけを共有</button><button id="sharePhotoRetry" type="button" class="miniBtn green" onclick="makePostText(true)" hidden>写真を再読み込み</button></div>
 <p>文章が自動で入らない場合は、「文章をコピー」をSNSの本文に貼り付けてください。写真は、それぞれの「写真を保存」から保存して添付することもできます。</p>
@@ -1244,7 +1234,6 @@ $('entryForm').addEventListener('submit',async e=>{e.preventDefault();if(busy||!
 $('refreshProgress').addEventListener('click',refresh);
 $('refreshVisitProgress').addEventListener('click',refresh);
 for(let n=1;n<=3;n++){$('saveChoice'+n).addEventListener('click',()=>savePick(n));for(const prefix of ['rank','reason'])$(prefix+n).addEventListener('input',()=>{try{remember(n);}catch{status('入力の一時保存ができません。',true);}});}
-let visitorPhotos=[],visitorPhotoRevision=0;
 let sharePhotoFiles=[],sharePhotoKey='',sharePhotoJob=0,sharePhotoLoading=false,shareInProgress=false;
 let sharePhotoDownloads=[];
 const sharePhotoCache=new Map();
@@ -1274,22 +1263,8 @@ async function sharePhotoFile(kappa){
  try{return await task;}catch(e){sharePhotoCache.delete(kappa.id);throw e;}
 }
 async function preparePhotoShare(selected,key,force=false){
- if(!visitorPhotos.length&&!force&&key===sharePhotoKey&&(sharePhotoLoading||sharePhotoFiles.length)){
+ if(!force&&key===sharePhotoKey&&(sharePhotoLoading||sharePhotoFiles.length)){
   updateShareControls();return;
- }
- if(visitorPhotos.length){
-  ++sharePhotoJob;sharePhotoKey='visitor:'+visitorPhotoRevision;sharePhotoLoading=false;sharePhotoFiles=visitorPhotos.slice();
-  for(const url of sharePhotoDownloads)URL.revokeObjectURL(url);sharePhotoDownloads=[];
-  $('sharePhotoPreview').replaceChildren();$('sharePhotoRetry').hidden=true;
-  visitorPhotos.forEach((file,i)=>{
-   const figure=document.createElement('figure'),img=document.createElement('img'),caption=document.createElement('figcaption');
-   const url=URL.createObjectURL(file);sharePhotoDownloads.push(url);img.src=url;img.alt='自分で撮ったカッパの写真 '+(i+1);
-   img.onerror=()=>{caption.textContent='この写真はプレビューできません。JPEGまたはPNGの写真を選び直してください。';};
-   caption.textContent='自分の写真 '+(i+1);figure.append(img,caption);$('sharePhotoPreview').append(figure);
-  });
-  updateShareControls();
-  $('sharePhotoStatus').textContent= !$('shareWithPhotos').hidden?'自分の写真と紹介文の準備ができました。「写真と文章を共有」を押してください。':!$('sharePhotosOnly').hidden?'「写真だけを共有」で写真を送り、コピーした文章をSNSに貼り付けてください。':'このブラウザーでは写真を直接共有できません。「文章をコピー」を押し、SNSでスマホの元の写真を添付してください。';
-  return;
  }
  const job=++sharePhotoJob;sharePhotoKey=key;sharePhotoFiles=[];sharePhotoLoading=true;
  for(const url of sharePhotoDownloads)URL.revokeObjectURL(url);sharePhotoDownloads=[];
@@ -1328,23 +1303,6 @@ async function preparePhotoShare(selected,key,force=false){
  }catch(e){if(job===sharePhotoJob){$('sharePhotoRetry').hidden=false;$('sharePhotoStatus').textContent='写真を準備できませんでした。「写真を再読み込み」を押してください。文章はコピーできます。';}}
  finally{if(job===sharePhotoJob){sharePhotoLoading=false;updateShareControls();}}
 }
-function chooseVisitorPhotos(event){
- const files=Array.from(event.target.files||[]);event.target.value='';
- if(!files.length)return;
- if(files.length>3){$('visitorPhotoStatus').textContent='写真は3枚まで選んでください。';return;}
- if(files.some(file=>!/^image\//.test(file.type)||file.size===0||file.size>20*1024*1024)){
-  $('visitorPhotoStatus').textContent='1枚20MB以内の画像を選んでください。読み込めない場合はJPEGまたはPNGをご利用ください。';return;
- }
- visitorPhotos=files;++visitorPhotoRevision;$('visitorClear').hidden=false;
- $('visitorPhotoStatus').textContent=files.length+'枚の写真を選びました。投稿する写真を下で確認してください。';
- makePostText();
-}
-$('visitorCamera').addEventListener('change',chooseVisitorPhotos);
-$('visitorAlbum').addEventListener('change',chooseVisitorPhotos);
-$('visitorClear').addEventListener('click',()=>{
- visitorPhotos=[];++visitorPhotoRevision;sharePhotoKey='';$('visitorClear').hidden=true;
- $('visitorPhotoStatus').textContent='自分の写真を外しました。DXに登録された写真を使用します。';makePostText();
-});
 async function runNativeShare(data){
  if(shareInProgress)return;
  if(!supportsNativeShare(data)){$('sharePhotoStatus').textContent='写真を保存し、「文章をコピー」でSNSに投稿してください。';return;}
@@ -1367,6 +1325,19 @@ async function sharePhotosOnly(){
  await runNativeShare({files:sharePhotoFiles});
 }
 
+function showSimpleShareForm(){
+ const box=$('simpleShareForm');box.hidden=false;
+ const select=$('shareKappaSimple');
+ if(select.options.length===1&&KAPPAS.length){KAPPAS.forEach(k=>{const option=document.createElement('option');option.value=k.id;option.textContent=k.name;select.append(option);});}
+ box.scrollIntoView({behavior:'smooth',block:'center'});
+}
+function makeSimpleShareText(){
+ const id=$('shareKappaSimple').value,reason=$('shareReasonSimple').value.trim();
+ if(!id){$('shareReasonSimple').focus();$('saveStatus').textContent='まず紹介するカッパを選んでください。';$('saveStatus').classList.add('show','error');return false;}
+ if(!reason){$('shareReasonSimple').focus();$('saveStatus').textContent='好きなところを一言入力してください。';$('saveStatus').classList.add('show','error');return false;}
+ $('rank1').value=id;$('reason1').value=reason;
+ return makePostText();
+}
 function makePostText(forcePhoto=false){
  const picks=[1,2,3].map(n=>({id:$('rank'+n).value,reason:$('reason'+n).value.trim()})).filter(p=>p.id||p.reason);
  if(!picks.length){status('好きなかっぱを1体以上選び、紹介文を書いてください。',true);return false;}
