@@ -1246,9 +1246,9 @@ function supportsNativeShare(data){
 function updateShareControls(){
  const complete=!sharePhotoLoading&&sharePhotoFiles.length>0&&sharePhotoFiles.every(Boolean);
  const filesReady=complete&&supportsNativeShare({files:sharePhotoFiles});
- const combinedReady=filesReady&&supportsNativeShare({title:'SKZ30 カッパ像めぐり2026',text:$('voteText').textContent,files:sharePhotoFiles});
+ const combinedReady=filesReady;
  $('shareWithPhotos').hidden=!combinedReady;$('shareWithPhotos').disabled=!combinedReady||shareInProgress;
- $('sharePhotosOnly').hidden=!filesReady;$('sharePhotosOnly').disabled=!filesReady||shareInProgress;
+ $('sharePhotosOnly').hidden=true;$('sharePhotosOnly').disabled=!filesReady||shareInProgress;
 }
 async function sharePhotoFile(kappa){
  if(sharePhotoCache.has(kappa.id))return sharePhotoCache.get(kappa.id);
@@ -1271,7 +1271,7 @@ async function preparePhotoShare(selected,key,force=false){
   sharePhotoKey='visitor:'+visitorPhotoRevision;sharePhotoLoading=false;sharePhotoFiles=visitorPhotos.slice();
   for(const url of sharePhotoDownloads)URL.revokeObjectURL(url);sharePhotoDownloads=[];$('sharePhotoPreview').replaceChildren();
   visitorPhotos.forEach((file,i)=>{const figure=document.createElement('figure'),img=document.createElement('img'),caption=document.createElement('figcaption');const url=URL.createObjectURL(file);sharePhotoDownloads.push(url);img.src=url;img.alt='自分で撮ったカッパの写真 '+(i+1);caption.textContent='自分の写真 '+(i+1);figure.append(img,caption);$('sharePhotoPreview').append(figure);});
-  updateShareControls();$('sharePhotoStatus').textContent='自分の写真と紹介文の準備ができました。「写真と文章を共有」を押してください。';return;
+  updateShareControls();$('sharePhotoStatus').textContent='写真を選びました。①文章とリンクをコピー → ②写真をSNSへ送る → SNSの本文に貼り付けてください。';return;
  }
  if(!selected.length){
   sharePhotoKey=key;sharePhotoLoading=false;sharePhotoFiles=[];
@@ -1331,7 +1331,7 @@ async function runNativeShare(data){
  if(shareInProgress)return;
  if(!supportsNativeShare(data)){$('sharePhotoStatus').textContent='写真を保存し、「文章をコピー」でSNSに投稿してください。';return;}
  shareInProgress=true;updateShareControls();
- try{await navigator.share(data);$('sharePhotoStatus').textContent='共有先へ渡しました。SNS側で投稿内容を確認してください。';}
+ try{await navigator.share(data);$('sharePhotoStatus').textContent=data.files&&!data.text?'写真を共有先へ渡しました。コピーした文章とリンクをSNSの本文に貼り付け、写真が付いていることを確認してください。':'共有先へ渡しました。SNS側で投稿内容を確認してください。';}
  catch(e){$('sharePhotoStatus').textContent=e.name==='AbortError'?'共有をキャンセルしました。もう一度共有することもできます。':'共有を開けませんでした。「写真だけを共有」を試すか、写真を保存してSNSに添付してください。';}
  finally{shareInProgress=false;updateShareControls();}
 }
@@ -1339,8 +1339,7 @@ async function shareWithPhotos(){
  if(!makePostText())return;
  if(!sharePhotoFiles.length||sharePhotoLoading){$('sharePhotoStatus').textContent='写真を準備しています。準備が終わったら、共有ボタンを押してください。';return;}
  if(sharePhotoFiles.some(file=>!file)){$('sharePhotoStatus').textContent='写真を再読み込みするか、読み込めた写真を保存してSNSに添付してください。';return;}
- const data={title:'SKZ30 カッパ像めぐり2026',text:$('voteText').textContent,files:sharePhotoFiles};
- await runNativeShare(data);
+ await runNativeShare({files:sharePhotoFiles});
 }
 async function sharePhotosOnly(){
  if(!makePostText())return;
@@ -1388,11 +1387,6 @@ async function shareToSocial(service){
  if(sharePhotoLoading){$('sharePhotoStatus').textContent='写真を準備中です。準備が終わってから、もう一度押してください。';return;}
  const files=sharePhotoFiles.filter(Boolean);
  if(files.length){
-  const data={files,text:$('voteText').textContent};
-  if(supportsNativeShare(data)){
-   $('sharePhotoStatus').textContent='スマホの共有画面で「'+service+'」を選んでください。表示されない場合は、そのアプリを開いて写真を添付してください。';
-   await runNativeShare(data);return;
-  }
   if(supportsNativeShare({files})){
    $('sharePhotoStatus').textContent='写真を共有します。文章は「文章をコピー」でコピーして投稿画面に貼り付けてください。';
    await runNativeShare({files});return;
@@ -1432,6 +1426,10 @@ function setupSocialUI(){
  result.querySelector('h3').textContent='投稿内容の確認・共有';
  result.querySelector('p').textContent='内容を確認したら、下のボタンで共有します。投稿の確定は共有先のSNSで行います。';
  const guide=document.createElement('p');guide.className='reasonNote';guide.textContent='写真付き：緑の「写真と文章を共有」から、スマホの共有画面でSNSを選びます。文章が入らないときは「文章をコピー」して貼り付けてください。共有先にアプリが出ない場合は、そのアプリで新しい投稿を開き、写真を添付してください。';result.insertBefore(guide,result.querySelector('.shareArea'));
+ guide.textContent='写真付きで紹介する手順：①「文章とリンクをコピー」②「写真をSNSへ送る」から共有先を選ぶ ③SNSの本文に貼り付けて、写真を確認して投稿。リンクは本文に入ります。共有先にアプリが出ない場合は、そのアプリの新しい投稿で写真を選んでください。';
+ const copyButton=document.querySelector('button[onclick="copyVoteText()"]');copyButton.textContent='① 文章とリンクをコピー';
+ result.querySelector('.shareControls').prepend(copyButton);
+ $('shareWithPhotos').textContent='② 写真をSNSへ送る';$('sharePhotosOnly').hidden=true;
  const textGuide=document.createElement('p');textGuide.textContent='写真なしの場合：LINE・Xは文章とリンクを送ります。Facebookはサイトのリンクを共有します。';result.querySelector('.shareArea').before(textGuide);
  showSimpleShareForm();showPage();
 }
