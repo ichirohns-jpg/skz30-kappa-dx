@@ -1351,7 +1351,7 @@ async function sharePhotosOnly(){
 
 function showSimpleShareForm(){
  const box=$('simpleShareForm');box.hidden=false;
- box.querySelector('p').textContent='ひと言だけでもOK！写真はあとから選べます。カッパや名前の入力は自由です。';
+ box.querySelector('p').textContent='ひと言は空欄でもコピーできます。DXのリンクも一緒にコピーされます。';
  document.querySelector('label[for="shareCustomName"]').textContent='名前・題名（任意）';
  document.querySelector('label[for="shareReasonSimple"]').textContent='ひと言書こう（任意・空欄でも進めます）';
  const select=$('shareKappaSimple');
@@ -1370,14 +1370,14 @@ function makePostText(forcePhoto=false){
  const selected=picks.map(p=>({...p,kappa:p.id?KAPPAS.find(k=>k.id===p.id):{name:p.name||''}}));
  if(selected.some(p=>!p.kappa)){status('かっぱの一覧を読み込み直してください。',true);return false;}
  const lines=['SKZ30 カッパ像めぐり2026'];selected.forEach(p=>{const line=[p.kappa.name,p.reason].filter(Boolean).join('：');if(line)lines.push(line);});lines.push('#SKZ30 #志木市 #かっぱ像めぐり',APP_URL);
- $('voteText').textContent=lines.join('\n\n');$('shareIntroText').textContent=lines.slice(0,-2).join('\n\n');$('shareTagsText').textContent=lines.slice(-2).join('\n\n');$('saveStatus').classList.remove('show','error');$('voteResultBox').classList.add('show');$('voteResultBox').scrollIntoView({behavior:'smooth',block:'start'});preparePhotoShare(selected.filter(p=>p.id),JSON.stringify(selected.map(p=>p.id)),forcePhoto);return true;
+ $('voteText').textContent=lines.join('\n\n');$('shareIntroText').textContent=lines.slice(0,-2).join('\n\n');$('shareTagsText').textContent=lines.slice(-2).join('\n\n');$('saveStatus').classList.remove('show','error');$('voteResultBox').classList.add('show');if(!$('voteResultBox').hidden)$('voteResultBox').scrollIntoView({behavior:'smooth',block:'start'});preparePhotoShare(selected.filter(p=>p.id),JSON.stringify(selected.map(p=>p.id)),forcePhoto);return true;
 }
 async function copyVoteText(){
  if(!makePostText())return;
  const text=$('voteText').textContent;
  try{
   if(!navigator.clipboard||typeof navigator.clipboard.writeText!=='function')throw Error('manual-copy');
-  await navigator.clipboard.writeText(text);$('shareManualCopy').hidden=true;$('sharePhotoStatus').textContent=visitorPhotos.length?'文章とDXリンクをコピーしました。次に②写真をSNSへ送ってください。自動で入らない内容はSNSの本文に貼り付けてください。':'文章とDXリンクをコピーしました。SNSアプリの新しい投稿の本文に貼り付ければ、文章だけでも参加できます。';
+  await navigator.clipboard.writeText(text);$('shareManualCopy').hidden=true;$('sharePhotoStatus').textContent='紹介文とDXリンクをコピーしました。いつものSNSを開き、写真を選んで、本文に貼り付けて投稿してください。写真なしでもOKです。';
  }catch{
   $('shareManualCopy').hidden=false;$('shareManualText').value=text;$('shareManualText').focus();$('shareManualText').select();$('shareManualText').setSelectionRange(0,text.length);$('shareManualText').scrollIntoView({block:'center'});$('sharePhotoStatus').textContent='下の「コピー用の投稿文」を長押ししてコピーしてください。';
  }
@@ -1406,42 +1406,22 @@ function setupSocialUI(){
  const form=$('simpleShareForm'),result=$('voteResultBox');
  const start=document.querySelector('button[onclick="showSimpleShareForm()"]');
  const card=document.createElement('section');card.className='card';card.id='snsCorner';
- const heading=document.createElement('h2');heading.textContent='📣 あなたのカッパ写真、大募集！';
- const intro=document.createElement('p');intro.textContent='昔撮った写真も大歓迎。カッパ選択・QR読み取り・応募は不要です。カメラロールの写真は最大3枚。写真なし・文章だけでも参加できます。';
- start.textContent='写真やひと言をSNSで紹介する';
+ const heading=document.createElement('h2');heading.textContent='📣 SNSでカッパめぐりを紹介しよう';
+ const intro=document.createElement('p');intro.textContent='ひと言を書いて、紹介文をコピーするだけ。カッパ選択・QR読み取り・応募は不要。文章だけでも参加できます。';
+ start.hidden=true;form.hidden=false;form.querySelector('h3').textContent='紹介文を作る';
  card.append(heading,intro,start,form,result);
  const vote=$('vote'),sns=document.createElement('section');sns.id='sns';sns.className='page';sns.append(card);vote.parentElement.insertBefore(sns,vote.nextSibling);
  vote.querySelector('h2').textContent='プレゼント応募：推しを選ぶ';
- start.hidden=true;form.hidden=false;
- const entry=document.createElement('a');entry.className='bigBtn green';entry.href='#sns';entry.dataset.pageLink='sns';entry.textContent='📣 写真・ひと言でSNS参加！';
- const welcome=document.createElement('section');welcome.className='card';const welcomeTitle=document.createElement('h2');welcomeTitle.textContent='昔のカッパ写真、スマホにありませんか？';const welcomeText=document.createElement('p');welcomeText.textContent='写真1枚でも、ひと言だけでも大歓迎。QRなし・応募なしで紹介できます。';welcome.append(welcomeTitle,welcomeText,entry);const top=$('top');top.insertBefore(welcome,top.children[1]||null);
+ const entry=document.createElement('a');entry.className='bigBtn green';entry.href='#sns';entry.dataset.pageLink='sns';entry.textContent='📣 SNSで紹介する';
+ const welcome=document.createElement('section');welcome.className='card';const welcomeTitle=document.createElement('h2');welcomeTitle.textContent='カッパめぐりをSNSで紹介しませんか？';const welcomeText=document.createElement('p');welcomeText.textContent='ひと言を書いて紹介文をコピー。いつものSNSに貼り付けて投稿できます。';welcome.append(welcomeTitle,welcomeText,entry);const top=$('top');top.insertBefore(welcome,top.children[1]||null);
  document.querySelectorAll('.nav,.bottomNav').forEach(nav=>{const link=document.createElement('a');link.href='#sns';link.dataset.pageLink='sns';link.textContent='📣 SNS';nav.append(link);if(nav.classList.contains('bottomNav')){nav.style.gridTemplateColumns='repeat(6,minmax(0,1fr))';link.style.fontSize='14px';}});
- const optional=document.createElement('details'),summary=document.createElement('summary');summary.textContent='カッパを選ぶ・名前を入れる（任意）';optional.append(summary);
- for(const selector of ['label[for="shareKappaSimple"]','#shareKappaSimple','label[for="shareCustomName"]','#shareCustomName'])optional.append(document.querySelector(selector));
- const reasonLabel=document.querySelector('label[for="shareReasonSimple"]');form.insertBefore(optional,reasonLabel);
- const reason=$('shareReasonSimple');reason.placeholder='例：前に撮ったお気に入りの1枚です！';
- const photoBox=$('visitorAlbum').closest('.reasonNote');
- photoBox.querySelector('b').textContent='写真を選ぼう（任意・最大3枚）';photoBox.querySelector('p').textContent='カメラロールにある昔の写真も使えます。写真なしでも進めます。';
- form.insertBefore(photoBox,reason.nextSibling);
- const build=form.querySelector('button[onclick="makeSimpleShareText()"]');build.textContent='投稿内容を確認する';
- result.querySelector('h3').textContent='投稿内容の確認・共有';
- result.querySelector('p').textContent='内容を確認したら、下のボタンで共有します。投稿の確定は共有先のSNSで行います。';
- const controls=result.querySelector('.shareControls');
- const facebookGuide=document.createElement('div');facebookGuide.className='reasonNote';
- const facebookTitle=document.createElement('b');facebookTitle.textContent='Facebookに写真付きで投稿する方へ';facebookGuide.append(facebookTitle);
- for(const text of ['① 下の「文章とDXリンクをコピー」を押す。','② Facebookアプリを開く →「新しい投稿」→「写真・動画」から、先に写真を最大3枚選ぶ。','③ Facebookの本文に、コピーした文章とDXリンクを貼り付ける。写真と本文を確認して投稿する。','コピーした文章やリンクを貼るだけでは、写真は付きません。写真はFacebook側で選んでください。','写真付きの場合は、下の「FacebookでDXリンクだけを共有」ボタンは使いません。リンク共有画面では、写真を追加できないことがあります。']){const step=document.createElement('p');step.textContent=text;facebookGuide.append(step);}
- result.insertBefore(facebookGuide,controls);
- const guide=document.createElement('div');guide.className='reasonNote';
- const guideTitle=document.createElement('b');guideTitle.textContent='ほかのSNSへ、スマホの共有画面から送る手順';
- guide.append(guideTitle);
- for(const text of ['① 文章とDXリンクをコピーする。','② 選んだ写真を「写真をSNSへ送る」から、スマホの共有画面でSNSを選んで送る。','③ 文章やDXリンクが自動で入らなければ、SNSの本文に貼り付ける。']){const step=document.createElement('p');step.textContent=text;guide.append(step);}
- const fallback=document.createElement('p');fallback.textContent='共有画面にSNSが出ない場合や写真を渡せない場合は、SNSアプリの新しい投稿でカメラロールの写真を添付し、コピーした内容を本文に貼り付けてください。';guide.append(fallback);
- const previewNote=document.createElement('p');previewNote.textContent='コピーした文章やリンクに写真は含まれません。写真の受け取り枚数はSNSによって異なるため、選んだ最大3枚が付いているか確認してください。文章とDXリンクも確認してから投稿します。リンクのプレビュー（OGPカード）は、写真と同時に表示されるとは限りません。';guide.append(previewNote);
- result.insertBefore(guide,controls);
- const copyButton=document.querySelector('button[onclick="copyVoteText()"]');copyButton.textContent='① 文章とDXリンクをコピー';
- controls.prepend(copyButton);
- $('shareWithPhotos').textContent='② 写真をSNSへ送る';$('sharePhotosOnly').hidden=true;
- const textGuide=document.createElement('p');textGuide.textContent='文章だけでも参加できます。コピーした文章とDXリンクを、各SNSの新しい投稿の本文に貼り付けてください。下のLINEボタンは文章とリンクを送ります。Xボタンは、写真を選んでいる場合はスマホの共有画面を開きます。Facebookボタンは写真なしでDXリンクだけを共有します。Facebookの写真付き投稿は、上の専用手順で行ってください。';result.querySelector('.shareArea').before(textGuide);
+ for(const selector of ['label[for="shareKappaSimple"]','#shareKappaSimple','label[for="shareCustomName"]','#shareCustomName'])document.querySelector(selector).hidden=true;
+ const reason=$('shareReasonSimple');reason.placeholder='例：お気に入りのカッパに会ってきました！';
+ form.querySelector('button[onclick="makeSimpleShareText()"]').hidden=true;
+ const guide=document.createElement('p');guide.textContent='コピーしたら、いつものSNSを開き、写真を選んで、本文に貼り付けて投稿してください。写真なしでもOKです。';
+ const copyButton=document.querySelector('button[onclick="copyVoteText()"]');copyButton.textContent='紹介文をコピー';
+ form.append(copyButton,guide,$('sharePhotoStatus'),$('shareManualCopy'));
+ result.hidden=true;
  showSimpleShareForm();showPage();
 }
 setupSocialUI();
