@@ -1052,7 +1052,7 @@ QRを読む前でも、30体から好きなかっぱを選んで紹介できま�
 <h3>できあがった投稿文</h3><p>写真と紹介文で、好きなかっぱをSNSで紹介できます。プレゼントへの応募は、上の応募欄から行ってください。</p>
 <pre id="voteText" hidden></pre><pre id="shareIntroText"></pre><div id="sharePhotoPreview" class="sharePhotoPreview"></div><pre id="shareTagsText"></pre>
 <div class="shareControls"><p id="sharePhotoStatus" role="status" aria-live="polite"></p><button id="shareWithPhotos" type="button" class="bigBtn green" onclick="shareWithPhotos()" disabled hidden>写真と文章を共有</button><button id="sharePhotosOnly" type="button" class="bigBtn secondary" onclick="sharePhotosOnly()" disabled hidden>写真だけを共有</button><button id="sharePhotoRetry" type="button" class="miniBtn green" onclick="makePostText(true)" hidden>写真を再読み込み</button></div>
-<p>文章が自動で入らない場合は、「文章をコピー」をSNSの本文に貼り付けてください。写真は、それぞれの「写真を保存」から保存して添付することもできます。</p>
+<p>③ 文章やDXリンクが自動で入らなければ、コピーした内容をSNSの本文に貼り付けてください。写真・文章・リンクを確認してから投稿します。</p>
 <div id="shareManualCopy" hidden><label for="shareManualText">コピー用の投稿文</label><textarea id="shareManualText" readonly></textarea><p>この文章を長押しして「すべて選択」からコピーしてください。</p></div>
 <div class="shareArea">
 <button type="button" class="bigBtn secondary" onclick="copyVoteText()">
@@ -1271,7 +1271,7 @@ async function preparePhotoShare(selected,key,force=false){
   sharePhotoKey='visitor:'+visitorPhotoRevision;sharePhotoLoading=false;sharePhotoFiles=visitorPhotos.slice();
   for(const url of sharePhotoDownloads)URL.revokeObjectURL(url);sharePhotoDownloads=[];$('sharePhotoPreview').replaceChildren();
   visitorPhotos.forEach((file,i)=>{const figure=document.createElement('figure'),img=document.createElement('img'),caption=document.createElement('figcaption');const url=URL.createObjectURL(file);sharePhotoDownloads.push(url);img.src=url;img.alt='自分で撮ったカッパの写真 '+(i+1);caption.textContent='自分の写真 '+(i+1);figure.append(img,caption);$('sharePhotoPreview').append(figure);});
-  updateShareControls();$('sharePhotoStatus').textContent='写真を選びました。①文章とリンクをコピー → ②写真をSNSへ送る → SNSの本文に貼り付けてください。';return;
+  $('sharePhotoRetry').hidden=true;updateShareControls();$('sharePhotoStatus').textContent=supportsNativeShare({files:sharePhotoFiles})?'写真を選びました。①文章とDXリンクをコピーしてから、②写真をSNSへ送ってください。':'このブラウザーでは写真を直接共有できません。①文章とDXリンクをコピーし、SNSアプリの新しい投稿でカメラロールの写真を添付してください。';return;
  }
  if(!selected.length){
   sharePhotoKey=key;sharePhotoLoading=false;sharePhotoFiles=[];
@@ -1329,10 +1329,11 @@ $('visitorCamera').addEventListener('change',chooseVisitorPhotos);$('visitorAlbu
 $('visitorClear').addEventListener('click',()=>{visitorPhotos=[];visitorPhotoRevision++;$('visitorClear').hidden=true;$('visitorPhotoStatus').textContent='自分の写真を外しました。';makePostText();});
 async function runNativeShare(data){
  if(shareInProgress)return;
- if(!supportsNativeShare(data)){$('sharePhotoStatus').textContent='写真を保存し、「文章をコピー」でSNSに投稿してください。';return;}
+ if(!supportsNativeShare(data)&&data.files&&data.text&&supportsNativeShare({files:data.files}))data={files:data.files};
+ if(!supportsNativeShare(data)){$('sharePhotoStatus').textContent='①文章とDXリンクをコピーし、SNSアプリの新しい投稿で写真を添付してください。';return;}
  shareInProgress=true;updateShareControls();
- try{await navigator.share(data);$('sharePhotoStatus').textContent=data.files&&!data.text?'写真を共有先へ渡しました。コピーした文章とリンクをSNSの本文に貼り付け、写真が付いていることを確認してください。':'共有先へ渡しました。SNS側で投稿内容を確認してください。';}
- catch(e){$('sharePhotoStatus').textContent=e.name==='AbortError'?'共有をキャンセルしました。もう一度共有することもできます。':'共有を開けませんでした。「写真だけを共有」を試すか、写真を保存してSNSに添付してください。';}
+ try{await navigator.share(data);$('sharePhotoStatus').textContent='共有画面を閉じました。SNS側で写真・文章・DXリンクを確認し、文章やリンクが自動で入らなければ、①でコピーした内容を本文に貼り付けてください。投稿の確定はSNSで行います。';}
+ catch(e){$('sharePhotoStatus').textContent=e.name==='AbortError'?'共有をキャンセルしました。もう一度共有することもできます。':'共有を開けませんでした。①文章とDXリンクをコピーし、SNSアプリの新しい投稿でカメラロールの写真を添付してください。';}
  finally{shareInProgress=false;updateShareControls();}
 }
 async function shareWithPhotos(){
@@ -1352,7 +1353,7 @@ function showSimpleShareForm(){
  const box=$('simpleShareForm');box.hidden=false;
  box.querySelector('p').textContent='ひと言だけでもOK！写真はあとから選べます。カッパや名前の入力は自由です。';
  document.querySelector('label[for="shareCustomName"]').textContent='名前・題名（任意）';
- document.querySelector('label[for="shareReasonSimple"]').textContent='① ひと言書こう（空欄でも進めます）';
+ document.querySelector('label[for="shareReasonSimple"]').textContent='ひと言書こう（任意・空欄でも進めます）';
  const select=$('shareKappaSimple');
  if(select.options.length===1&&KAPPAS.length){KAPPAS.forEach(k=>{const option=document.createElement('option');option.value=k.id;option.textContent=k.name;select.append(option);});}
  box.scrollIntoView({behavior:'smooth',block:'center'});
@@ -1376,7 +1377,7 @@ async function copyVoteText(){
  const text=$('voteText').textContent;
  try{
   if(!navigator.clipboard||typeof navigator.clipboard.writeText!=='function')throw Error('manual-copy');
-  await navigator.clipboard.writeText(text);$('shareManualCopy').hidden=true;$('sharePhotoStatus').textContent='文章をコピーしました。SNSの本文に貼り付けてください。';
+  await navigator.clipboard.writeText(text);$('shareManualCopy').hidden=true;$('sharePhotoStatus').textContent=visitorPhotos.length?'文章とDXリンクをコピーしました。次に②写真をSNSへ送ってください。自動で入らない内容はSNSの本文に貼り付けてください。':'文章とDXリンクをコピーしました。SNSアプリの新しい投稿の本文に貼り付ければ、文章だけでも参加できます。';
  }catch{
   $('shareManualCopy').hidden=false;$('shareManualText').value=text;$('shareManualText').focus();$('shareManualText').select();$('shareManualText').setSelectionRange(0,text.length);$('shareManualText').scrollIntoView({block:'center'});$('sharePhotoStatus').textContent='下の「コピー用の投稿文」を長押ししてコピーしてください。';
  }
@@ -1406,7 +1407,7 @@ function setupSocialUI(){
  const start=document.querySelector('button[onclick="showSimpleShareForm()"]');
  const card=document.createElement('section');card.className='card';card.id='snsCorner';
  const heading=document.createElement('h2');heading.textContent='📣 あなたのカッパ写真、大募集！';
- const intro=document.createElement('p');intro.textContent='昔撮った写真も大歓迎。カッパめぐりに参加していなくても、QRなしでSNSに紹介できます。文章だけでもOK！';
+ const intro=document.createElement('p');intro.textContent='昔撮った写真も大歓迎。カッパ選択・QR読み取り・応募は不要です。カメラロールの写真は最大3枚。写真なし・文章だけでも参加できます。';
  start.textContent='写真やひと言をSNSで紹介する';
  card.append(heading,intro,start,form,result);
  const vote=$('vote'),sns=document.createElement('section');sns.id='sns';sns.className='page';sns.append(card);vote.parentElement.insertBefore(sns,vote.nextSibling);
@@ -1420,17 +1421,23 @@ function setupSocialUI(){
  const reasonLabel=document.querySelector('label[for="shareReasonSimple"]');form.insertBefore(optional,reasonLabel);
  const reason=$('shareReasonSimple');reason.placeholder='例：前に撮ったお気に入りの1枚です！';
  const photoBox=$('visitorAlbum').closest('.reasonNote');
- photoBox.querySelector('b').textContent='② 写真を付けよう（なくてもOK）';photoBox.querySelector('p').textContent='カメラロールにある昔の写真も使えます。';
+ photoBox.querySelector('b').textContent='写真を選ぼう（任意・最大3枚）';photoBox.querySelector('p').textContent='カメラロールにある昔の写真も使えます。写真なしでも進めます。';
  form.insertBefore(photoBox,reason.nextSibling);
- const build=form.querySelector('button[onclick="makeSimpleShareText()"]');build.textContent='③ 投稿内容を確認する';
+ const build=form.querySelector('button[onclick="makeSimpleShareText()"]');build.textContent='投稿内容を確認する';
  result.querySelector('h3').textContent='投稿内容の確認・共有';
  result.querySelector('p').textContent='内容を確認したら、下のボタンで共有します。投稿の確定は共有先のSNSで行います。';
- const guide=document.createElement('p');guide.className='reasonNote';guide.textContent='写真付き：緑の「写真と文章を共有」から、スマホの共有画面でSNSを選びます。文章が入らないときは「文章をコピー」して貼り付けてください。共有先にアプリが出ない場合は、そのアプリで新しい投稿を開き、写真を添付してください。';result.insertBefore(guide,result.querySelector('.shareArea'));
- guide.textContent='写真付きで紹介する手順：①「文章とリンクをコピー」②「写真をSNSへ送る」から共有先を選ぶ ③SNSの本文に貼り付けて、写真を確認して投稿。リンクは本文に入ります。共有先にアプリが出ない場合は、そのアプリの新しい投稿で写真を選んでください。';
- const copyButton=document.querySelector('button[onclick="copyVoteText()"]');copyButton.textContent='① 文章とリンクをコピー';
- result.querySelector('.shareControls').prepend(copyButton);
+ const controls=result.querySelector('.shareControls');
+ const guide=document.createElement('div');guide.className='reasonNote';
+ const guideTitle=document.createElement('b');guideTitle.textContent='SNSに投稿する3つの手順';
+ guide.append(guideTitle);
+ for(const text of ['① 文章とDXリンクをコピーする。','② 選んだ写真を「写真をSNSへ送る」から、スマホの共有画面でSNSを選んで送る。','③ 文章やDXリンクが自動で入らなければ、SNSの本文に貼り付ける。']){const step=document.createElement('p');step.textContent=text;guide.append(step);}
+ const fallback=document.createElement('p');fallback.textContent='共有画面にSNSが出ない場合や写真を渡せない場合は、SNSアプリの新しい投稿でカメラロールの写真を添付し、コピーした内容を本文に貼り付けてください。';guide.append(fallback);
+ const previewNote=document.createElement('p');previewNote.textContent='写真・文章・DXリンクが入っているか、SNS側で確認してから投稿してください。リンクのプレビュー（OGPカード）の表示はSNSによって異なり、写真と同時に表示されるとは限りません。';guide.append(previewNote);
+ result.insertBefore(guide,controls);
+ const copyButton=document.querySelector('button[onclick="copyVoteText()"]');copyButton.textContent='① 文章とDXリンクをコピー';
+ controls.prepend(copyButton);
  $('shareWithPhotos').textContent='② 写真をSNSへ送る';$('sharePhotosOnly').hidden=true;
- const textGuide=document.createElement('p');textGuide.textContent='写真なしの場合：LINE・Xは文章とリンクを送ります。Facebookはサイトのリンクを共有します。';result.querySelector('.shareArea').before(textGuide);
+ const textGuide=document.createElement('p');textGuide.textContent='写真なしでも参加できます。①でコピーした文章とDXリンクを、SNSアプリの新しい投稿に貼り付けてください。下のLINE・Xボタンは文章とリンク、FacebookボタンはDXリンクを共有します。写真付きの場合は②からSNSを選んでください。';result.querySelector('.shareArea').before(textGuide);
  showSimpleShareForm();showPage();
 }
 setupSocialUI();
