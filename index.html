@@ -1065,7 +1065,7 @@ LINEで文章とリンクを送る
 Xで共有（写真はスマホの共有画面から）
 </button>
 <button type="button" class="bigBtn secondary" onclick="shareFacebook()">
-Facebookで共有（写真はスマホの共有画面から）
+FacebookでDXリンクだけを共有（写真なし）
 </button>
 </div>
 </div>
@@ -1401,7 +1401,7 @@ async function shareToSocial(service){
  }else window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(APP_URL),'_blank','noopener');
 }
 function shareX(){return shareToSocial('X');}
-function shareFacebook(){return shareToSocial('Facebook');}
+function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(APP_URL),'_blank','noopener');}
 function setupSocialUI(){
  const form=$('simpleShareForm'),result=$('voteResultBox');
  const start=document.querySelector('button[onclick="showSimpleShareForm()"]');
@@ -1427,17 +1427,21 @@ function setupSocialUI(){
  result.querySelector('h3').textContent='投稿内容の確認・共有';
  result.querySelector('p').textContent='内容を確認したら、下のボタンで共有します。投稿の確定は共有先のSNSで行います。';
  const controls=result.querySelector('.shareControls');
+ const facebookGuide=document.createElement('div');facebookGuide.className='reasonNote';
+ const facebookTitle=document.createElement('b');facebookTitle.textContent='Facebookに写真付きで投稿する方へ';facebookGuide.append(facebookTitle);
+ for(const text of ['① 下の「文章とDXリンクをコピー」を押す。','② Facebookアプリを開く →「新しい投稿」→「写真・動画」から、先に写真を最大3枚選ぶ。','③ Facebookの本文に、コピーした文章とDXリンクを貼り付ける。写真と本文を確認して投稿する。','コピーした文章やリンクを貼るだけでは、写真は付きません。写真はFacebook側で選んでください。','写真付きの場合は、下の「FacebookでDXリンクだけを共有」ボタンは使いません。リンク共有画面では、写真を追加できないことがあります。']){const step=document.createElement('p');step.textContent=text;facebookGuide.append(step);}
+ result.insertBefore(facebookGuide,controls);
  const guide=document.createElement('div');guide.className='reasonNote';
- const guideTitle=document.createElement('b');guideTitle.textContent='SNSに投稿する3つの手順';
+ const guideTitle=document.createElement('b');guideTitle.textContent='ほかのSNSへ、スマホの共有画面から送る手順';
  guide.append(guideTitle);
  for(const text of ['① 文章とDXリンクをコピーする。','② 選んだ写真を「写真をSNSへ送る」から、スマホの共有画面でSNSを選んで送る。','③ 文章やDXリンクが自動で入らなければ、SNSの本文に貼り付ける。']){const step=document.createElement('p');step.textContent=text;guide.append(step);}
  const fallback=document.createElement('p');fallback.textContent='共有画面にSNSが出ない場合や写真を渡せない場合は、SNSアプリの新しい投稿でカメラロールの写真を添付し、コピーした内容を本文に貼り付けてください。';guide.append(fallback);
- const previewNote=document.createElement('p');previewNote.textContent='写真・文章・DXリンクが入っているか、SNS側で確認してから投稿してください。リンクのプレビュー（OGPカード）の表示はSNSによって異なり、写真と同時に表示されるとは限りません。';guide.append(previewNote);
+ const previewNote=document.createElement('p');previewNote.textContent='コピーした文章やリンクに写真は含まれません。写真の受け取り枚数はSNSによって異なるため、選んだ最大3枚が付いているか確認してください。文章とDXリンクも確認してから投稿します。リンクのプレビュー（OGPカード）は、写真と同時に表示されるとは限りません。';guide.append(previewNote);
  result.insertBefore(guide,controls);
  const copyButton=document.querySelector('button[onclick="copyVoteText()"]');copyButton.textContent='① 文章とDXリンクをコピー';
  controls.prepend(copyButton);
  $('shareWithPhotos').textContent='② 写真をSNSへ送る';$('sharePhotosOnly').hidden=true;
- const textGuide=document.createElement('p');textGuide.textContent='写真なしでも参加できます。①でコピーした文章とDXリンクを、SNSアプリの新しい投稿に貼り付けてください。下のLINE・Xボタンは文章とリンク、FacebookボタンはDXリンクを共有します。写真付きの場合は②からSNSを選んでください。';result.querySelector('.shareArea').before(textGuide);
+ const textGuide=document.createElement('p');textGuide.textContent='文章だけでも参加できます。コピーした文章とDXリンクを、各SNSの新しい投稿の本文に貼り付けてください。下のLINEボタンは文章とリンクを送ります。Xボタンは、写真を選んでいる場合はスマホの共有画面を開きます。Facebookボタンは写真なしでDXリンクだけを共有します。Facebookの写真付き投稿は、上の専用手順で行ってください。';result.querySelector('.shareArea').before(textGuide);
  showSimpleShareForm();showPage();
 }
 setupSocialUI();
