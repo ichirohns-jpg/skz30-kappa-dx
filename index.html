@@ -1127,7 +1127,7 @@ const GAS_URL="https://script.google.com/macros/s/AKfycbwxh3Kef31DQBb34iMohUAXXZ
 const MAP_URL="https://www.google.com/maps/d/viewer?mid=1IL2cZBQ7GCIZ8yq1bbZXlQnIWa2rRiE";
 let KAPPAS=[],auth=null,progress=null,busy=false,ready=false,serial=0;
 const $=id=>document.getElementById(id);
-function showPage(){const page=location.hash.slice(1),active=["top","kappas","info","vote","shops"].includes(page)?page:"top";document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.id===active));document.querySelectorAll('[data-page-link]').forEach(el=>{const on=el.dataset.pageLink===active;el.classList.toggle('active',on);if(on)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});}
+function showPage(){const page=location.hash.slice(1),active=["top","kappas","info","vote","shops","sns"].includes(page)?page:"top";document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.id===active));document.querySelectorAll('[data-page-link]').forEach(el=>{const on=el.dataset.pageLink===active;el.classList.toggle('active',on);if(on)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});if(active==='sns'&&document.querySelector('#snsCorner'))showSimpleShareForm();}
 window.addEventListener('hashchange',()=>{showPage();window.scrollTo(0,0);});showPage();
 // 同じ「巡る」画面内でも、記録へのリンクは毎回対象の欄まで移動します。
 document.querySelectorAll('a[data-scroll-target]').forEach(link=>{
@@ -1144,7 +1144,7 @@ document.querySelectorAll('a[data-scroll-target]').forEach(link=>{
 function status(text,error=false){$('saveStatus').textContent=text;$('saveStatus').classList.add('show');$('saveStatus').classList.toggle('error',error);}
 function randomHex(n){return Array.from(crypto.getRandomValues(new Uint8Array(n)),b=>b.toString(16).padStart(2,'0')).join('');}
 function identity(){const key='skz30-event-auth-v1';let data=JSON.parse(localStorage.getItem(key)||'null');if(!data){data={userId:randomHex(16),sessionKey:randomHex(32)};localStorage.setItem(key,JSON.stringify(data));}if(!/^[A-Za-z0-9_-]{20,100}$/.test(data.userId)||!/^[A-Za-z0-9_-]{32,150}$/.test(data.sessionKey))throw Error('参加者情報を確認できません。記録を消さず、主催者へお問い合わせください。');return data;}
-function api(mode,params={}){return new Promise((resolve,reject)=>{const callback='skz30cb'+Date.now()+'_'+(++serial),script=document.createElement('script'),url=new URL(GAS_URL);let timer;const waitMs=mode==='getShops'?90000:30000;const done=()=>{clearTimeout(timer);script.remove();delete window[callback];};window[callback]=result=>{done();if(result&&result.ok)resolve(result);else reject(Error(result&&result.error||'読み込みに失敗しました。'));};url.search=new URLSearchParams({...params,mode,callback}).toString();script.src=url.href;script.onerror=()=>{done();reject(Error('通信できません。電波を確認して再確認してください。'));};timer=setTimeout(()=>{done();reject(Error('通信に時間がかかっています。再読み込みボタンを押してください。'));},waitMs);document.head.append(script);});}
+function api(mode,params={}){return new Promise((resolve,reject)=>{const callback='skz30cb'+Date.now()+'_'+(++serial),script=document.createElement('script'),url=new URL(GAS_URL);let timer;const waitMs=['getShops','getKappas'].includes(mode)?90000:30000;const done=()=>{clearTimeout(timer);script.remove();delete window[callback];};window[callback]=result=>{done();if(result&&result.ok)resolve(result);else reject(Error(result&&result.error||'読み込みに失敗しました。'));};url.search=new URLSearchParams({...params,mode,callback}).toString();script.src=url.href;script.onerror=()=>{done();reject(Error('通信できません。電波を確認して再確認してください。'));};timer=setTimeout(()=>{done();reject(Error(mode==='getKappas'?'カッパ一覧の取得に時間がかかっています。「記録を再確認」で一覧から再取得できます。':'通信に時間がかかっています。再読み込みボタンを押してください。'));},waitMs);document.head.append(script);});}
 function safeURL(value){const text=String(value??'').trim();if(/^data:image\/(jpeg|jpg|png|webp|gif);base64,[A-Za-z0-9+/=\s]+$/i.test(text))return text;try{const u=new URL(text,APP_URL);return /^https?:$/.test(u.protocol)?u.href:'';}catch{return '';}}
 function renderKappas(){
  const list=$('kappaList');list.replaceChildren();
@@ -1159,6 +1159,7 @@ function renderKappas(){
   const link=document.createElement('a');link.className='miniBtn green';link.href=MAP_URL;link.target='_blank';link.rel='noopener';link.textContent='30体の全体マップを見る';card.append(link);list.append(card);
  });
  for(let n=1;n<=3;n++){const select=$('rank'+n);select.replaceChildren(new Option('選んでください',''));KAPPAS.forEach(k=>select.add(new Option(k.id+'．'+k.name,k.id)));}
+ const snsSelect=$('shareKappaSimple');if(snsSelect&&snsSelect.options.length===1)KAPPAS.forEach(k=>snsSelect.add(new Option(k.name,k.id)));
 }
 function draftKey(n){return 'skz30-choice-'+auth.userId+'-'+n;}
 function remember(n){if(auth)localStorage.setItem(draftKey(n),JSON.stringify({id:$('rank'+n).value,reason:$('reason'+n).value}));}
@@ -1350,9 +1351,9 @@ async function sharePhotosOnly(){
 
 function showSimpleShareForm(){
  const box=$('simpleShareForm');box.hidden=false;
- box.querySelector('p').textContent='文章だけでも、自分の写真でも、カッパを選んでも共有できます。名前・カッパ・写真はすべて任意です。';
+ box.querySelector('p').textContent='ひと言だけでもOK！写真はあとから選べます。カッパや名前の入力は自由です。';
  document.querySelector('label[for="shareCustomName"]').textContent='名前・題名（任意）';
- document.querySelector('label[for="shareReasonSimple"]').textContent='投稿する文章（自由入力）';
+ document.querySelector('label[for="shareReasonSimple"]').textContent='① ひと言書こう（空欄でも進めます）';
  const select=$('shareKappaSimple');
  if(select.options.length===1&&KAPPAS.length){KAPPAS.forEach(k=>{const option=document.createElement('option');option.value=k.id;option.textContent=k.name;select.append(option);});}
  box.scrollIntoView({behavior:'smooth',block:'center'});
@@ -1363,7 +1364,7 @@ function makeSimpleShareText(){
 }
 function makePostText(forcePhoto=false){
  const simpleId=$('shareKappaSimple')?.value||'',simpleName=$('shareCustomName')?.value.trim()||'',simpleReason=$('shareReasonSimple')?.value.trim()||'';
- const simpleMode=!$('simpleShareForm').hidden;
+ const simpleMode=location.hash==='#sns'||!$('simpleShareForm').hidden;
  const picks=simpleMode?[{id:simpleId,name:simpleName,reason:simpleReason}]:[1,2,3].map(n=>({id:$('rank'+n).value,reason:$('reason'+n).value.trim()})).filter(p=>p.id||p.reason);
  const ids=picks.filter(p=>p.id).map(p=>p.id);if(new Set(ids).size!==ids.length){status('紹介するかっぱは、それぞれ異なる像を選んでください。',true);return false;}
  const selected=picks.map(p=>({...p,kappa:p.id?KAPPAS.find(k=>k.id===p.id):{name:p.name||''}}));
@@ -1406,6 +1407,35 @@ async function shareToSocial(service){
 }
 function shareX(){return shareToSocial('X');}
 function shareFacebook(){return shareToSocial('Facebook');}
+function setupSocialUI(){
+ const form=$('simpleShareForm'),result=$('voteResultBox');
+ const start=document.querySelector('button[onclick="showSimpleShareForm()"]');
+ const card=document.createElement('section');card.className='card';card.id='snsCorner';
+ const heading=document.createElement('h2');heading.textContent='📣 あなたのカッパ写真、大募集！';
+ const intro=document.createElement('p');intro.textContent='昔撮った写真も大歓迎。カッパめぐりに参加していなくても、QRなしでSNSに紹介できます。文章だけでもOK！';
+ start.textContent='写真やひと言をSNSで紹介する';
+ card.append(heading,intro,start,form,result);
+ const vote=$('vote'),sns=document.createElement('section');sns.id='sns';sns.className='page';sns.append(card);vote.parentElement.insertBefore(sns,vote.nextSibling);
+ vote.querySelector('h2').textContent='プレゼント応募：推しを選ぶ';
+ start.hidden=true;form.hidden=false;
+ const entry=document.createElement('a');entry.className='bigBtn green';entry.href='#sns';entry.dataset.pageLink='sns';entry.textContent='📣 写真・ひと言でSNS参加！';
+ const welcome=document.createElement('section');welcome.className='card';const welcomeTitle=document.createElement('h2');welcomeTitle.textContent='昔のカッパ写真、スマホにありませんか？';const welcomeText=document.createElement('p');welcomeText.textContent='写真1枚でも、ひと言だけでも大歓迎。QRなし・応募なしで紹介できます。';welcome.append(welcomeTitle,welcomeText,entry);const top=$('top');top.insertBefore(welcome,top.children[1]||null);
+ document.querySelectorAll('.nav,.bottomNav').forEach(nav=>{const link=document.createElement('a');link.href='#sns';link.dataset.pageLink='sns';link.textContent='📣 SNS';nav.append(link);if(nav.classList.contains('bottomNav')){nav.style.gridTemplateColumns='repeat(6,minmax(0,1fr))';link.style.fontSize='14px';}});
+ const optional=document.createElement('details'),summary=document.createElement('summary');summary.textContent='カッパを選ぶ・名前を入れる（任意）';optional.append(summary);
+ for(const selector of ['label[for="shareKappaSimple"]','#shareKappaSimple','label[for="shareCustomName"]','#shareCustomName'])optional.append(document.querySelector(selector));
+ const reasonLabel=document.querySelector('label[for="shareReasonSimple"]');form.insertBefore(optional,reasonLabel);
+ const reason=$('shareReasonSimple');reason.placeholder='例：前に撮ったお気に入りの1枚です！';
+ const photoBox=$('visitorAlbum').closest('.reasonNote');
+ photoBox.querySelector('b').textContent='② 写真を付けよう（なくてもOK）';photoBox.querySelector('p').textContent='カメラロールにある昔の写真も使えます。';
+ form.insertBefore(photoBox,reason.nextSibling);
+ const build=form.querySelector('button[onclick="makeSimpleShareText()"]');build.textContent='③ 投稿内容を確認する';
+ result.querySelector('h3').textContent='投稿内容の確認・共有';
+ result.querySelector('p').textContent='内容を確認したら、下のボタンで共有します。投稿の確定は共有先のSNSで行います。';
+ const guide=document.createElement('p');guide.className='reasonNote';guide.textContent='写真付き：緑の「写真と文章を共有」から、スマホの共有画面でSNSを選びます。文章が入らないときは「文章をコピー」して貼り付けてください。共有先にアプリが出ない場合は、そのアプリで新しい投稿を開き、写真を添付してください。';result.insertBefore(guide,result.querySelector('.shareArea'));
+ const textGuide=document.createElement('p');textGuide.textContent='写真なしの場合：LINE・Xは文章とリンクを送ります。Facebookはサイトのリンクを共有します。';result.querySelector('.shareArea').before(textGuide);
+ showSimpleShareForm();showPage();
+}
+setupSocialUI();
 async function init(){try{const data=await api('getKappas');KAPPAS=data.records.map(k=>({id:String(k.ID),name:k['カッパ像名']||'名称確認中',place:k['設置場所'],description:k['紹介文'],image:k['画像URL']}));if(KAPPAS.length!==30||new Set(KAPPAS.map(k=>k.id)).size!==30)throw Error('30体の一覧を確認できません。主催者へお問い合わせください。');renderKappas();for(let n=1;n<=3;n++){$('slot'+n).disabled=false;$('saveChoice'+n).disabled=true;}try{auth=identity();}catch(e){const message='このブラウザーでは参加記録を利用できません。カッパ像やお店の情報は閲覧できます。参加する場合は、ブラウザーの保存設定をご確認ください。';$('eventStatus').textContent=message;for(const id of ['homeVisitedCount','visitedCount'])$(id).textContent='参加記録を確認できません';status(message,true);return;}ready=true;progress=await api('getProgress',auth);for(let n=1;n<=3;n++){const saved=progress.choices.find(c=>c.slot===n);const draft=JSON.parse(localStorage.getItem(draftKey(n))||'null');if(progress.submitted&&saved){$('rank'+n).value=saved.kappaId;$('reason'+n).value=saved.reason;}else if(draft){$('rank'+n).value=draft.id;$('reason'+n).value=draft.reason;}else if(saved){$('rank'+n).value=saved.kappaId;$('reason'+n).value=saved.reason;}}renderProgress();const qr=new URL(location.href).searchParams.get('qr');if(qr){busy=true;renderProgress();status('QRの記録を確認しています…');try{progress=await api('recordVisit',{...auth,qr});status(progress.alreadyVisited?'この地点は確認済みです。':progress.pointName+'のQRを記録しました。');const url=new URL(location.href);url.searchParams.delete('qr');url.hash='vote';history.replaceState(null,'',url);showPage();}finally{busy=false;renderProgress();}}}catch(e){$('eventStatus').textContent=e.message;status(e.message,true);busy=false;renderProgress();}}
 init();
 
