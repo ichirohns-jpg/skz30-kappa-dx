@@ -1339,7 +1339,7 @@ async function shareWithPhotos(){
  if(!makePostText())return;
  if(!sharePhotoFiles.length||sharePhotoLoading){$('sharePhotoStatus').textContent='写真を準備しています。準備が終わったら、共有ボタンを押してください。';return;}
  if(sharePhotoFiles.some(file=>!file)){$('sharePhotoStatus').textContent='写真を再読み込みするか、読み込めた写真を保存してSNSに添付してください。';return;}
- await runNativeShare({files:sharePhotoFiles});
+ await runNativeShare({files:sharePhotoFiles,text:$('voteText').textContent,title:'SKZ30 カッパ像めぐりDX'});
 }
 async function sharePhotosOnly(){
  if(!makePostText())return;
@@ -1389,7 +1389,7 @@ async function shareToSocial(service){
  if(files.length){
   if(supportsNativeShare({files})){
    $('sharePhotoStatus').textContent='写真を共有します。文章は「文章をコピー」でコピーして投稿画面に貼り付けてください。';
-   await runNativeShare({files});return;
+   await runNativeShare({files,text:$('voteText').textContent,title:'SKZ30 カッパ像めぐりDX'});return;
   }
   $('sharePhotoStatus').textContent='このブラウザーでは写真を直接渡せません。「文章をコピー」を押し、'+service+'アプリを開いて新しい投稿に写真を添付してください。リンク共有画面では写真を追加できない場合があります。';return;
  }
