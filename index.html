@@ -815,6 +815,8 @@ background:#fff url("IMG_3221.jpeg") right bottom / 185% auto no-repeat;
 .shopPhotos--variants img{height:220px;aspect-ratio:auto}
 .shopSocialLinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
 .shopSocialLinks .miniBtn{margin:0}
+/* 非表示にした操作欄がボタン等の表示指定で再出現しないようにします。 */
+[hidden]{display:none!important}
 </style>
 </head>
 <body>
@@ -985,11 +987,11 @@ background:#fff url("IMG_3221.jpeg") right bottom / 185% auto no-repeat;
 <small>推しを選ぶ画面へ</small>
 </div>
 </a>
-<a class="flowItem" href="#vote" data-page-link="vote">
+<a class="flowItem" href="#sns" data-page-link="sns">
 <div class="flowIcon" aria-hidden="true">📣</div>
 <div>
 <b>SNSで紹介</b>
-<small>QRなしで1体から紹介</small>
+<small>紹介文をコピーして投稿</small>
 </div>
 </a>
 </div>
