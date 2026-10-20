@@ -802,10 +802,25 @@ fieldset{margin:16px 0;padding:16px;border:1px solid #a7f3d0;border-radius:20px;
 .bottomNav a{min-height:52px;font-size:13px}
 input,textarea,select,button{scroll-margin-top:calc(var(--header-height,120px) + 16px);scroll-margin-bottom:calc(var(--bottom-nav-height,88px) + 24px)}
 html{scroll-padding-top:calc(var(--header-height,120px) + 16px);scroll-padding-bottom:calc(var(--bottom-nav-height,88px) + 24px)}
+/* 元画像の古い人数表記は切り抜き、正しい人数を写真上に表示します。 */
 .prizeApplePhoto{
+position:relative;
 width:100%;
 aspect-ratio:1 / 1;
 background:#fff url("IMG_3221.jpeg") right bottom / 185% auto no-repeat;
+}
+.prizeAppleCount{
+position:absolute;
+top:12px;
+left:12px;
+padding:8px 14px;
+border-radius:999px;
+background:#064e3b;
+color:#fff;
+font-size:20px;
+font-weight:900;
+line-height:1.4;
+box-shadow:0 2px 8px rgba(0,0,0,.18);
 }
 /* 商品写真は全体を表示し、縦長の瓶も切りません。 */
 .shopPhotos{display:grid;gap:12px;margin:12px 0}
@@ -886,7 +901,7 @@ background:#fff url("IMG_3221.jpeg") right bottom / 185% auto no-repeat;
 <h2>抽選で合計17名様にプレゼント</h2>
 <p class="prizeIntro">異なる3か所のQRを読み取り、推し3体とそれぞれの理由を入力して応募します。</p>
 <div class="prizeGrid">
-<article class="prizeCard"><div class="prizeApplePhoto" role="img" aria-label="長野県飯綱町産りんご5kg"></div><div class="prizeCardBody">
+<article class="prizeCard"><div class="prizeApplePhoto" role="img" aria-label="特賞・2名様、長野県飯綱町産りんご5kg"><span class="prizeAppleCount" aria-hidden="true">特賞・2名様</span></div><div class="prizeCardBody">
 <span class="prizeLabel">特賞・2名様</span>
 <h3>りんご縁結び賞</h3><p>「長野県飯綱町産りんご」5kg</p>
 </div></article>
