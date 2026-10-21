@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SKZ30 カッパ像めぐりDX</title>
-<meta name="description" content="志木市内30体のカッパ像をスマホでめぐり、推し3体を選んで楽しめるまち歩き参加ページです。">
+<meta name="description" content="志木のカッパ像30体の場所や紹介、お店・地域の情報をスマホでチェック。お気に入りの推し3体を選んで、まち歩きを楽しもう！">
 <meta name="theme-color" content="#064e3b">
 <link rel="icon" type="image/png" href="https://ichirohns-jpg.github.io/skz30-kappa-dx/apple-touch-icon.png">
 <link rel="shortcut icon" type="image/png" href="https://ichirohns-jpg.github.io/skz30-kappa-dx/apple-touch-icon.png">
@@ -17,10 +17,11 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta property="og:site_name" content="SKZ30 カッパ像めぐりDX">
 <meta property="og:title" content="SKZ30 カッパ像めぐりDX">
-<meta property="og:description" content="めぐって、めぐって、あなたの推し3体を！志木のカッパ像をめぐろう。">
+<meta property="og:description" content="志木のカッパ像30体の場所や紹介、お店・地域の情報をスマホでチェック。お気に入りの推し3体を選んで、まち歩きを楽しもう！">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:url" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/">
+<meta property="og:url" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/index.html?share=wide-20261021">
+<link rel="canonical" href="https://ichirohns-jpg.github.io/skz30-kappa-dx/index.html?share=wide-20261021">
 <meta property="og:image" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/images/IMG_4179.JPG">
 <meta property="og:image:secure_url" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/images/IMG_4179.JPG">
 <meta property="og:image:type" content="image/jpeg">
@@ -29,7 +30,7 @@
 <meta property="og:image:alt" content="SKZ30 カッパ像めぐりDX：志木のまち歩きとカッパ像">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="SKZ30 カッパ像めぐりDX">
-<meta name="twitter:description" content="志木市内30体のカッパ像をめぐって、推し3体を選ぼう！">
+<meta name="twitter:description" content="志木のカッパ像30体の場所や紹介、お店・地域の情報をスマホでチェック。お気に入りの推し3体を選んで、まち歩きを楽しもう！">
 <meta name="twitter:image" content="https://ichirohns-jpg.github.io/skz30-kappa-dx/images/IMG_4179.JPG">
 <meta name="twitter:image:alt" content="SKZ30 カッパ像めぐりDX：志木のまち歩きとカッパ像">
 <style>
@@ -1421,10 +1422,11 @@ function shareX(){return shareToSocial('X');}
 function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(APP_URL),'_blank','noopener');}
 
 // SNS専用の写真選択。端末内のFileを共有画面に渡し、DXやGASへは送信しません。
+const SNS_PUBLIC_URL='https://ichirohns-jpg.github.io/skz30-kappa-dx/index.html?share=wide-20261021';
 const SNS_PROMO_TEXT="志木のまちでカッパ探し！🥒\n「SKZ30 カッパ像めぐりDX」で、30体の場所や紹介、お店・地域の情報をスマホでチェック。お気に入りの推し3体を選んで、まち歩きを楽しもう！";
 function buildSnsDirectPostText(){
  const message=$('shareReasonSimple').value.trim()||SNS_PROMO_TEXT;
- return [message,'#SKZ30 #志木市 #かっぱ像めぐり',APP_URL].join('\n\n');
+ return [message,'#SKZ30 #志木市 #かっぱ像めぐり',SNS_PUBLIC_URL].join('\n\n');
 }
 function createSnsPhotoControls(){
  const box=document.createElement('section');box.id='snsPostingControls';
@@ -1439,7 +1441,7 @@ function createSnsPhotoControls(){
  const postPreview=document.createElement('textarea');postPreview.id='snsPostPreview';postPreview.readOnly=true;postPreview.rows=6;postPreview.style.width='100%';manual.append(manualLabel,postPreview);
  function refreshPost(){
   const text=buildSnsDirectPostText();postPreview.value=text;
-  facebook.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(APP_URL);
+  facebook.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(SNS_PUBLIC_URL);
   x.href='https://twitter.com/intent/tweet?text='+encodeURIComponent(text);
   line.href='https://line.me/R/share?text='+encodeURIComponent(text);
  }
