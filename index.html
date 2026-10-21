@@ -1006,7 +1006,7 @@ box-shadow:0 2px 8px rgba(0,0,0,.18);
 <div class="flowIcon" aria-hidden="true">📣</div>
 <div>
 <b>SNSで紹介</b>
-<small>SNSで写真を選んで投稿</small>
+<small>宣伝文をコピーしてSNSで紹介</small>
 </div>
 </a>
 </div>
@@ -1368,9 +1368,9 @@ async function sharePhotosOnly(){
 
 function showSimpleShareForm(){
  const box=$('simpleShareForm');box.hidden=false;
- box.querySelector('p').textContent='「文章をコピーする」を押して、下のSNSボタンから投稿してください。写真は開いたSNSで選んで投稿します。DXのURLは文章の末尾に入ります。';
+ box.querySelector('p').textContent='宣伝文は入力済みです。そのまま「文章をコピーする」を押し、下のSNSボタンから投稿してください。文章は自由に書き換えられます。';
  document.querySelector('label[for="shareCustomName"]').textContent='名前・題名（任意）';
- document.querySelector('label[for="shareReasonSimple"]').textContent='ひと言書こう（任意・空欄でも進めます）';
+ document.querySelector('label[for="shareReasonSimple"]').textContent='宣伝文（そのまま使えます・編集もできます）';
  const select=$('shareKappaSimple');
  if(select.options.length===1&&KAPPAS.length){KAPPAS.forEach(k=>{const option=document.createElement('option');option.value=k.id;option.textContent=k.name;select.append(option);});}
  box.scrollIntoView({behavior:'smooth',block:'center'});
@@ -1421,8 +1421,9 @@ function shareX(){return shareToSocial('X');}
 function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(APP_URL),'_blank','noopener');}
 
 // SNS専用の写真選択。端末内のFileを共有画面に渡し、DXやGASへは送信しません。
+const SNS_PROMO_TEXT="志木のまちでカッパ探し！🥒\n「SKZ30 カッパ像めぐりDX」で、30体の場所や紹介、お店・地域の情報をスマホでチェック。お気に入りの推し3体を選んで、まち歩きを楽しもう！";
 function buildSnsDirectPostText(){
- const message=$('shareReasonSimple').value.trim()||'SKZ30 カッパ像めぐり2026';
+ const message=$('shareReasonSimple').value.trim()||SNS_PROMO_TEXT;
  return [message,'#SKZ30 #志木市 #かっぱ像めぐり',APP_URL].join('\n\n');
 }
 function createSnsPhotoControls(){
@@ -1432,7 +1433,7 @@ function createSnsPhotoControls(){
  const links=document.createElement('div');links.id='snsServiceButtons';links.style.display='flex';links.style.flexWrap='wrap';links.style.gap='8px';
  const facebook=document.createElement('a'),x=document.createElement('a'),line=document.createElement('a');
  for(const [link,name] of [[facebook,'Facebook'],[x,'X'],[line,'LINE']]){link.textContent=name;link.className='miniBtn green';link.target='_blank';link.rel='noopener noreferrer';links.append(link);}
- const guide=document.createElement('p');guide.textContent='紹介文をコピーしたら、投稿したいSNSを押してください。開いたSNSで写真を選び、内容を確認して投稿します。Facebookでは本文欄にコピーした文章を貼り付けてください。X・LINEにも文章が入らない場合は貼り付けてください。';
+ const guide=document.createElement('p');guide.textContent='宣伝文をコピーしたら、下のSNSボタンを押してください。開いたSNSの投稿欄に貼り付けて、内容を確認して投稿します。文章がすでに入っている場合は、貼り付け直す必要はありません。写真の追加は不要です。リンクの紹介画像の表示はSNS側で決まります。';
  const manual=document.createElement('div');manual.hidden=true;
  const manualLabel=document.createElement('label');manualLabel.htmlFor='snsPostPreview';manualLabel.textContent='コピー用の文章（末尾にDXのURL）';
  const postPreview=document.createElement('textarea');postPreview.id='snsPostPreview';postPreview.readOnly=true;postPreview.rows=6;postPreview.style.width='100%';manual.append(manualLabel,postPreview);
@@ -1447,7 +1448,7 @@ function createSnsPhotoControls(){
   refreshPost();
   try{
    if(!navigator.clipboard||typeof navigator.clipboard.writeText!=='function')throw Error('manual');
-   await navigator.clipboard.writeText(postPreview.value);manual.hidden=true;feedback.textContent='紹介文とDXのURLをコピーしました。SNSを選び、SNS側で写真を追加して投稿してください。';
+   await navigator.clipboard.writeText(postPreview.value);manual.hidden=true;feedback.textContent='宣伝文とDXのURLをコピーしました。下のSNSボタンから開き、投稿欄に貼り付けて投稿してください。';
   }catch(e){
    manual.hidden=false;postPreview.focus();postPreview.select();postPreview.setSelectionRange(0,postPreview.value.length);postPreview.scrollIntoView({block:'center'});feedback.textContent='下の紹介文を長押ししてコピーし、SNSを選んでください。';
   }
@@ -1460,16 +1461,16 @@ function setupSocialUI(){
  const start=document.querySelector('button[onclick="showSimpleShareForm()"]');
  const card=document.createElement('section');card.className='card';card.id='snsCorner';
  const heading=document.createElement('h2');heading.textContent='📣 SNSでカッパめぐりを紹介しよう';
- const intro=document.createElement('p');intro.textContent='文章を書いて「文章をコピーする」を押し、Facebook・X・LINEから投稿できます。DXのURLは文章の末尾に自動で付きます。カッパ選択・QR読み取り・応募は不要です。';
- start.hidden=true;form.hidden=false;form.querySelector('h3').textContent='投稿する文章を書く';
+ const intro=document.createElement('p');intro.textContent='宣伝文を用意しました。「文章をコピーする」→ SNSを選ぶ → 投稿する。DXのURLも一緒にコピーされます。';
+ start.hidden=true;form.hidden=false;form.querySelector('h3').textContent='この宣伝文をそのまま使えます';
  card.append(heading,intro,start,form,result);
  const vote=$('vote'),sns=document.createElement('section');sns.id='sns';sns.className='page';sns.append(card);vote.parentElement.insertBefore(sns,vote.nextSibling);
  vote.querySelector('h2').textContent='プレゼント応募：推しを選ぶ';
  const entry=document.createElement('a');entry.className='bigBtn green';entry.href='#sns';entry.dataset.pageLink='sns';entry.textContent='📣 SNSで紹介する';
- const welcome=document.createElement('section');welcome.className='card';const welcomeTitle=document.createElement('h2');welcomeTitle.textContent='カッパめぐりをSNSで紹介しませんか？';const welcomeText=document.createElement('p');welcomeText.textContent='紹介文をコピーしてSNSを開き、SNS側で写真を選んで投稿できます。DXのURLも文章の末尾に入ります。';welcome.append(welcomeTitle,welcomeText,entry);const top=$('top');top.insertBefore(welcome,top.children[1]||null);
+ const welcome=document.createElement('section');welcome.className='card';const welcomeTitle=document.createElement('h2');welcomeTitle.textContent='カッパめぐりをSNSで紹介しませんか？';const welcomeText=document.createElement('p');welcomeText.textContent='用意した宣伝文をコピーして、SNSで紹介できます。DXのURLも文章の末尾に入ります。';welcome.append(welcomeTitle,welcomeText,entry);const top=$('top');top.insertBefore(welcome,top.children[1]||null);
  document.querySelectorAll('.nav,.bottomNav').forEach(nav=>{const link=document.createElement('a');link.href='#sns';link.dataset.pageLink='sns';link.textContent='📣 SNS';nav.append(link);if(nav.classList.contains('bottomNav')){nav.style.gridTemplateColumns='repeat(6,minmax(0,1fr))';link.style.fontSize='14px';}});
  for(const selector of ['label[for="shareKappaSimple"]','#shareKappaSimple','label[for="shareCustomName"]','#shareCustomName'])document.querySelector(selector).hidden=true;
- const reason=$('shareReasonSimple');reason.placeholder='例：お気に入りのカッパに会ってきました！';
+ const reason=$('shareReasonSimple');reason.value=SNS_PROMO_TEXT;reason.rows=7;reason.placeholder='ご自分の言葉に書き換えても使えます。';
  form.querySelector('button[onclick="makeSimpleShareText()"]').hidden=true;
  const copyButton=document.querySelector('button[onclick="copyVoteText()"]');copyButton.hidden=true;
  $('shareManualCopy').hidden=true;$('sharePhotoStatus').hidden=true;
