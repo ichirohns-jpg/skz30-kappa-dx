@@ -1368,7 +1368,7 @@ async function sharePhotosOnly(){
 
 function showSimpleShareForm(){
  const box=$('simpleShareForm');box.hidden=false;
- box.querySelector('p').textContent='ひと言は空欄でもコピーできます。DXのリンクも一緒にコピーされます。';
+ box.querySelector('p').textContent='①まず、下のボタンで紹介文とDXリンクをコピーしてください。ひと言は空欄でも使えます。';
  document.querySelector('label[for="shareCustomName"]').textContent='名前・題名（任意）';
  document.querySelector('label[for="shareReasonSimple"]').textContent='ひと言書こう（任意・空欄でも進めます）';
  const select=$('shareKappaSimple');
@@ -1394,7 +1394,7 @@ async function copyVoteText(){
  const text=$('voteText').textContent;
  try{
   if(!navigator.clipboard||typeof navigator.clipboard.writeText!=='function')throw Error('manual-copy');
-  await navigator.clipboard.writeText(text);$('shareManualCopy').hidden=true;$('sharePhotoStatus').textContent='紹介文とDXリンクをコピーしました。いつものSNSを開き、写真を選んで、本文に貼り付けて投稿してください。写真なしでもOKです。';
+  await navigator.clipboard.writeText(text);$('shareManualCopy').hidden=true;$('sharePhotoStatus').textContent='紹介文とDXリンクをコピーしました。次に②で写真を選び、③からSNSへ送ってください。SNSが開いたら、本文欄を長押しして「貼り付け」し、写真・文章・リンクを確認して投稿してください。写真なしの場合は、いつものSNSに貼り付けて投稿できます。';
  }catch{
   $('shareManualCopy').hidden=false;$('shareManualText').value=text;$('shareManualText').focus();$('shareManualText').select();$('shareManualText').setSelectionRange(0,text.length);$('shareManualText').scrollIntoView({block:'center'});$('sharePhotoStatus').textContent='下の「コピー用の投稿文」を長押ししてコピーしてください。';
  }
@@ -1419,25 +1419,72 @@ async function shareToSocial(service){
 }
 function shareX(){return shareToSocial('X');}
 function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(APP_URL),'_blank','noopener');}
+
+// SNS専用の写真選択。端末内のFileを共有画面に渡し、DXやGASへは送信しません。
+function createSnsPhotoControls(){
+ const box=document.createElement('section');box.id='snsPhotoControls';box.style.marginTop='24px';
+ const title=document.createElement('h3');title.textContent='② 投稿する写真を選ぶ';
+ const privacy=document.createElement('p');privacy.textContent='自分で撮った写真を3枚まで選べます（1枚20MBまで）。写真はDXにはアップロード・保存されません。③で選んだSNSへ渡し、投稿の確定はSNSで行います。';
+ const label=document.createElement('label');label.className='bigBtn green';label.htmlFor='snsPhotoPicker';label.textContent='🖼 スマホの写真を選ぶ（3枚まで）';
+ const input=document.createElement('input');input.id='snsPhotoPicker';input.type='file';input.accept='image/*';input.multiple=true;input.hidden=true;
+ const clear=document.createElement('button');clear.type='button';clear.className='miniBtn secondary';clear.textContent='選んだ写真を外す';clear.hidden=true;
+ const feedback=document.createElement('p');feedback.id='snsPhotoChoiceStatus';feedback.setAttribute('role','status');feedback.setAttribute('aria-live','polite');feedback.textContent='写真はまだ選んでいません。写真なしでも、①の文章をSNSに貼り付けて投稿できます。';
+ const preview=document.createElement('div');preview.id='snsSelectedPhotos';preview.style.display='grid';preview.style.gridTemplateColumns='repeat(3,minmax(0,1fr))';preview.style.gap='8px';
+ const send=document.createElement('button');send.id='snsSendPhotos';send.type='button';send.className='bigBtn primary';send.textContent='③ 写真をSNSへ送る（共有画面）';send.disabled=true;
+ const help=document.createElement('p');help.textContent='共有画面に出た、投稿したいSNSを押してください。SNSが見当たらない場合は「その他」も確認してください。写真・文章・DXリンクが自動で一緒に入るとは限りません。本文には①でコピーした文章を貼り付けてください。';
+ const fallback=document.createElement('details');const summary=document.createElement('summary');summary.textContent='共有できない・SNSが出てこないとき';
+ const fallbackText=document.createElement('p');fallbackText.textContent='SNSアプリを自分で開いて「新しい投稿」を作り、元の写真をスマホのアルバムから添付して、①の文章を本文に貼り付けてください。写真3枚が受け取られるかは共有先によって異なります。写真とリンクのOGPカードが両方表示される保証はありません。';fallback.append(summary,fallbackText);
+ let files=[],urls=[],sharing=false;
+ function reset(){files=[];for(const url of urls)URL.revokeObjectURL(url);urls=[];preview.replaceChildren();input.value='';clear.hidden=true;send.disabled=true;}
+ input.addEventListener('change',()=>{
+  if(sharing)return;
+  const selected=Array.from(input.files||[]);if(!selected.length)return;
+  reset();
+  if(selected.length>3){feedback.textContent='写真が4枚以上選ばれたため、選択を解除しました。3枚まで選び直してください。';return;}
+  if(selected.some(file=>!file.size||file.size>20*1024*1024||!(/^image\//i.test(file.type)||(!file.type&&/\.(jpe?g|png|webp|gif|heic|heif|avif)$/i.test(file.name))))){feedback.textContent='写真の選択を解除しました。1枚20MB以内の画像を選び直してください。';return;}
+  files=selected;
+  files.forEach((file,i)=>{const figure=document.createElement('figure');figure.style.margin='0';const image=document.createElement('img');const url=URL.createObjectURL(file);urls.push(url);image.src=url;image.alt='投稿する写真 '+(i+1);image.style.width='100%';image.style.aspectRatio='1';image.style.objectFit='cover';image.style.borderRadius='12px';const caption=document.createElement('figcaption');caption.textContent='写真 '+(i+1);figure.append(image,caption);preview.append(figure);});
+  clear.hidden=false;send.disabled=false;feedback.textContent=files.length+'枚選びました。①で文章をコピーしてから、③でSNSを選んでください。';
+ });
+ clear.addEventListener('click',()=>{if(sharing)return;reset();feedback.textContent='写真を外しました。選び直すか、①の文章だけで投稿できます。';});
+ send.addEventListener('click',async()=>{
+  if(sharing)return;
+  if(!files.length){feedback.textContent='②で写真を選んでください。';return;}
+  const data={files:files.slice()};
+  let supported=false;try{supported=typeof navigator.share==='function'&&typeof navigator.canShare==='function'&&navigator.canShare(data);}catch(e){}
+  if(!supported){feedback.textContent='このブラウザーからは、選んだ写真をSNSへ直接渡せません。下の「共有できない・SNSが出てこないとき」を開き、SNSアプリの新しい投稿から写真を添付してください。';fallback.open=true;return;}
+  sharing=true;send.disabled=true;input.disabled=true;clear.disabled=true;
+  feedback.textContent='スマホの共有画面で、投稿したいSNSを選んでください。';
+  try{
+   await navigator.share(data);
+   feedback.textContent='共有画面を閉じました。まだ投稿完了とは限りません。SNS側で、受け取られた写真の枚数を確認し、①でコピーした文章とDXリンクを本文に貼り付けて投稿してください。';
+  }catch(e){
+   feedback.textContent=e&&e.name==='AbortError'?'共有をキャンセルしました。写真は選択したままです。③からもう一度開けます。':'写真を共有できませんでした。下の案内に沿って、SNSアプリで元の写真を添付し、①の文章を貼り付けてください。';
+   if(!e||e.name!=='AbortError')fallback.open=true;
+  }finally{sharing=false;send.disabled=!files.length;input.disabled=false;clear.disabled=false;}
+ });
+ box.append(title,privacy,label,input,clear,feedback,preview,send,help,fallback);return box;
+}
+
 function setupSocialUI(){
  const form=$('simpleShareForm'),result=$('voteResultBox');
  const start=document.querySelector('button[onclick="showSimpleShareForm()"]');
  const card=document.createElement('section');card.className='card';card.id='snsCorner';
  const heading=document.createElement('h2');heading.textContent='📣 SNSでカッパめぐりを紹介しよう';
- const intro=document.createElement('p');intro.textContent='ひと言を書いて、紹介文をコピーするだけ。カッパ選択・QR読み取り・応募は不要。文章だけでも参加できます。';
+ const intro=document.createElement('p');intro.textContent='①紹介文とDXリンクをコピー → ②スマホの写真を3枚まで選ぶ → ③共有画面でSNSを選び、本文に貼り付けて投稿。カッパ選択・QR読み取り・応募は不要です。';
  start.hidden=true;form.hidden=false;form.querySelector('h3').textContent='紹介文を作る';
  card.append(heading,intro,start,form,result);
  const vote=$('vote'),sns=document.createElement('section');sns.id='sns';sns.className='page';sns.append(card);vote.parentElement.insertBefore(sns,vote.nextSibling);
  vote.querySelector('h2').textContent='プレゼント応募：推しを選ぶ';
  const entry=document.createElement('a');entry.className='bigBtn green';entry.href='#sns';entry.dataset.pageLink='sns';entry.textContent='📣 SNSで紹介する';
- const welcome=document.createElement('section');welcome.className='card';const welcomeTitle=document.createElement('h2');welcomeTitle.textContent='カッパめぐりをSNSで紹介しませんか？';const welcomeText=document.createElement('p');welcomeText.textContent='ひと言を書いて紹介文をコピー。いつものSNSに貼り付けて投稿できます。';welcome.append(welcomeTitle,welcomeText,entry);const top=$('top');top.insertBefore(welcome,top.children[1]||null);
+ const welcome=document.createElement('section');welcome.className='card';const welcomeTitle=document.createElement('h2');welcomeTitle.textContent='カッパめぐりをSNSで紹介しませんか？';const welcomeText=document.createElement('p');welcomeText.textContent='紹介文とDXリンクをコピーし、写真を選んでスマホの共有画面からSNSへ送れます。投稿の確定はSNSで行います。';welcome.append(welcomeTitle,welcomeText,entry);const top=$('top');top.insertBefore(welcome,top.children[1]||null);
  document.querySelectorAll('.nav,.bottomNav').forEach(nav=>{const link=document.createElement('a');link.href='#sns';link.dataset.pageLink='sns';link.textContent='📣 SNS';nav.append(link);if(nav.classList.contains('bottomNav')){nav.style.gridTemplateColumns='repeat(6,minmax(0,1fr))';link.style.fontSize='14px';}});
  for(const selector of ['label[for="shareKappaSimple"]','#shareKappaSimple','label[for="shareCustomName"]','#shareCustomName'])document.querySelector(selector).hidden=true;
  const reason=$('shareReasonSimple');reason.placeholder='例：お気に入りのカッパに会ってきました！';
  form.querySelector('button[onclick="makeSimpleShareText()"]').hidden=true;
- const guide=document.createElement('p');guide.textContent='コピーしたら、いつものSNSを開き、写真を選んで、本文に貼り付けて投稿してください。写真なしでもOKです。';
- const copyButton=document.querySelector('button[onclick="copyVoteText()"]');copyButton.textContent='紹介文をコピー';
- form.append(copyButton,guide,$('sharePhotoStatus'),$('shareManualCopy'));
+ const guide=document.createElement('p');guide.textContent='写真を送っただけでは投稿は完了しません。SNSの投稿画面で、コピーした文章を本文欄に貼り付け、写真とDXリンクを確認してから投稿してください。';
+ const copyButton=document.querySelector('button[onclick="copyVoteText()"]');copyButton.textContent='① 紹介文とDXリンクをコピー';
+ form.append(copyButton,$('shareManualCopy'),$('sharePhotoStatus'),createSnsPhotoControls(),guide);
  result.hidden=true;
  showSimpleShareForm();showPage();
 }
