@@ -1435,8 +1435,10 @@ async function sharePhotosOnly(){
 }
 
 function showSimpleShareForm(){
- const box=$('simpleShareForm');box.hidden=false;
- box.querySelector('p').textContent='宣伝文は入力済みです。そのまま「文章をコピーする」を押し、下のSNSボタンから投稿してください。文章は自由に書き換えられます。';
+ const box=$('simpleShareForm');if(!box)return;
+ if(document.querySelector('#snsCorner')){box.hidden=true;return;}
+ box.hidden=false;
+ box.querySelector('p').textContent='宣伝文は入力済みです。下のひと言を添えて「紹介文をコピーして投稿」を押してください。';
  document.querySelector('label[for="shareCustomName"]').textContent='名前・題名（任意）';
  document.querySelector('label[for="shareReasonSimple"]').textContent='宣伝文（そのまま使えます・編集もできます）';
  const select=$('shareKappaSimple');
@@ -1492,37 +1494,25 @@ function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php
 const SNS_PUBLIC_URL='https://ichirohns-jpg.github.io/skz30-kappa-dx/index.html?share=wide-20261021';
 const SNS_PROMO_TEXT="志木のまちでカッパ探し！🥒\n「SKZ30 カッパ像めぐりDX」で、30体の場所や紹介、お店・地域の情報をスマホでチェック。お気に入りの推し3体を選んで、まち歩きを楽しもう！";
 function buildSnsDirectPostText(){
- const message=$('shareReasonSimple').value.trim()||SNS_PROMO_TEXT;
+ const message=$('snsShortMessage')?.value.trim()||$('shareReasonSimple')?.value.trim()||SNS_PROMO_TEXT;
  return [message,'#SKZ30 #志木市 #かっぱ像めぐり',SNS_PUBLIC_URL].join('\n\n');
 }
 function createSnsPhotoControls(){
- const box=document.createElement('section');box.id='snsPostingControls';
- const copy=document.createElement('button');copy.id='snsCopyPost';copy.type='button';copy.className='bigBtn green';copy.textContent='文章をコピーする';
+ const box=document.createElement('section');box.id='snsPostingControls';box.className='shareArea';
+ const input=document.createElement('input');input.id='snsShortMessage';input.type='text';input.maxLength=120;input.placeholder='ひと言（任意）';input.setAttribute('aria-label','SNS紹介のひと言（任意）');
+ const copy=document.createElement('button');copy.type='button';copy.className='bigBtn green';copy.textContent='紹介文をコピーして投稿';
  const feedback=document.createElement('p');feedback.id='snsCopyStatus';feedback.setAttribute('role','status');feedback.setAttribute('aria-live','polite');
- const links=document.createElement('div');links.id='snsServiceButtons';links.style.display='flex';links.style.flexWrap='wrap';links.style.gap='8px';
- const facebook=document.createElement('a'),x=document.createElement('a'),line=document.createElement('a');
- for(const [link,name] of [[facebook,'Facebook'],[x,'X'],[line,'LINE']]){link.textContent=name;link.className='miniBtn green';link.target='_blank';link.rel='noopener noreferrer';links.append(link);}
- const guide=document.createElement('p');guide.textContent='宣伝文をコピーしたら、下のSNSボタンを押してください。開いたSNSの投稿欄に貼り付けて、内容を確認して投稿します。文章がすでに入っている場合は、貼り付け直す必要はありません。写真の追加は不要です。リンクの紹介画像の表示はSNS側で決まります。';
- const manual=document.createElement('div');manual.hidden=true;
- const manualLabel=document.createElement('label');manualLabel.htmlFor='snsPostPreview';manualLabel.textContent='コピー用の文章（末尾にDXのURL）';
- const postPreview=document.createElement('textarea');postPreview.id='snsPostPreview';postPreview.readOnly=true;postPreview.rows=6;postPreview.style.width='100%';manual.append(manualLabel,postPreview);
- function refreshPost(){
-  const text=buildSnsDirectPostText();postPreview.value=text;
-  facebook.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(SNS_PUBLIC_URL);
-  x.href='https://twitter.com/intent/tweet?text='+encodeURIComponent(text);
-  line.href='https://line.me/R/share?text='+encodeURIComponent(text);
- }
- $('shareReasonSimple').addEventListener('input',refreshPost);refreshPost();
+ const postText=()=>[(input.value.trim()||SNS_PROMO_TEXT),'#SKZ30 #志木市 #かっぱ像めぐり',SNS_PUBLIC_URL].join('\\n\\n');
  copy.addEventListener('click',async()=>{
-  refreshPost();
+  const text=postText();
   try{
    if(!navigator.clipboard||typeof navigator.clipboard.writeText!=='function')throw Error('manual');
-   await navigator.clipboard.writeText(postPreview.value);manual.hidden=true;feedback.textContent='宣伝文とDXのURLをコピーしました。下のSNSボタンから開き、投稿欄に貼り付けて投稿してください。';
+   await navigator.clipboard.writeText(text);feedback.textContent='紹介文とDXリンクをコピーしました。SNSを開いて貼り付けて投稿してください。';
   }catch(e){
-   manual.hidden=false;postPreview.focus();postPreview.select();postPreview.setSelectionRange(0,postPreview.value.length);postPreview.scrollIntoView({block:'center'});feedback.textContent='下の紹介文を長押ししてコピーし、SNSを選んでください。';
+   feedback.textContent='コピーできない場合は、表示された紹介文を長押ししてコピーしてください。';
   }
  });
- box.append(copy,feedback,links,guide,manual);return box;
+ box.append(input,copy,feedback);return box;
 }
 
 function setupSocialUI(){
@@ -1530,7 +1520,7 @@ function setupSocialUI(){
  const start=document.querySelector('button[onclick="showSimpleShareForm()"]');
  const card=document.createElement('section');card.className='card';card.id='snsCorner';
  const heading=document.createElement('h2');heading.textContent='📣 SNSでカッパめぐりを紹介しよう';
- const intro=document.createElement('p');intro.textContent='宣伝文を用意しました。「文章をコピーする」→ SNSを選ぶ → 投稿する。DXのURLも一緒にコピーされます。';
+ const intro=document.createElement('p');intro.textContent='宣伝文を用意しました。ひと言を添えて「紹介文をコピーして投稿」を押し、SNSに貼り付けて投稿できます。';
  start.hidden=true;form.hidden=false;form.querySelector('h3').textContent='この宣伝文をそのまま使えます';
  card.append(heading,intro,start,form,result);
  const vote=$('vote'),sns=document.createElement('section');sns.id='sns';sns.className='page';sns.append(card);vote.parentElement.insertBefore(sns,vote.nextSibling);
@@ -1539,11 +1529,12 @@ function setupSocialUI(){
  const welcome=document.createElement('section');welcome.className='card';const welcomeTitle=document.createElement('h2');welcomeTitle.textContent='カッパめぐりをSNSで紹介しませんか？';const welcomeText=document.createElement('p');welcomeText.textContent='用意した宣伝文をコピーして、SNSで紹介できます。DXのURLも文章の末尾に入ります。';welcome.append(welcomeTitle,welcomeText,entry);const top=$('top');top.insertBefore(welcome,top.children[1]||null);
  document.querySelectorAll('.nav,.bottomNav').forEach(nav=>{const link=document.createElement('a');link.href='#sns';link.dataset.pageLink='sns';link.textContent='📣 SNS';nav.append(link);if(nav.classList.contains('bottomNav')){nav.style.gridTemplateColumns='repeat(6,minmax(0,1fr))';link.style.fontSize='14px';}});
  for(const selector of ['label[for="shareKappaSimple"]','#shareKappaSimple','label[for="shareCustomName"]','#shareCustomName'])document.querySelector(selector).hidden=true;
- const reason=$('shareReasonSimple');reason.value=SNS_PROMO_TEXT;reason.rows=7;reason.placeholder='ご自分の言葉に書き換えても使えます。';
+ const reason=$('shareReasonSimple');reason.value=SNS_PROMO_TEXT;reason.rows=1;reason.placeholder='紹介文は下のひと言入力から作れます。';
  form.querySelector('button[onclick="makeSimpleShareText()"]').hidden=true;
  const copyButton=document.querySelector('button[onclick="copyVoteText()"]');copyButton.hidden=true;
  $('shareManualCopy').hidden=true;$('sharePhotoStatus').hidden=true;
- form.append(createSnsPhotoControls());
+ form.hidden=true;
+ card.append(createSnsPhotoControls());
  result.hidden=true;
  showSimpleShareForm();showPage();
 }
