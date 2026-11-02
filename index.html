@@ -1516,21 +1516,33 @@ function buildSnsDirectPostText(){
  return [message,'#SKZ30 #志木市 #かっぱ像めぐり',SNS_PUBLIC_URL].join('\n\n');
 }
 function createSnsPhotoControls(){
- const box=document.createElement('section');box.id='snsPostingControls';box.className='shareArea';
+ const box=document.createElement('section');box.id='snsPostingControls';box.style.cssText='display:grid;gap:12px;margin-top:16px';
  const input=document.createElement('input');input.id='snsShortMessage';input.type='text';input.maxLength=120;input.placeholder='ひと言（任意）';input.setAttribute('aria-label','SNS紹介のひと言（任意）');
- const copy=document.createElement('button');copy.type='button';copy.className='bigBtn green';copy.textContent='紹介文をコピーして投稿';
+ const copy=document.createElement('button');copy.type='button';copy.className='bigBtn green';copy.textContent='紹介文とリンクをコピー';
  const feedback=document.createElement('p');feedback.id='snsCopyStatus';feedback.setAttribute('role','status');feedback.setAttribute('aria-live','polite');
  const postText=()=>[(input.value.trim()||SNS_PROMO_TEXT),'#SKZ30 #志木市 #かっぱ像めぐり',SNS_PUBLIC_URL].join('\n\n');
  copy.addEventListener('click',async()=>{
   const text=postText();
   try{
    if(!navigator.clipboard||typeof navigator.clipboard.writeText!=='function')throw Error('manual');
-   await navigator.clipboard.writeText(text);feedback.textContent='紹介文とDXリンクをコピーしました。SNSを開いて貼り付けて投稿してください。';
+   await navigator.clipboard.writeText(text);feedback.textContent='紹介文とDXリンクをコピーしました。下のボタンからSNSへ進めます。Facebookでは本文欄に貼り付けてください。';
   }catch(e){
    feedback.textContent='コピーできない場合は、表示された紹介文を長押ししてコピーしてください。';
   }
  });
- box.append(input,copy,feedback);return box;
+ const links=document.createElement('div');links.id='snsPostLinks';links.style.cssText='display:grid;gap:10px';
+ const line=document.createElement('a');line.className='bigBtn green';line.textContent='LINEで送る';line.style.background='#06a846';
+ const x=document.createElement('a');x.className='bigBtn dark';x.textContent='Xで投稿する';x.style.background='#111';x.target='_blank';x.rel='noopener noreferrer';
+ const facebook=document.createElement('a');facebook.className='bigBtn dark';facebook.textContent='Facebookでシェアする';facebook.style.background='#1877f2';facebook.target='_blank';facebook.rel='noopener noreferrer';
+ const updateLinks=()=>{
+  line.href='https://line.me/R/share?text='+encodeURIComponent(postText());
+  x.href='https://twitter.com/intent/tweet?text='+encodeURIComponent(postText());
+  facebook.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(SNS_PUBLIC_URL);
+ };
+ input.addEventListener('input',updateLinks);updateLinks();
+ const help=document.createElement('p');help.textContent='LINE・Xには紹介文とリンクが入ります。Facebookは紹介文をコピーしてから開き、本文欄に貼り付けてください。';
+ links.append(line,x,facebook);
+ box.append(input,copy,feedback,links,help);return box;
 }
 
 function setupSocialUI(){
@@ -1538,7 +1550,7 @@ function setupSocialUI(){
  const start=document.querySelector('button[onclick="showSimpleShareForm()"]');
  const card=document.createElement('section');card.className='card';card.id='snsCorner';
  const heading=document.createElement('h2');heading.textContent='📣 SNSでカッパめぐりを紹介しよう';
- const intro=document.createElement('p');intro.textContent='宣伝文を用意しました。ひと言を添えて「紹介文をコピーして投稿」を押し、SNSに貼り付けて投稿できます。';
+ const intro=document.createElement('p');intro.textContent='ひと言を入力し、下のLINE・X・Facebookボタンから紹介できます。Facebookは紹介文をコピーしてから貼り付けてください。';
  start.hidden=true;form.hidden=false;form.querySelector('h3').textContent='この宣伝文をそのまま使えます';
  card.append(heading,intro,start,form,result);
  const vote=$('vote'),sns=document.createElement('section');sns.id='sns';sns.className='page';sns.append(card);vote.parentElement.insertBefore(sns,vote.nextSibling);
