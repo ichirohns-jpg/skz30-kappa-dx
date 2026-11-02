@@ -1520,7 +1520,7 @@ function createSnsPhotoControls(){
  const input=document.createElement('input');input.id='snsShortMessage';input.type='text';input.maxLength=120;input.placeholder='ひと言（任意）';input.setAttribute('aria-label','SNS紹介のひと言（任意）');
  const copy=document.createElement('button');copy.type='button';copy.className='bigBtn green';copy.textContent='紹介文をコピーして投稿';
  const feedback=document.createElement('p');feedback.id='snsCopyStatus';feedback.setAttribute('role','status');feedback.setAttribute('aria-live','polite');
- const postText=()=>[(input.value.trim()||SNS_PROMO_TEXT),'#SKZ30 #志木市 #かっぱ像めぐり',SNS_PUBLIC_URL].join('\\n\\n');
+ const postText=()=>[(input.value.trim()||SNS_PROMO_TEXT),'#SKZ30 #志木市 #かっぱ像めぐり',SNS_PUBLIC_URL].join('\n\n');
  copy.addEventListener('click',async()=>{
   const text=postText();
   try{
