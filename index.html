@@ -1367,6 +1367,8 @@ $('entryForm').addEventListener('submit',async e=>{
    throw entryIssue(message,invalidField.id);
   }
   if(!fields.name||!fields.phone||!fields.email)throw entryIssue('氏名・電話番号・メールアドレスを入力してください。',!fields.name?'entryName':!fields.phone?'entryPhone':'entryEmail');
+  const normalizedPhone=fields.phone.normalize('NFKC').replace(/[\s()ー−‐-]/g,'');
+  if(!/^\+?[0-9]{10,15}$/.test(normalizedPhone))throw entryIssue('連絡先電話番号を確認してください。市外局番を含む10〜15桁の番号を入力してください。','entryPhone');
   const pendingChoices=choiceSaveOrder(progress,choices);
   if(!confirm('表示中の推し3体と理由を保存して応募します。応募後は変更できません。よろしいですか？'))return;
   busy=true;renderProgress();
