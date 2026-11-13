@@ -1163,7 +1163,7 @@ document.querySelectorAll('a[data-scroll-target]').forEach(link=>{
 function status(text,error=false){$('saveStatus').textContent=text;$('saveStatus').classList.add('show');$('saveStatus').classList.toggle('error',error);}
 function randomHex(n){return Array.from(crypto.getRandomValues(new Uint8Array(n)),b=>b.toString(16).padStart(2,'0')).join('');}
 function identity(){const key='skz30-event-auth-v1';let data=JSON.parse(localStorage.getItem(key)||'null');if(!data){data={userId:randomHex(16),sessionKey:randomHex(32)};localStorage.setItem(key,JSON.stringify(data));}if(!/^[A-Za-z0-9_-]{20,100}$/.test(data.userId)||!/^[A-Za-z0-9_-]{32,150}$/.test(data.sessionKey))throw Error('参加者情報を確認できません。記録を消さず、主催者へお問い合わせください。');return data;}
-function api(mode,params={}){return new Promise((resolve,reject)=>{const callback='skz30cb'+Date.now()+'_'+(++serial),script=document.createElement('script'),url=new URL(GAS_URL);let timer;const waitMs=['getShops','getKappas'].includes(mode)?90000:30000;const done=()=>{clearTimeout(timer);script.remove();delete window[callback];};window[callback]=result=>{done();if(result&&result.ok)resolve(result);else reject(Error(result&&result.error||'読み込みに失敗しました。'));};url.search=new URLSearchParams({...params,mode,callback}).toString();script.src=url.href;script.onerror=()=>{done();reject(Error('通信できません。電波を確認して再確認してください。'));};timer=setTimeout(()=>{done();reject(Error(mode==='getKappas'?'カッパ一覧の取得に時間がかかっています。「記録を再確認」で一覧から再取得できます。':'通信に時間がかかっています。再読み込みボタンを押してください。'));},waitMs);document.head.append(script);});}
+function api(mode,params={},options={}){return new Promise((resolve,reject)=>{const callback='skz30cb'+Date.now()+'_'+(++serial),script=document.createElement('script'),url=new URL(GAS_URL);let timer;const defaultWaitMs=['getShops','getKappas'].includes(mode)?90000:30000;const waitMs=Math.max(1,Math.min(defaultWaitMs,Number(options.timeoutMs)||defaultWaitMs));const done=()=>{clearTimeout(timer);script.remove();delete window[callback];};window[callback]=result=>{done();if(result&&result.ok)resolve(result);else reject(Error(result&&result.error||'読み込みに失敗しました。'));};url.search=new URLSearchParams({...params,mode,callback}).toString();script.src=url.href;script.onerror=()=>{done();reject(Error('通信できません。電波を確認して再確認してください。'));};timer=setTimeout(()=>{done();reject(Error(mode==='getKappas'?'カッパ一覧の取得に時間がかかっています。「記録を再確認」で一覧から再取得できます。':'通信に時間がかかっています。再読み込みボタンを押してください。'));},waitMs);document.head.append(script);});}
 function safeURL(value){const text=String(value??'').trim();if(/^data:image\/(jpeg|jpg|png|webp|gif);base64,[A-Za-z0-9+/=\s]+$/i.test(text))return text;try{const u=new URL(text,APP_URL);return /^https?:$/.test(u.protocol)?u.href:'';}catch{return '';}}
 function renderKappas(){
  const list=$('kappaList');list.replaceChildren();
@@ -1182,6 +1182,12 @@ function renderKappas(){
 }
 function draftKey(n){return 'skz30-choice-'+auth.userId+'-'+n;}
 function remember(n){if(auth)localStorage.setItem(draftKey(n),JSON.stringify({id:$('rank'+n).value,reason:$('reason'+n).value}));}
+function readChoiceDraft(n){
+ try{
+  const draft=JSON.parse(localStorage.getItem(draftKey(n))||'null');
+  return draft&&typeof draft.id==='string'&&typeof draft.reason==='string'&&(!draft.id||KAPPAS.some(k=>k.id===draft.id))?draft:null;
+ }catch{return null;}
+}
 function renderSavedChoices(){
  const list=$('savedChoicesReview');list.replaceChildren();
  for(let slot=1;slot<=3;slot++){
@@ -1211,7 +1217,29 @@ function visitRefreshStatus(text,error=false){const el=$('visitRefreshStatus');i
 function renderProgress(){if(!progress)return;renderEntryConfirmation(progress);renderSavedChoices();const count=progress.visitedCount;for(const id of ['homeVisitedCount','visitedCount'])$(id).textContent=count+'か所／参加資格は3か所';$('eventStatus').textContent=progress.submitted?submittedNotice(progress):count>=3?(progress.canApply?'推し3体の理由を保存済みです。下の応募案内をご確認ください。':'3か所を確認しました。推し3体と理由を入力して、下の応募ボタンへ進んでください。'):'確認済み '+count+'か所。SNS用の紹介文はQRなしで作れます。応募用の保存は、異なるQRを読むごとに1体ずつ使えます。';for(let n=1;n<=3;n++){const choice=progress.choices.find(c=>c.slot===n);$('slot'+n).disabled=busy||KAPPAS.length!==30;$('saveChoice'+n).disabled=busy||!ready||progress.submitted||progress.unlockedSlots<n;$('slotNote'+n).textContent=progress.submitted?'受付が完了した推しの内容です。SNS用の文章は作れます。':choice?'応募用に保存済み：'+choice.name+'。編集したら、応募用にもう一度保存してください。':progress.unlockedSlots>=n?'SNSで紹介できます。応募する場合は、選んだかっぱと理由を保存してください。':'SNSで紹介できます。応募用の保存には、異なる'+n+'か所のQRが必要です。';}const today=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());$('entryAvailability').textContent=applicationNotice(progress,today,busy,ready);$('entryFields').disabled=busy||progress.submitted;$('entrySubmit').disabled=busy||progress.submitted||today<'2026-10-11'||today>'2026-11-15';$('entrySubmit').textContent=busy?'記録を確認・保存しています…':progress.submitted?'応募受付済み':'入力内容を確認して応募する';$('refreshProgress').disabled=busy;$('refreshVisitProgress').disabled=busy;$('refreshEntryProgress').disabled=busy;$('refreshEntryProgress').textContent=busy?'保存・受付を確認しています…':'記録を再確認';}
 async function refresh(){if(busy)return;if(!auth||!ready){visitRefreshStatus('参加記録を準備しています…');await init();return;}busy=true;visitRefreshStatus('読み取り記録を確認しています…');renderProgress();try{const qr=new URL(location.href).searchParams.get('qr');progress=await api(qr?'recordVisit':'getProgress',{...auth,...(qr?{qr}:{})});if(qr){const url=new URL(location.href);url.searchParams.delete('qr');url.hash='vote';history.replaceState(null,'',url);showPage();}renderProgress();const count=progress.visitedCount;visitRefreshStatus('最新の記録を確認しました。現在 '+count+'か所です。参加資格は3か所です。');status('読み取り・保存の記録を確認しました。');}catch(e){visitRefreshStatus('記録を確認できませんでした：'+e.message,true);status(e.message,true);}finally{busy=false;renderProgress();}}
 // 保存の完了は、送信後にサーバーの記録を読み直して確認します。
-async function postAndConfirm(fields,confirmed){const frame=document.createElement('iframe');frame.name='skz30post'+Date.now();frame.hidden=true;const form=document.createElement('form');form.method='POST';form.action=GAS_URL;form.target=frame.name;form.hidden=true;for(const [name,value] of Object.entries({...auth,...fields})){const input=document.createElement('input');input.type='hidden';input.name=name;input.value=String(value);form.append(input);}let responseError=null;const receive=e=>{if(!/^https:\/\/(?:script\.google\.com|[a-z0-9-]+\.googleusercontent\.com)$/.test(e.origin))return;if(e.data&&e.data.source==='skz30-event'&&e.data.result&&e.data.result.ok===false)responseError=Error(e.data.result.error);};window.addEventListener('message',receive);document.body.append(frame,form);try{form.submit();const deadline=Date.now()+65000;while(Date.now()<deadline){await new Promise(r=>setTimeout(r,2500));if(responseError)throw responseError;try{const state=await api('getProgress',auth);if(confirmed(state)){progress=state;return;}}catch(e){throw responseError||e;}}throw Error('保存・受付の完了を確認できませんでした。未受付の可能性があります。入力内容やQR記録を消さず、下の「記録を再確認」を押してください。');}finally{window.removeEventListener('message',receive);form.remove();frame.remove();}}
+async function postAndConfirm(fields,confirmed){
+ const frame=document.createElement('iframe');frame.name='skz30post'+Date.now();frame.hidden=true;
+ const form=document.createElement('form');form.method='POST';form.action=GAS_URL;form.target=frame.name;form.hidden=true;
+ for(const [name,value] of Object.entries({...auth,...fields})){const input=document.createElement('input');input.type='hidden';input.name=name;input.value=String(value);form.append(input);}
+ let responseError=null;
+ const receive=e=>{
+  if(!/^https:\/\/(?:script\.google\.com|[a-z0-9-]+\.googleusercontent\.com)$/.test(e.origin))return;
+  if(e.data&&e.data.source==='skz30-event'&&e.data.result&&e.data.result.ok===false)responseError=Error(e.data.result.error||'保存先からエラーが返りました。');
+ };
+ window.addEventListener('message',receive);document.body.append(frame,form);
+ try{
+  const deadline=Date.now()+65000;form.submit();
+  while(Date.now()<deadline){
+   await new Promise(r=>setTimeout(r,Math.min(2500,deadline-Date.now())));
+   if(responseError)throw responseError;
+   const remaining=deadline-Date.now();if(remaining<=0)break;
+   const state=await api('getProgress',auth,{timeoutMs:remaining});
+   if(responseError)throw responseError;
+   if(confirmed(state)){progress=state;return;}
+  }
+  throw Error('保存・受付の完了を確認できませんでした。未受付の可能性があります。入力内容やQR記録を消さず、下の「記録を再確認」を押してください。');
+ }finally{window.removeEventListener('message',receive);form.remove();frame.remove();}
+}
 async function savePick(n){if(busy)return;if(!ready||progress.submitted||progress.unlockedSlots<n){status(progress.submitted?'応募済みの内容は変更できません。':'応募用の保存には、異なる'+n+'か所のQRを読んでください。',true);return;}const id=$('rank'+n).value,reason=$('reason'+n).value.trim();if(!id||!reason){status('かっぱと推しの理由を入力してください。',true);return;}if([1,2,3].some(m=>m!==n&&$('rank'+m).value===id)){status('推しは異なる3体を選んでください。',true);return;}busy=true;renderProgress();status(n+'体目を保存しています…');try{remember(n);await postAndConfirm({mode:'saveChoice',slot:n,kappaId:id,reason},state=>savedChoiceMatches(state,{slot:n,kappaId:id,reason}));status(n+'体目の保存を確認しました。');}catch(e){status(e.message,true);}finally{busy=false;renderProgress();}}
 let surveyShopsReady=false;
 let surveyShopsLoading=false;
@@ -1258,7 +1286,7 @@ function submittedNotice(state){
 }
 function completedSubmissionNotice(state){
  const receipt=String(state.receipt||'').trim();
- return '応募が完了しました。'+(receipt?'受付番号：'+receipt+'。':'受付番号は「記録を再確認」で確認してください。')+'当選者へメールでご連絡します。再送信は不要です。';
+ return receipt?'応募が完了しました。受付番号：'+receipt+'。当選者へメールでご連絡します。再送信は不要です。':'受付記録はありますが、受付番号を確認できません。再送信せず「記録を再確認」を押してください。';
 }
 function renderEntryConfirmation(state){
  const accepted=state.submitted===true&&Boolean(String(state.receipt||'').trim());
@@ -1295,6 +1323,17 @@ function savedChoiceMatches(state,choice){
  const reason=normalizedChoiceReason(choice.reason);
  return state.choices.some(saved=>saved.slot===choice.slot&&String(saved.kappaId)===choice.kappaId&&(normalizedChoiceReason(saved.reason)===reason||normalizedChoiceReason(saved.reason)==="'"+reason));
 }
+function choiceSaveOrder(state,choices){
+ const pending=choices.filter(choice=>!savedChoiceMatches(state,choice));
+ const current=new Map(state.choices.map(choice=>[choice.slot,String(choice.kappaId)]));
+ const order=[];
+ while(pending.length){
+  const next=pending.findIndex(choice=>![...current].some(([slot,id])=>slot!==choice.slot&&id===choice.kappaId));
+  if(next<0)throw entryIssue('保存済みの推しの順番だけを入れ替える変更は、この画面では保存できません。保存した推しの確認欄にある元の順番に戻してください。理由は編集できます。','rank'+pending[0].slot);
+  const choice=pending.splice(next,1)[0];order.push(choice);current.set(choice.slot,choice.kappaId);
+ }
+ return order;
+}
 function entryFailure(error){
  const message=error.message||'応募の確認ができませんでした。記録を消さず、もう一度お試しください。';
  $('entryAvailability').textContent=message;status(message,true);
@@ -1328,14 +1367,15 @@ $('entryForm').addEventListener('submit',async e=>{
    throw entryIssue(message,invalidField.id);
   }
   if(!fields.name||!fields.phone||!fields.email)throw entryIssue('氏名・電話番号・メールアドレスを入力してください。',!fields.name?'entryName':!fields.phone?'entryPhone':'entryEmail');
+  const pendingChoices=choiceSaveOrder(progress,choices);
   if(!confirm('表示中の推し3体と理由を保存して応募します。応募後は変更できません。よろしいですか？'))return;
   busy=true;renderProgress();
-  for(const choice of choices){
+  for(const choice of pendingChoices){
    if(savedChoiceMatches(progress,choice))continue;
    status('推し'+choice.slot+'体目と理由を保存しています…');
    await postAndConfirm({mode:'saveChoice',...choice},state=>savedChoiceMatches(state,choice));
   }
-  progress=await api('getProgress',auth);
+  // 直前の保存確認で得た最新記録を使います。受付時は保存先でも応募条件を再検証します。
   if(progress.submitted){showAcceptedApplication();return;}
   if(!choices.every(choice=>savedChoiceMatches(progress,choice))||!progress.canApply)throw entryIssue('推し3体の保存・応募条件を確認できませんでした。応募は送信していません。記録を消さず「記録を再確認」を押してください。','refreshProgress');
   status('応募の受付を確認しています…');
@@ -1529,14 +1569,15 @@ function createSnsPhotoControls(){
  const input=document.createElement('input');input.id='snsShortMessage';input.type='text';input.maxLength=120;input.placeholder='ひと言（任意）';input.setAttribute('aria-label','SNS紹介のひと言（任意）');
  const copy=document.createElement('button');copy.type='button';copy.className='bigBtn green';copy.textContent='紹介文とリンクをコピー';
  const feedback=document.createElement('p');feedback.id='snsCopyStatus';feedback.setAttribute('role','status');feedback.setAttribute('aria-live','polite');
+ const manual=document.createElement('textarea');manual.id='snsManualText';manual.readOnly=true;manual.rows=8;manual.hidden=true;manual.setAttribute('aria-label','手動コピー用の紹介文とリンク');manual.style.cssText='width:100%;font-size:18px;line-height:1.7';
  const postText=()=>[(input.value.trim()||SNS_PROMO_TEXT),'#SKZ30 #志木市 #かっぱ像めぐり',SNS_PUBLIC_URL].join('\n\n');
  copy.addEventListener('click',async()=>{
   const text=postText();
   try{
    if(!navigator.clipboard||typeof navigator.clipboard.writeText!=='function')throw Error('manual');
-   await navigator.clipboard.writeText(text);feedback.textContent='紹介文とDXリンクをコピーしました。下のボタンからSNSへ進めます。Facebookでは本文欄に貼り付けてください。';
+   await navigator.clipboard.writeText(text);manual.hidden=true;feedback.textContent='紹介文とDXリンクをコピーしました。下のボタンからSNSへ進めます。Facebookでは本文欄に貼り付けてください。';
   }catch(e){
-   feedback.textContent='コピーできない場合は、表示された紹介文を長押ししてコピーしてください。';
+   manual.value=text;manual.hidden=false;manual.focus();manual.select();manual.setSelectionRange(0,text.length);feedback.textContent='下の紹介文とリンクを長押ししてコピーしてください。';
   }
  });
  const links=document.createElement('div');links.id='snsPostLinks';links.style.cssText='display:grid;gap:10px';
@@ -1547,11 +1588,12 @@ function createSnsPhotoControls(){
   line.href='https://line.me/R/share?text='+encodeURIComponent(postText());
   x.href='https://twitter.com/intent/tweet?text='+encodeURIComponent(postText());
   facebook.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(SNS_PUBLIC_URL);
+  if(!manual.hidden)manual.value=postText();
  };
  input.addEventListener('input',updateLinks);updateLinks();
  const help=document.createElement('p');help.textContent='LINE・Xには紹介文とリンクが入ります。Facebookは紹介文をコピーしてから開き、本文欄に貼り付けてください。';
  links.append(line,x,facebook);
- box.append(input,copy,feedback,links,help);return box;
+ box.append(input,copy,feedback,manual,links,help);return box;
 }
 
 function setupSocialUI(){
@@ -1578,7 +1620,12 @@ function setupSocialUI(){
  showSimpleShareForm();showPage();
 }
 setupSocialUI();
-async function init(){try{const data=await api('getKappas');KAPPAS=data.records.map(k=>({id:String(k.ID),name:k['カッパ像名']||'名称確認中',place:k['設置場所'],description:k['紹介文'],image:k['画像URL']}));if(KAPPAS.length!==30||new Set(KAPPAS.map(k=>k.id)).size!==30)throw Error('30体の一覧を確認できません。主催者へお問い合わせください。');renderKappas();for(let n=1;n<=3;n++){$('slot'+n).disabled=false;$('saveChoice'+n).disabled=true;}try{auth=identity();}catch(e){const message='このブラウザーでは参加記録を利用できません。カッパ像やお店の情報は閲覧できます。参加する場合は、ブラウザーの保存設定をご確認ください。';$('eventStatus').textContent=message;for(const id of ['homeVisitedCount','visitedCount'])$(id).textContent='参加記録を確認できません';status(message,true);return;}ready=true;progress=await api('getProgress',auth);for(let n=1;n<=3;n++){const saved=progress.choices.find(c=>c.slot===n);const draft=JSON.parse(localStorage.getItem(draftKey(n))||'null');if(progress.submitted&&saved){$('rank'+n).value=saved.kappaId;$('reason'+n).value=saved.reason;}else if(draft){$('rank'+n).value=draft.id;$('reason'+n).value=draft.reason;}else if(saved){$('rank'+n).value=saved.kappaId;$('reason'+n).value=saved.reason;}}renderProgress();const qr=new URL(location.href).searchParams.get('qr');if(qr){busy=true;renderProgress();status('QRの記録を確認しています…');try{progress=await api('recordVisit',{...auth,qr});status(progress.alreadyVisited?'この地点は確認済みです。':progress.pointName+'のQRを記録しました。');const url=new URL(location.href);url.searchParams.delete('qr');url.hash='vote';history.replaceState(null,'',url);showPage();}finally{busy=false;renderProgress();}}}catch(e){$('eventStatus').textContent=e.message;status(e.message,true);busy=false;renderProgress();}}
+let participationInit=null;
+function init(){
+ if(!participationInit)participationInit=initializeParticipation().finally(()=>{participationInit=null;});
+ return participationInit;
+}
+async function initializeParticipation(){try{const data=await api('getKappas');KAPPAS=data.records.map(k=>({id:String(k.ID),name:k['カッパ像名']||'名称確認中',place:k['設置場所'],description:k['紹介文'],image:k['画像URL']}));if(KAPPAS.length!==30||new Set(KAPPAS.map(k=>k.id)).size!==30)throw Error('30体の一覧を確認できません。主催者へお問い合わせください。');renderKappas();for(let n=1;n<=3;n++){$('slot'+n).disabled=false;$('saveChoice'+n).disabled=true;}try{auth=identity();}catch(e){const message='このブラウザーでは参加記録を利用できません。カッパ像やお店の情報は閲覧できます。参加する場合は、ブラウザーの保存設定をご確認ください。';$('eventStatus').textContent=message;for(const id of ['homeVisitedCount','visitedCount'])$(id).textContent='参加記録を確認できません';status(message,true);return;}ready=true;progress=await api('getProgress',auth);for(let n=1;n<=3;n++){const saved=progress.choices.find(c=>c.slot===n);const draft=readChoiceDraft(n);if(progress.submitted&&saved){$('rank'+n).value=saved.kappaId;$('reason'+n).value=saved.reason;}else if(draft){$('rank'+n).value=draft.id;$('reason'+n).value=draft.reason;}else if(saved){$('rank'+n).value=saved.kappaId;$('reason'+n).value=saved.reason;}}renderProgress();const qr=new URL(location.href).searchParams.get('qr');if(qr){busy=true;renderProgress();status('QRの記録を確認しています…');try{progress=await api('recordVisit',{...auth,qr});status(progress.alreadyVisited?'この地点は確認済みです。':progress.pointName+'のQRを記録しました。');const url=new URL(location.href);url.searchParams.delete('qr');url.hash='vote';history.replaceState(null,'',url);showPage();}finally{busy=false;renderProgress();}}}catch(e){$('eventStatus').textContent=e.message;status(e.message,true);busy=false;renderProgress();}}
 init();
 
 // 公開案内は、QR記録・応募の処理とは独立して読み込みます。
