@@ -1240,7 +1240,7 @@ async function postAndConfirm(fields,confirmed){
   throw Error('保存・受付の完了を確認できませんでした。未受付の可能性があります。入力内容やQR記録を消さず、下の「記録を再確認」を押してください。');
  }finally{window.removeEventListener('message',receive);form.remove();frame.remove();}
 }
-async function savePick(n){if(busy)return;if(!ready||progress.submitted||progress.unlockedSlots<n){status(progress.submitted?'応募済みの内容は変更できません。':'応募用の保存には、異なる'+n+'か所のQRを読んでください。',true);return;}const id=$('rank'+n).value,reason=$('reason'+n).value.trim();if(!id||!reason){status('かっぱと推しの理由を入力してください。',true);return;}if([1,2,3].some(m=>m!==n&&$('rank'+m).value===id)){status('推しは異なる3体を選んでください。',true);return;}busy=true;renderProgress();status(n+'体目を保存しています…');try{remember(n);await postAndConfirm({mode:'saveChoice',slot:n,kappaId:id,reason},state=>savedChoiceMatches(state,{slot:n,kappaId:id,reason}));status(n+'体目の保存を確認しました。');}catch(e){status(e.message,true);}finally{busy=false;renderProgress();}}
+async function savePick(n){if(busy)return;if(!ready||progress.submitted||progress.unlockedSlots<n){status(progress.submitted?'応募済みの内容は変更できません。':'応募用の保存には、異なる'+n+'か所のQRを読んでください。',true);return;}const id=$('rank'+n).value,reason=$('reason'+n).value.trim();if(!id||!reason){status('かっぱと推しの理由を入力してください。',true);return;}if(choiceReasonTransportLength(reason)>1000){status('理由が長すぎます。改行を減らすか、文章を少し短くしてください（1000文字以内）。',true);return;}if([1,2,3].some(m=>m!==n&&$('rank'+m).value===id)){status('推しは異なる3体を選んでください。',true);return;}busy=true;renderProgress();status(n+'体目を保存しています…');try{remember(n);await postAndConfirm({mode:'saveChoice',slot:n,kappaId:id,reason},state=>savedChoiceMatches(state,{slot:n,kappaId:id,reason}));status(n+'体目の保存を確認しました。');}catch(e){status(e.message,true);}finally{busy=false;renderProgress();}}
 let surveyShopsReady=false;
 let surveyShopsLoading=false;
 function updateShopSurvey(){
@@ -1312,13 +1312,14 @@ function checkEntryChoices(choices){
  for(const choice of choices){
   if(!choice.kappaId||!KAPPAS.some(k=>k.id===choice.kappaId))throw entryIssue('推し'+choice.slot+'体目のかっぱを選んでください。','rank'+choice.slot);
   if(!choice.reason)throw entryIssue('推し'+choice.slot+'体目の好きなところ・魅力を入力してください。','reason'+choice.slot);
-  if(choice.reason.length>1000)throw entryIssue('推し'+choice.slot+'体目の理由は1000文字以内で入力してください。','reason'+choice.slot);
+  if(choiceReasonTransportLength(choice.reason)>1000)throw entryIssue('推し'+choice.slot+'体目の理由が長すぎます。改行を減らすか、文章を少し短くしてください（1000文字以内）。','reason'+choice.slot);
   if(ids.has(choice.kappaId))throw entryIssue('推しは異なる3体を選んでください。'+choice.slot+'体目が重複しています。','rank'+choice.slot);
   ids.add(choice.kappaId);
  }
 }
 // フォーム送信でLFがCRLFに変わるため、本文を変えず改行形式だけをそろえて比較します。
 function normalizedChoiceReason(value){return String(value??'').replace(/\r\n?/g,'\n').trim();}
+function choiceReasonTransportLength(value){return normalizedChoiceReason(value).replace(/\n/g,'\r\n').length;}
 function savedChoiceMatches(state,choice){
  const reason=normalizedChoiceReason(choice.reason);
  return state.choices.some(saved=>saved.slot===choice.slot&&String(saved.kappaId)===choice.kappaId&&(normalizedChoiceReason(saved.reason)===reason||normalizedChoiceReason(saved.reason)==="'"+reason));
