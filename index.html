@@ -1318,7 +1318,12 @@ $('entryForm').addEventListener('submit',async e=>{
   checkEntryChoices(choices);
   // 個人情報の不足は、推しを保存する前に元の入力欄で案内します。
   busy=false;renderProgress();updateShopSurvey();
-  if(!$('entryForm').reportValidity())return;
+  const invalidField=Array.from($('entryForm').elements).find(field=>field.willValidate&&!field.validity.valid);
+  if(invalidField){
+   const messages={shopSurveyAnswer:'「おススメしたいお店は」の回答を選んでください。',shopSurveyName:'おススメしたいお店を一覧から選んでください。',entryName:'氏名を入力してください。',entryPhone:'連絡先電話番号を入力してください。',entryEmail:'当選連絡用メールアドレスを正しい形式で入力してください。',pickupConsent:'賞品受け取りの同意にチェックを入れてください。'};
+   const message=invalidField.validity.customError?invalidField.validationMessage:(messages[invalidField.id]||'入力内容を確認してください。');
+   throw entryIssue(message,invalidField.id);
+  }
   if(!fields.name||!fields.phone||!fields.email)throw entryIssue('氏名・電話番号・メールアドレスを入力してください。',!fields.name?'entryName':!fields.phone?'entryPhone':'entryEmail');
   if(!confirm('表示中の推し3体と理由を保存して応募します。応募後は変更できません。よろしいですか？'))return;
   busy=true;renderProgress();
