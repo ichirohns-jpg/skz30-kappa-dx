@@ -833,6 +833,9 @@ box-shadow:0 2px 8px rgba(0,0,0,.18);
 .shopSocialLinks .miniBtn{margin:0}
 /* 非表示にした操作欄がボタン等の表示指定で再出現しないようにします。 */
 [hidden]{display:none!important}
+.eventClosedNotice{margin:0 0 16px;padding:20px 16px;border:3px solid #9f2525;border-radius:20px;background:#fff4d6;color:#752020;text-align:center}
+.eventClosedNotice h2{margin:0;font-size:clamp(26px,6.4vw,38px);line-height:1.4;font-weight:900}
+.eventClosedNotice p{margin:10px 0 0;font-size:20px;line-height:1.6;font-weight:800}
 </style>
 </head>
 <body>
@@ -852,6 +855,10 @@ box-shadow:0 2px 8px rgba(0,0,0,.18);
 </header>
 <main>
 <section id="top" class="page active">
+<aside class="eventClosedNotice" aria-labelledby="eventClosedHeading">
+<h2 id="eventClosedHeading">応募受付は終了しました</h2>
+<p>ご参加ありがとうございました。</p>
+</aside>
 <div class="appHero">
 <div class="appHeroImage">
 <img src="images/skz30-top.jpg" alt="SKZ30 カッパ像めぐりDX" onerror="this.style.display='none';document.getElementById('heroFallback').style.display='block';">
@@ -1146,6 +1153,16 @@ const GAS_URL="https://script.google.com/macros/s/AKfycbwxh3Kef31DQBb34iMohUAXXZ
 const MAP_URL="https://www.google.com/maps/d/viewer?mid=1IL2cZBQ7GCIZ8yq1bbZXlQnIWa2rRiE";
 let KAPPAS=[],auth=null,progress=null,busy=false,ready=false,serial=0;
 const $=id=>document.getElementById(id);
+// 受付終了後は、どの地点のQRでも終了案内のあるトップを開きます。
+// QRパラメーターを外し、終了後の訪問記録・応募画面への自動移動を防ぎます。
+function openClosedEventTop(){
+ const url=new URL(location.href);
+ if(!url.searchParams.has('qr'))return;
+ url.searchParams.delete('qr');
+ url.hash='top';
+ history.replaceState(null,'',url);
+}
+openClosedEventTop();
 function showPage(){const page=location.hash.slice(1),active=["top","kappas","info","vote","shops","sns"].includes(page)?page:"top";document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.id===active));document.querySelectorAll('[data-page-link]').forEach(el=>{const on=el.dataset.pageLink===active;el.classList.toggle('active',on);if(on)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});if(active==='sns'&&document.querySelector('#snsCorner'))showSimpleShareForm();}
 window.addEventListener('hashchange',()=>{showPage();window.scrollTo(0,0);});showPage();
 // 同じ「巡る」画面内でも、記録へのリンクは毎回対象の欄まで移動します。
